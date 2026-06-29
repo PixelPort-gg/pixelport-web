@@ -7,23 +7,22 @@
  * No new dependencies. Transform-only animation (GPU-friendly).
  * prefers-reduced-motion → a static, horizontally-scrollable row.
  */
-import games from '../data/games.resolved.json';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-type Game = {
-  slug: string;
-  title: string;
-  appid: number | null;
-  tier: string;
-};
+type Game = { slug: string; title: string; appid: number | null; tier: string; pop?: number };
 
-// Living evidence only: things that actually run, with real cover art.
-const runs = (games as Game[]).filter(
-  (g) => (g.tier === 'verified' || g.tier === 'playable') && typeof g.appid === 'number',
-);
+// Living evidence: the most POPULAR games that actually run, taken from the
+// popularity-sorted catalogue so recognisable names carry the strip.
+const grid = JSON.parse(
+  readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+) as Game[];
+const runs = grid
+  .filter((g) => (g.tier === 'verified' || g.tier === 'playable') && typeof g.appid === 'number')
+  .slice(0, 40);
 
-// Pace the loop to the catalogue size: enough that art has time to read,
-// never so fast it feels frantic. ~4.2s of travel per chip.
-const duration = Math.max(32, runs.length * 4.2);
+// Pace the loop so art has time to read, never frantic.
+const duration = Math.max(60, runs.length * 3.4);
 
 const cover = (appid: number) =>
   `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg`;
@@ -78,6 +77,9 @@ const header = (appid: number) =>
   .rt {
     position: relative;
     overflow: hidden;
+    /* Vertical breathing room so the hover-rise (and the cover's soft shadow)
+       never clip against the marquee's overflow:hidden. */
+    padding-block: 12px;
     /* Premium edge fade — chips dissolve in/out at the rails. */
     -webkit-mask-image: linear-gradient(
       to right,
