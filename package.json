@@ -7,9 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/build-catalogue.mjs && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "refresh:base": "node scripts/refresh-base.mjs",
+    "sync": "node scripts/pull-d1.mjs && node scripts/build-catalogue.mjs && node scripts/announce-verified.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",

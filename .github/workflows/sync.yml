@@ -1,0 +1,49 @@
+name: Sync compatibility + deploy
+
+# Re-pulls the live compatibility map from D1 (verified plays + popularity),
+# regenerates the catalogue, auto-publishes "X is now verified on Mac" posts for
+# any new verified flips, rebuilds, and deploys. Runs daily + on demand.
+
+on:
+  schedule:
+    - cron: '17 7 * * *' # daily 07:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # commit refreshed data + new blog posts
+
+concurrency:
+  group: sync-deploy
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ebafb6b37e9a9231f36a635f8378c987
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+
+      - name: Pull live compat map, regenerate, announce new verifieds
+        run: npm run sync
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler pages deploy dist --project-name pixelport --branch main --commit-dirty=true
+
+      - name: Commit refreshed data + any new posts
+        run: |
+          git config user.name "pixelport-bot"
+          git config user.email "bot@pixelport.gg"
+          git add scripts/d1-verified.json scripts/popularity.json scripts/announced-verified.json \
+                  public/catalogue-grid.json src/data/catalogue.json src/data/games.resolved.json \
+                  src/content/blog
+          git commit -m "chore: sync compat map + announce verified [skip ci]" || echo "nothing to commit"
+          git push

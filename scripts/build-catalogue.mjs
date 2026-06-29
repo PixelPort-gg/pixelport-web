@@ -29,10 +29,7 @@ const readJSON = (p, fallback) => {
   }
 };
 
-const app = JSON.parse(
-  readFileSync(join(process.env.HOME, 'MacGamePort/App/Sources/PortingEngine/Catalogue/catalogue.json'), 'utf8'),
-);
-const entries = Array.isArray(app) ? app : app.entries || app.games || [];
+const entries = readJSON('scripts/catalogue-base.json', []);
 const curated = readJSON('src/data/games.json', []);
 const popularity = readJSON('scripts/popularity.json', {}); // { appid: score }
 const d1Verified = new Set(readJSON('scripts/d1-verified.json', [])); // [appid]
@@ -72,13 +69,19 @@ for (const e of entries) {
       engine: e.engine ?? null,
       d3d: e.d3d ?? null,
       antiCheat: e.antiCheat ?? null,
-      graphics: e.recommendedGraphics ?? null,
+      graphics: e.graphics ?? null,
     });
   }
 }
 
+// Curated games inherit verified from the live server too (rich content unchanged).
+const resolvedCurated = curated.map((g) =>
+  g.appid != null && d1Verified.has(g.appid) && g.tier !== 'unsupported' ? { ...g, tier: 'verified' } : g,
+);
+writeFileSync(join(root, 'src/data/games.resolved.json'), JSON.stringify(resolvedCurated));
+
 const grid = [
-  ...curated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: pop(g.appid), p: 1 })),
+  ...resolvedCurated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: pop(g.appid), p: 1 })),
   ...gridExtra,
 ];
 // Popularity-sorted so the browse grid leads with games people recognise.

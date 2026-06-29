@@ -4,7 +4,7 @@ import HeroVisual from '../components/HeroVisual.astro';
 import RunsTicker from '../components/RunsTicker.astro';
 import Reveal from '../components/Reveal.astro';
 import OldVsNew from '../components/OldVsNew.astro';
-import games from '../data/games.json';
+import games from '../data/games.resolved.json';
 
 const featured = games.slice(0, 3);
 const tierClass = (t: string) =>
