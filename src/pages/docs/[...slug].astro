@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+---
+
+<Base title={doc.data.title} description={doc.data.description}>
+  <article class="wrap py-16">
+    <a href="/docs" class="text-sm text-muted hover:text-fg">&larr; All docs</a>
+    <h1 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">{doc.data.title}</h1>
+    <div class="prose prose-invert mt-8 max-w-2xl">
+      <Content />
+    </div>
+  </article>
+</Base>

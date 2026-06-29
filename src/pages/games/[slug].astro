@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+import games from '../../data/games.json';
+
+export function getStaticPaths() {
+  return games.map((g) => ({ params: { slug: g.slug }, props: { game: g } }));
+}
+
+const { game } = Astro.props;
+const title = `How to play ${game.title} on Mac`;
+const description = game.summary;
+const tierLabel = game.tier === 'verified' ? 'Verified on Mac' : 'Playable on Mac';
+const tierClass =
+  game.tier === 'verified'
+    ? 'text-verified bg-verified/15 ring-verified/30'
+    : 'text-playable bg-playable/15 ring-playable/30';
+
+// Structured data: a VideoGame + a HowTo, so Google can show rich results for
+// "how to play <game> on mac" searches.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'VideoGame',
+      name: game.title,
+      genre: game.genre,
+      gamePlatform: 'macOS (Apple Silicon)',
+      operatingSystem: 'macOS 14+',
+    },
+    {
+      '@type': 'HowTo',
+      name: title,
+      description,
+      step: game.steps.map((s, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: s.title,
+        text: s.body,
+      })),
+    },
+  ],
+};
+---
+
+<Base title={title} description={description}>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+    slot="head"
+  />
+
+  <article class="wrap py-16">
+    <a href="/games" class="text-sm text-muted hover:text-fg">&larr; All games</a>
+
+    <header class="mt-6 flex flex-wrap items-center gap-3">
+      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
+      <span class={`rounded-full px-3 py-1 text-sm font-semibold ring-1 ${tierClass}`}>{tierLabel}</span>
+    </header>
+
+    <p class="mt-5 max-w-2xl text-lg text-muted">{game.summary}</p>
+
+    <dl class="mt-8 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-xl border border-line bg-surface/50 p-4">
+        <dt class="text-xs uppercase tracking-wide text-muted">Method</dt>
+        <dd class="mt-1 text-sm text-fg">{game.method}</dd>
+      </div>
+      <div class="rounded-xl border border-line bg-surface/50 p-4">
+        <dt class="text-xs uppercase tracking-wide text-muted">Genre</dt>
+        <dd class="mt-1 text-sm text-fg">{game.genre}</dd>
+      </div>
+      <div class="rounded-xl border border-line bg-surface/50 p-4">
+        <dt class="text-xs uppercase tracking-wide text-muted">Last tested</dt>
+        <dd class="mt-1 text-sm text-fg">{game.lastTested}</dd>
+      </div>
+    </dl>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold">What you need</h2>
+      <ul class="mt-4 space-y-2 text-fg/85">
+        {game.requirements.map((r) => (
+          <li class="flex gap-2"><span class="text-accent-2">&bull;</span>{r}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold">Step by step</h2>
+      <ol class="mt-6 space-y-5">
+        {
+          game.steps.map((s, i) => (
+            <li class="flex gap-4 rounded-2xl border border-line bg-surface/50 p-5">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-2 text-sm font-bold text-white">
+                {i + 1}
+              </span>
+              <div>
+                <h3 class="font-semibold text-fg">{s.title}</h3>
+                <p class="mt-1 text-sm text-fg/80">{s.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <div class="mt-14 rounded-2xl border border-accent/30 bg-accent/10 p-6">
+      <p class="text-lg font-medium">Ready to play {game.title} on your Mac?</p>
+      <a
+        href="/#download"
+        class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-lg shadow-black/30 transition-transform active:scale-[0.98]"
+      >
+        Download Pixel Port
+      </a>
+    </div>
+  </article>
+</Base>

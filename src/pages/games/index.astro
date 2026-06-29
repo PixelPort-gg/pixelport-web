@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import games from '../../data/games.json';
+
+const sorted = [...games].sort((a, b) => a.title.localeCompare(b.title));
+const tierClass = (t: string) =>
+  t === 'verified'
+    ? 'text-verified bg-verified/15 ring-verified/30'
+    : 'text-playable bg-playable/15 ring-playable/30';
+---
+
+<Base
+  title="Which games run on Mac"
+  description="Browse games confirmed to run on Mac through Pixel Port, with a step-by-step guide for each."
+>
+  <section class="wrap py-16">
+    <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Games that run on Mac</h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted">
+      Every title here is confirmed to run on Apple Silicon through Pixel Port. Open one for a
+      step-by-step guide, the method we use, and how it was tested.
+    </p>
+
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        sorted.map((g) => (
+          <li>
+            <a
+              href={`/games/${g.slug}`}
+              class="group block h-full rounded-2xl border border-line bg-surface/60 p-5 transition-colors hover:border-accent/40 hover:bg-surface"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold text-fg">{g.title}</h2>
+                <span class={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold capitalize ring-1 ${tierClass(g.tier)}`}>
+                  {g.tier}
+                </span>
+              </div>
+              <p class="mt-1 text-sm text-muted">{g.genre}</p>
+              <p class="mt-3 line-clamp-3 text-sm text-fg/80">{g.summary}</p>
+              <span class="mt-4 inline-block text-sm font-medium text-accent-2 group-hover:underline">
+                How to play on Mac
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

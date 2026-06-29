@@ -1,0 +1,46 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Deep Amethyst — the Pixel Port palette, as Tailwind v4 theme tokens. */
+@theme {
+  --color-ink: #0a0816;
+  --color-base-top: #0d0a1c;
+  --color-base-bottom: #060410;
+  --color-surface: #16122a;
+  --color-surface-2: #1f1838;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-accent: #9268ff;
+  --color-accent-2: #3fd6ce;
+  --color-verified: #4ad991;
+  --color-playable: #f0b43e;
+  --color-fg: #f5f5f7;
+  --color-muted: #9aa3b5;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+  background-color: #060410;
+  scroll-behavior: smooth;
+}
+
+/* The living-aurora backdrop, held back so content reads first. */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-fg);
+  background:
+    radial-gradient(60rem 40rem at 18% -5%, rgba(146, 104, 255, 0.18), transparent 60%),
+    radial-gradient(50rem 38rem at 100% 20%, rgba(63, 214, 206, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--color-base-top), var(--color-base-bottom));
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: rgba(146, 104, 255, 0.32); }
+
+/* Shared bits */
+.wrap { max-width: 72rem; margin-inline: auto; padding-inline: 1.5rem; }
+.prose-amethyst :where(h2) { color: var(--color-fg); }
+.prose-amethyst :where(a) { color: var(--color-accent-2); text-decoration: underline; }

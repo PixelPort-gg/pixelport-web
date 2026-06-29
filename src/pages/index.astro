@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import games from '../data/games.json';
+
+const featured = games.slice(0, 3);
+const tierClass = (t: string) =>
+  t === 'verified'
+    ? 'text-verified bg-verified/15 ring-verified/30'
+    : 'text-playable bg-playable/15 ring-playable/30';
+---
+
+<Base title="Pixel Port">
+  <!-- Hero -->
+  <section class="wrap grid items-center gap-10 py-20 sm:py-28 lg:grid-cols-[1.05fr_0.95fr]">
+    <div>
+      <h1 class="text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
+        Built from pixels,<br />ported to Mac.
+      </h1>
+      <p class="mt-6 max-w-xl text-balance text-lg text-muted">
+        Pixel Port runs Windows games on your Mac, honestly. One click installs the game, applies a
+        verified recipe, and launches it. Fast, native-feeling, free to start.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4" id="download">
+        <a
+          href="#download"
+          class="rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+        >
+          Download for Mac
+        </a>
+        <a href="/games" class="px-2 py-2 font-medium text-accent-2 hover:underline">
+          See what runs &rarr;
+        </a>
+      </div>
+      <p class="mt-4 text-sm text-muted">Apple Silicon. macOS 14+. No account needed to browse.</p>
+    </div>
+
+    <div class="flex justify-center">
+      <img
+        src="/brand/mark-anim.svg"
+        alt="The Pixel Port mark assembling"
+        width="380"
+        height="380"
+        class="w-[min(80%,380px)] drop-shadow-[0_30px_80px_rgba(146,104,255,0.28)]"
+      />
+    </div>
+  </section>
+
+  <!-- Honest compatibility -->
+  <section class="wrap py-12">
+    <h2 class="text-3xl font-semibold tracking-tight">Honest compatibility, in one glance</h2>
+    <p class="mt-3 max-w-2xl text-muted">
+      We do not promise the world. Every game is graded honestly, so you know what you are getting
+      before you install.
+    </p>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        [
+          ['Verified', 'A human confirmed it end-to-end on a real Mac.', 'text-verified'],
+          ['Playable', 'Auto-tested or community-confirmed, not yet verified.', 'text-playable'],
+          ['Needs attention', 'Runs with caveats or a known workaround.', 'text-orange-400'],
+          ['Unsupported', 'A hard blocker, like kernel anti-cheat.', 'text-rose-400'],
+        ].map(([t, d, c]) => (
+          <div class="rounded-2xl border border-line bg-surface/50 p-5">
+            <h3 class={`font-semibold ${c}`}>{t}</h3>
+            <p class="mt-1 text-sm text-fg/80">{d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Featured games -->
+  <section class="wrap py-12">
+    <div class="flex items-end justify-between">
+      <h2 class="text-3xl font-semibold tracking-tight">Play these on Mac</h2>
+      <a href="/games" class="text-sm font-medium text-accent-2 hover:underline">All games &rarr;</a>
+    </div>
+    <ul class="mt-8 grid gap-4 sm:grid-cols-3">
+      {
+        featured.map((g) => (
+          <li>
+            <a
+              href={`/games/${g.slug}`}
+              class="group block h-full rounded-2xl border border-line bg-surface/60 p-5 transition-colors hover:border-accent/40 hover:bg-surface"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-lg font-semibold text-fg">{g.title}</h3>
+                <span class={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold capitalize ring-1 ${tierClass(g.tier)}`}>
+                  {g.tier}
+                </span>
+              </div>
+              <p class="mt-3 text-sm text-fg/80">{g.summary}</p>
+              <span class="mt-4 inline-block text-sm font-medium text-accent-2 group-hover:underline">
+                How to play on Mac
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>
