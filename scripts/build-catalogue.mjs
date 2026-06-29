@@ -50,6 +50,7 @@ const score = (appid) => {
 };
 
 const seen = new Set(curatedSlugs);
+const seenAppids = new Set(curatedAppids);
 const pages = []; // non-curated games that get a detail page
 const gridExtra = [];
 
@@ -58,6 +59,7 @@ for (const e of entries) {
   if (!slug || seen.has(slug)) continue;
   if (e.appid != null && curatedAppids.has(e.appid)) continue;
   seen.add(slug);
+  if (e.appid != null) seenAppids.add(e.appid);
 
   let tier = mapTier(e.tier);
   // Sync verified from the live server — but never claim verified for a game the
@@ -80,6 +82,27 @@ for (const e of entries) {
       graphics: e.graphics ?? null,
     });
   }
+}
+
+// Merge AWACY-blocked games the catalogue doesn't cover, as honest unsupported
+// pages with accurate anti-cheat from AreWeAntiCheatYet (popular "can I play X on
+// Mac" titles like Battlefield, Conan Exiles, CoD MW...).
+const awacy = readJSON('scripts/awacy.json', {});
+const slugify = (s) =>
+  (s || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+let awacyAdded = 0;
+for (const [appidStr, info] of Object.entries(awacy)) {
+  const appid = +appidStr;
+  if (seenAppids.has(appid)) continue;
+  let slug = slugify(info.name) || `game-${appid}`;
+  if (seen.has(slug)) slug = `${slug}-${appid}`;
+  if (seen.has(slug)) continue;
+  seen.add(slug);
+  seenAppids.add(appid);
+  const antiCheat = (info.anticheats || []).filter(Boolean).join(' + ') || 'kernel-level anti-cheat';
+  pages.push({ slug, title: info.name, appid, tier: 'unsupported', engine: null, d3d: null, antiCheat, graphics: null });
+  gridExtra.push({ slug, title: info.name, appid, tier: 'unsupported', pop: score(appid), p: 1 });
+  awacyAdded++;
 }
 
 // Curated games inherit verified from the live server too (rich content unchanged).
@@ -106,4 +129,4 @@ writeFileSync(join(root, 'src/data/catalogue.json'), JSON.stringify(pages));
 const byTier = grid.reduce((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
 console.log('grid total:', grid.length, byTier);
 console.log('detail pages:', pages.length, 'generated +', curated.length, 'curated =', pages.length + curated.length);
-console.log('owners:', Object.keys(owners).length, '| trending:', Object.keys(trending).length, '| d1 verified:', d1Verified.size);
+console.log('owners:', Object.keys(owners).length, '| trending:', Object.keys(trending).length, '| d1 verified:', d1Verified.size, '| awacy added:', awacyAdded);
