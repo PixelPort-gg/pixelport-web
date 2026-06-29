@@ -1,11 +1,39 @@
 [
   {
+    "slug": "among-us",
+    "title": "Among Us",
+    "appid": 945360,
+    "tier": "verified",
+    "genre": "Party",
+    "summary": "Among Us is fully playable on Pixel Port's free runtime, Steam sign-in and online lobbies included. It is one of our most-tested titles on Apple Silicon.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Among Us", "body": "Find Among Us in the catalogue and hit Install & Play. Pixel Port fetches it and configures it for your Mac automatically."},
+      {"title": "Play online", "body": "Launch from your Library and sign in to Steam. Online lobbies work the same as on Windows."}
+    ],
+    "lastTested": "2026-06-19"
+  },
+  {
+    "slug": "pool-blitz",
+    "title": "Pool Blitz",
+    "appid": 3942580,
+    "tier": "verified",
+    "genre": "Sports",
+    "summary": "Pool Blitz is fully playable on Apple Silicon through Pixel Port. This Unreal Engine title falls back cleanly to its D3D11 path under our runtime, so it runs without any tweaking.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Grab Pixel Port; the runtime installs itself on first run."},
+      {"title": "Install & Play", "body": "Find Pool Blitz in the catalogue and click Install & Play. Pixel Port handles the setup automatically."}
+    ],
+    "lastTested": "2026-06-23"
+  },
+  {
     "slug": "noita",
     "title": "Noita",
     "appid": 881100,
     "tier": "playable",
     "genre": "Roguelite",
-    "method": "Free runtime (Wine 11 + wined3d)",
     "summary": "Noita runs well on Apple Silicon through Pixel Port's free runtime. It is an OpenGL 3.0 game with no anti-cheat, so it needs no special configuration.",
     "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~1.5 GB free"],
     "steps": [
@@ -16,33 +44,204 @@
     "lastTested": "2026-06-25"
   },
   {
-    "slug": "meccha-chameleon",
-    "title": "Meccha Chameleon",
-    "appid": 4704690,
-    "tier": "verified",
-    "genre": "Co-op platformer",
-    "method": "Free runtime (Wine 11 + DXMT)",
-    "summary": "Meccha Chameleon is verified end-to-end on Apple Silicon. It is an Unreal Engine 5 title that runs on Pixel Port's DXMT path with one click.",
-    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
-    "steps": [
-      {"title": "Install Pixel Port", "body": "Grab Pixel Port; the runtime installs itself on first run."},
-      {"title": "Install & Play", "body": "Find Meccha Chameleon in the catalogue and click Install & Play. Pixel Port handles the setup automatically."}
-    ],
-    "lastTested": "2026-06-26"
-  },
-  {
     "slug": "manor-lords",
     "title": "Manor Lords",
     "appid": 1363080,
     "tier": "playable",
     "genre": "City builder",
-    "method": "Free runtime (Wine 11 + DXMT)",
-    "summary": "Manor Lords is an Unreal Engine 4.27 title that lists DirectX 12 but falls back to its D3D11 path under Pixel Port's DXMT layer, so it runs without a flag.",
+    "summary": "Manor Lords is an Unreal Engine 4.27 title that lists DirectX 12 but falls back to its D3D11 path under Pixel Port's runtime, so it runs without a flag.",
     "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~15 GB free"],
     "steps": [
       {"title": "Install Pixel Port", "body": "Install Pixel Port and let the runtime set up."},
       {"title": "Install & Play", "body": "Search for Manor Lords, install, and launch. FSR is recommended at 1080p on M1 and M2."}
     ],
     "lastTested": "2026-06-24"
+  },
+  {
+    "slug": "meccha-chameleon",
+    "title": "Meccha Chameleon",
+    "appid": 4704690,
+    "tier": "playable",
+    "genre": "Co-op platformer",
+    "summary": "Meccha Chameleon is an Unreal Engine 5 co-op platformer that runs in one click on Pixel Port's DXMT path. Full end-to-end verification is in progress.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Grab Pixel Port; the runtime installs itself on first run."},
+      {"title": "Install & Play", "body": "Find Meccha Chameleon in the catalogue and click Install & Play. Pixel Port handles the setup automatically."}
+    ]
+  },
+  {
+    "slug": "magic-archery",
+    "title": "Magic Archery",
+    "appid": 2905170,
+    "tier": "playable",
+    "genre": "Roguelite",
+    "summary": "Magic Archery runs on Apple Silicon through Pixel Port's free runtime, no manual setup required.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Magic Archery in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "dwarf-fortress",
+    "title": "Dwarf Fortress",
+    "appid": 975370,
+    "tier": "playable",
+    "genre": "Simulation",
+    "summary": "Dwarf Fortress, the famously deep colony sim, runs on Apple Silicon through Pixel Port's free runtime.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Dwarf Fortress in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "lord-of-the-rings-online",
+    "title": "The Lord of the Rings Online",
+    "appid": 212500,
+    "tier": "playable",
+    "genre": "MMORPG",
+    "summary": "The Lord of the Rings Online runs on Apple Silicon through Pixel Port's free runtime.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~30 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find The Lord of the Rings Online in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "kenshi",
+    "title": "Kenshi",
+    "appid": 233860,
+    "tier": "playable",
+    "genre": "RPG",
+    "summary": "Kenshi, the open-ended squad RPG, runs on Apple Silicon through Pixel Port's free runtime.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Kenshi in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "palworld",
+    "title": "Palworld",
+    "appid": 1623730,
+    "tier": "playable",
+    "genre": "Survival",
+    "summary": "Palworld runs on Apple Silicon through Pixel Port. Pixel Port sets up the right path for you so you can jump straight in.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~40 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Palworld in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "elin",
+    "title": "Elin",
+    "appid": 2135150,
+    "tier": "needs-attention",
+    "genre": "Roguelike RPG",
+    "summary": "Elin installs and launches on Pixel Port's free runtime. Some mod-manager features still need extra setup, so we list it as needs attention while we smooth that out.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Elin in the catalogue and click Install & Play. The base game runs; heavy mod setups may need a hand for now."}
+    ]
+  },
+  {
+    "slug": "chained-together",
+    "title": "Chained Together",
+    "appid": 2567870,
+    "tier": "needs-attention",
+    "genre": "Co-op platformer",
+    "summary": "Chained Together runs on Pixel Port's free runtime, with a few caveats around co-op that we are still working through.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Chained Together in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "age-of-empires-2-definitive-edition",
+    "title": "Age of Empires II: Definitive Edition",
+    "appid": 813780,
+    "tier": "needs-attention",
+    "genre": "RTS",
+    "summary": "Age of Empires II: Definitive Edition installs through Pixel Port. Microsoft's licence check can block the first launch, so we list it as needs attention while we work through it.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~30 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let the runtime set up on first launch."},
+      {"title": "Install & Play", "body": "Find Age of Empires II: Definitive Edition in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "fortnite",
+    "title": "Fortnite",
+    "appid": null,
+    "tier": "unsupported",
+    "genre": "Battle Royale",
+    "summary": "Fortnite does not run on Mac through Pixel Port, and the reason is not technical.",
+    "blocker": {
+      "antiCheat": "Easy Anti-Cheat and BattlEye",
+      "whoDecides": "Epic Games",
+      "status": "Fortnite uses anti-cheat that Epic has chosen not to enable on macOS. Nothing Pixel Port does can change that. This one is genuinely up to Epic, and if they switch Mac support on, it could work overnight.",
+      "alternatives": ["fall-guys", "among-us"]
+    }
+  },
+  {
+    "slug": "valorant",
+    "title": "Valorant",
+    "appid": null,
+    "tier": "unsupported",
+    "genre": "Tactical shooter",
+    "summary": "Valorant cannot run on Mac through Pixel Port, and it is a policy decision, not a Pixel Port limitation.",
+    "blocker": {
+      "antiCheat": "Riot Vanguard (kernel level)",
+      "whoDecides": "Riot Games",
+      "status": "Vanguard runs at the kernel level and Riot does not permit it on macOS. No compatibility layer can run Valorant on a Mac today. This is up to Riot.",
+      "alternatives": []
+    }
+  },
+  {
+    "slug": "apex-legends",
+    "title": "Apex Legends",
+    "appid": 1172470,
+    "tier": "unsupported",
+    "genre": "Battle Royale",
+    "summary": "Apex Legends does not run on Mac through Pixel Port because of its anti-cheat, not its graphics.",
+    "blocker": {
+      "antiCheat": "Easy Anti-Cheat",
+      "whoDecides": "EA and Respawn",
+      "status": "Easy Anti-Cheat is not enabled for Mac on Apex Legends. The technology to allow it exists, so this is a decision for EA and Respawn to make.",
+      "alternatives": []
+    }
+  },
+  {
+    "slug": "marvel-rivals",
+    "title": "Marvel Rivals",
+    "appid": 2767030,
+    "tier": "unsupported",
+    "genre": "Hero shooter",
+    "summary": "Marvel Rivals cannot run on Mac through Pixel Port yet, and the blocker is its anti-cheat.",
+    "blocker": {
+      "antiCheat": "Kernel-level anti-cheat",
+      "whoDecides": "NetEase",
+      "status": "Marvel Rivals ships anti-cheat that does not run on macOS. This is up to NetEase. If they enable Mac support, we will test it the same day.",
+      "alternatives": []
+    }
+  },
+  {
+    "slug": "the-finals",
+    "title": "The Finals",
+    "appid": 2073850,
+    "tier": "unsupported",
+    "genre": "Shooter",
+    "summary": "The Finals does not run on Mac through Pixel Port because of its anti-cheat requirement.",
+    "blocker": {
+      "antiCheat": "Easy Anti-Cheat",
+      "whoDecides": "Embark Studios",
+      "status": "Easy Anti-Cheat is not enabled for Mac on The Finals. This is up to Embark Studios.",
+      "alternatives": []
+    }
   }
 ]

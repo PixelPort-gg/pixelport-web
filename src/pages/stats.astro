@@ -7,7 +7,7 @@ const stats = [
   { label: 'Games tracked', value: '10,700+' },
   { label: 'Verified on Mac', value: '49' },
   { label: 'Playable on Mac', value: '10,600+' },
-  { label: 'Runtime', value: 'Free (Wine 11 + DXMT)' },
+  { label: 'Runtime cost', value: 'Free' },
 ];
 const verified = games.filter((g) => g.tier === 'verified').length;
 ---
@@ -34,7 +34,7 @@ const verified = games.filter((g) => g.tier === 'verified').length;
     </dl>
 
     <p class="mt-8 text-sm text-muted">
-      Sample of {verified} verified title{verified === 1 ? '' : 's'} shown in the
+      Sample of {verified} verified title{verified === 1 ? '' : 's'} shown in the{' '}
       <a href="/games" class="text-accent-2 hover:underline">games catalogue</a>.
     </p>
   </section>

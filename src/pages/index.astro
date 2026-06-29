@@ -40,8 +40,8 @@ const pillars = [
 >
   <!-- Hero -->
   <section class="wrap grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.1fr_0.9fr]">
-    <div>
-      <h1 class="text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
+    <div class="min-w-0">
+      <h1 class="text-balance text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-6xl sm:leading-[1.04] lg:text-7xl">
         Game on Mac<br />with a single click.
       </h1>
       <p class="mt-6 max-w-xl text-balance text-lg text-muted sm:text-xl">
@@ -51,7 +51,7 @@ const pillars = [
       <div class="mt-9 flex flex-wrap items-center gap-4">
         <a
           href="/download"
-          class="rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+          class="rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
         >
           Download for Mac
         </a>
@@ -62,14 +62,14 @@ const pillars = [
       <p class="mt-4 text-sm text-muted">Free to start. Apple Silicon, macOS 14+. No account needed to browse.</p>
     </div>
 
-    <div class="relative flex justify-center">
+    <div class="relative flex min-w-0 justify-center">
       <div class="absolute h-64 w-64 rounded-full bg-accent/25 blur-[90px]" aria-hidden="true"></div>
       <img
         src="/brand/mark.svg"
         alt="The Pixel Port pixel-P mark"
         width="400"
         height="400"
-        class="relative w-[min(78%,380px)] drop-shadow-[0_24px_70px_rgba(146,104,255,0.35)]"
+        class="relative h-auto w-[78%] max-w-[360px] drop-shadow-[0_24px_70px_rgba(146,104,255,0.35)]"
       />
     </div>
   </section>
@@ -77,7 +77,7 @@ const pillars = [
   <!-- The problem: Mac gaming is hard -->
   <section class="wrap py-16">
     <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-      <div>
+      <div class="min-w-0">
         <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Mac gaming was never this easy.</h2>
         <p class="mt-4 text-lg text-muted">
           Playing a Windows game on a Mac has always meant picking your poison. Every option costs
@@ -92,9 +92,9 @@ const pillars = [
       <ul class="space-y-px overflow-hidden rounded-2xl border border-line">
         {
           oldWays.map((w) => (
-            <li class="flex items-center justify-between gap-4 bg-surface/40 px-5 py-4">
-              <span class="text-fg/70 line-through decoration-rose-400/50">{w.name}</span>
-              <span class="text-right text-sm text-muted">{w.cost}</span>
+            <li class="flex flex-col gap-1 bg-surface/40 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <span class="min-w-0 break-words text-fg/70 line-through decoration-blocked/50">{w.name}</span>
+              <span class="text-sm text-muted sm:text-right">{w.cost}</span>
             </li>
           ))
         }
@@ -143,8 +143,8 @@ const pillars = [
         [
           ['Verified', 'A human confirmed it end-to-end on a real Mac.', 'text-verified'],
           ['Playable', 'Auto-tested or community-confirmed, not yet verified.', 'text-playable'],
-          ['Needs attention', 'Runs with caveats or a known workaround.', 'text-orange-400'],
-          ['Unsupported', 'A hard blocker, like kernel anti-cheat.', 'text-rose-400'],
+          ['Needs attention', 'Runs with caveats or a known workaround.', 'text-attention'],
+          ['Unsupported', 'A hard blocker, like kernel anti-cheat.', 'text-blocked'],
         ].map(([t, d, c]) => (
           <div class="rounded-2xl border border-line bg-surface/50 p-5">
             <h3 class={`font-semibold ${c}`}>{t}</h3>
@@ -197,7 +197,7 @@ const pillars = [
       </p>
       <a
         href="/download"
-        class="mt-8 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+        class="mt-8 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
       >
         Download for Mac
       </a>

@@ -13,8 +13,13 @@
   --color-accent-2: #3fd6ce;
   --color-verified: #4ad991;
   --color-playable: #f0b43e;
+  --color-attention: #f0894e;
+  --color-blocked: #e0556b;
   --color-fg: #f5f5f7;
   --color-muted: #9aa3b5;
+
+  /* Elevation tinted to the violet base, never pure black. */
+  --shadow-glow: 0 18px 50px -12px rgba(146, 104, 255, 0.45);
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text",
     "Helvetica Neue", Arial, sans-serif;
@@ -34,7 +39,7 @@ body {
     radial-gradient(60rem 40rem at 18% -5%, rgba(146, 104, 255, 0.18), transparent 60%),
     radial-gradient(50rem 38rem at 100% 20%, rgba(63, 214, 206, 0.10), transparent 55%),
     linear-gradient(180deg, var(--color-base-top), var(--color-base-bottom));
-  background-attachment: fixed;
+  background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
 }
 

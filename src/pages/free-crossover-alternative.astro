@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+
+const seoTitle = 'A Free CrossOver Alternative for Mac (2026)';
+const description =
+  'CrossOver costs around $50 a year and still asks you to configure each game. Pixel Port is free, sets games up for you in one click, and is honest about what works.';
+
+const canonical = new URL('/free-crossover-alternative', Astro.site).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'A free CrossOver alternative for Mac in 2026',
+      description,
+      url: canonical,
+      author: { '@type': 'Organization', name: 'Pixel Port' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+        { '@type': 'ListItem', position: 2, name: 'CrossOver alternative', item: canonical },
+      ],
+    },
+  ],
+};
+
+const rows = [
+  { tool: 'CrossOver', price: 'Paid, ~$50/yr', setup: 'Mostly manual per game', honest: 'Closed product', cls: 'text-muted' },
+  { tool: 'Pixel Port', price: 'Free', setup: 'One click', honest: 'Honest compatibility tiers', cls: 'text-fg font-semibold' },
+];
+---
+
+<Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="wrap py-16 sm:py-24">
+    <nav class="text-sm text-muted">
+      <a href="/" class="hover:text-fg">Home</a> <span class="px-1">/</span> CrossOver alternative
+    </nav>
+
+    <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      A free CrossOver alternative for Mac
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      CrossOver is a paid compatibility layer that still asks you to set up each game by hand. Pixel
+      Port is free, does the setup for you in one click, and tells you the truth about what runs before
+      you install.
+    </p>
+    <div class="mt-8">
+      <a
+        href="/download"
+        class="inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+      >
+        Download Pixel Port, Free
+      </a>
+    </div>
+
+    <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>CrossOver, briefly</h2>
+      <p>
+        CrossOver is a well-made, paid Wine-based compatibility layer that has been around for years. It
+        costs roughly $50 a year. For most games you are still picking a bottle, installing dependencies,
+        and tweaking settings until things work.
+      </p>
+
+      <h2>Why Pixel Port</h2>
+      <p>
+        Pixel Port is free and built around a single click. You install it once, find a game in the
+        catalogue, and play. Our bundled runtime, Prism, translates DirectX straight to Metal on Apple
+        Silicon, and the Synthesis Engine figures out how each game should run for you. No yearly fee, no
+        manual configuration.
+      </p>
+      <p>
+        We are also honest. Every game carries a compatibility tier earned from real launches, so you
+        know what you are getting before you download anything.
+      </p>
+    </div>
+
+    <h2 class="mt-16 text-2xl font-semibold tracking-tight">CrossOver vs Pixel Port</h2>
+    <div class="mt-6 overflow-hidden rounded-2xl border border-line">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-surface/60 text-muted">
+          <tr>
+            <th class="px-5 py-3 font-medium">Tool</th>
+            <th class="px-5 py-3 font-medium">Price</th>
+            <th class="px-5 py-3 font-medium">Setup</th>
+            <th class="px-5 py-3 font-medium">Transparency</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {
+            rows.map((r) => (
+              <tr class={r.tool === 'Pixel Port' ? 'bg-accent/10' : 'bg-surface/30'}>
+                <td class={`px-5 py-4 ${r.cls}`}>{r.tool}</td>
+                <td class="px-5 py-4 text-fg/85">{r.price}</td>
+                <td class="px-5 py-4 text-fg/85">{r.setup}</td>
+                <td class="px-5 py-4 text-fg/85">{r.honest}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 rounded-2xl border border-line bg-surface/40 p-6">
+      <h3 class="font-semibold text-fg">Where CrossOver may still win</h3>
+      <p class="mt-2 text-sm text-fg/80">
+        Some games use kernel-level anti-cheat that needs publisher cooperation to run on a Mac at all.
+        CrossOver has invested heavily there and currently supports a handful of those titles. We would
+        rather tell you that plainly than pretend otherwise. For the vast majority of games that do not
+        ship kernel anti-cheat, Pixel Port runs them free and in one click.
+      </p>
+    </div>
+
+    <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Free, and one click</h2>
+      <p class="mx-auto mt-3 max-w-lg text-muted">
+        Try Pixel Port before you pay for anything. Download, pick a game, play.
+      </p>
+      <a
+        href="/download"
+        class="mt-7 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+      >
+        Download for Mac
+      </a>
+    </div>
+  </article>
+</Base>

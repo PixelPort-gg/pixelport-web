@@ -1,24 +1,30 @@
 ---
 import Base from '../../layouts/Base.astro';
 import games from '../../data/games.json';
+import { tierMeta, coverUrl, coverFallbackUrl, type Tier } from '../../lib/catalog';
 
 export function getStaticPaths() {
   return games.map((g) => ({ params: { slug: g.slug }, props: { game: g } }));
 }
 
 const { game } = Astro.props;
-const h1 = `How to play ${game.title} on Mac`;
-// SEO <title> + meta follow the high-intent "[game] on mac, free, one-click" pattern.
-const seoTitle = `Play ${game.title} on Mac, Free and One-Click (Apple Silicon)`;
-const description = `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Free, runs on Apple Silicon (M1 to M4) through Pixel Port.`;
-const tierLabel = game.tier === 'verified' ? 'Verified on Mac' : 'Playable on Mac';
-const tierClass =
-  game.tier === 'verified'
-    ? 'text-verified bg-verified/15 ring-verified/30'
-    : 'text-playable bg-playable/15 ring-playable/30';
+const meta = tierMeta[game.tier as Tier];
+const cover = coverUrl(game.appid);
+const fb = coverFallbackUrl(game.appid);
+const isBlocked = game.tier === 'unsupported';
+const titleBySlug: Record<string, string> = Object.fromEntries(games.map((g) => [g.slug, g.title]));
+const alternatives = (game.blocker?.alternatives ?? [])
+  .map((slug: string) => ({ slug, title: titleBySlug[slug] }))
+  .filter((a) => a.title);
 
-// Structured data: VideoGame + BreadcrumbList. (Google deprecated HowTo and FAQ
-// rich results, so we lead with currently-valid types.)
+const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
+const seoTitle = isBlocked
+  ? `Can You Play ${game.title} on Mac? The Honest Answer`
+  : `Play ${game.title} on Mac, Free and One-Click (Apple Silicon)`;
+const description = isBlocked
+  ? `${game.summary} Here is exactly what blocks it and who it is up to.`
+  : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Free, runs on Apple Silicon (M1 to M4) through Pixel Port.`;
+
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -43,74 +49,138 @@ const jsonLd = {
 ---
 
 <Base title={seoTitle} description={description}>
-  <script
-    is:inline
-    type="application/ld+json"
-    set:html={JSON.stringify(jsonLd)}
-    slot="head"
-  />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 
   <article class="wrap py-16">
     <a href="/games" class="text-sm text-muted hover:text-fg">&larr; All games</a>
 
-    <header class="mt-6 flex flex-wrap items-center gap-3">
-      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">{h1}</h1>
-      <span class={`rounded-full px-3 py-1 text-sm font-semibold ring-1 ${tierClass}`}>{tierLabel}</span>
+    <header class="mt-6 flex flex-col gap-7 sm:flex-row sm:items-start">
+      <div class="w-36 shrink-0 sm:w-44">
+        <div class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]">
+          <span class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95">
+            {game.title}
+          </span>
+          {
+            cover && (
+              <img
+                src={cover}
+                data-fb={fb}
+                alt={`${game.title} cover art`}
+                class="absolute inset-0 h-full w-full object-cover"
+                onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+              />
+            )
+          }
+        </div>
+      </div>
+
+      <div class="min-w-0">
+        <span class={`inline-block rounded-full px-3 py-1 text-sm font-semibold ring-1 ${meta.badge}`}>
+          {meta.label}{!isBlocked ? ' on Mac' : ''}
+        </span>
+        <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{h1}</h1>
+        <p class="mt-4 max-w-2xl text-lg text-muted">{game.summary}</p>
+        <p class="mt-2 text-sm text-muted">{game.genre}</p>
+      </div>
     </header>
 
-    <p class="mt-5 max-w-2xl text-lg text-muted">{game.summary}</p>
+    {
+      isBlocked ? (
+        <div class="mt-12 max-w-2xl space-y-6">
+          <div class="rounded-2xl border border-blocked/30 bg-blocked/10 p-6">
+            <h2 class="font-semibold text-blocked">What blocks it</h2>
+            <p class="mt-2 text-fg/85">
+              {game.title} uses {game.blocker.antiCheat}. Anti-cheat like this needs to run deep in the
+              system, and that access is not available to a compatibility layer on macOS. This is not a
+              graphics or performance limit, and it is not something Pixel Port can work around.
+            </p>
+          </div>
 
-    <dl class="mt-8 grid gap-4 sm:grid-cols-3">
-      <div class="rounded-xl border border-line bg-surface/50 p-4">
-        <dt class="text-xs uppercase tracking-wide text-muted">Method</dt>
-        <dd class="mt-1 text-sm text-fg">{game.method}</dd>
-      </div>
-      <div class="rounded-xl border border-line bg-surface/50 p-4">
-        <dt class="text-xs uppercase tracking-wide text-muted">Genre</dt>
-        <dd class="mt-1 text-sm text-fg">{game.genre}</dd>
-      </div>
-      <div class="rounded-xl border border-line bg-surface/50 p-4">
-        <dt class="text-xs uppercase tracking-wide text-muted">Last tested</dt>
-        <dd class="mt-1 text-sm text-fg">{game.lastTested}</dd>
-      </div>
-    </dl>
+          <div class="rounded-2xl border border-line bg-surface/50 p-6">
+            <h2 class="font-semibold text-fg">Who this is up to</h2>
+            <p class="mt-1 text-sm font-medium text-accent-2">{game.blocker.whoDecides}</p>
+            <p class="mt-3 text-fg/85">{game.blocker.status}</p>
+          </div>
 
-    <section class="mt-12">
-      <h2 class="text-2xl font-semibold">What you need</h2>
-      <ul class="mt-4 space-y-2 text-fg/85">
-        {game.requirements.map((r) => (
-          <li class="flex gap-2"><span class="text-accent-2">&bull;</span>{r}</li>
-        ))}
-      </ul>
-    </section>
-
-    <section class="mt-12">
-      <h2 class="text-2xl font-semibold">Step by step</h2>
-      <ol class="mt-6 space-y-5">
-        {
-          game.steps.map((s, i) => (
-            <li class="flex gap-4 rounded-2xl border border-line bg-surface/50 p-5">
-              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-2 text-sm font-bold text-white">
-                {i + 1}
-              </span>
-              <div>
-                <h3 class="font-semibold text-fg">{s.title}</h3>
-                <p class="mt-1 text-sm text-fg/80">{s.body}</p>
+          {
+            alternatives.length > 0 && (
+              <div class="rounded-2xl border border-line bg-surface/50 p-6">
+                <h2 class="font-semibold text-fg">Play these on Mac instead</h2>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                  {alternatives.map((a) => (
+                    <li>
+                      <a
+                        href={`/games/${a.slug}`}
+                        class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm text-accent-2 hover:border-accent/40"
+                      >
+                        {a.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
+            )
+          }
 
-    <div class="mt-14 rounded-2xl border border-accent/30 bg-accent/10 p-6">
-      <p class="text-lg font-medium">Ready to play {game.title} on your Mac?</p>
-      <a
-        href="/download"
-        class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-lg shadow-black/30 transition-transform active:scale-[0.98]"
-      >
-        Download &amp; Play {game.title} Free
-      </a>
-    </div>
+          <a href="/games" class="inline-block text-sm font-medium text-accent-2 hover:underline">
+            Browse {games.length} games and what runs on Mac &rarr;
+          </a>
+        </div>
+      ) : (
+        <Fragment>
+          <dl class="mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
+            <div class="rounded-xl border border-line bg-surface/50 p-4">
+              <dt class="text-xs uppercase tracking-wide text-muted">Genre</dt>
+              <dd class="mt-1 text-sm text-fg">{game.genre}</dd>
+            </div>
+            {game.lastTested && (
+              <div class="rounded-xl border border-line bg-surface/50 p-4">
+                <dt class="text-xs uppercase tracking-wide text-muted">Last tested</dt>
+                <dd class="mt-1 text-sm text-fg">{game.lastTested}</dd>
+              </div>
+            )}
+          </dl>
+
+          <section class="mt-12 max-w-2xl">
+            <h2 class="text-2xl font-semibold">What you need</h2>
+            <ul class="mt-4 space-y-2 text-fg/85">
+              {game.requirements.map((r: string) => (
+                <li class="flex gap-2">
+                  <span class="text-accent-2">&bull;</span>
+                  {r}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section class="mt-12 max-w-2xl">
+            <h2 class="text-2xl font-semibold">Step by step</h2>
+            <ol class="mt-6 space-y-5">
+              {game.steps.map((s: { title: string; body: string }, i: number) => (
+                <li class="flex gap-4 rounded-2xl border border-line bg-surface/50 p-5">
+                  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-2 text-sm font-bold text-white">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <h3 class="font-semibold text-fg">{s.title}</h3>
+                    <p class="mt-1 text-sm text-fg/80">{s.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          <div class="mt-14 max-w-2xl rounded-2xl border border-accent/30 bg-accent/10 p-6">
+            <p class="text-lg font-medium">Ready to play {game.title} on your Mac?</p>
+            <a
+              href="/download"
+              class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
+            >
+              Download &amp; Play {game.title} Free
+            </a>
+          </div>
+        </Fragment>
+      )
+    }
   </article>
 </Base>

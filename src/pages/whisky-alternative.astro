@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+
+const seoTitle = 'The Best Whisky Alternative for Mac (2026): Free and One-Click';
+const description =
+  'Whisky stopped getting updates in 2025. Pixel Port is the free, one-click way to keep playing Windows games on your Mac. No bottles, no winetricks, no terminal.';
+
+const canonical = new URL('/whisky-alternative', Astro.site).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'The best Whisky alternative for Mac in 2026',
+      description,
+      url: canonical,
+      author: { '@type': 'Organization', name: 'Pixel Port' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+        { '@type': 'ListItem', position: 2, name: 'Whisky alternative', item: canonical },
+      ],
+    },
+  ],
+};
+
+const rows = [
+  { tool: 'Whisky', price: 'Free', setup: 'Manual bottles + winetricks', upkeep: 'Discontinued in 2025', cls: 'text-muted' },
+  { tool: 'CrossOver', price: 'Paid (~$50/yr)', setup: 'Mostly manual', upkeep: 'Maintained', cls: 'text-muted' },
+  { tool: 'Pixel Port', price: 'Free', setup: 'One click', upkeep: 'Actively maintained', cls: 'text-fg font-semibold' },
+];
+---
+
+<Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="wrap py-16 sm:py-24">
+    <nav class="text-sm text-muted">
+      <a href="/" class="hover:text-fg">Home</a> <span class="px-1">/</span> Whisky alternative
+    </nav>
+
+    <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      The best Whisky alternative for Mac
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      Whisky, the free Wine wrapper a lot of Mac gamers relied on, stopped getting updates in 2025.
+      Pixel Port is the free, one-click way to keep playing Windows games on your Mac, and it does the
+      setup for you.
+    </p>
+    <div class="mt-8">
+      <a
+        href="/download"
+        class="inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+      >
+        Download Pixel Port, Free
+      </a>
+    </div>
+
+    <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>What happened to Whisky?</h2>
+      <p>
+        Whisky was a free, open-source wrapper around Wine that made it easier to run Windows games on
+        Apple Silicon. In 2025 its developer stepped back and the project was discontinued. It still
+        launches for some people, but it no longer receives updates, compatibility fixes, or support for
+        new versions of macOS. And even at its best, Whisky still asked you to create bottles, install
+        the right dependencies by hand, and troubleshoot when a game would not start.
+      </p>
+
+      <h2>Why Pixel Port is the natural successor</h2>
+      <p>
+        Pixel Port keeps the thing people loved about Whisky, that it is free, and removes the thing they
+        did not, the manual setup. You install Pixel Port once, pick a game, and click. Our bundled
+        runtime, Prism, translates the game's DirectX calls straight to Metal, and the Synthesis Engine
+        works out how each game should run on your Mac automatically. No bottles to manage, no winetricks,
+        no terminal.
+      </p>
+      <p>
+        It is also kept current. Because our Distributed Validation Network learns from real launches on
+        real Macs, the catalogue gets more reliable over time instead of going stale.
+      </p>
+    </div>
+
+    <h2 class="mt-16 text-2xl font-semibold tracking-tight">Whisky vs CrossOver vs Pixel Port</h2>
+    <div class="mt-6 overflow-hidden rounded-2xl border border-line">
+      <table class="w-full text-left text-sm">
+        <thead class="bg-surface/60 text-muted">
+          <tr>
+            <th class="px-5 py-3 font-medium">Tool</th>
+            <th class="px-5 py-3 font-medium">Price</th>
+            <th class="px-5 py-3 font-medium">Setup</th>
+            <th class="px-5 py-3 font-medium">Upkeep</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {
+            rows.map((r) => (
+              <tr class={r.tool === 'Pixel Port' ? 'bg-accent/10' : 'bg-surface/30'}>
+                <td class={`px-5 py-4 ${r.cls}`}>{r.tool}</td>
+                <td class="px-5 py-4 text-fg/85">{r.price}</td>
+                <td class="px-5 py-4 text-fg/85">{r.setup}</td>
+                <td class="px-5 py-4 text-fg/85">{r.upkeep}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Switch in one click</h2>
+      <p class="mx-auto mt-3 max-w-lg text-muted">
+        Download Pixel Port, find your game in the catalogue, and play. That is the whole migration.
+      </p>
+      <a
+        href="/download"
+        class="mt-7 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
+      >
+        Download for Mac
+      </a>
+    </div>
+  </article>
+</Base>
