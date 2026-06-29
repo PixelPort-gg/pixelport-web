@@ -10,7 +10,7 @@
     "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~1.5 GB free"],
     "steps": [
       {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
-      {"title": "Add Noita", "body": "Search the catalogue for Noita and hit Install & Play. Pixel Port fetches it and applies the verified recipe."},
+      {"title": "Add Noita", "body": "Search the catalogue for Noita and hit Install & Play. Pixel Port fetches it and configures it for your Mac automatically."},
       {"title": "Play", "body": "Launch from your Library. Late-game pixel simulation is CPU-bound by design, so expect some frame dips in heavy scenes."}
     ],
     "lastTested": "2026-06-25"
@@ -26,7 +26,7 @@
     "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
     "steps": [
       {"title": "Install Pixel Port", "body": "Grab Pixel Port; the runtime installs itself on first run."},
-      {"title": "Install & Play", "body": "Find Meccha Chameleon in the catalogue and click Install & Play. The verified recipe handles the rest."}
+      {"title": "Install & Play", "body": "Find Meccha Chameleon in the catalogue and click Install & Play. Pixel Port handles the setup automatically."}
     ],
     "lastTested": "2026-06-26"
   },

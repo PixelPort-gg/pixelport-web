@@ -5,10 +5,10 @@ import { getCollection } from 'astro:content';
 const docs = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Base title="Docs" description="How Pixel Port works: the runtime, the recipes, and the honest compatibility tiers.">
+<Base title="Docs" description="How Pixel Port works: Prism, the Synthesis Engine, the Distributed Validation Network, and our honest compatibility tiers.">
   <section class="wrap py-16">
     <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Docs</h1>
-    <p class="mt-4 max-w-2xl text-lg text-muted">How the runtime, recipes, and compatibility tiers work.</p>
+    <p class="mt-4 max-w-2xl text-lg text-muted">How the runtime, the Synthesis Engine, and our honest compatibility tiers work.</p>
     <ul class="mt-10 space-y-3">
       {
         docs.map((d) => (

@@ -7,16 +7,19 @@ export function getStaticPaths() {
 }
 
 const { game } = Astro.props;
-const title = `How to play ${game.title} on Mac`;
-const description = game.summary;
+const h1 = `How to play ${game.title} on Mac`;
+// SEO <title> + meta follow the high-intent "[game] on mac, free, one-click" pattern.
+const seoTitle = `Play ${game.title} on Mac, Free and One-Click (Apple Silicon)`;
+const description = `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Free, runs on Apple Silicon (M1 to M4) through Pixel Port.`;
 const tierLabel = game.tier === 'verified' ? 'Verified on Mac' : 'Playable on Mac';
 const tierClass =
   game.tier === 'verified'
     ? 'text-verified bg-verified/15 ring-verified/30'
     : 'text-playable bg-playable/15 ring-playable/30';
 
-// Structured data: a VideoGame + a HowTo, so Google can show rich results for
-// "how to play <game> on mac" searches.
+// Structured data: VideoGame + BreadcrumbList. (Google deprecated HowTo and FAQ
+// rich results, so we lead with currently-valid types.)
+const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -26,23 +29,20 @@ const jsonLd = {
       genre: game.genre,
       gamePlatform: 'macOS (Apple Silicon)',
       operatingSystem: 'macOS 14+',
+      url: canonical,
     },
     {
-      '@type': 'HowTo',
-      name: title,
-      description,
-      step: game.steps.map((s, i) => ({
-        '@type': 'HowToStep',
-        position: i + 1,
-        name: s.title,
-        text: s.body,
-      })),
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Games', item: new URL('/games', Astro.site).toString() },
+        { '@type': 'ListItem', position: 2, name: game.title, item: canonical },
+      ],
     },
   ],
 };
 ---
 
-<Base title={title} description={description}>
+<Base title={seoTitle} description={description}>
   <script
     is:inline
     type="application/ld+json"
@@ -54,7 +54,7 @@ const jsonLd = {
     <a href="/games" class="text-sm text-muted hover:text-fg">&larr; All games</a>
 
     <header class="mt-6 flex flex-wrap items-center gap-3">
-      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
+      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">{h1}</h1>
       <span class={`rounded-full px-3 py-1 text-sm font-semibold ring-1 ${tierClass}`}>{tierLabel}</span>
     </header>
 
@@ -106,10 +106,10 @@ const jsonLd = {
     <div class="mt-14 rounded-2xl border border-accent/30 bg-accent/10 p-6">
       <p class="text-lg font-medium">Ready to play {game.title} on your Mac?</p>
       <a
-        href="/#download"
+        href="/download"
         class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-lg shadow-black/30 transition-transform active:scale-[0.98]"
       >
-        Download Pixel Port
+        Download &amp; Play {game.title} Free
       </a>
     </div>
   </article>

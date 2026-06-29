@@ -1,23 +1,44 @@
 ---
 title: "How Pixel Port works"
-description: "The runtime, the recipes, and the honest compatibility tiers."
+description: "The infrastructure that turns a Windows game into one click on your Mac."
 order: 1
 ---
 
-## The runtime
+## The problem
 
-Pixel Port ships a free runtime: a modern Wine build plus DXMT (DirectX to Metal)
-and MoltenVK. Most games never see Windows; their DirectX calls are translated
-straight to Metal on Apple Silicon.
+Apple Silicon Macs are fast, but games are built for Windows and DirectX, not macOS
+and Metal. Bridging that gap has always meant manual, fragile setup: paid
+compatibility layers, hand-built Wine bottles, virtual machines, partitions. It
+works sometimes, if you are willing to spend an evening on it.
 
-## Recipes
+Pixel Port does that work for you, automatically, and proves the result.
 
-Each game gets a recipe: the graphics backend, any winetricks, DLL overrides, and
-the launch command. Curated recipes are hand-verified; the rest are synthesized
-from the game's own files at install time.
+## Prism, the runtime
+
+Prism is our free runtime. It pairs a modern Wine build with DXMT, which translates
+a game's DirectX calls straight to Metal on Apple Silicon. Most games never notice
+they left Windows. There is no licence to buy and no bottle to maintain.
+
+## The Synthesis Engine
+
+Every game is different. The Synthesis Engine inspects a game and works out how it
+should run on your Mac: which graphics path to take, which dependencies it needs,
+and how to launch it. It produces a launch plan automatically, so installing a game
+is a single click rather than an afternoon of configuration.
+
+## The Distributed Validation Network
+
+Pixel Port gets more reliable the more people use it. Every install and launch
+produces a signal about what worked and what did not. The Distributed Validation
+Network aggregates those signals across the whole community, so when one Mac proves
+a game runs, that knowledge benefits everyone. A game's status is earned from real
+launches on real hardware, not a guess.
 
 ## Honest tiers
 
-- **Verified** (green): a human confirmed it end-to-end on a real Mac.
-- **Playable** (amber): auto-tested or community-confirmed, not yet human-verified.
-- **Needs attention** / **Unsupported**: known issues or hard blockers (e.g. kernel anti-cheat).
+We grade every game honestly:
+
+- **Verified**: a human confirmed it end to end on a real Mac.
+- **Playable**: auto-tested or community-confirmed, not yet human-verified.
+- **Needs attention**: runs with caveats or a known workaround.
+- **Unsupported**: a hard blocker, such as kernel-level anti-cheat.
