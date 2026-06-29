@@ -1,0 +1,280 @@
+---
+/**
+ * RunsTicker — a seamless, infinite marquee of game cover chips.
+ * Reads as living proof that "these run on Mac."
+ *
+ * Self-contained: scoped styles + a tiny inline script for the art fallback.
+ * No new dependencies. Transform-only animation (GPU-friendly).
+ * prefers-reduced-motion → a static, horizontally-scrollable row.
+ */
+import games from '../data/games.json';
+
+type Game = {
+  slug: string;
+  title: string;
+  appid: number | null;
+  tier: string;
+};
+
+// Living evidence only: things that actually run, with real cover art.
+const runs = (games as Game[]).filter(
+  (g) => (g.tier === 'verified' || g.tier === 'playable') && typeof g.appid === 'number',
+);
+
+// Pace the loop to the catalogue size: enough that art has time to read,
+// never so fast it feels frantic. ~4.2s of travel per chip.
+const duration = Math.max(32, runs.length * 4.2);
+
+const cover = (appid: number) =>
+  `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg`;
+const header = (appid: number) =>
+  `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`;
+---
+
+<section class="rt-band" aria-label="Games proven to run on Mac">
+  <div class="rt" style={`--rt-duration:${duration}s`}>
+    <div class="rt-track">
+      {
+        [0, 1].map((copy) => (
+          <ul class="rt-row" aria-hidden={copy === 1 ? 'true' : undefined}>
+            {runs.map((g) => (
+              <li class="rt-chip">
+                <a class="rt-link" href={`/games/${g.slug}`} tabindex={copy === 1 ? -1 : undefined}>
+                  <span class="rt-cover">
+                    {/* Permanent gradient backdrop — the cover never blanks. */}
+                    <span class="rt-ph">{g.title}</span>
+                    <img
+                      class="rt-img"
+                      src={cover(g.appid as number)}
+                      data-header={header(g.appid as number)}
+                      data-step="0"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      width="120"
+                      height="180"
+                    />
+                  </span>
+                  <span class="rt-meta">
+                    <span class={`rt-dot rt-dot--${g.tier}`} aria-hidden="true" />
+                    <span class="rt-title">{g.title}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .rt-band {
+    /* A thin band; the marquee carries the section, no chrome around it. */
+    padding-block: 1.25rem;
+  }
+
+  .rt {
+    position: relative;
+    overflow: hidden;
+    /* Premium edge fade — chips dissolve in/out at the rails. */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+  }
+
+  .rt-track {
+    display: flex;
+    width: max-content;
+    /* Two identical rows; -50% lands exactly one row over → seamless. */
+    animation: rt-scroll var(--rt-duration, 40s) linear infinite;
+    will-change: transform;
+  }
+
+  .rt:hover .rt-track {
+    animation-play-state: paused;
+  }
+
+  .rt-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    margin: 0;
+    padding: 0 0.4375rem;
+    list-style: none;
+    flex: 0 0 auto;
+  }
+
+  .rt-chip {
+    flex: 0 0 auto;
+  }
+
+  .rt-link {
+    display: block;
+    width: 116px;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 250ms ease,
+      filter 250ms ease;
+  }
+
+  .rt-link:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.06);
+  }
+
+  .rt-link:focus-visible {
+    outline: 2px solid var(--color-accent, #9268ff);
+    outline-offset: 3px;
+    border-radius: 12px;
+  }
+
+  .rt-cover {
+    position: relative;
+    display: block;
+    aspect-ratio: 2 / 3;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    /* The permanent backdrop, so the chip is never empty. */
+    background: linear-gradient(150deg, #5c40b0, #228c86);
+    border: 1px solid var(--color-line, rgba(255, 255, 255, 0.08));
+    box-shadow: 0 10px 30px -14px rgba(146, 104, 255, 0.5);
+  }
+
+  .rt-ph {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 1px 6px rgba(6, 4, 16, 0.6);
+  }
+
+  .rt-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 300ms ease;
+  }
+
+  .rt-img[hidden] {
+    opacity: 0;
+  }
+
+  .rt-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4375rem;
+    margin-top: 0.5rem;
+    min-width: 0;
+  }
+
+  .rt-dot {
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+  }
+
+  .rt-dot--verified {
+    background: var(--color-verified, #4ad991);
+    box-shadow: 0 0 8px rgba(74, 217, 145, 0.6);
+  }
+
+  .rt-dot--playable {
+    background: var(--color-playable, #f0b43e);
+    box-shadow: 0 0 8px rgba(240, 180, 62, 0.55);
+  }
+
+  .rt-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-muted, #9aa3b5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @keyframes rt-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Reduced motion: no auto-scroll, just a quiet scrollable row. */
+  @media (prefers-reduced-motion: reduce) {
+    .rt {
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .rt::-webkit-scrollbar {
+      display: none;
+    }
+    .rt-track {
+      animation: none;
+      transform: none;
+    }
+    .rt-row[aria-hidden='true'] {
+      display: none;
+    }
+    .rt-link {
+      transition: none;
+    }
+    .rt-link:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Art fallback chain: library_600x900 → header.jpg → gradient placeholder.
+  // The gradient backdrop is always present, so a chip can never blank.
+  function bindFallback(img: HTMLImageElement) {
+    img.addEventListener('error', () => {
+      const step = img.dataset.step ?? '0';
+      const headerSrc = img.dataset.header;
+      if (step === '0' && headerSrc) {
+        img.dataset.step = '1';
+        img.src = headerSrc;
+      } else {
+        // Both Steam assets failed — reveal the permanent gradient + title.
+        img.dataset.step = '2';
+        img.hidden = true;
+      }
+    });
+    // Catch images that errored before this script ran (cache/race).
+    if (img.complete && img.naturalWidth === 0) {
+      img.dispatchEvent(new Event('error'));
+    }
+  }
+
+  document
+    .querySelectorAll<HTMLImageElement>('.rt-img')
+    .forEach((img) => bindFallback(img));
+</script>

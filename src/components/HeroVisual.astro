@@ -1,0 +1,330 @@
+---
+/**
+ * HeroVisual — the signature "wow" moment for pixelport.gg.
+ *
+ * Renders the Pixel Port pixel-P mark and ASSEMBLES it on load: every pixel
+ * cell fades + scales + drifts into place on an organic diagonal sweep, then
+ * settles into the crisp gradient P. A restrained living layer follows — a slow
+ * float and an occasional shimmer sweep. Behind it sits a structured amethyst
+ * pixel-field that fades out toward the edges.
+ *
+ * Self-contained: the cell geometry is read from /public/brand/mark.svg at
+ * build time (single source of truth for the mark), so the silhouette always
+ * matches the shipped icon. Pure CSS keyframes drive the motion (transform /
+ * opacity only, per-cell animation-delay). prefers-reduced-motion renders the
+ * fully assembled mark statically. No dependencies.
+ */
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+// Resolved from the project root so it works both in `astro dev` and from the
+// prerender chunks emitted into dist/ during `astro build`.
+const markPath = join(process.cwd(), 'public/brand/mark.svg');
+const svgSrc = readFileSync(markPath, 'utf8');
+
+// Pull the union-of-cells clipPath (used for the shimmer mask) and the per-cell
+// rects (rendered individually so each can animate).
+const clipInner = svgSrc.match(/<clipPath id="cellclip">([\s\S]*?)<\/clipPath>/)?.[1] ?? '';
+const cellRe = /<rect x="(\d+)" y="(\d+)" width="21" height="21"\/>/g;
+
+type Cell = { x: number; y: number; d: number; dx: number; dy: number };
+const cells: Cell[] = [];
+let m: RegExpExecArray | null;
+while ((m = cellRe.exec(clipInner))) {
+  const x = +m[1];
+  const y = +m[2];
+  const col = (x - 354) / 21; // 0..19
+  const row = (y - 232) / 21; // 0..27
+
+  // Deterministic per-cell pseudo-random (stable across builds).
+  const h = Math.sin(x * 12.9898 + y * 78.233) * 43758.5453;
+  const r = h - Math.floor(h); // 0..1
+
+  // Organic diagonal sweep (top-left -> bottom-right) with jitter.
+  const d = Math.round((col + row) * 11 + r * 70);
+
+  // A few px of drift in from the sweep direction, randomised per cell.
+  const dx = +(-10 - r * 14).toFixed(1); // arrives from the left
+  const dy = +(-14 - (1 - r) * 12).toFixed(1); // and slightly above
+
+  cells.push({ x, y, d, dx, dy });
+}
+
+// Smooth P outline (from the source mark) — used only for the soft glow bloom.
+const pPath =
+  'M 356 232 L 600 232 A 182 182 0 0 1 600 596 L 491 596 L 491 812 L 356 812 Z ' +
+  'M 491 322 L 560 322 A 96 96 0 0 1 560 514 L 491 514 Z';
+---
+
+<div class="pp-hero" data-pp-hero aria-hidden="true">
+  <div class="pp-field"></div>
+  <span class="pp-spark" style="--sx:14%; --sy:22%; --st:0s"></span>
+  <span class="pp-spark" style="--sx:82%; --sy:30%; --st:1.9s"></span>
+  <span class="pp-spark pp-spark--teal" style="--sx:24%; --sy:74%; --st:3.4s"></span>
+  <span class="pp-spark" style="--sx:70%; --sy:80%; --st:2.6s"></span>
+  <span class="pp-spark" style="--sx:50%; --sy:10%; --st:4.7s"></span>
+
+  <svg
+    class="pp-mark"
+    viewBox="0 0 1024 1024"
+    role="img"
+    aria-label="The Pixel Port pixel-P mark"
+  >
+    <defs>
+      <linearGradient id="ppBg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0E0E16" />
+        <stop offset="1" stop-color="#070709" />
+      </linearGradient>
+      <!-- userSpaceOnUse: the gradient spans the whole P, so each cell samples
+           the correct colour for its position (amethyst -> blue -> teal). -->
+      <linearGradient id="ppP" x1="0" y1="232" x2="0" y2="812" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#9268FF" />
+        <stop offset="0.5" stop-color="#5E86E8" />
+        <stop offset="1" stop-color="#3FD6CE" />
+      </linearGradient>
+      <radialGradient id="ppSheen" cx="0.42" cy="0.26" r="0.5">
+        <stop offset="0" stop-color="#FFF" stop-opacity="0.4" />
+        <stop offset="0.55" stop-color="#FFF" stop-opacity="0.05" />
+        <stop offset="1" stop-color="#FFF" stop-opacity="0" />
+      </radialGradient>
+      <linearGradient id="ppShine" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#FFF" stop-opacity="0" />
+        <stop offset="0.5" stop-color="#FFF" stop-opacity="0.5" />
+        <stop offset="1" stop-color="#FFF" stop-opacity="0" />
+      </linearGradient>
+      <filter id="ppGlow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="26" />
+      </filter>
+      <clipPath id="ppRound"><rect width="1024" height="1024" rx="232" /></clipPath>
+      <clipPath id="ppCells" set:html={clipInner} />
+    </defs>
+
+    <g clip-path="url(#ppRound)">
+      <!-- App-icon tile -->
+      <rect width="1024" height="1024" fill="url(#ppBg)" />
+      <g stroke="#FFF" stroke-width="1" opacity="0.035" class="pp-grid">
+        {Array.from({ length: 33 }, (_, i) => i * 32).map((p) => (
+          <>
+            <line x1={p} y1="0" x2={p} y2="1024" />
+            <line x1="0" y1={p} x2="1024" y2={p} />
+          </>
+        ))}
+      </g>
+
+      <!-- Soft bloom behind the mark (fades in once the cells have settled) -->
+      <path class="pp-bloom" d={pPath} fill-rule="evenodd" fill="url(#ppP)" filter="url(#ppGlow)" />
+
+      <!-- The pixel cells -->
+      <g class="pp-cells">
+        {cells.map((c) => (
+          <rect
+            class="pp-cell"
+            x={c.x}
+            y={c.y}
+            width="21"
+            height="21"
+            fill="url(#ppP)"
+            style={`--d:${c.d}ms;--dx:${c.dx}px;--dy:${c.dy}px`}
+          />
+        ))}
+      </g>
+
+      <!-- Specular sheen over the assembled P -->
+      <g clip-path="url(#ppCells)">
+        <rect class="pp-gloss" x="300" y="200" width="520" height="460" fill="url(#ppSheen)" />
+        <!-- Living shimmer sweep (clipped to the P silhouette) -->
+        <rect class="pp-shine" x="-260" y="160" width="190" height="720" fill="url(#ppShine)" transform="rotate(14 0 512)" />
+      </g>
+
+      <rect x="2" y="2" width="1020" height="1020" rx="230" fill="none" stroke="#FFF" stroke-opacity="0.06" stroke-width="2" />
+    </g>
+  </svg>
+</div>
+
+<script>
+  // Progressive enhancement only. The mark already assembles on load via pure
+  // CSS. If the visual loads BELOW the fold, hold the assembly until it scrolls
+  // into view — once. No animation loop, no state. Reduced-motion is left
+  // entirely to CSS (the static, fully-assembled mark).
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  for (const el of document.querySelectorAll<HTMLElement>('[data-pp-hero]')) {
+    if (reduce.matches) continue;
+    const onScreen = el.getBoundingClientRect().top < window.innerHeight * 0.9;
+    if (onScreen || !('IntersectionObserver' in window)) continue;
+    el.classList.add('pp-wait');
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            el.classList.remove('pp-wait');
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+  }
+</script>
+
+<style>
+  .pp-hero {
+    position: relative;
+    width: clamp(260px, 78vw, 400px);
+    aspect-ratio: 1;
+    margin-inline: auto;
+    isolation: isolate;
+  }
+
+  /* Structured amethyst pixel-field — brand texture, not glow-soup. A faint dot
+     grid masked to fade out toward the edges. */
+  .pp-field {
+    position: absolute;
+    inset: -30%;
+    z-index: -1;
+    /* 21px grid — the same cell pitch as the mark, so the field reads as the
+       same pixel material the P is built from. */
+    background-image: radial-gradient(rgba(150, 110, 255, 0.62) 1.1px, transparent 1.7px);
+    background-size: 21px 21px;
+    background-position: center;
+    -webkit-mask-image: radial-gradient(closest-side, #000 12%, rgba(0, 0, 0, 0.45) 48%, transparent 80%);
+    mask-image: radial-gradient(closest-side, #000 12%, rgba(0, 0, 0, 0.45) 48%, transparent 80%);
+  }
+
+  /* A few backdrop cells that softly twinkle. */
+  .pp-spark {
+    position: absolute;
+    left: var(--sx);
+    top: var(--sy);
+    z-index: -1;
+    width: 5px;
+    height: 5px;
+    border-radius: 1px;
+    background: var(--color-accent, #9268ff);
+    opacity: 0;
+    box-shadow: 0 0 6px 1px rgba(146, 104, 255, 0.6);
+    animation: pp-twinkle 6.5s ease-in-out var(--st, 0s) infinite;
+  }
+  .pp-spark--teal {
+    background: var(--color-accent-2, #3fd6ce);
+    box-shadow: 0 0 6px 1px rgba(63, 214, 206, 0.6);
+  }
+
+  .pp-mark {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 26px 70px rgba(146, 104, 255, 0.34));
+    transform-origin: 50% 60%;
+    animation: pp-float 8s ease-in-out 1.6s infinite;
+  }
+
+  /* Each pixel cell scales about its own centre. */
+  .pp-cell {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: pp-assemble 0.62s cubic-bezier(0.16, 0.84, 0.3, 1) calc(var(--d) + 140ms) both;
+  }
+  .pp-hero.pp-wait .pp-cell,
+  .pp-hero.pp-wait .pp-bloom {
+    animation-play-state: paused;
+  }
+
+  .pp-bloom {
+    opacity: 0;
+    animation: pp-bloom-in 1s ease-out 760ms both;
+  }
+
+  .pp-shine {
+    will-change: transform;
+    animation: pp-shine 9s ease-in-out 2.2s infinite;
+  }
+
+  @keyframes pp-assemble {
+    0% {
+      opacity: 0;
+      transform: translate(var(--dx), var(--dy)) scale(0.3);
+    }
+    55% {
+      opacity: 1;
+    }
+    72% {
+      transform: translate(0, 0) scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+  }
+
+  @keyframes pp-bloom-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes pp-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  /* Quick diagonal shine that sweeps the P, then a long idle. */
+  @keyframes pp-shine {
+    0% {
+      transform: translateX(0) rotate(14deg);
+    }
+    14% {
+      transform: translateX(1340px) rotate(14deg);
+    }
+    100% {
+      transform: translateX(1340px) rotate(14deg);
+    }
+  }
+
+  @keyframes pp-twinkle {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+  }
+
+  /* Render the fully assembled mark, statically. */
+  @media (prefers-reduced-motion: reduce) {
+    .pp-mark {
+      animation: none;
+    }
+    .pp-cell {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .pp-bloom {
+      opacity: 0.5;
+      animation: none;
+    }
+    .pp-shine {
+      display: none;
+    }
+    .pp-spark {
+      animation: none;
+      opacity: 0.45;
+    }
+  }
+</style>

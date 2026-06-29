@@ -1,0 +1,141 @@
+---
+/**
+ * OldVsNew — "the old way vs. one click".
+ *
+ * As it scrolls into view, a strikethrough line *draws* across each painful old
+ * option in sequence (staggered), then the Pixel Port row lights up LAST with a
+ * soft amethyst glow and a subtle scale.
+ *
+ * Self-contained: owns its data, markup, motion, and fallback.
+ * Reduced-motion or no-JS → the end state is shown statically (every option
+ * struck through, Pixel Port lit). Mobile → rows stack (label above cost).
+ */
+const oldWays = [
+  { name: 'Paid compatibility layer', cost: '~$50/yr + manual setup' },
+  { name: 'A hand-built Wine bottle', cost: 'hours in the terminal' },
+  { name: 'A virtual machine', cost: 'slow, melts your battery' },
+  { name: 'Boot Camp', cost: "doesn't exist on Apple Silicon" },
+];
+
+const STAGGER = 150; // ms between each strike
+const hlDelay = oldWays.length * STAGGER + 140; // Pixel Port lights up last
+---
+
+<div class="ov space-y-px overflow-hidden rounded-2xl border border-line" data-ov>
+  {
+    oldWays.map((w, i) => (
+      <div
+        class="flex flex-col gap-1 bg-surface/40 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+        style={`--strike-delay:${i * STAGGER}ms`}
+      >
+        <span class="ov-label relative min-w-0 self-start break-words text-fg/70 sm:self-center">
+          {w.name}
+        </span>
+        <span class="text-sm text-muted sm:text-right">{w.cost}</span>
+      </div>
+    ))
+  }
+
+  <div
+    class="ov-hl flex flex-col gap-1 rounded-xl bg-linear-to-r from-accent/20 to-accent-2/15 px-5 py-5 ring-1 ring-accent/30 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+    style={`--hl-delay:${hlDelay}ms`}
+  >
+    <span class="font-semibold text-fg">Pixel Port</span>
+    <span class="text-sm font-medium text-accent-2 sm:text-right">one click</span>
+  </div>
+</div>
+
+<style>
+  /* The drawing strikethrough line. A pseudo-element so it can animate
+     independently of the label text. */
+  .ov-label::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-blocked);
+    opacity: 0.55;
+    transform-origin: left center;
+    transform: scaleX(1); /* static end state by default (no-JS / reduced) */
+    pointer-events: none;
+  }
+
+  /* Static end state for the highlight row: already lit. */
+  .ov-hl {
+    box-shadow: 0 12px 40px -10px rgba(146, 104, 255, 0.45);
+  }
+
+  /* Motion only when JS is active AND motion is welcome. */
+  @media (prefers-reduced-motion: no-preference) {
+    /* Strikes start undrawn, then sweep left→right, staggered. */
+    html.ov-js .ov-label::after {
+      transform: scaleX(0);
+      transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--strike-delay, 0ms);
+      will-change: transform;
+    }
+    html.ov-js .ov.in .ov-label::after {
+      transform: scaleX(1);
+    }
+
+    /* Highlight row begins dim + slightly shrunk, lights up last. */
+    html.ov-js .ov-hl {
+      opacity: 0.8;
+      transform: scale(0.985);
+      box-shadow: 0 0 0 0 rgba(146, 104, 255, 0);
+      transition:
+        opacity 620ms ease,
+        transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 620ms ease;
+      transition-delay: var(--hl-delay, 0ms);
+      will-change: opacity, transform;
+    }
+    html.ov-js .ov.in .ov-hl {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 14px 44px -10px rgba(146, 104, 255, 0.55);
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    // Mark the root before paint so the "undrawn" start state applies cleanly.
+    document.documentElement.classList.add('ov-js');
+
+    if (window.__pixelOvInit) return;
+    window.__pixelOvInit = true;
+
+    const start = () => {
+      const els = document.querySelectorAll('[data-ov]');
+
+      if (!('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('in'));
+        return;
+      }
+
+      const io = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('in');
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.25 }
+      );
+
+      els.forEach((el) => io.observe(el));
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      start();
+    }
+  })();
+</script>
