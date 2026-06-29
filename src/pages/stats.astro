@@ -1,23 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
-import games from '../data/games.json';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-// Placeholder figures — wire to the live catalogue/telemetry later.
+const grid = JSON.parse(
+  readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+) as { tier: string }[];
+const c = grid.reduce<Record<string, number>>((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
+const fmt = (n: number) => n.toLocaleString('en-US');
+
 const stats = [
-  { label: 'Games tracked', value: '10,700+' },
-  { label: 'Verified on Mac', value: '49' },
-  { label: 'Playable on Mac', value: '10,600+' },
+  { label: 'Games graded', value: fmt(grid.length) },
+  { label: 'Verified on a real Mac', value: fmt(c.verified || 0) },
+  { label: 'Playable', value: fmt(c.playable || 0) },
   { label: 'Runtime cost', value: 'Free' },
 ];
-const verified = games.filter((g) => g.tier === 'verified').length;
 ---
 
 <Base title="Porting stats" description="How many Windows games run on Mac through Pixel Port, and how well.">
   <section class="wrap py-16">
     <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Porting stats</h1>
     <p class="mt-4 max-w-2xl text-lg text-muted">
-      A live picture of what runs on Mac through Pixel Port. These numbers will wire to the real
-      catalogue and telemetry as we open up.
+      A picture of what runs on Mac through Pixel Port. Tiers are graded honestly from real launches
+      and trusted compatibility reports; only an on-device run flips a game to verified.
     </p>
 
     <dl class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -34,8 +39,9 @@ const verified = games.filter((g) => g.tier === 'verified').length;
     </dl>
 
     <p class="mt-8 text-sm text-muted">
-      Sample of {verified} verified title{verified === 1 ? '' : 's'} shown in the{' '}
-      <a href="/games" class="text-accent-2 hover:underline">games catalogue</a>.
+      {fmt((c['needs-attention'] || 0) + (c.unsupported || 0))} more are flagged needs-attention or
+      unsupported, so you always know before you install. Browse them all in the{' '}
+      <a href="/games" class="text-accent-2 hover:underline">catalogue</a>.
     </p>
   </section>
 </Base>

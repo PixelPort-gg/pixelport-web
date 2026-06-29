@@ -1,21 +1,41 @@
 ---
 import Base from '../../layouts/Base.astro';
 import games from '../../data/games.json';
-import { tierMeta, coverUrl, coverFallbackUrl, type Tier } from '../../lib/catalog';
+import catalogue from '../../data/catalogue.json';
+import { tierMeta, coverUrl, coverFallbackUrl, engineLabel, prettyAC, generate, type Tier } from '../../lib/catalog';
 
-export function getStaticPaths() {
-  return games.map((g) => ({ params: { slug: g.slug }, props: { game: g } }));
+// Seeded "you can play these" recommendations — curated games that genuinely run,
+// rotated deterministically by slug so different pages surface different trios.
+const pool = games.filter((g) => (g.tier === 'verified' || g.tier === 'playable') && g.appid);
+function seededPicks(slug: string) {
+  const seed = [...slug].reduce((a, c) => a + c.charCodeAt(0), 0);
+  return [0, 1, 2].map((i) => pool[(seed + i) % pool.length]);
 }
 
-const { game } = Astro.props;
+export function getStaticPaths() {
+  return [
+    ...games.map((g) => ({ params: { slug: g.slug }, props: { game: { ...g, _cat: false } } })),
+    ...catalogue.map((e) => ({ params: { slug: e.slug }, props: { game: generate(e) } })),
+  ];
+}
+
+const { game } = Astro.props as { game: any };
 const meta = tierMeta[game.tier as Tier];
 const cover = coverUrl(game.appid);
 const fb = coverFallbackUrl(game.appid);
 const isBlocked = game.tier === 'unsupported';
-const titleBySlug: Record<string, string> = Object.fromEntries(games.map((g) => [g.slug, g.title]));
-const alternatives = (game.blocker?.alternatives ?? [])
-  .map((slug: string) => ({ slug, title: titleBySlug[slug] }))
-  .filter((a) => a.title);
+const picks = seededPicks(game.slug);
+
+// Quick-facts row adapts to what we know about the game.
+const facts: [string, string][] = game._cat
+  ? ([
+      ['Engine', engineLabel(game.engine)],
+      ['Graphics', game.graphics ? String(game.graphics).toUpperCase() : null],
+      ['Anti-cheat', prettyAC(game.antiCheat)],
+    ].filter(([, v]) => v) as [string, string][])
+  : ([['Genre', game.genre], game.lastTested ? ['Last tested', game.lastTested] : null].filter(
+      Boolean,
+    ) as [string, string][]);
 
 const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
 const seoTitle = isBlocked
@@ -32,7 +52,7 @@ const jsonLd = {
     {
       '@type': 'VideoGame',
       name: game.title,
-      genre: game.genre,
+      ...(game.genre ? { genre: game.genre } : {}),
       gamePlatform: 'macOS (Apple Silicon)',
       operatingSystem: 'macOS 14+',
       url: canonical,
@@ -80,7 +100,6 @@ const jsonLd = {
         </span>
         <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{h1}</h1>
         <p class="mt-4 max-w-2xl text-lg text-muted">{game.summary}</p>
-        <p class="mt-2 text-sm text-muted">{game.genre}</p>
       </div>
     </header>
 
@@ -102,44 +121,50 @@ const jsonLd = {
             <p class="mt-3 text-fg/85">{game.blocker.status}</p>
           </div>
 
-          {
-            alternatives.length > 0 && (
-              <div class="rounded-2xl border border-line bg-surface/50 p-6">
-                <h2 class="font-semibold text-fg">Play these on Mac instead</h2>
-                <ul class="mt-3 flex flex-wrap gap-2">
-                  {alternatives.map((a) => (
-                    <li>
-                      <a
-                        href={`/games/${a.slug}`}
-                        class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm text-accent-2 hover:border-accent/40"
-                      >
-                        {a.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          }
+          <div class="rounded-2xl border border-line bg-surface/50 p-6">
+            <h2 class="font-semibold text-fg">You can play these on Mac</h2>
+            <ul class="mt-4 grid grid-cols-3 gap-3">
+              {picks.map((p) => (
+                <li>
+                  <a href={`/games/${p.slug}`} class="lift group block">
+                    <div class="relative aspect-[2/3] overflow-hidden rounded-lg border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86]">
+                      <span class="absolute inset-0 flex items-center justify-center p-2 text-center text-[11px] font-semibold text-white/95">
+                        {p.title}
+                      </span>
+                      {coverUrl(p.appid) && (
+                        <img
+                          src={coverUrl(p.appid)}
+                          data-fb={coverFallbackUrl(p.appid)}
+                          alt={`${p.title} cover art`}
+                          loading="lazy"
+                          class="lift-img absolute inset-0 h-full w-full object-cover"
+                          onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+                        />
+                      )}
+                    </div>
+                    <p class="mt-2 truncate text-xs font-medium text-fg group-hover:text-accent-2">{p.title}</p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <a href="/games" class="inline-block text-sm font-medium text-accent-2 hover:underline">
-            Browse {games.length} games and what runs on Mac &rarr;
+            Browse the full catalogue and what runs on Mac &rarr;
           </a>
         </div>
       ) : (
         <Fragment>
-          <dl class="mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
-            <div class="rounded-xl border border-line bg-surface/50 p-4">
-              <dt class="text-xs uppercase tracking-wide text-muted">Genre</dt>
-              <dd class="mt-1 text-sm text-fg">{game.genre}</dd>
-            </div>
-            {game.lastTested && (
-              <div class="rounded-xl border border-line bg-surface/50 p-4">
-                <dt class="text-xs uppercase tracking-wide text-muted">Last tested</dt>
-                <dd class="mt-1 text-sm text-fg">{game.lastTested}</dd>
-              </div>
-            )}
-          </dl>
+          {facts.length > 0 && (
+            <dl class="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
+              {facts.map(([k, v]) => (
+                <div class="rounded-xl border border-line bg-surface/50 p-4">
+                  <dt class="text-xs uppercase tracking-wide text-muted">{k}</dt>
+                  <dd class="mt-1 text-sm text-fg">{v}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
 
           <section class="mt-12 max-w-2xl">
             <h2 class="text-2xl font-semibold">What you need</h2>

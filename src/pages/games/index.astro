@@ -1,98 +1,160 @@
 ---
 import Base from '../../layouts/Base.astro';
-import games from '../../data/games.json';
-import { tierMeta, coverUrl, coverFallbackUrl, type Tier } from '../../lib/catalog';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-const order: Record<Tier, number> = { verified: 0, playable: 1, 'needs-attention': 2, unsupported: 3 };
-const sorted = [...games].sort(
-  (a, b) => order[a.tier as Tier] - order[b.tier as Tier] || a.title.localeCompare(b.title)
-);
+// Build-time counts for the heading + filter labels (the client fetches the full
+// list at runtime and renders it paginated).
+const grid = JSON.parse(
+  readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+) as { tier: string }[];
+const total = grid.length;
+const counts = grid.reduce<Record<string, number>>((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
+const fmt = (n: number) => n.toLocaleString('en-US');
 
-const filters: { key: string; label: string }[] = [
-  { key: 'all', label: `All ${games.length}` },
-  { key: 'verified', label: 'Verified' },
-  { key: 'playable', label: 'Playable' },
-  { key: 'needs-attention', label: 'Needs attention' },
-  { key: 'unsupported', label: 'Unsupported' },
+const filters = [
+  { key: 'all', label: `All ${fmt(total)}` },
+  { key: 'verified', label: `Verified ${fmt(counts.verified || 0)}` },
+  { key: 'playable', label: `Playable ${fmt(counts.playable || 0)}` },
+  { key: 'needs-attention', label: `Needs attention ${fmt(counts['needs-attention'] || 0)}` },
+  { key: 'unsupported', label: `Unsupported ${fmt(counts.unsupported || 0)}` },
 ];
 
-const seoTitle = 'Mac Game Compatibility: Which Windows Games Work on Mac';
-const description =
-  'Browse the Pixel Port catalogue of Windows games that run on Apple Silicon Macs, each with an honest compatibility tier. Free, one-click installs.';
+const seoTitle = 'Mac Game Compatibility Database: Which Windows Games Work on Mac';
+const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. Free, one-click installs through Pixel Port.`;
 ---
 
 <Base title={seoTitle} description={description}>
   <section class="wrap py-16">
     <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Which games work on Mac?</h1>
     <p class="mt-4 max-w-2xl text-lg text-muted">
-      Every game carries an honest compatibility tier earned from real launches on real Macs. No
-      guesses, no overselling.
+      {fmt(total)} games, each graded honestly from real launches and trusted compatibility reports.
+      Verified means a Mac ran it end to end; playable is graded but not yet hand-verified.
     </p>
 
-    <div class="mt-8 flex flex-wrap gap-2" role="tablist">
-      {
-        filters.map((f, i) => (
-          <button
-            data-filter={f.key}
-            aria-selected={i === 0 ? 'true' : 'false'}
-            class="rounded-full border border-line bg-surface/50 px-4 py-1.5 text-sm text-muted transition-colors hover:text-fg aria-selected:border-transparent aria-selected:bg-accent aria-selected:text-white"
-          >
-            {f.label}
-          </button>
-        ))
-      }
+    <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap gap-2" role="tablist">
+        {
+          filters.map((f, i) => (
+            <button
+              data-filter={f.key}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              class="rounded-full border border-line bg-surface/50 px-4 py-1.5 text-sm text-muted transition-colors hover:text-fg aria-selected:border-transparent aria-selected:bg-accent aria-selected:text-white"
+            >
+              {f.label}
+            </button>
+          ))
+        }
+      </div>
+      <input
+        id="q"
+        type="search"
+        placeholder="Search games…"
+        autocomplete="off"
+        class="w-full rounded-full border border-line bg-surface/50 px-4 py-2 text-sm text-fg placeholder:text-muted focus:border-accent/50 sm:w-64"
+      />
     </div>
 
-    <ul id="grid" class="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      {
-        sorted.map((g) => {
-          const meta = tierMeta[g.tier as Tier];
-          const cover = coverUrl(g.appid);
-          const fb = coverFallbackUrl(g.appid);
-          return (
-            <li class="game-card" data-tier={g.tier}>
-              <a href={`/games/${g.slug}`} class="lift group block">
-                <div class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]">
-                  <span class="absolute inset-0 flex items-center justify-center p-4 text-center text-base font-semibold text-white/95">
-                    {g.title}
-                  </span>
-                  {cover && (
-                    <img
-                      src={cover}
-                      data-fb={fb}
-                      alt={`${g.title} cover art`}
-                      loading="lazy"
-                      class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-                      onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
-                    />
-                  )}
-                  <span
-                    class={`absolute right-2 top-2 rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 backdrop-blur-md ${meta.badge}`}
-                  >
-                    {meta.label}
-                  </span>
-                </div>
-                <h2 class="mt-2 truncate text-sm font-medium text-fg group-hover:text-accent-2">{g.title}</h2>
-                <p class="truncate text-xs text-muted">{g.genre}</p>
-              </a>
-            </li>
-          );
-        })
-      }
-    </ul>
+    <p id="count" class="mt-6 text-sm text-muted" aria-live="polite"></p>
+
+    <ul id="grid" class="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"></ul>
+
+    <div class="mt-10 flex justify-center">
+      <button
+        id="more"
+        hidden
+        class="rounded-full border border-line bg-surface/60 px-6 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent/40"
+      >
+        Load more
+      </button>
+    </div>
+
+    <noscript>
+      <p class="mt-6 text-muted">Enable JavaScript to browse the full catalogue, or download Pixel Port to search it in the app.</p>
+    </noscript>
   </section>
 
   <script is:inline>
-    const buttons = document.querySelectorAll('[data-filter]');
-    const cards = document.querySelectorAll('#grid .game-card');
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const f = btn.getAttribute('data-filter');
-        buttons.forEach((b) => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
-        cards.forEach((c) => {
-          c.hidden = !(f === 'all' || c.getAttribute('data-tier') === f);
-        });
+    const PAGE = 60;
+    const TIER = {
+      verified: { label: 'Verified', cls: 'text-verified bg-verified/15 ring-verified/35' },
+      playable: { label: 'Playable', cls: 'text-playable bg-playable/15 ring-playable/35' },
+      'needs-attention': { label: 'Needs attention', cls: 'text-attention bg-attention/15 ring-attention/35' },
+      unsupported: { label: 'Unsupported', cls: 'text-blocked bg-blocked/15 ring-blocked/35' },
+    };
+    const grid = document.getElementById('grid');
+    const more = document.getElementById('more');
+    const count = document.getElementById('count');
+    const q = document.getElementById('q');
+    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+
+    let all = [],
+      filtered = [],
+      shown = 0,
+      filter = 'all',
+      query = '';
+
+    function card(g) {
+      const t = TIER[g.tier] || TIER.playable;
+      const cover = g.appid
+        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/library_600x900.jpg`
+        : '';
+      const header = g.appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg` : '';
+      const inner = `
+        <div class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]">
+          <span class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95">${esc(g.title)}</span>
+          ${cover ? `<img src="${cover}" data-fb="${header}" alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}">` : ''}
+          <span class="absolute right-2 top-2 rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 backdrop-blur-md ${t.cls}">${t.label}</span>
+        </div>
+        <p class="mt-2 truncate text-sm font-medium text-fg">${esc(g.title)}</p>`;
+      return g.p
+        ? `<li><a href="/games/${g.slug}" class="lift group block">${inner}</a></li>`
+        : `<li><div class="group block cursor-default">${inner}</div></li>`;
+    }
+
+    function renderMore() {
+      const slice = filtered.slice(shown, shown + PAGE);
+      grid.insertAdjacentHTML('beforeend', slice.map(card).join(''));
+      shown += slice.length;
+      more.hidden = shown >= filtered.length;
+    }
+
+    function apply() {
+      filtered = all.filter(
+        (g) => (filter === 'all' || g.tier === filter) && (!query || g.title.toLowerCase().includes(query)),
+      );
+      shown = 0;
+      grid.innerHTML = '';
+      count.textContent = `${filtered.length.toLocaleString()} game${filtered.length === 1 ? '' : 's'}`;
+      renderMore();
+    }
+
+    more.addEventListener('click', renderMore);
+    document.querySelectorAll('[data-filter]').forEach((b) => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter]').forEach((x) => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
+        filter = b.getAttribute('data-filter');
+        apply();
       });
     });
+    let t;
+    q.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        query = q.value.trim().toLowerCase();
+        apply();
+      }, 140);
+    });
+
+    fetch('/catalogue-grid.json')
+      .then((r) => r.json())
+      .then((data) => {
+        const rank = { verified: 0, playable: 1, 'needs-attention': 2, unsupported: 3 };
+        all = data.sort((a, b) => (rank[a.tier] - rank[b.tier]) || a.title.localeCompare(b.title));
+        apply();
+      })
+      .catch(() => {
+        count.textContent = 'Could not load the catalogue. Please refresh.';
+      });
   </script>
 </Base>
