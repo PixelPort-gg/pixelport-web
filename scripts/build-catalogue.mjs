@@ -1,50 +1,68 @@
-// Builds the website catalogue from the app's bundled, honestly-graded catalogue.
+// Builds the website catalogue from the app's bundled, honestly-graded catalogue,
+// ranked by live D1 popularity, with the verified set synced from the server.
+//
+// Sources:
+//   ~/MacGamePort/.../catalogue.json   honest tiers + compat facts (anti-cheat aware)
+//   scripts/popularity.json            appid -> popularity (exported from D1 `games`)
+//   scripts/d1-verified.json           appids the live server has flipped to verified
+//
+// Why this split: D1's own tier column mislabels popular anti-cheat games as
+// "candidate" (playable), so we trust the bundled catalogue for tiers/anti-cheat
+// and only borrow D1's popularity (ranking) and verified set (the trustworthy flip).
 //
 // Outputs:
-//   public/catalogue-grid.json  — every game (minimal: slug,title,appid,tier,p)
-//                                  for the client-rendered browse grid. p=1 means
-//                                  it has a dedicated detail page.
-//   src/data/catalogue.json     — the non-curated games that GET a detail page
-//                                  (verified / needs-attention / unsupported), with
-//                                  the compat facts used to render an honest page.
-//
-// The curated rich games (src/data/games.json) stay the source of truth for their
-// own slugs; we never duplicate them here.
+//   public/catalogue-grid.json  every game {slug,title,appid,tier,pop,p} for the
+//                               client-rendered, popularity-sorted browse grid.
+//   src/data/catalogue.json     the games that GET a detail page (popular ∪ the
+//                               distinctive tiers), with compat facts.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
-const APP_CATALOGUE = join(
-  process.env.HOME,
-  'MacGamePort/App/Sources/PortingEngine/Catalogue/catalogue.json',
-);
+const readJSON = (p, fallback) => {
+  try {
+    return JSON.parse(readFileSync(join(root, p), 'utf8'));
+  } catch {
+    return fallback;
+  }
+};
 
-const app = JSON.parse(readFileSync(APP_CATALOGUE, 'utf8'));
+const app = JSON.parse(
+  readFileSync(join(process.env.HOME, 'MacGamePort/App/Sources/PortingEngine/Catalogue/catalogue.json'), 'utf8'),
+);
 const entries = Array.isArray(app) ? app : app.entries || app.games || [];
-const curated = JSON.parse(readFileSync(join(root, 'src/data/games.json'), 'utf8'));
+const curated = readJSON('src/data/games.json', []);
+const popularity = readJSON('scripts/popularity.json', {}); // { appid: score }
+const d1Verified = new Set(readJSON('scripts/d1-verified.json', [])); // [appid]
 
 const curatedAppids = new Set(curated.map((g) => g.appid).filter((a) => a != null));
 const curatedSlugs = new Set(curated.map((g) => g.slug));
 
 const mapTier = (t) => (t === 'needsAttention' ? 'needs-attention' : t);
-// Distinctive tiers earn a generated detail page; the 10.6k "playable" long tail
-// is browse-only for now (avoids mass thin pages — see SEO notes).
-const PAGE_TIERS = new Set(['verified', 'needs-attention', 'unsupported']);
+const DISTINCTIVE = new Set(['verified', 'needs-attention', 'unsupported']);
+const pop = (appid) => (appid != null && popularity[appid]) || 0;
 
 const seen = new Set(curatedSlugs);
 const pages = []; // non-curated games that get a detail page
-const gridExtra = []; // every non-curated game, for the grid
+const gridExtra = [];
 
 for (const e of entries) {
   const slug = e.id;
   if (!slug || seen.has(slug)) continue;
   if (e.appid != null && curatedAppids.has(e.appid)) continue;
   seen.add(slug);
-  const tier = mapTier(e.tier);
-  const hasPage = PAGE_TIERS.has(tier);
-  gridExtra.push({ slug, title: e.title, appid: e.appid ?? null, tier, p: hasPage ? 1 : 0 });
+
+  let tier = mapTier(e.tier);
+  // Sync verified from the live server — but never claim verified for a game the
+  // bundled catalogue knows is anti-cheat-blocked.
+  if (e.appid != null && d1Verified.has(e.appid) && tier !== 'unsupported') tier = 'verified';
+
+  const p = pop(e.appid);
+  // Pages for the popular games (real SEO value) + the distinctive tiers.
+  const hasPage = p > 0 || DISTINCTIVE.has(tier);
+  gridExtra.push({ slug, title: e.title, appid: e.appid ?? null, tier, pop: p, p: hasPage ? 1 : 0 });
   if (hasPage) {
     pages.push({
       slug,
@@ -59,15 +77,17 @@ for (const e of entries) {
   }
 }
 
-// The grid = curated (all have pages) + every catalogue game.
 const grid = [
-  ...curated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, p: 1 })),
+  ...curated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: pop(g.appid), p: 1 })),
   ...gridExtra,
 ];
+// Popularity-sorted so the browse grid leads with games people recognise.
+grid.sort((a, b) => b.pop - a.pop || a.title.localeCompare(b.title));
 
 writeFileSync(join(root, 'public/catalogue-grid.json'), JSON.stringify(grid));
-writeFileSync(join(root, 'src/data/catalogue.json'), JSON.stringify(pages, null, 0));
+writeFileSync(join(root, 'src/data/catalogue.json'), JSON.stringify(pages));
 
 const byTier = grid.reduce((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
 console.log('grid total:', grid.length, byTier);
-console.log('detail pages (non-curated):', pages.length, '+ curated', curated.length);
+console.log('detail pages:', pages.length, 'generated +', curated.length, 'curated =', pages.length + curated.length);
+console.log('popularity entries:', Object.keys(popularity).length, '| d1 verified:', d1Verified.size);

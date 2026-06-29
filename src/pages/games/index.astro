@@ -149,8 +149,7 @@ const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon
     fetch('/catalogue-grid.json')
       .then((r) => r.json())
       .then((data) => {
-        const rank = { verified: 0, playable: 1, 'needs-attention': 2, unsupported: 3 };
-        all = data.sort((a, b) => (rank[a.tier] - rank[b.tier]) || a.title.localeCompare(b.title));
+        all = data; // already sorted by popularity at build time
         apply();
       })
       .catch(() => {
