@@ -92,8 +92,13 @@ const grid = [
   ...resolvedCurated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: score(g.appid), p: 1 })),
   ...gridExtra,
 ];
-// Popularity-sorted so the browse grid leads with games people recognise.
-grid.sort((a, b) => b.pop - a.pop || a.title.localeCompare(b.title));
+// Runnable tiers lead the browse grid (by trending), with unsupported demoted to
+// the tail — still fully searchable and filterable, just not the first thing you
+// see. Keeps the default view positive without hiding the honest "no" answers.
+const sinks = (t) => (t === 'unsupported' ? 1 : 0);
+grid.sort(
+  (a, b) => sinks(a.tier) - sinks(b.tier) || b.pop - a.pop || a.title.localeCompare(b.title),
+);
 
 writeFileSync(join(root, 'public/catalogue-grid.json'), JSON.stringify(grid));
 writeFileSync(join(root, 'src/data/catalogue.json'), JSON.stringify(pages));
