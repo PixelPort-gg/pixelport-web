@@ -31,7 +31,8 @@ const readJSON = (p, fallback) => {
 
 const entries = readJSON('scripts/catalogue-base.json', []);
 const curated = readJSON('src/data/games.json', []);
-const popularity = readJSON('scripts/popularity.json', {}); // { appid: score }
+const owners = readJSON('scripts/owners.json', {}); // estimated owners (SteamSpy via D1) — "how many own it"
+const trending = readJSON('scripts/trending.json', {}); // current players (Steam most-played) — "what's hot now"
 const d1Verified = new Set(readJSON('scripts/d1-verified.json', [])); // [appid]
 
 const curatedAppids = new Set(curated.map((g) => g.appid).filter((a) => a != null));
@@ -39,7 +40,14 @@ const curatedSlugs = new Set(curated.map((g) => g.slug));
 
 const mapTier = (t) => (t === 'needsAttention' ? 'needs-attention' : t);
 const DISTINCTIVE = new Set(['verified', 'needs-attention', 'unsupported']);
-const pop = (appid) => (appid != null && popularity[appid]) || 0;
+// Rank by what's TRENDING first (current players), then by estimated owners for
+// the long tail. Any trending game outranks any owner-only game.
+const TREND_BOOST = 1e9;
+const score = (appid) => {
+  if (appid == null) return 0;
+  const t = trending[appid];
+  return t ? TREND_BOOST + t : owners[appid] || 0;
+};
 
 const seen = new Set(curatedSlugs);
 const pages = []; // non-curated games that get a detail page
@@ -56,7 +64,7 @@ for (const e of entries) {
   // bundled catalogue knows is anti-cheat-blocked.
   if (e.appid != null && d1Verified.has(e.appid) && tier !== 'unsupported') tier = 'verified';
 
-  const p = pop(e.appid);
+  const p = score(e.appid);
   // Pages for the popular games (real SEO value) + the distinctive tiers.
   const hasPage = p > 0 || DISTINCTIVE.has(tier);
   gridExtra.push({ slug, title: e.title, appid: e.appid ?? null, tier, pop: p, p: hasPage ? 1 : 0 });
@@ -81,7 +89,7 @@ const resolvedCurated = curated.map((g) =>
 writeFileSync(join(root, 'src/data/games.resolved.json'), JSON.stringify(resolvedCurated));
 
 const grid = [
-  ...resolvedCurated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: pop(g.appid), p: 1 })),
+  ...resolvedCurated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: score(g.appid), p: 1 })),
   ...gridExtra,
 ];
 // Popularity-sorted so the browse grid leads with games people recognise.
@@ -93,4 +101,4 @@ writeFileSync(join(root, 'src/data/catalogue.json'), JSON.stringify(pages));
 const byTier = grid.reduce((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
 console.log('grid total:', grid.length, byTier);
 console.log('detail pages:', pages.length, 'generated +', curated.length, 'curated =', pages.length + curated.length);
-console.log('popularity entries:', Object.keys(popularity).length, '| d1 verified:', d1Verified.size);
+console.log('owners:', Object.keys(owners).length, '| trending:', Object.keys(trending).length, '| d1 verified:', d1Verified.size);

@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "refresh:base": "node scripts/refresh-base.mjs",
-    "sync": "node scripts/pull-d1.mjs && node scripts/build-catalogue.mjs && node scripts/announce-verified.mjs"
+    "sync": "node scripts/pull-d1.mjs && node scripts/pull-trending.mjs && node scripts/build-catalogue.mjs && node scripts/announce-verified.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",

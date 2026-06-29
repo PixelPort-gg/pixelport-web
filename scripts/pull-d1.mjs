@@ -29,9 +29,12 @@ const verified = d1("SELECT appid FROM games WHERE tier='verified'")
   .sort((a, b) => a - b);
 writeFileSync(join(here, 'd1-verified.json'), JSON.stringify(verified));
 
-const pop = d1('SELECT appid, popularity FROM games WHERE popularity IS NOT NULL ORDER BY popularity DESC LIMIT 25000');
+// D1's column is still named `popularity` but the values are SteamSpy owner
+// estimates — we save them as owners.json. (TODO: rename the D1 column to
+// estimated_owners in the import pipeline.)
+const own = d1('SELECT appid, popularity FROM games WHERE popularity IS NOT NULL ORDER BY popularity DESC LIMIT 25000');
 const map = {};
-for (const r of pop) map[r.appid] = r.popularity;
-writeFileSync(join(here, 'popularity.json'), JSON.stringify(map));
+for (const r of own) map[r.appid] = r.popularity;
+writeFileSync(join(here, 'owners.json'), JSON.stringify(map));
 
-console.log('pulled D1 — verified:', verified.length, '| popularity entries:', Object.keys(map).length);
+console.log('pulled D1 — verified:', verified.length, '| owner estimates:', Object.keys(map).length);
