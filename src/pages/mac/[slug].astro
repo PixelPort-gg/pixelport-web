@@ -1,0 +1,240 @@
+---
+import Base from '../../layouts/Base.astro';
+import snapshot from '../../data/compat.json';
+import {
+  compatMeta,
+  verdict,
+  metaDescription,
+  pagePath,
+  artChain,
+  ogImage,
+  ART_ONERROR,
+  type CompatGame,
+} from '../../lib/compat';
+
+export function getStaticPaths() {
+  const games = (snapshot as any).games as CompatGame[];
+  return games.map((g) => ({ params: { slug: `${g.slug}-${g.appid}` }, props: { game: g } }));
+}
+
+const { game } = Astro.props as { game: CompatGame };
+const all = (snapshot as any).games as CompatGame[];
+const meta = compatMeta[game.tier];
+const v = verdict(game);
+const isNo = game.tier === 'unsupported';
+
+// Cross-links: verified/playable pages point at same-tier company; untested and
+// honest-no pages point at what genuinely DOES run. Seeded by slug so different
+// pages surface different picks, deterministically.
+const linkTier = game.tier === 'verified' || game.tier === 'playable' ? game.tier : 'verified';
+const pool = all.filter((g) => g.tier === linkTier && g.appid !== game.appid);
+const seed = [...game.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
+const picks = [0, 1, 2, 3].map((i) => pool[(seed + i) % pool.length]);
+const picksHeading =
+  game.tier === 'verified'
+    ? 'Also verified on Mac'
+    : game.tier === 'playable'
+      ? 'Also playable on Mac'
+      : 'These run on Mac — verified';
+
+const art = artChain(game.appid);
+const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
+const description = metaDescription(game);
+const canonical = new URL(pagePath(game), Astro.site).toString();
+
+const faq = [
+  {
+    q: `Does ${game.name} work on Apple Silicon (M1–M4) Macs?`,
+    a: v.body + (isNo && game.reason ? ` The blocker: ${game.reason}` : ''),
+  },
+  {
+    q: 'Do I need Boot Camp or a Windows license?',
+    a: 'No. Pixel Port runs Windows games directly on macOS — no Boot Camp, no virtual machine, no Windows license. Download it free, pick a game, and press play.',
+  },
+];
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'VideoGame',
+      name: game.name,
+      gamePlatform: 'macOS (Apple Silicon)',
+      operatingSystem: 'macOS 14+',
+      image: ogImage(game.appid),
+      url: canonical,
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Does it run on Mac?',
+          item: new URL('/mac/', Astro.site).toString(),
+        },
+        { '@type': 'ListItem', position: 2, name: game.name, item: canonical },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={title} description={description} ogImage={ogImage(game.appid)}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="wrap py-16">
+    <a href="/mac/" class="text-sm text-muted hover:text-fg">&larr; Does it run on Mac?</a>
+
+    <header class="mt-6 flex flex-col gap-7 sm:flex-row sm:items-start">
+      <div class="w-36 shrink-0 sm:w-44">
+        <div
+          class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]"
+        >
+          <span
+            class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95"
+          >
+            {game.name}
+          </span>
+          <img
+            src={art.src}
+            data-fb={art.fallbacks}
+            alt={`${game.name} cover art`}
+            class="absolute inset-0 h-full w-full object-cover"
+            onerror={ART_ONERROR}
+          />
+        </div>
+      </div>
+
+      <div class="min-w-0">
+        <span class={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ring-1 ${meta.badge}`}>
+          <span class={`h-1.5 w-1.5 rounded-full ${meta.dot}`}></span>
+          {meta.short}
+        </span>
+        <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+          Does {game.name} run on Mac?
+        </h1>
+        <p class={`mt-4 text-xl font-medium ${isNo ? 'text-blocked' : game.tier === 'untested' ? 'text-fg' : 'text-verified'}`}>
+          {v.headline}
+        </p>
+        <p class="mt-3 max-w-2xl text-lg text-muted">{v.body}</p>
+      </div>
+    </header>
+
+    {
+      isNo ? (
+        <div class="mt-12 max-w-2xl space-y-6">
+          {game.reason && (
+            <div class="rounded-2xl border border-blocked/30 bg-blocked/10 p-6">
+              <h2 class="font-semibold text-blocked">Why it doesn't run</h2>
+              <p class="mt-2 text-fg/85">{game.reason}</p>
+              <p class="mt-3 text-sm text-muted">
+                Blocks like this sit with the game's publisher, not with your Mac. If that ever
+                changes, this page changes with it.
+              </p>
+            </div>
+          )}
+          <div class="rounded-2xl border border-line bg-surface/50 p-6">
+            <h2 class="font-semibold text-fg">The good news</h2>
+            <p class="mt-2 text-fg/85">
+              Plenty of Windows games genuinely do run on Apple Silicon — verified end to end on
+              real Macs, free through Pixel Port. Start with the ones below.
+            </p>
+          </div>
+        </div>
+      ) : (
+        <section class="mt-12 max-w-2xl">
+          <h2 class="text-2xl font-semibold">
+            {game.tier === 'untested' ? `Try ${game.name} on your Mac` : `Play ${game.name} on your Mac`}
+          </h2>
+          <ol class="mt-6 space-y-5">
+            {[
+              {
+                title: 'Install Pixel Port',
+                body: 'Download Pixel Port free. It sets up everything a Windows game needs on first launch.',
+              },
+              {
+                title: `Add ${game.name}`,
+                body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
+              },
+              {
+                title: game.tier === 'untested' ? 'Play — and help grade it' : 'Play',
+                body:
+                  game.tier === 'untested'
+                    ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
+                    : 'Launch it from your Library. No bottles, no terminal, no tinkering.',
+              },
+            ].map((s, i) => (
+              <li class="flex gap-4 rounded-2xl border border-line bg-surface/50 p-5">
+                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-2 text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 class="font-semibold text-fg">{s.title}</h3>
+                  <p class="mt-1 text-sm text-fg/80">{s.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
+    <section class="mt-12 max-w-2xl">
+      <h2 class="text-2xl font-semibold">{picksHeading}</h2>
+      <ul class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {
+          picks.map((p) => {
+            const pa = artChain(p.appid);
+            return (
+              <li>
+                <a href={pagePath(p)} class="group block">
+                  <div class="relative aspect-[2/3] overflow-hidden rounded-lg border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86]">
+                    <span class="absolute inset-0 flex items-center justify-center p-2 text-center text-[11px] font-semibold text-white/95">
+                      {p.name}
+                    </span>
+                    <img
+                      src={pa.src}
+                      data-fb={pa.fallbacks}
+                      alt={`${p.name} cover art`}
+                      loading="lazy"
+                      class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                      onerror={ART_ONERROR}
+                    />
+                  </div>
+                  <p class="mt-2 truncate text-xs font-medium text-fg group-hover:text-accent-2">{p.name}</p>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </section>
+
+    <div class="mt-14 max-w-2xl rounded-2xl border border-accent/30 bg-accent/10 p-6">
+      <p class="text-lg font-medium">
+        {
+          isNo
+            ? 'Pixel Port tells you what runs before you waste an evening.'
+            : game.tier === 'untested'
+              ? `Be the first Mac to grade ${game.name}.`
+              : `Ready to play ${game.name} on your Mac?`
+        }
+      </p>
+      <p class="mt-1 text-sm text-muted">Free download. Honest compatibility, game by game.</p>
+      <a
+        href="/download"
+        class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
+      >
+        {isNo ? 'Download Pixel Port Free' : `Download & Play${game.tier === 'untested' ? '' : ` ${game.name}`} Free`}
+      </a>
+    </div>
+  </article>
+</Base>

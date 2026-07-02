@@ -1,0 +1,128 @@
+---
+import Base from '../../layouts/Base.astro';
+import snapshot from '../../data/compat.json';
+import { compatMeta, pagePath, artChain, ART_ONERROR, type CompatGame, type CompatTier } from '../../lib/compat';
+
+const all = (snapshot as any).games as CompatGame[];
+const order: CompatTier[] = ['verified', 'playable', 'untested', 'unsupported'];
+const groups = order
+  .map((tier) => ({ tier, meta: compatMeta[tier], games: all.filter((g) => g.tier === tier) }))
+  .filter((g) => g.games.length > 0);
+
+const sections: Record<CompatTier, { title: string; blurb: string }> = {
+  verified: {
+    title: 'Verified — runs on real Macs',
+    blurb: 'A real Apple Silicon Mac ran each of these end to end through Pixel Port. No asterisks.',
+  },
+  playable: {
+    title: 'Playable — community & template confidence',
+    blurb: 'Graded playable from community reports and how each game is built; not yet hand-verified by us.',
+  },
+  untested: {
+    title: 'Untested — try it and help',
+    blurb: 'In the catalogue, but nobody has confirmed a full run yet. Your attempt grades it for everyone.',
+  },
+  unsupported: {
+    title: 'Not supported — the honest no',
+    blurb: 'Blocked on Mac (almost always kernel anti-cheat), and no tool can honestly work around it.',
+  },
+};
+
+const fmt = (n: number) => n.toLocaleString('en-US');
+const seoTitle = 'Does It Run on Mac? Honest Game Compatibility for Apple Silicon';
+const description = `${fmt(all.length)} Windows games with a straight answer for Apple Silicon Macs: verified, playable, untested, or an honest no. Free one-click installs through Pixel Port.`;
+---
+
+<Base title={seoTitle} description={description}>
+  <section class="wrap py-16">
+    <h1 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Does it run on Mac?</h1>
+    <p class="mt-4 max-w-2xl text-lg text-muted">
+      Straight answers for Apple Silicon. Verified means a real Mac ran it end to end; when a game is
+      blocked, we say so and tell you why. No fabricated green checkmarks.
+    </p>
+
+    <input
+      id="q"
+      type="search"
+      placeholder={`Search ${fmt(all.length)} games…`}
+      autocomplete="off"
+      class="mt-8 w-full rounded-full border border-line bg-surface/50 px-5 py-2.5 text-sm text-fg placeholder:text-muted focus:border-accent/50 sm:w-80"
+    />
+    <p id="none" hidden class="mt-6 text-sm text-muted">
+      No matches here yet — the full catalogue is searchable on the <a href="/games" class="text-accent-2 hover:underline">games page</a>.
+    </p>
+
+    {
+      groups.map(({ tier, meta, games }) => (
+        <section data-sec class="mt-14">
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h2 class="flex items-center gap-2.5 text-2xl font-semibold">
+              <span class={`h-2 w-2 rounded-full ${meta.dot}`} />
+              {sections[tier].title}
+            </h2>
+            <span class="text-sm text-muted">{fmt(games.length)} games</span>
+          </div>
+          <p class="mt-2 max-w-2xl text-sm text-muted">{sections[tier].blurb}</p>
+          <ul class="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {games.map((g) => {
+              const art = artChain(g.appid);
+              return (
+                <li data-n={g.name.toLowerCase()}>
+                  <a href={pagePath(g)} class="group block">
+                    <div class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]">
+                      <span class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95">
+                        {g.name}
+                      </span>
+                      <img
+                        src={art.src}
+                        data-fb={art.fallbacks}
+                        alt={`${g.name} cover art`}
+                        loading="lazy"
+                        class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                        onerror={ART_ONERROR}
+                      />
+                      <span
+                        class={`absolute right-2 top-2 rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 backdrop-blur-md ${meta.badge}`}
+                      >
+                        {meta.label}
+                      </span>
+                    </div>
+                    <p class="mt-2 truncate text-sm font-medium text-fg group-hover:text-accent-2">{g.name}</p>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))
+    }
+
+    <p class="mt-16 max-w-2xl text-sm text-muted">
+      Looking for something else? The <a href="/games" class="text-accent-2 hover:underline">full catalogue</a>
+      grades thousands more, and every verdict updates as real Macs report back.
+    </p>
+  </section>
+
+  <script is:inline>
+    // The only client JS on these pages: filter the statically rendered list.
+    const q = document.getElementById('q');
+    const items = [...document.querySelectorAll('[data-n]')];
+    const secs = [...document.querySelectorAll('[data-sec]')];
+    const none = document.getElementById('none');
+    let t;
+    q.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        const v = q.value.trim().toLowerCase();
+        let any = false;
+        items.forEach((li) => {
+          const hit = !v || li.dataset.n.includes(v);
+          li.hidden = !hit;
+          any = any || hit;
+        });
+        secs.forEach((s) => (s.hidden = ![...s.querySelectorAll('[data-n]')].some((li) => !li.hidden)));
+        none.hidden = any;
+      }, 120);
+    });
+  </script>
+</Base>
