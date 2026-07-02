@@ -12,7 +12,7 @@ interface Props {
 }
 const {
   title,
-  description = 'Play Windows games on your Mac, honestly. Fast, native-feeling, free to start.',
+  description = 'Play Windows games on your Mac, honestly. Fast, native-feeling, free to try in beta.',
   ogImage,
 } = Astro.props;
 const fullTitle = title === 'Pixel Port' ? title : `${title} · Pixel Port`;
@@ -42,5 +42,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <Header />
     <main class="flex-1"><slot /></main>
     <Footer />
+    <script>
+      // Referral attribution: remember ?ref=<token> (first touch wins) and fire a
+      // best-effort beacon when the download CTA is clicked. No cookies, no
+      // identifiers — just the ref token. Must never affect the download UX.
+      try {
+        const ref = new URLSearchParams(location.search).get('ref');
+        if (ref && !localStorage.getItem('pp_ref')) localStorage.setItem('pp_ref', ref);
+      } catch {}
+      document.addEventListener('click', (e) => {
+        const a = (e.target as Element | null)?.closest?.('a[href^="/download"]');
+        if (!a) return;
+        try {
+          let ref = 'direct';
+          try { ref = localStorage.getItem('pp_ref') || 'direct'; } catch {}
+          fetch('https://mgp-api.macgameport.workers.dev/v1/webref', {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ ref, path: location.pathname }),
+          }).catch(() => {});
+        } catch {}
+      });
+    </script>
   </body>
 </html>

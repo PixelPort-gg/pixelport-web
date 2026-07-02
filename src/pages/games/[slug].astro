@@ -40,10 +40,10 @@ const facts: [string, string][] = game._cat
 const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
 const seoTitle = isBlocked
   ? `Can You Play ${game.title} on Mac? The Honest Answer`
-  : `Play ${game.title} on Mac, Free and One-Click (Apple Silicon)`;
+  : `Play ${game.title} on Mac in One Click (Apple Silicon)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
-  : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Free, runs on Apple Silicon (M1 to M4) through Pixel Port.`;
+  : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4) through Pixel Port, free during the beta.`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 const jsonLd = {
@@ -201,7 +201,7 @@ const jsonLd = {
               href="/download"
               class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
             >
-              Download &amp; Play {game.title} Free
+              Download &amp; Play {game.title}
             </a>
           </div>
         </Fragment>

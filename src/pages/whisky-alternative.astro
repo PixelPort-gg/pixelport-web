@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const seoTitle = 'The Best Whisky Alternative for Mac (2026): Free and One-Click';
+const seoTitle = 'The Best Whisky Alternative for Mac (2026): One Click, No Bottles';
 const description =
-  'Whisky stopped getting updates in 2025. Pixel Port is the free, one-click way to keep playing Windows games on your Mac. No bottles, no winetricks, no terminal.';
+  'Whisky stopped getting updates in 2025. Pixel Port is the one-click way to keep playing Windows games on your Mac, free during the beta. No bottles, no winetricks, no terminal.';
 
 const canonical = new URL('/whisky-alternative', Astro.site).toString();
 const jsonLd = {
@@ -29,7 +29,7 @@ const jsonLd = {
 const rows = [
   { tool: 'Whisky', price: 'Free', setup: 'Manual bottles + winetricks', upkeep: 'Discontinued in 2025', cls: 'text-muted' },
   { tool: 'CrossOver', price: 'Paid (~$50/yr)', setup: 'Mostly manual', upkeep: 'Maintained', cls: 'text-muted' },
-  { tool: 'Pixel Port', price: 'Free', setup: 'One click', upkeep: 'Actively maintained', cls: 'text-fg font-semibold' },
+  { tool: 'Pixel Port', price: 'Free during beta', setup: 'One click', upkeep: 'Actively maintained', cls: 'text-fg font-semibold' },
 ];
 ---
 
@@ -46,15 +46,15 @@ const rows = [
     </h1>
     <p class="mt-5 max-w-2xl text-lg text-muted">
       Whisky, the free Wine wrapper a lot of Mac gamers relied on, stopped getting updates in 2025.
-      Pixel Port is the free, one-click way to keep playing Windows games on your Mac, and it does the
-      setup for you.
+      Pixel Port is the one-click way to keep playing Windows games on your Mac, and it does the
+      setup for you. Free during the beta.
     </p>
     <div class="mt-8">
       <a
         href="/download"
         class="inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
       >
-        Download Pixel Port, Free
+        Download Pixel Port
       </a>
     </div>
 
@@ -70,8 +70,8 @@ const rows = [
 
       <h2>Why Pixel Port is the natural successor</h2>
       <p>
-        Pixel Port keeps the thing people loved about Whisky, that it is free, and removes the thing they
-        did not, the manual setup. You install Pixel Port once, pick a game, and click. Our bundled
+        Pixel Port removes the thing people did not love about Whisky, the manual setup, and it is free
+        to use while in beta. You install Pixel Port once, pick a game, and click. Our bundled
         runtime, Prism, translates the game's DirectX calls straight to Metal, and the Synthesis Engine
         works out how each game should run on your Mac automatically. No bottles to manage, no winetricks,
         no terminal.
