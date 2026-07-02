@@ -25,8 +25,9 @@ export const compatMeta: Record<
   },
   playable: {
     label: 'Playable',
-    badge: 'text-verified/90 bg-verified/10 ring-verified/25',
-    dot: 'bg-verified/70',
+    // Amber, matching the app's playable tint and the /games catalogue badges.
+    badge: 'text-playable bg-playable/15 ring-playable/35',
+    dot: 'bg-playable',
     short: 'Playable — community & template confidence',
   },
   untested: {

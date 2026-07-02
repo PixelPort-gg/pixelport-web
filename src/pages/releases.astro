@@ -35,28 +35,31 @@ const clean = (body: string) =>
     </p>
     <a
       href="/download"
-      class="mt-7 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
+      class="mt-7 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
     >
       Download the latest
     </a>
+    <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+      <span>Free during the beta</span>
+      <span class="text-fg/20" aria-hidden="true">&middot;</span>
+      <span>Apple Silicon, macOS 14+</span>
+    </div>
 
     <div id="release-list">
       {
         releases.length === 0 ? (
           <p class="mt-12 text-muted">
-            Release history is on{' '}
-            <a href="https://github.com/seanellul/pixelport-dist/releases" class="text-accent-2 hover:underline">
-              GitHub
-            </a>
-            .
+            Could not load the release list right now — the full history lives on <a href="https://github.com/seanellul/pixelport-dist/releases" class="text-accent-2 hover:underline">GitHub</a>.
           </p>
         ) : (
           <ol class="mt-12 space-y-px overflow-hidden rounded-2xl border border-line">
             {releases.map((rel, i) => (
-              <li class="bg-surface/40 p-6 sm:p-8">
-                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                  <div class="flex items-center gap-3">
-                    <h2 class="text-xl font-semibold text-fg">{rel.name || rel.tag_name}</h2>
+              <li class={`p-6 sm:p-8 ${i === 0 ? 'bg-accent/[0.07]' : 'bg-surface/40'}`}>
+                <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <div class="flex flex-wrap items-center gap-2.5">
+                    <h2 class="rounded-lg border border-line bg-surface-2/70 px-2.5 py-1 font-mono text-sm font-semibold text-fg">
+                      {rel.tag_name}
+                    </h2>
                     {i === 0 && (
                       <span class="rounded-full bg-verified/15 px-2.5 py-0.5 text-xs font-semibold text-verified ring-1 ring-verified/35">
                         Latest
@@ -65,15 +68,18 @@ const clean = (body: string) =>
                   </div>
                   <time class="text-sm text-muted">{fmtDate(rel.published_at)}</time>
                 </div>
+                {rel.name && rel.name !== rel.tag_name && (
+                  <p class="mt-4 text-lg font-semibold text-fg">{rel.name}</p>
+                )}
                 {clean(rel.body) && (
                   <p class="mt-3 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-fg/80">{clean(rel.body)}</p>
                 )}
                 {dmg(rel) && (
                   <a
                     href={i === 0 ? '/download' : dmg(rel).browser_download_url}
-                    class="mt-4 inline-block text-sm font-medium text-accent-2 hover:underline"
+                    class="mt-5 inline-block rounded-full border border-line bg-surface/60 px-5 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent/40 hover:bg-surface"
                   >
-                    Download {rel.tag_name} &rarr;
+                    Download {rel.tag_name}
                   </a>
                 )}
               </li>
@@ -124,11 +130,17 @@ const clean = (body: string) =>
 
       const ol = el('ol', 'mt-12 space-y-px overflow-hidden rounded-2xl border border-line');
       releases.forEach((rel, i) => {
-        const li = el('li', 'bg-surface/40 p-6 sm:p-8');
+        const li = el('li', `p-6 sm:p-8 ${i === 0 ? 'bg-accent/[0.07]' : 'bg-surface/40'}`);
 
-        const head = el('div', 'flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1');
-        const title = el('div', 'flex items-center gap-3');
-        title.appendChild(el('h2', 'text-xl font-semibold text-fg', rel.name || rel.tag_name));
+        const head = el('div', 'flex flex-wrap items-center justify-between gap-x-4 gap-y-2');
+        const title = el('div', 'flex flex-wrap items-center gap-2.5');
+        title.appendChild(
+          el(
+            'h2',
+            'rounded-lg border border-line bg-surface-2/70 px-2.5 py-1 font-mono text-sm font-semibold text-fg',
+            rel.tag_name,
+          ),
+        );
         if (i === 0) {
           title.appendChild(
             el(
@@ -142,6 +154,10 @@ const clean = (body: string) =>
         head.appendChild(el('time', 'text-sm text-muted', fmtDate(rel.published_at)));
         li.appendChild(head);
 
+        if (rel.name && rel.name !== rel.tag_name) {
+          li.appendChild(el('p', 'mt-4 text-lg font-semibold text-fg', rel.name));
+        }
+
         const notes = clean(rel.body);
         if (notes) {
           li.appendChild(el('p', 'mt-3 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-fg/80', notes));
@@ -151,8 +167,8 @@ const clean = (body: string) =>
         if (asset) {
           const a = el(
             'a',
-            'mt-4 inline-block text-sm font-medium text-accent-2 hover:underline',
-            `Download ${rel.tag_name} →`,
+            'mt-5 inline-block rounded-full border border-line bg-surface/60 px-5 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent/40 hover:bg-surface',
+            `Download ${rel.tag_name}`,
           ) as HTMLAnchorElement;
           a.href = i === 0 ? '/download' : asset.browser_download_url;
           li.appendChild(a);

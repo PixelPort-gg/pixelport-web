@@ -121,7 +121,17 @@ const jsonLd = {
         <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
           Does {game.name} run on Mac?
         </h1>
-        <p class={`mt-4 text-xl font-medium ${isNo ? 'text-blocked' : game.tier === 'untested' ? 'text-fg' : 'text-verified'}`}>
+        <p
+          class={`mt-4 text-xl font-medium ${
+            isNo
+              ? 'text-blocked'
+              : game.tier === 'untested'
+                ? 'text-fg'
+                : game.tier === 'playable'
+                  ? 'text-playable'
+                  : 'text-verified'
+          }`}
+        >
           {v.headline}
         </p>
         <p class="mt-3 max-w-2xl text-lg text-muted">{v.body}</p>

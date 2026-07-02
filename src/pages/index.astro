@@ -48,18 +48,35 @@ const pillars = [
       <div class="mt-9 flex flex-wrap items-center gap-4">
         <a
           href="/download"
-          class="rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
+          class="rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
         >
           Download for Mac
         </a>
-        <a href="/games" class="px-2 py-2 font-medium text-accent-2 hover:underline">
-          See what runs &rarr;
+        <a
+          href="/games"
+          class="group inline-flex items-center gap-2 rounded-full border border-line bg-surface/40 px-6 py-3.5 font-medium text-fg transition-colors hover:border-accent/40 hover:bg-surface/70"
+        >
+          See what runs
+          <span aria-hidden="true" class="text-accent-2 transition-transform group-hover:translate-x-0.5">&rarr;</span>
         </a>
       </div>
-      <p class="mt-4 text-sm text-muted">
-        Free during the beta. Apple Silicon, macOS 14+.
-        <a href="/releases" class="text-accent-2 hover:underline">Release notes</a>.
-      </p>
+      <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+        <span class="inline-flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-verified shadow-[0_0_8px_rgba(74,217,145,0.6)]" aria-hidden="true"></span>
+          Free during the beta
+        </span>
+        <span class="text-fg/20" aria-hidden="true">&middot;</span>
+        <span>Apple Silicon</span>
+        <span class="text-fg/20" aria-hidden="true">&middot;</span>
+        <span>macOS 14+</span>
+        <span class="text-fg/20" aria-hidden="true">&middot;</span>
+        <a
+          href="/releases"
+          class="underline decoration-fg/25 underline-offset-4 transition-colors hover:text-fg hover:decoration-fg/60"
+        >
+          Release notes
+        </a>
+      </div>
     </div>
 
     <div class="flex min-w-0 justify-center">
@@ -69,7 +86,13 @@ const pillars = [
 
   <!-- Living proof: what runs, right now -->
   <div class="wrap">
-    <p class="text-xs font-mono uppercase tracking-[0.18em] text-muted">Running on Mac right now</p>
+    <p class="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-muted">
+      <span class="relative flex h-2 w-2" aria-hidden="true">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-verified opacity-50"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-verified"></span>
+      </span>
+      Running on Mac right now
+    </p>
   </div>
   <RunsTicker />
 
@@ -183,11 +206,22 @@ const pillars = [
       </p>
       <a
         href="/download"
-        class="mt-8 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
+        class="mt-8 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
       >
         Download for Mac
       </a>
-      <p class="mt-4 text-sm"><a href="/releases" class="text-muted hover:text-fg">See the release notes &rarr;</a></p>
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted">
+        <span>Free during the beta</span>
+        <span class="text-fg/20" aria-hidden="true">&middot;</span>
+        <span>Apple Silicon, macOS 14+</span>
+        <span class="text-fg/20" aria-hidden="true">&middot;</span>
+        <a
+          href="/releases"
+          class="underline decoration-fg/25 underline-offset-4 transition-colors hover:text-fg hover:decoration-fg/60"
+        >
+          Release notes
+        </a>
+      </div>
     </div>
   </section>
 </Base>
