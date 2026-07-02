@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+
+const description =
+  'The terms for using Pixel Port: beta software provided as-is, honest compatibility labels, your games stay yours, no anti-cheat circumvention.';
+---
+
+<Base title="Terms of Use" description={description}>
+  <article class="wrap max-w-3xl py-16 sm:py-20">
+    <nav class="text-sm text-muted">
+      <a href="/" class="hover:text-fg">Home</a> <span class="px-1">/</span> Terms
+    </nav>
+
+    <h1 class="mt-6 text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      Terms of Use
+    </h1>
+    <p class="mt-3 text-sm text-muted">Last updated: 2026-07-01</p>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      Plain-language terms for using Pixel Port. We have kept these short and honest; using Pixel
+      Port means you agree to them.
+    </p>
+
+    <div class="prose prose-invert mt-12 max-w-none prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>Beta software, provided as-is</h2>
+      <p>
+        Pixel Port is beta software. It is provided as-is, without warranties of any kind, and we
+        cannot guarantee it will be error-free or that every game will run. We work hard to make it
+        reliable, and we fix things fast, but you use it at your own risk.
+      </p>
+
+      <h2>Honest compatibility, no promises</h2>
+      <p>
+        Game compatibility varies, and we label it honestly: <strong>verified</strong> means a human
+        confirmed the game end-to-end on a real Mac; <strong>playable</strong> means it is graded from
+        real launches or trusted reports but not yet hand-verified; <strong>untested</strong> and
+        <strong>unsupported</strong> mean exactly what they say. A tier is our best current knowledge,
+        not a guarantee that a game will run on your specific machine.
+      </p>
+
+      <h2>Your games stay yours</h2>
+      <p>
+        Pixel Port does not give you games. You must own the games you play; Pixel Port installs them
+        through your own Steam account, with your own licenses. You are responsible for complying
+        with the terms of the stores and games you use.
+      </p>
+
+      <h2>No anti-cheat circumvention</h2>
+      <p>
+        Pixel Port does not bypass, disable, or circumvent anti-cheat systems, and you may not use it
+        to attempt that. Games whose anti-cheat cannot run on macOS are labeled unsupported, and we
+        tell you plainly why.
+      </p>
+
+      <h2>Pricing</h2>
+      <p>
+        Pixel Port is free to use during the beta. Pricing may be introduced later, with notice: beta
+        users will be told clearly before anything is ever charged. Nothing will silently start
+        costing money.
+      </p>
+
+      <h2>Fair use</h2>
+      <p>
+        Do not abuse the service: no attempts to disrupt or reverse-engineer our backend, scrape it at
+        scale, submit falsified compatibility data, or use Pixel Port for anything unlawful.
+      </p>
+
+      <h2>Your data</h2>
+      <p>
+        How we handle data, including anonymous-by-default telemetry, is covered in the
+        <a href="/privacy">Privacy Policy</a>.
+      </p>
+
+      <h2>Changes and termination</h2>
+      <p>
+        We may update these terms as Pixel Port evolves; the date above will always reflect the
+        current version, and meaningful changes will be called out. We may suspend access that
+        violates these terms. You can stop using Pixel Port at any time, and you can request deletion
+        of your data via support.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about these terms: reach us through the support channel listed on
+        <a href="/">pixelport.gg</a>.
+      </p>
+    </div>
+  </article>
+</Base>

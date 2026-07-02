@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const seoTitle = 'A Free CrossOver Alternative for Mac (2026)';
+const seoTitle = 'A CrossOver Alternative for Mac (2026), Free During Beta';
 const description =
-  'CrossOver costs around $50 a year and still asks you to configure each game. Pixel Port is free, sets games up for you in one click, and is honest about what works.';
+  'CrossOver costs around $50 a year and still asks you to configure each game. Pixel Port is free during its beta, sets games up for you in one click, and is honest about what works.';
 
 const canonical = new URL('/free-crossover-alternative', Astro.site).toString();
 const jsonLd = {
@@ -11,7 +11,7 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Article',
-      headline: 'A free CrossOver alternative for Mac in 2026',
+      headline: 'A CrossOver alternative for Mac in 2026, free during beta',
       description,
       url: canonical,
       author: { '@type': 'Organization', name: 'Pixel Port' },
@@ -28,7 +28,7 @@ const jsonLd = {
 
 const rows = [
   { tool: 'CrossOver', price: 'Paid, ~$50/yr', setup: 'Mostly manual per game', honest: 'Closed product', cls: 'text-muted' },
-  { tool: 'Pixel Port', price: 'Free', setup: 'One click', honest: 'Honest compatibility tiers', cls: 'text-fg font-semibold' },
+  { tool: 'Pixel Port', price: 'Free during beta', setup: 'One click', honest: 'Honest compatibility tiers', cls: 'text-fg font-semibold' },
 ];
 ---
 
@@ -41,19 +41,19 @@ const rows = [
     </nav>
 
     <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-      A free CrossOver alternative for Mac
+      A CrossOver alternative for Mac
     </h1>
     <p class="mt-5 max-w-2xl text-lg text-muted">
       CrossOver is a paid compatibility layer that still asks you to set up each game by hand. Pixel
-      Port is free, does the setup for you in one click, and tells you the truth about what runs before
-      you install.
+      Port is free during its beta, does the setup for you in one click, and tells you the truth about
+      what runs before you install.
     </p>
     <div class="mt-8">
       <a
         href="/download"
         class="inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-xl shadow-black/30 transition-transform active:scale-[0.98]"
       >
-        Download Pixel Port, Free
+        Download Pixel Port
       </a>
     </div>
 
@@ -67,10 +67,10 @@ const rows = [
 
       <h2>Why Pixel Port</h2>
       <p>
-        Pixel Port is free and built around a single click. You install it once, find a game in the
-        catalogue, and play. Our bundled runtime, Prism, translates DirectX straight to Metal on Apple
-        Silicon, and the Synthesis Engine figures out how each game should run for you. No yearly fee, no
-        manual configuration.
+        Pixel Port is free during its beta and built around a single click. You install it once, find a
+        game in the catalogue, and play. Our bundled runtime, Prism, translates DirectX straight to Metal
+        on Apple Silicon, and the Synthesis Engine figures out how each game should run for you. No
+        manual configuration, and nothing to pay while we are in beta.
       </p>
       <p>
         We are also honest. Every game carries a compatibility tier earned from real launches, so you
@@ -110,12 +110,12 @@ const rows = [
         Some games use kernel-level anti-cheat that needs publisher cooperation to run on a Mac at all.
         CrossOver has invested heavily there and currently supports a handful of those titles. We would
         rather tell you that plainly than pretend otherwise. For the vast majority of games that do not
-        ship kernel anti-cheat, Pixel Port runs them free and in one click.
+        ship kernel anti-cheat, Pixel Port runs them in one click.
       </p>
     </div>
 
     <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
-      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Free, and one click</h2>
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">One click, free during the beta</h2>
       <p class="mx-auto mt-3 max-w-lg text-muted">
         Try Pixel Port before you pay for anything. Download, pick a game, play.
       </p>
