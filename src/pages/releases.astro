@@ -74,9 +74,11 @@ const clean = (body: string) =>
                 {clean(rel.body) && (
                   <p class="mt-3 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-fg/80">{clean(rel.body)}</p>
                 )}
-                {dmg(rel) && (
+                {/* Only the LATEST release is downloadable — older versions are changelog-only
+                    (everyone should start on the current build; /download always serves latest). */}
+                {i === 0 && dmg(rel) && (
                   <a
-                    href={i === 0 ? '/download' : dmg(rel).browser_download_url}
+                    href="/download"
                     class="mt-5 inline-block rounded-full border border-line bg-surface/60 px-5 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent/40 hover:bg-surface"
                   >
                     Download {rel.tag_name}
@@ -163,14 +165,15 @@ const clean = (body: string) =>
           li.appendChild(el('p', 'mt-3 max-w-2xl whitespace-pre-wrap text-sm leading-relaxed text-fg/80', notes));
         }
 
+        // Only the latest release is downloadable — older versions render as changelog-only.
         const asset = dmg(rel);
-        if (asset) {
+        if (i === 0 && asset) {
           const a = el(
             'a',
             'mt-5 inline-block rounded-full border border-line bg-surface/60 px-5 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent/40 hover:bg-surface',
             `Download ${rel.tag_name}`,
           ) as HTMLAnchorElement;
-          a.href = i === 0 ? '/download' : asset.browser_download_url;
+          a.href = '/download';
           li.appendChild(a);
         }
 
