@@ -43,27 +43,57 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <main class="flex-1"><slot /></main>
     <Footer />
     <script>
-      // Referral attribution: remember ?ref=<token> (first touch wins) and fire a
-      // best-effort beacon when the download CTA is clicked. No cookies, no
-      // identifiers — just the ref token. Must never affect the download UX.
-      try {
-        const ref = new URLSearchParams(location.search).get('ref');
-        if (ref && !localStorage.getItem('pp_ref')) localStorage.setItem('pp_ref', ref);
-      } catch {}
-      document.addEventListener('click', (e) => {
-        const a = (e.target as Element | null)?.closest?.('a[href^="/download"]');
-        if (!a) return;
+      // Referral attribution. Runs on EVERY page (this layout wraps the whole
+      // site), so a ?ref=<token> is captured wherever a posted link lands —
+      // compat pages, homepage, or /download. No cookies, no identifiers — just
+      // the ref token. Must never affect the download UX.
+      //
+      // Two beacons make a funnel: a 'land' beacon fires the moment a ?ref=
+      // arrives (so a visitor attributes even if they never download), and a
+      // 'download' beacon still fires on the download CTA click. Both POST the
+      // same 202 contract; `event` is extra and currently IGNORED by the server
+      // (server only reads {ref, path}) — it's forward-compatible for when an
+      // `event` column is added to web_refs. Ref policy is LATEST-WINS so a
+      // fresh campaign click updates attribution.
+      const WEBREF = 'https://mgp-api.macgameport.workers.dev/v1/webref';
+      // Mirror the server's validation: alphanumeric + - / _, max 32 chars.
+      const REF_RE = /^[a-z0-9_-]{1,32}$/i;
+      function beacon(ref: string, event: 'land' | 'download') {
         try {
-          let ref = 'direct';
-          try { ref = localStorage.getItem('pp_ref') || 'direct'; } catch {}
-          fetch('https://mgp-api.macgameport.workers.dev/v1/webref', {
+          fetch(WEBREF, {
             method: 'POST',
             mode: 'no-cors',
             keepalive: true,
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ ref, path: location.pathname }),
+            body: JSON.stringify({ ref, path: location.pathname, event }),
           }).catch(() => {});
         } catch {}
+      }
+      // 1) Capture ?ref= on load. Latest-wins; fire a landing beacon on first
+      //    capture or when the campaign changed.
+      try {
+        const raw = new URLSearchParams(location.search).get('ref');
+        const ref = raw && REF_RE.test(raw) ? raw : null;
+        if (ref) {
+          let prev = null;
+          try { prev = localStorage.getItem('pp_ref'); } catch {}
+          try {
+            localStorage.setItem('pp_ref', ref);
+            localStorage.setItem('pp_ref_ts', String(Date.now()));
+          } catch {}
+          if (ref !== prev) beacon(ref, 'land');
+        }
+      } catch {}
+      // 2) Download CTA click — attribute the conversion with the stored ref.
+      document.addEventListener('click', (e) => {
+        const a = (e.target as Element | null)?.closest?.('a[href^="/download"]');
+        if (!a) return;
+        let ref = 'direct';
+        try {
+          const stored = localStorage.getItem('pp_ref');
+          if (stored && REF_RE.test(stored)) ref = stored;
+        } catch {}
+        beacon(ref, 'download');
       });
     </script>
   </body>
