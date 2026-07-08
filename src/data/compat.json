@@ -227,6 +227,14 @@
    "popularity": 15222495
   },
   {
+   "appid": 3164500,
+   "slug": "schedule-i",
+   "name": "Schedule I",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 15200803
+  },
+  {
    "appid": 594650,
    "slug": "hunt-showdown-1896",
    "name": "Hunt: Showdown 1896",
@@ -518,9 +526,17 @@
    "appid": 881100,
    "slug": "noita",
    "name": "Noita",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3574759
+  },
+  {
+   "appid": 2709570,
+   "slug": "supermarket-together",
+   "name": "Supermarket Together",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3563994
   },
   {
    "appid": 387290,
@@ -574,7 +590,7 @@
    "appid": 3070070,
    "slug": "tcg-card-shop-simulator",
    "name": "TCG Card Shop Simulator",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3538392
   },
@@ -627,10 +643,18 @@
    "popularity": 1570292
   },
   {
+   "appid": 312520,
+   "slug": "rain-world",
+   "name": "Rain World",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1539787
+  },
+  {
    "appid": 1419170,
    "slug": "my-singing-monsters",
    "name": "My Singing Monsters",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1539143
   },
