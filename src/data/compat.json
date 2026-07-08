@@ -510,7 +510,7 @@
    "appid": 205100,
    "slug": "dishonored",
    "name": "Dishonored",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3580427
   },
@@ -627,6 +627,14 @@
    "popularity": 1570292
   },
   {
+   "appid": 1419170,
+   "slug": "my-singing-monsters",
+   "name": "My Singing Monsters",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1539143
+  },
+  {
    "appid": 460790,
    "slug": "bayonetta",
    "name": "Bayonetta",
@@ -657,6 +665,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 769536
+  },
+  {
+   "appid": 521890,
+   "slug": "hello-neighbor",
+   "name": "Hello Neighbor",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 766402
   },
   {
    "appid": 1180660,
@@ -888,6 +904,14 @@
    "name": "Pool Blitz",
    "tier": "verified",
    "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3932890,
+   "slug": "escape-from-tarkov",
+   "name": "Escape from Tarkov",
+   "tier": "unsupported",
+   "reason": "BattlEye kernel at launch; blocks VMs/Wine.",
    "popularity": 0
   }
  ]

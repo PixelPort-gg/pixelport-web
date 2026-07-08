@@ -23,6 +23,7 @@ const SLEEP_MS = 200; // be polite to the worker
 // whose API record carries no reason are rendered by their real tier instead —
 // we never fabricate a "no" any more than we fabricate a "yes".
 const BLOCKER_APPIDS = [
+  3932890, // Escape from Tarkov (Steam release — trending 2026-07; BattlEye kernel)
   236390, // War Thunder
   252490, // Rust
   1172470, // Apex Legends
