@@ -243,5 +243,299 @@
       "status": "Easy Anti-Cheat is not enabled for Mac on The Finals. This is up to Embark Studios.",
       "alternatives": []
     }
+  },
+  {
+    "slug": "portal-2",
+    "title": "Portal 2",
+    "appid": 620,
+    "tier": "verified",
+    "genre": "Puzzle",
+    "summary": "Portal 2 shipped with a Mac port in 2011, but it was 32-bit and stopped launching when macOS Catalina dropped 32-bit support in 2019. Through Pixel Port it runs again on Apple Silicon \u2014 tested on our own Macs, peaking around 336 MB of memory. You need to own Portal 2 on Steam; your old license works.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~12 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Portal 2", "body": "Find Portal 2 in the catalogue and hit Install & Play. The license you bought years ago still counts."},
+      {"title": "Play", "body": "Launch from your Library. Source is light on the translation layer; co-op is not fully tested yet, so report back if you try it."}
+    ],
+    "lastTested": "2026-06-20"
+  },
+  {
+    "slug": "megabonk",
+    "title": "Megabonk",
+    "appid": 3405340,
+    "tier": "verified",
+    "genre": "Roguelite",
+    "summary": "Megabonk ships for Windows and Linux only \u2014 there is no Mac build. Through Pixel Port it runs on Apple Silicon, tested on our own Macs with a peak of about 1 GB of memory, so base-model machines are fine. You need to own Megabonk on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~1 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Megabonk", "body": "Search the catalogue for Megabonk and hit Install & Play. The download is small."},
+      {"title": "Play", "body": "The very first run compiles shaders, so expect brief hitching before it smooths out."}
+    ],
+    "lastTested": "2026-06-20"
+  },
+  {
+    "slug": "halls-of-torment",
+    "title": "Halls of Torment",
+    "appid": 2218750,
+    "tier": "verified",
+    "genre": "Roguelite",
+    "summary": "Halls of Torment has no Mac build. Through Pixel Port it runs on Apple Silicon via the Vulkan/MoltenVK path \u2014 tested on our own Macs. It is a small download and light to run. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Install & Play", "body": "Find Halls of Torment in the catalogue and click Install & Play \u2014 Pixel Port picks the Vulkan path for you."}
+    ],
+    "lastTested": "2026-06-20"
+  },
+  {
+    "slug": "tell-me-why",
+    "title": "Tell Me Why",
+    "appid": 1180660,
+    "tier": "verified",
+    "genre": "Adventure",
+    "summary": "Tell Me Why never got a Mac build. Through Pixel Port it runs on Apple Silicon \u2014 tested on our own Macs, peaking around 766 MB of memory. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~30 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Tell Me Why", "body": "Find it in the catalogue and hit Install & Play. It is a large download, so let it finish."},
+      {"title": "Play", "body": "Launch from your Library and play through as normal \u2014 it is a single-player story game with no anti-cheat in the way."}
+    ],
+    "lastTested": "2026-06-20"
+  },
+  {
+    "slug": "a-fistful-of-gun",
+    "title": "A Fistful of Gun",
+    "appid": 229810,
+    "tier": "verified",
+    "genre": "Action",
+    "summary": "A Fistful of Gun has no Mac build. Through Pixel Port it runs on Apple Silicon \u2014 tested on our own Macs, peaking around 295 MB of memory. Tiny download, instant fun. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Install & Play", "body": "Find A Fistful of Gun in the catalogue and click Install & Play."}
+    ],
+    "lastTested": "2026-06-20"
+  },
+  {
+    "slug": "the-elder-scrolls-arena",
+    "title": "The Elder Scrolls: Arena",
+    "appid": 1812290,
+    "tier": "verified",
+    "genre": "RPG",
+    "summary": "The Elder Scrolls: Arena is a DOS-era classic reborn on Steam, and it has no Mac build. Through Pixel Port it runs on Apple Silicon \u2014 tested on our own Macs, peaking around 201 MB of memory. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Install & Play", "body": "Find The Elder Scrolls: Arena in the catalogue and click Install & Play \u2014 the DOS-era launch path is handled for you."}
+    ],
+    "lastTested": "2026-06-20"
+  },
+  {
+    "slug": "lethal-company",
+    "title": "Lethal Company",
+    "appid": 1966720,
+    "tier": "verified",
+    "genre": "Co-op horror",
+    "summary": "Lethal Company has no Mac build, which is rough when your friends play every night. It holds a Verified tier in our compatibility database on strong community evidence \u2014 40 to 90 fps reports on Apple Silicon, co-op included \u2014 though we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Lethal Company", "body": "Find it in the catalogue and hit Install & Play. The download is small."},
+      {"title": "Join your crew", "body": "There is no anti-cheat in the way, so online lobbies work. If something breaks, tell us \u2014 failure reports fix the recipe for the next player."}
+    ]
+  },
+  {
+    "slug": "sekiro-shadows-die-twice",
+    "title": "Sekiro: Shadows Die Twice",
+    "appid": 814380,
+    "tier": "verified",
+    "genre": "Action",
+    "summary": "Sekiro has no Mac build. It is single-player with no kernel anti-cheat, and it holds a Verified tier in our compatibility database on strong community evidence \u2014 we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~25 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Sekiro", "body": "Find it in the catalogue and hit Install & Play, then let the large download finish."},
+      {"title": "Play", "body": "Expect some shader compilation on early runs before it settles."}
+    ]
+  },
+  {
+    "slug": "sons-of-the-forest",
+    "title": "Sons of the Forest",
+    "appid": 1326470,
+    "tier": "verified",
+    "genre": "Survival",
+    "summary": "Sons of the Forest has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence \u2014 including 1440p/60 reports on an M3 with FSR \u2014 though we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~20 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Sons of the Forest", "body": "Find it in the catalogue and hit Install & Play."},
+      {"title": "Play", "body": "FSR helps a lot at higher resolutions. Co-op works \u2014 report back either way, it improves the recipe."}
+    ]
+  },
+  {
+    "slug": "subnautica",
+    "title": "Subnautica",
+    "appid": 264710,
+    "tier": "verified",
+    "genre": "Survival",
+    "summary": "Subnautica's native Mac build is Intel-only and long abandoned \u2014 on Apple Silicon the translated Windows version is the better game, with community reports around 80 fps. It holds a Verified tier in our compatibility database on that evidence; we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~15 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Subnautica", "body": "Find it in the catalogue and hit Install & Play. Pixel Port runs the Windows build, not the abandoned Intel port."},
+      {"title": "Dive", "body": "Launch from your Library. Long sessions are fine; it is a single-player game with no anti-cheat."}
+    ]
+  },
+  {
+    "slug": "risk-of-rain-2",
+    "title": "Risk of Rain 2",
+    "appid": 632360,
+    "tier": "verified",
+    "genre": "Roguelite",
+    "summary": "Risk of Rain 2 has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence \u2014 we have not captured it on our own Macs yet. Small download, and co-op has no anti-cheat in the way. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Install & Play", "body": "Find Risk of Rain 2 in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "devil-may-cry-5",
+    "title": "Devil May Cry 5",
+    "appid": 601150,
+    "tier": "verified",
+    "genre": "Action",
+    "summary": "Devil May Cry 5 has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence, with reports around 50\u201360 fps on Apple Silicon. Honest caveat from those reports: pre-rendered cutscenes depend on Media Foundation and can misbehave. We have not captured this one on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~35 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Devil May Cry 5", "body": "Find it in the catalogue and hit Install & Play, then let the large download finish."},
+      {"title": "Play", "body": "Gameplay is the strong part; if a cutscene stutters or blacks out, that is the known Media Foundation gap \u2014 skipping it works."}
+    ]
+  },
+  {
+    "slug": "nier-automata",
+    "title": "NieR: Automata",
+    "appid": 524220,
+    "tier": "verified",
+    "genre": "Action RPG",
+    "summary": "NieR: Automata has no Mac build. It is one of the milestone titles for the Direct3D-to-Metal path and holds a Verified tier in our compatibility database on strong community evidence \u2014 we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~50 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add NieR: Automata", "body": "Find it in the catalogue and hit Install & Play. It is a big download, so start it before dinner."},
+      {"title": "Play", "body": "Launch from your Library. Single-player, no anti-cheat, nothing else to configure."}
+    ]
+  },
+  {
+    "slug": "dark-souls-remastered",
+    "title": "Dark Souls: Remastered",
+    "appid": 570940,
+    "tier": "verified",
+    "genre": "Action RPG",
+    "summary": "Dark Souls: Remastered has no Mac build. Its anti-cheat is server-side rather than kernel-level, which is why it works where many multiplayer games cannot. It holds a Verified tier in our compatibility database on strong community evidence \u2014 we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~8 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Dark Souls: Remastered", "body": "Find it in the catalogue and hit Install & Play."},
+      {"title": "Play", "body": "Launch and die with dignity. Online features have worked in community reports, but treat them as a bonus, not a promise."}
+    ]
+  },
+  {
+    "slug": "ori-and-the-will-of-the-wisps",
+    "title": "Ori and the Will of the Wisps",
+    "appid": 1057090,
+    "tier": "verified",
+    "genre": "Platformer",
+    "summary": "Ori and the Will of the Wisps has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence \u2014 including 60 fps at 1080p on a base M1 Air \u2014 though we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~10 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Install & Play", "body": "Find Ori and the Will of the Wisps in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "ori-and-the-blind-forest-definitive-edition",
+    "title": "Ori and the Blind Forest: Definitive Edition",
+    "appid": 387290,
+    "tier": "verified",
+    "genre": "Platformer",
+    "summary": "Ori and the Blind Forest never got a Mac build. It holds a Verified tier in our compatibility database on strong community evidence \u2014 we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~10 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Install & Play", "body": "Find Ori and the Blind Forest in the catalogue and click Install & Play."}
+    ]
+  },
+  {
+    "slug": "dyson-sphere-program",
+    "title": "Dyson Sphere Program",
+    "appid": 1366540,
+    "tier": "verified",
+    "genre": "Factory",
+    "summary": "Dyson Sphere Program has no Mac build. It holds a Verified tier in our compatibility database on repeated community success reports \u2014 we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Dyson Sphere Program", "body": "Find it in the catalogue and hit Install & Play."},
+      {"title": "Build", "body": "Late-game megafactories push any machine; expect frame dips at planetary scale, same as on Windows."}
+    ]
+  },
+  {
+    "slug": "outer-wilds",
+    "title": "Outer Wilds",
+    "appid": 753640,
+    "tier": "verified",
+    "genre": "Adventure",
+    "summary": "Outer Wilds has no Mac build, and its community famously recruits new players who then discover their MacBook can't run it. It holds a Verified tier in our compatibility database on strong community evidence \u2014 60 to 120 fps reports on an M1 Pro \u2014 though we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~8 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Outer Wilds", "body": "Find it in the catalogue and hit Install & Play."},
+      {"title": "Play", "body": "Go in blind if you can. It is single-player with no anti-cheat, so there is nothing else to set up."}
+    ]
+  },
+  {
+    "slug": "sifu",
+    "title": "Sifu",
+    "appid": 2138710,
+    "tier": "verified",
+    "genre": "Action",
+    "summary": "Sifu has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence \u2014 70 to 100 fps reports on an M1 Pro, with some shader stutter in early runs \u2014 though we have not captured it on our own Macs yet. You need to own it on Steam.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~25 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Sifu", "body": "Find it in the catalogue and hit Install & Play."},
+      {"title": "Play", "body": "The first few fights compile shaders and can hitch; it smooths out quickly."}
+    ]
+  },
+  {
+    "slug": "half-life-2",
+    "title": "Half-Life 2",
+    "appid": 220,
+    "tier": "verified",
+    "genre": "FPS",
+    "summary": "Half-Life 2's Mac port was 32-bit and stopped launching when macOS Catalina dropped 32-bit support in 2019 \u2014 the same fate as Portal 2. It holds a Verified tier in our compatibility database on strong community evidence; we have not captured it on our own Macs yet. Your old Steam license still works.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~7 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Half-Life 2", "body": "Find it in the catalogue and hit Install & Play. The license you bought years ago counts."},
+      {"title": "Play", "body": "Source is light under translation; the 20th-anniversary update content is included."}
+    ]
+  },
+  {
+    "slug": "borderlands-2",
+    "title": "Borderlands 2",
+    "appid": 49520,
+    "tier": "verified",
+    "genre": "FPS",
+    "summary": "Borderlands 2's Aspyr Mac port was 32-bit and died with macOS Catalina in 2019. It holds a Verified tier in our compatibility database on strong community evidence; we have not captured it on our own Macs yet. If you bought it for Mac back then, that same Steam license works here.",
+    "requirements": ["Apple Silicon (M1 or newer)", "macOS 14+", "~20 GB free"],
+    "steps": [
+      {"title": "Install Pixel Port", "body": "Download Pixel Port and let it set up the free runtime on first launch."},
+      {"title": "Add Borderlands 2", "body": "Find it in the catalogue and hit Install & Play."},
+      {"title": "Play", "body": "Single-player and co-op have both appeared in community reports; treat co-op as a bonus and tell us how it goes."}
+    ]
   }
 ]

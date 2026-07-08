@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-02",
+ "fetched_at": "2026-07-08",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -94,7 +94,7 @@
    "appid": 945360,
    "slug": "among-us",
    "name": "Among Us",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35643681
   },
@@ -635,6 +635,14 @@
    "popularity": 1526797
   },
   {
+   "appid": 996580,
+   "slug": "spyro-reignited-trilogy",
+   "name": "Spyro Reignited Trilogy",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1519266
+  },
+  {
    "appid": 2218750,
    "slug": "halls-of-torment",
    "name": "Halls of Torment",
@@ -715,6 +723,14 @@
    "popularity": 78366
   },
   {
+   "appid": 2934190,
+   "slug": "ao-oni",
+   "name": "Ao Oni",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 75585
+  },
+  {
    "appid": 2917350,
    "slug": "spin-hero",
    "name": "Spin Hero",
@@ -761,6 +777,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 10031
+  },
+  {
+   "appid": 603910,
+   "slug": "meccha-zombies",
+   "name": "Meccha Zombies",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10008
   },
   {
    "appid": 1812290,
@@ -830,7 +854,7 @@
    "appid": 3405340,
    "slug": "megabonk",
    "name": "Megabonk",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
