@@ -36,6 +36,40 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image" content={ogImage ?? new URL('/brand/mark.svg', Astro.site).toString()} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#0a0816" />
+    <meta name="application-name" content="Pixel Port" />
+    <meta name="apple-mobile-web-app-title" content="Pixel Port" />
+    <!-- Brand-entity structured data: tells Google "Pixel Port" is a named app/organization at this
+         domain — the entity signal that drives brand-term ranking + sitelinks for a new domain. -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://pixelport.gg/#org",
+          "name": "Pixel Port",
+          "url": "https://pixelport.gg/",
+          "logo": "https://pixelport.gg/brand/mark.svg",
+          "sameAs": ["https://discord.gg/2eQah8DjK6"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://pixelport.gg/#website",
+          "name": "Pixel Port",
+          "url": "https://pixelport.gg/",
+          "publisher": { "@id": "https://pixelport.gg/#org" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Pixel Port",
+          "operatingSystem": "macOS",
+          "applicationCategory": "GameApplication",
+          "url": "https://pixelport.gg/",
+          "downloadUrl": "https://pixelport.gg/download",
+          "description": "Pixel Port downloads, configures, and launches Windows games on your Mac automatically. Free during the beta. Built for Apple Silicon.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        }
+      ]
+    })} />
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col overflow-x-hidden">
