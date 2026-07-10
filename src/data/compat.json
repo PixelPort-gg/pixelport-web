@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-07-08",
+ "fetched_at": "2026-07-10",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -38,7 +38,7 @@
    "appid": 1623730,
    "slug": "palworld",
    "name": "Palworld",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 75358266
   },
@@ -198,7 +198,7 @@
    "appid": 220,
    "slug": "half-life-2",
    "name": "Half-Life 2",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 15239721
   },
@@ -246,7 +246,7 @@
    "appid": 1222670,
    "slug": "the-sims-4",
    "name": "The Sims™ 4",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15149064
   },
@@ -278,7 +278,7 @@
    "appid": 620,
    "slug": "portal-2",
    "name": "Portal 2",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7927835
   },
@@ -523,6 +523,14 @@
    "popularity": 3580427
   },
   {
+   "appid": 12120,
+   "slug": "grand-theft-auto-san-andreas",
+   "name": "Grand Theft Auto: San Andreas",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3576056
+  },
+  {
    "appid": 881100,
    "slug": "noita",
    "name": "Noita",
@@ -534,7 +542,7 @@
    "appid": 2709570,
    "slug": "supermarket-together",
    "name": "Supermarket Together",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3563994
   },
@@ -571,6 +579,14 @@
    "popularity": 3558839
   },
   {
+   "appid": 319510,
+   "slug": "five-nights-at-freddys",
+   "name": "Five Nights at Freddy's",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3548831
+  },
+  {
    "appid": 2567870,
    "slug": "chained-together",
    "name": "Chained Together",
@@ -593,6 +609,22 @@
    "tier": "verified",
    "reason": null,
    "popularity": 3538392
+  },
+  {
+   "appid": 312530,
+   "slug": "duck-game",
+   "name": "Duck Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3537172
+  },
+  {
+   "appid": 42700,
+   "slug": "call-of-duty-black-ops",
+   "name": "Call of Duty: Black Ops",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3536530
   },
   {
    "appid": 266840,
@@ -654,7 +686,7 @@
    "appid": 1419170,
    "slug": "my-singing-monsters",
    "name": "My Singing Monsters",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1539143
   },
@@ -665,6 +697,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1526797
+  },
+  {
+   "appid": 213610,
+   "slug": "sonic-adventure-2",
+   "name": "Sonic Adventure 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1522711
   },
   {
    "appid": 996580,
@@ -697,6 +737,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 766402
+  },
+  {
+   "appid": 71250,
+   "slug": "sonic-adventure-dx-2011",
+   "name": "Sonic Adventure DX (2011)",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 765415
   },
   {
    "appid": 1180660,

@@ -216,9 +216,9 @@
   "slug": "palworld",
   "title": "Palworld",
   "appid": 1623730,
-  "tier": "playable",
+  "tier": "verified",
   "genre": "Survival",
-  "summary": "Palworld runs your Steam copy on Apple Silicon through Pixel Port's free runtime \u2014 no separate Mac purchase needed. The official native Mac port is sold separately and doesn't share your Steam saves; Pixel Port runs the copy (and the hours) you already own. Playable tier today; we re-verify on the 1.0 build the day it ships (July 10, 2026) and this page will reflect exactly what we find.",
+  "summary": "Palworld 1.0 is verified on Pixel Port \u2014 re-run on real Apple Silicon hardware the day 1.0 shipped (July 10, 2026), on the free runtime. It runs the Steam copy you already own, saves included. The official native Mac port is sold separately and doesn't share your Steam saves; Pixel Port runs the copy (and the hours) you already have.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -238,7 +238,8 @@
     "title": "First launch",
     "body": "UE5 compiles shaders on the first run \u2014 expect a slower first session, smooth after. 1.0's World Tree and Sky Islands arrive as a free update to the same copy."
    }
-  ]
+  ],
+  "lastTested": "2026-07-10"
  },
  {
   "slug": "elin",

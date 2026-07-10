@@ -22,11 +22,13 @@ who already own Palworld on Steam, "buy it again" is a frustrating answer.
 
 Pixel Port runs Windows Steam games on Apple Silicon — one click, free during the
 beta. Palworld's profile is friendly to translation: Unreal Engine 5 on the D3D11
-path, no kernel anti-cheat, standard Steamworks. Our current recipe (hand-tuned:
-DXMT graphics, the default `Palworld.exe` target) carries a *Playable* tier — it runs
-on the free stack, with real players on it today, but we haven't yet stamped it with
-our top verification tier. Honest status, honestly labeled:
-[the Palworld compat page](/mac/palworld/) always shows the current tier.
+path, no kernel anti-cheat, standard Steamworks.
+
+**Update, July 10:** we said we'd verify 1.0 on real hardware the day it dropped and
+publish what we found — here it is. **Palworld 1.0 is Verified**: re-run on Apple
+Silicon on the free stack the day of release, same recipe (DXMT graphics, the default
+`Palworld.exe` target), running the Steam copy — saves included.
+[The Palworld compat page](/mac/palworld-1623730/) always shows the current tier.
 
 The usual fine print: Apple Silicon only (M1 or newer, macOS 14+), you need to own
 Palworld on Steam, and expect Early-Access-style rough edges from a translated
