@@ -6,7 +6,10 @@ import Reveal from '../components/Reveal.astro';
 import OldVsNew from '../components/OldVsNew.astro';
 import games from '../data/games.resolved.json';
 
-const featured = games.slice(0, 3);
+// Palworld pinned while the 1.0 launch window is hot (July 2026) — swap back to
+// pure catalogue order once the wave passes.
+const palworld = games.find((g) => g.appid === 1623730);
+const featured = [palworld, ...games.filter((g) => g.appid !== 1623730)].filter(Boolean).slice(0, 3);
 const tierClass = (t: string) =>
   t === 'verified'
     ? 'text-verified bg-verified/15 ring-verified/30'
@@ -38,6 +41,20 @@ const pillars = [
   <!-- Hero -->
   <section class="wrap grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.1fr_0.9fr]">
     <div class="min-w-0">
+      <a
+        href="/mac/palworld-1623730/"
+        class="group mb-7 inline-flex max-w-full items-center gap-2.5 rounded-full border border-accent/30 bg-accent/10 py-2 pl-3 pr-4 text-sm font-medium text-fg transition-colors hover:border-accent/60 hover:bg-accent/15"
+      >
+        <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-2 opacity-50"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-2"></span>
+        </span>
+        <span class="truncate">
+          <span class="font-semibold">Palworld 1.0 is here</span>
+          <span class="text-muted">&nbsp;&mdash; play the Steam copy you already own, on your Mac</span>
+        </span>
+        <span aria-hidden="true" class="shrink-0 text-accent-2 transition-transform group-hover:translate-x-0.5">&rarr;</span>
+      </a>
       <h1 class="text-balance text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-6xl sm:leading-[1.04] lg:text-7xl">
         Game on Mac<br />with a single click.
       </h1>
