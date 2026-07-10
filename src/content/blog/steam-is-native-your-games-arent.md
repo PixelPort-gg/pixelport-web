@@ -44,8 +44,7 @@ a graphics-backend menu, or a Terminal command.
 The honest fine print: Pixel Port is in beta, with rough edges we're fixing daily.
 Apple Silicon only (M1+, macOS 14+). You need to own your games — it runs the Steam
 copy you already own; it doesn't sell, bundle, or pirate games. It's free during the
-beta, and it won't be free forever — when it's stable enough to charge for, beta users
-will hear it from us first.
+beta.
 
 Your Steam client is native now. Here's the other half:
 [check which of your games run →](/mac/)

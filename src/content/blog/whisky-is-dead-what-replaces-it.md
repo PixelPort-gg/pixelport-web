@@ -59,9 +59,10 @@ or pirate anything. And yes — it's Wine underneath, standing on the same open-
 shoulders as everything else on this list. What you're choosing between is who does
 the configuration work: you, or the software.
 
-Pixel Port is free during the beta. It won't be free forever — when it's stable enough
-to charge for, beta users will hear it from us first. That's not a hedge; it's the
-lesson of this whole story. Whisky died because free-forever with no model burns out
-the person maintaining it. We'd rather be honest about that on day one.
+Pixel Port is free during the beta. Long-term, we intend to build the sustainability
+Whisky never had — that's the lesson of this whole story: free-forever with no model
+burns out the person maintaining it and the tool dies. Whatever pricing eventually
+looks like, it will be shaped openly with the beta community's feedback — nobody gets
+blindsided, and nobody gets locked in: your games are your Steam copies either way.
 
 [See what runs on your Mac →](/mac/)
