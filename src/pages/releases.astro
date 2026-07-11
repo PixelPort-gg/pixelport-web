@@ -7,7 +7,7 @@ import Base from '../layouts/Base.astro';
 // graceful fallback when the GitHub API is unreachable or rate-limited.
 let releases: any[] = [];
 try {
-  const r = await fetch('https://api.github.com/repos/seanellul/pixelport-dist/releases?per_page=40', {
+  const r = await fetch('https://api.github.com/repos/PixelPort-gg/pixelport-dist/releases?per_page=40', {
     headers: { 'User-Agent': 'pixelport.gg', Accept: 'application/vnd.github+json' },
   });
   if (r.ok) releases = (await r.json()).filter((x: any) => !x.draft);
@@ -49,7 +49,7 @@ const clean = (body: string) =>
       {
         releases.length === 0 ? (
           <p class="mt-12 text-muted">
-            Could not load the release list right now — the full history lives on <a href="https://github.com/seanellul/pixelport-dist/releases" class="text-accent-2 hover:underline">GitHub</a>.
+            Could not load the release list right now — the full history lives on <a href="https://github.com/PixelPort-gg/pixelport-dist/releases" class="text-accent-2 hover:underline">GitHub</a>.
           </p>
         ) : (
           <ol class="mt-12 space-y-px overflow-hidden rounded-2xl border border-line">
@@ -103,7 +103,7 @@ const clean = (body: string) =>
       let releases: any[];
       try {
         const r = await fetch(
-          'https://api.github.com/repos/seanellul/pixelport-dist/releases?per_page=40',
+          'https://api.github.com/repos/PixelPort-gg/pixelport-dist/releases?per_page=40',
           { headers: { Accept: 'application/vnd.github+json' } },
         );
         if (!r.ok) return;
