@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import StatsBar from '../components/StatsBar.astro';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -24,8 +25,13 @@ const stats = [
       A picture of what runs on Mac through Pixel Port. Tiers are graded honestly from real launches
       and trusted compatibility reports; only an on-device run flips a game to verified.
     </p>
+  </section>
 
-    <dl class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <!-- Live community numbers (real, from /v1/stats) -->
+  <StatsBar />
+
+  <section class="wrap pb-16 pt-4">
+    <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
         stats.map((s) => (
           <div class="rounded-2xl border border-line bg-surface/50 p-6">

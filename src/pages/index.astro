@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import HeroVisual from '../components/HeroVisual.astro';
 import RunsTicker from '../components/RunsTicker.astro';
+import StatsBar from '../components/StatsBar.astro';
 import Reveal from '../components/Reveal.astro';
 import OldVsNew from '../components/OldVsNew.astro';
 import games from '../data/games.resolved.json';
@@ -112,6 +113,9 @@ const pillars = [
     </p>
   </div>
   <RunsTicker />
+
+  <!-- Live social proof: real user + launch counts (GET /v1/stats), animated on view -->
+  <StatsBar />
 
   <!-- The problem: Mac gaming is hard -->
   <section class="wrap py-16">

@@ -1,0 +1,80 @@
+---
+/**
+ * StatsBar — the live social-proof counter. Numbers are REAL, pulled client-side from the API's
+ * public /v1/stats (users + game launches), then count-up animated when scrolled into view.
+ *
+ * Honesty-brand rule: never fabricated. The SSR fallback ("1,000+" / "3,700+") reads well with no JS
+ * and is always TRUE (a floor, never an inflated exact number); the script then fills the exact live
+ * values and animates to them — so a returning visitor literally watches the number climb.
+ */
+const API = 'https://mgp-api.macgameport.workers.dev/v1/stats';
+---
+
+<section class="wrap py-12" aria-label="Pixel Port by the numbers">
+  <div class="grid gap-8 rounded-3xl border border-line bg-surface/40 px-8 py-10 text-center sm:grid-cols-3">
+    <div>
+      <div
+        class="stat-num bg-linear-to-r from-accent to-accent-2 bg-clip-text text-4xl font-semibold tracking-tight text-transparent tabular-nums sm:text-5xl"
+        data-stat="users" data-fallback="1000" data-suffix="+"
+      >1,000+</div>
+      <div class="mt-2 text-sm font-medium text-muted">Mac gamers</div>
+    </div>
+    <div>
+      <div
+        class="stat-num text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl"
+        data-stat="launches" data-fallback="3700" data-suffix="+"
+      >3,700+</div>
+      <div class="mt-2 text-sm font-medium text-muted">games launched</div>
+    </div>
+    <div>
+      <div class="text-4xl font-semibold tracking-tight sm:text-5xl">Free</div>
+      <div class="mt-2 text-sm font-medium text-muted">during the beta</div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ API }}>
+  (() => {
+    const band = document.currentScript.previousElementSibling;
+    if (!band) return;
+    const nums = [...band.querySelectorAll('.stat-num[data-stat]')];
+    if (!nums.length) return;
+    const fmt = (n) => n.toLocaleString('en-US');
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function countTo(el, target) {
+      const suffix = el.dataset.suffix || '';
+      if (prefersReduced) { el.textContent = fmt(target) + suffix; return; }
+      const start = Number(el.dataset.fallback || 0);
+      const dur = 1100, t0 = performance.now();
+      const step = (t) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+        el.textContent = fmt(Math.round(start + (target - start) * eased)) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    let done = false;
+    async function reveal() {
+      if (done) return; done = true;
+      try {
+        const r = await fetch(API, { cache: 'no-store' });
+        if (!r.ok) return;                       // keep the honest "1,000+" fallback on failure
+        const s = await r.json();
+        const map = { users: s.users, launches: s.launches };
+        for (const el of nums) {
+          const v = map[el.dataset.stat];
+          if (typeof v === 'number' && v > 0) countTo(el, v);
+        }
+      } catch { /* fallback text stays — never a zero or a blank */ }
+    }
+
+    // Only animate once the band scrolls into view (so the count-up is actually seen).
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { io.disconnect(); reveal(); }
+    }, { threshold: 0.4 });
+    io.observe(band);
+  })();
+</script>
