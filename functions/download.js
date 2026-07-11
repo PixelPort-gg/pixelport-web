@@ -5,8 +5,8 @@
 // through our domain, so the user never gets bounced to github.com. The versioned
 // asset is cached at Cloudflare's edge, so only the first request per release hits
 // GitHub.
-const APPCAST = 'https://github.com/seanellul/pixelport-dist/releases/latest/download/appcast.xml';
-const FALLBACK = 'https://github.com/seanellul/pixelport-dist/releases/latest';
+const APPCAST = 'https://github.com/PixelPort-gg/pixelport-dist/releases/latest/download/appcast.xml';
+const FALLBACK = 'https://github.com/PixelPort-gg/pixelport-dist/releases/latest';
 
 export async function onRequest(context) {
   const { request } = context;
