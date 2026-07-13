@@ -21,15 +21,16 @@ const filters = [
 ];
 
 const seoTitle = 'Mac Game Compatibility Database: Which Windows Games Work on Mac';
-const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. One-click installs through Pixel Port, free during the beta.`;
+const description = `Compatibility grades for ${fmt(total)} Windows games on Apple Silicon Macs — ${fmt(counts.verified || 0)} verified end to end on real hardware, the rest graded from trusted community reports. Supported games install in one click through Pixel Port, free during the beta.`;
 ---
 
 <Base title={seoTitle} description={description}>
   <section class="wrap py-16">
     <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Which games work on Mac?</h1>
     <p class="mt-4 max-w-2xl text-lg text-muted">
-      {fmt(total)} games, each graded honestly from real launches and trusted compatibility reports.
-      Verified means a Mac ran it end to end; playable is graded but not yet hand-verified.
+      A compatibility database of {fmt(total)} Windows games, graded honestly. Verified means a Mac
+      ran it end to end; playable is graded from trusted community compatibility reports and not
+      yet hand-verified — that's most of the catalogue, and every grade says which it is.
     </p>
 
     <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
