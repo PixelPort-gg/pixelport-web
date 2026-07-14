@@ -1,0 +1,268 @@
+---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const catalogue = JSON.parse(
+  readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+) as { tier: string }[];
+const counts = catalogue.reduce<Record<string, number>>((result, game) => {
+  result[game.tier] = (result[game.tier] ?? 0) + 1;
+  return result;
+}, {});
+const fmt = (value: number) => value.toLocaleString('en-US');
+const tiers = [
+  {
+    key: 'verified',
+    label: 'Verified',
+    icon: '✓',
+    detail: 'A human confirmed the full launch on a real Mac.',
+  },
+  {
+    key: 'playable',
+    label: 'Playable',
+    icon: '◐',
+    detail: 'Auto-tested or community-confirmed, but not yet verified end to end.',
+  },
+  {
+    key: 'needs-attention',
+    label: 'Needs attention',
+    icon: '!',
+    detail: 'The game runs with a caveat or a known workaround.',
+  },
+  {
+    key: 'unsupported',
+    label: 'Unsupported',
+    icon: '×',
+    detail: 'A hard blocker, such as kernel-level anti-cheat, prevents launch.',
+  },
+];
+---
+
+<section class="confidence" aria-labelledby="confidence-title">
+  <div class="wrap">
+    <header class="confidence-heading">
+      <h2 id="confidence-title">Know before you click.</h2>
+      <p>
+        Every game gets a plain compatibility grade, including honest caveats and hard blockers.
+        A clear “not yet” is more useful than a vague promise.
+      </p>
+    </header>
+
+    <div class="coverage">
+      <p><strong>{fmt(catalogue.length)} games graded.</strong> Choose a result to filter the catalogue.</p>
+      <ul>
+        {
+          tiers.map((tier) => (
+            <li>
+              <a href={'/games?tier=' + tier.key} class={'tier-row tier-row--' + tier.key}>
+                <span class="tier-icon" aria-hidden="true">{tier.icon}</span>
+                <span class="tier-copy">
+                  <strong>{tier.label}</strong>
+                  <span>{tier.detail}</span>
+                </span>
+                <span class="tier-count" aria-label={fmt(counts[tier.key] ?? 0) + ' games'}>
+                  {fmt(counts[tier.key] ?? 0)}
+                </span>
+                <span class="tier-arrow" aria-hidden="true">&rarr;</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="coverage-note">
+        Grades come from real launches and trusted compatibility reports.
+        <a href="/docs/how-it-works">Read how grading works</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .confidence {
+    padding: clamp(5rem, 10vw, 9rem) 0 clamp(2rem, 4vw, 4rem);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .confidence-heading {
+    display: grid;
+    gap: 1.25rem;
+    align-items: end;
+  }
+
+  h2 {
+    max-width: 12ch;
+    margin: 0;
+    color: var(--color-fg);
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .confidence-heading > p {
+    max-width: 38rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  .coverage {
+    margin-top: clamp(2.75rem, 6vw, 5rem);
+  }
+
+  .coverage > p:first-child {
+    margin: 0 0 0.8rem;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+
+  .coverage > p:first-child strong {
+    color: var(--color-fg);
+  }
+
+  .coverage ul {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-line);
+    list-style: none;
+  }
+
+  .coverage li {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .tier-row {
+    display: grid;
+    min-height: 96px;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    gap: clamp(0.85rem, 2vw, 1.5rem);
+    align-items: center;
+    padding-block: 1rem;
+    color: var(--color-fg);
+    text-decoration: none;
+    transition: background-color 160ms ease;
+  }
+
+  .tier-row:hover,
+  .tier-row:focus-visible {
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .tier-row--verified {
+    --tier-color: var(--color-verified);
+  }
+
+  .tier-row--playable {
+    --tier-color: var(--color-playable);
+  }
+
+  .tier-row--needs-attention {
+    --tier-color: var(--color-attention);
+  }
+
+  .tier-row--unsupported {
+    --tier-color: var(--color-blocked);
+  }
+
+  .tier-icon {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--tier-color), transparent 54%);
+    border-radius: 50%;
+    color: var(--tier-color);
+    font-size: 0.875rem;
+    font-weight: 800;
+  }
+
+  .tier-copy {
+    min-width: 0;
+  }
+
+  .tier-copy strong,
+  .tier-copy span {
+    display: block;
+  }
+
+  .tier-copy strong {
+    font-size: 1rem;
+    font-weight: 650;
+  }
+
+  .tier-copy span {
+    max-width: 62ch;
+    margin-top: 0.25rem;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .tier-count {
+    color: var(--tier-color);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 650;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .tier-arrow {
+    color: var(--color-muted);
+    font-size: 1rem;
+    transition: transform 180ms ease;
+  }
+
+  .tier-row:hover .tier-arrow,
+  .tier-row:focus-visible .tier-arrow {
+    transform: translateX(3px);
+  }
+
+  .coverage-note {
+    margin: 1.1rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .coverage-note a {
+    margin-left: 0.35rem;
+    color: var(--color-accent-2);
+    text-underline-offset: 3px;
+  }
+
+  @media (min-width: 800px) {
+    .confidence-heading {
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.8fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .tier-row {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+
+    .tier-arrow {
+      display: none;
+    }
+
+    .tier-copy span {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tier-row,
+    .tier-arrow {
+      transition: none;
+    }
+
+    .tier-row:hover .tier-arrow,
+    .tier-row:focus-visible .tier-arrow {
+      transform: none;
+    }
+  }
+</style>

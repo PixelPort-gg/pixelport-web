@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import StatsBar from '../components/StatsBar.astro';
+import PageIntro from '../components/editorial/PageIntro.astro';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -9,6 +10,7 @@ const grid = JSON.parse(
 ) as { tier: string }[];
 const c = grid.reduce<Record<string, number>>((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
 const fmt = (n: number) => n.toLocaleString('en-US');
+const flagged = (c['needs-attention'] || 0) + (c.unsupported || 0);
 
 const stats = [
   { label: 'Games graded', value: fmt(grid.length) },
@@ -16,38 +18,324 @@ const stats = [
   { label: 'Playable', value: fmt(c.playable || 0) },
   { label: 'Price during beta', value: 'Free' },
 ];
+
+const tierProfile = [
+  { key: 'verified', label: 'Verified', tone: 'verified' },
+  { key: 'playable', label: 'Playable', tone: 'playable' },
+  { key: 'needs-attention', label: 'Needs attention', tone: 'attention' },
+  { key: 'unsupported', label: 'Unsupported', tone: 'blocked' },
+].map((tier) => {
+  const count = c[tier.key] || 0;
+  return {
+    ...tier,
+    count,
+    percent: grid.length ? (count / grid.length) * 100 : 0,
+  };
+});
 ---
 
 <Base title="Porting stats" description="How many Windows games run on Mac through Pixel Port, and how well.">
-  <section class="wrap py-16">
-    <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Porting stats</h1>
-    <p class="mt-4 max-w-2xl text-lg text-muted">
-      A picture of what runs on Mac through Pixel Port. Tiers are graded honestly from real launches
-      and trusted compatibility reports; only an on-device run flips a game to verified.
-    </p>
+  <PageIntro
+    title="Porting stats"
+    description="A picture of what runs on Mac through Pixel Port. Tiers are graded honestly from real launches and trusted compatibility reports; only an on-device run flips a game to verified."
+  />
+
+  <section class="live-heading" aria-labelledby="live-title">
+    <div>
+      <h2 id="live-title">Live signal</h2>
+      <p>Current community usage, refreshed from Pixel Port’s public stats endpoint.</p>
+    </div>
   </section>
 
   <!-- Live community numbers (real, from /v1/stats) -->
   <StatsBar />
 
-  <section class="wrap pb-16 pt-4">
-    <dl class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+  <section class="ledger" aria-labelledby="ledger-title">
+    <div class="ledger-heading">
+      <div>
+        <h2 id="ledger-title">Validation snapshot</h2>
+        <p>Every reading below comes from the catalogue shipped with this site build.</p>
+      </div>
+    </div>
+
+    <dl class="control-grid">
       {
-        stats.map((s) => (
-          <div class="rounded-2xl border border-line bg-surface/50 p-6">
-            <dt class="text-sm text-muted">{s.label}</dt>
-            <dd class="mt-2 bg-linear-to-r from-accent to-accent-2 bg-clip-text text-3xl font-bold text-transparent">
-              {s.value}
-            </dd>
+        stats.map((stat, index) => (
+          <div class:list={['control-reading', { primary: index === 0 }]}>
+            <dt>{stat.label}</dt>
+            <dd>{stat.value}</dd>
           </div>
         ))
       }
     </dl>
 
-    <p class="mt-8 text-sm text-muted">
-      {fmt((c['needs-attention'] || 0) + (c.unsupported || 0))} more are flagged needs-attention or
-      unsupported, so you always know before you install. Browse them all in the{' '}
-      <a href="/games" class="text-accent-2 hover:underline">catalogue</a>.
+    <div class="profile-layout">
+      <div class="profile-copy">
+        <h3>Tier distribution</h3>
+        <p>
+          A transparent view of the full index—from confirmed launches to games that should not be
+          installed yet.
+        </p>
+      </div>
+
+      <dl class="tier-profile">
+        {
+          tierProfile.map((tier) => (
+            <div class:list={['tier-row', `tone-${tier.tone}`]}>
+              <dt>{tier.label}</dt>
+              <dd>
+                <span class="tier-count">{fmt(tier.count)}</span>
+                <span class="tier-percent">{tier.percent.toFixed(1)}%</span>
+              </dd>
+              <meter
+                class="tier-meter"
+                min="0"
+                max={Math.max(grid.length, 1)}
+                value={tier.count}
+                aria-label={`${tier.label}: ${fmt(tier.count)} of ${fmt(grid.length)} games`}
+              >
+                {tier.percent.toFixed(1)}%
+              </meter>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <p class="catalogue-note">
+      {fmt(flagged)} more are flagged needs-attention or unsupported, so you always know before you
+      install. Browse them all in the <a href="/games">catalogue</a>.
     </p>
   </section>
+
+  <style>
+    .live-heading,
+    .ledger {
+      width: min(68rem, calc(100% - 3rem));
+      margin-inline: auto;
+    }
+
+    .live-heading {
+      padding-top: clamp(4.5rem, 9vw, 8rem);
+    }
+
+    .live-heading h2,
+    .ledger-heading h2 {
+      margin: 0;
+      color: var(--color-fg);
+      font-size: clamp(1.7rem, 4vw, 2.7rem);
+      font-weight: 620;
+      letter-spacing: -0.05em;
+    }
+
+    .live-heading p,
+    .ledger-heading p {
+      max-width: 38rem;
+      margin: 0.65rem 0 0;
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .ledger {
+      padding-block: clamp(4.5rem, 9vw, 8rem) 2rem;
+    }
+
+    .ledger-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: clamp(2.5rem, 6vw, 4.5rem) 0 0;
+      border-top: 1px solid var(--color-line);
+      border-left: 1px solid var(--color-line);
+    }
+
+    .control-reading {
+      min-height: 9rem;
+      padding: clamp(1.25rem, 3vw, 1.75rem);
+      border-right: 1px solid var(--color-line);
+      border-bottom: 1px solid var(--color-line);
+      background: color-mix(in srgb, var(--color-surface) 32%, transparent);
+    }
+
+    .control-reading.primary {
+      background:
+        linear-gradient(145deg, rgba(146, 104, 255, 0.11), transparent 62%),
+        color-mix(in srgb, var(--color-surface) 40%, transparent);
+    }
+
+    .control-reading dt {
+      max-width: 12rem;
+      margin-top: 0;
+      color: var(--color-muted);
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .control-reading dd {
+      margin: 0.45rem 0 0;
+      background: linear-gradient(100deg, var(--color-accent), var(--color-accent-2));
+      background-clip: text;
+      color: transparent;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 680;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .profile-layout {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.65fr) minmax(0, 1.35fr);
+      gap: clamp(3rem, 8vw, 7rem);
+      margin-top: clamp(4rem, 8vw, 7rem);
+      padding-top: clamp(2rem, 5vw, 3.5rem);
+      border-top: 1px solid var(--color-line);
+    }
+
+    .profile-copy h3 {
+      margin: 0;
+      color: var(--color-fg);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 620;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .profile-copy > p:last-child {
+      max-width: 27rem;
+      margin: 1.25rem 0 0;
+      color: var(--color-muted);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+
+    .tier-profile {
+      margin: 0;
+    }
+
+    .tier-row {
+      display: grid;
+      grid-template-columns: minmax(8rem, 1fr) auto;
+      gap: 0.75rem 1.25rem;
+      align-items: center;
+      padding-block: 1.2rem;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .tier-row:first-child {
+      border-top: 1px solid var(--color-line);
+    }
+
+    .tier-row dt {
+      color: color-mix(in srgb, var(--color-fg) 90%, transparent);
+      font-size: 0.875rem;
+      font-weight: 580;
+    }
+
+    .tier-row dd {
+      display: flex;
+      gap: 0.8rem;
+      align-items: baseline;
+      margin: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .tier-count {
+      color: var(--color-fg);
+      font-size: 0.875rem;
+      font-weight: 650;
+    }
+
+    .tier-percent {
+      min-width: 3.2rem;
+      color: var(--color-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.625rem;
+      text-align: right;
+    }
+
+    .tier-meter {
+      grid-column: 1 / -1;
+      width: 100%;
+      height: 0.24rem;
+      overflow: hidden;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .tier-meter::-webkit-meter-bar {
+      height: 0.24rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .tier-meter::-webkit-meter-optimum-value {
+      border-radius: 999px;
+      background: var(--tier-color);
+    }
+
+    .tier-meter::-moz-meter-bar {
+      border-radius: 999px;
+      background: var(--tier-color);
+    }
+
+    .tone-verified { --tier-color: var(--color-verified); }
+    .tone-playable { --tier-color: var(--color-playable); }
+    .tone-attention { --tier-color: var(--color-attention); }
+    .tone-blocked { --tier-color: var(--color-blocked); }
+
+    .catalogue-note {
+      margin: 2.5rem 0 0;
+      padding: 1.25rem 1.4rem;
+      border-left: 2px solid var(--color-accent-2);
+      background: color-mix(in srgb, var(--color-surface) 32%, transparent);
+      color: var(--color-muted);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+
+    .catalogue-note a {
+      color: var(--color-accent-2);
+      text-underline-offset: 0.18em;
+    }
+
+    @media (max-width: 48rem) {
+      .live-heading,
+      .ledger {
+        width: min(100% - 2rem, 68rem);
+      }
+
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .control-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 30rem) {
+      .ledger-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .control-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .control-reading {
+        min-height: 8rem;
+      }
+    }
+  </style>
 </Base>

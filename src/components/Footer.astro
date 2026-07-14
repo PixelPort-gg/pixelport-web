@@ -1,34 +1,290 @@
 ---
-const year = 2026;
+const year = new Date().getFullYear();
+
+const groups = [
+  {
+    label: 'Explore',
+    links: [
+      { href: '/games', label: 'Games' },
+      { href: '/mac/', label: 'Does it run on Mac?' },
+      { href: '/stats', label: 'Stats' },
+      { href: '/releases', label: 'Releases' },
+    ],
+  },
+  {
+    label: 'Learn',
+    links: [
+      { href: '/docs', label: 'Docs' },
+      { href: '/blog', label: 'Blog' },
+      { href: '/whisky-alternative', label: 'Whisky alternative' },
+      { href: '/free-crossover-alternative', label: 'CrossOver alternative' },
+    ],
+  },
+  {
+    label: 'Connect',
+    links: [
+      { href: 'https://discord.gg/2eQah8DjK6', label: 'Discord', external: true },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Terms' },
+    ],
+  },
+];
 ---
 
-<footer class="mt-24 border-t border-line">
-  <div class="wrap flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
-    <div class="flex items-center gap-2.5">
-      <img src="/brand/mark.svg" alt="" width="22" height="22" class="h-5.5 w-5.5" />
-      <span class="text-sm text-muted">Pixel Port. Play Windows games on Mac, honestly.</span>
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-statement">
+      <a href="/" class="footer-brand" aria-label="Pixel Port home">
+        <img src="/brand/mark.svg" alt="" width="30" height="30" />
+        <span>Pixel Port</span>
+      </a>
+      <p>Your Mac can play <span>more than you think.</span></p>
+      <a href="/download" class="footer-download">
+        <span>Download for Mac</span>
+        <span class="footer-download-arrow" aria-hidden="true">↘</span>
+      </a>
     </div>
-    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-      <a href="/games" class="hover:text-fg">Games</a>
-      <a href="/mac/" class="hover:text-fg">Does it run on Mac?</a>
-      <a href="/docs" class="hover:text-fg">Docs</a>
-      <a href="/blog" class="hover:text-fg">Blog</a>
-      <a href="/stats" class="hover:text-fg">Stats</a>
-      <a href="/releases" class="hover:text-fg">Releases</a>
-      <a href="https://discord.gg/2eQah8DjK6" class="hover:text-fg" rel="noopener" target="_blank">Discord</a>
-      <a href="/whisky-alternative" class="hover:text-fg">Whisky alternative</a>
-      <a href="/free-crossover-alternative" class="hover:text-fg">CrossOver alternative</a>
-      <a href="/privacy" class="hover:text-fg">Privacy</a>
-      <a href="/terms" class="hover:text-fg">Terms</a>
+
+    <nav class="footer-directory" aria-label="Footer navigation">
+      {
+        groups.map((group) => (
+          <div class="footer-group">
+            <h2>{group.label}</h2>
+            <ul>
+              {group.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener' : undefined}
+                  >
+                    {link.label}
+                    {link.external && <span class="external-mark" aria-hidden="true">↗</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </nav>
   </div>
-  <div class="border-t border-line/60">
-    <div class="wrap flex flex-wrap items-center gap-x-3 gap-y-1 py-5 text-xs text-muted/80">
+
+  <div class="footer-credits">
+    <div class="credits-inner">
       <span>&copy; {year} Pixel Port</span>
-      <span class="text-fg/15" aria-hidden="true">&middot;</span>
+      <span class="credit-rule" aria-hidden="true"></span>
       <span>Built for Apple Silicon</span>
-      <span class="text-fg/15" aria-hidden="true">&middot;</span>
+      <span class="credit-rule" aria-hidden="true"></span>
       <span>Free during the beta</span>
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    margin-top: clamp(6rem, 12vw, 11rem);
+    overflow: hidden;
+    border-top: 1px solid var(--color-line);
+    background:
+      radial-gradient(42rem 25rem at 12% 18%, rgba(146, 104, 255, 0.08), transparent 68%),
+      color-mix(in srgb, var(--color-base-bottom) 72%, transparent);
+  }
+
+  .site-footer::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 5%, var(--color-accent) 42%, var(--color-accent-2) 58%, transparent 95%);
+    content: '';
+    opacity: 0.38;
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(28rem, 0.8fr);
+    gap: clamp(4rem, 10vw, 10rem);
+    width: min(72rem, calc(100% - 3rem));
+    margin-inline: auto;
+    padding-block: clamp(4.5rem, 9vw, 8rem);
+  }
+
+  .footer-statement {
+    max-width: 39rem;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 2.75rem;
+    color: var(--color-fg);
+    font-size: 0.875rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .footer-brand img {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .footer-statement p {
+    margin: 2.4rem 0 0;
+    color: var(--color-fg);
+    font-size: clamp(2.6rem, 6vw, 5.4rem);
+    font-weight: 620;
+    letter-spacing: -0.03em;
+    line-height: 0.96;
+    text-wrap: balance;
+  }
+
+  .footer-statement p span {
+    color: var(--color-accent-2);
+  }
+
+  .footer-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.25rem;
+    min-height: 2.75rem;
+    margin-top: 2.5rem;
+    padding: 0.1rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-accent-2) 55%, transparent);
+    color: var(--color-fg);
+    font-size: 0.875rem;
+    font-weight: 620;
+    text-decoration: none;
+    transition: border-color 160ms ease;
+  }
+
+  .footer-download:hover {
+    border-color: var(--color-accent-2);
+  }
+
+  .footer-download-arrow {
+    display: inline-block;
+    transition: transform 160ms var(--ease-cinema);
+  }
+
+  .footer-download:hover .footer-download-arrow,
+  .footer-download:focus-visible .footer-download-arrow {
+    transform: translate(0.2rem, 0.2rem);
+  }
+
+  .footer-directory {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    align-self: end;
+  }
+
+  .footer-group h2 {
+    margin: 0 0 1.25rem;
+    color: color-mix(in srgb, var(--color-muted) 75%, transparent);
+    font-size: 0.8125rem;
+    font-weight: 650;
+  }
+
+  .footer-group ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-group li + li {
+    margin-top: 0.1rem;
+  }
+
+  .footer-group a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    min-height: 2.75rem;
+    padding-block: 0.65rem;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  .footer-group a:hover {
+    color: var(--color-fg);
+  }
+
+  .external-mark {
+    color: var(--color-accent-2);
+    font-size: 0.75rem;
+  }
+
+  .footer-credits {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .credits-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: min(72rem, calc(100% - 3rem));
+    min-height: 4.25rem;
+    margin-inline: auto;
+    color: color-mix(in srgb, var(--color-muted) 75%, transparent);
+    font-size: 0.75rem;
+  }
+
+  .credit-rule {
+    width: 1.5rem;
+    height: 1px;
+    background: var(--color-line);
+  }
+
+  @media (max-width: 58rem) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 4.5rem;
+    }
+
+    .footer-directory {
+      max-width: 36rem;
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .footer-main,
+    .credits-inner {
+      width: min(100% - 2rem, 72rem);
+    }
+
+    .footer-directory {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      row-gap: 2.5rem;
+    }
+
+    .credits-inner {
+      flex-wrap: wrap;
+      gap: 0.45rem 0.65rem;
+      padding-block: 1.1rem;
+    }
+
+    .credit-rule {
+      width: 0.75rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-download,
+    .footer-download-arrow,
+    .footer-group a {
+      transition: none;
+    }
+
+    .footer-download:hover .footer-download-arrow,
+    .footer-download:focus-visible .footer-download-arrow {
+      transform: none;
+    }
+  }
+</style>

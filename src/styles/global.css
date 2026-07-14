@@ -21,8 +21,25 @@
   /* Elevation tinted to the violet base, never pure black. */
   --shadow-glow: 0 18px 50px -12px rgba(146, 104, 255, 0.45);
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text",
-    "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Geologica Variable", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --text-caption: 0.75rem;
+  --text-meta: 0.875rem;
+  --text-body: 1rem;
+  --text-lead: 1.25rem;
+  --tracking-display: -0.03em;
+  --font-weight-display: 650;
+}
+
+:root {
+  --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+  --time-cut: 160ms;
+  --time-reveal: 520ms;
+  --time-passage: 900ms;
+  --scene-space: clamp(5rem, 10vw, 10rem);
+  --portal-radius: clamp(1.5rem, 4vw, 3.5rem);
+  --glass-bg: rgba(10, 8, 22, 0.72);
+  --glass-line: rgba(255, 255, 255, 0.11);
 }
 
 html {
@@ -33,7 +50,12 @@ html {
 
 /* The living-aurora backdrop, held back so content reads first. */
 body {
+  min-width: 20rem;
   font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  font-kerning: normal;
+  font-optical-sizing: auto;
   color: var(--color-fg);
   background:
     radial-gradient(60rem 40rem at 18% -5%, rgba(146, 104, 255, 0.18), transparent 60%),
@@ -41,7 +63,27 @@ body {
     linear-gradient(180deg, var(--color-base-top), var(--color-base-bottom));
   background-repeat: no-repeat;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+main { isolation: isolate; }
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  border-radius: 999px;
+  background: var(--color-fg);
+  color: var(--color-ink);
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform var(--time-cut) ease;
+}
+
+.skip-link:focus { transform: translateY(0); }
 
 ::selection { background: rgba(146, 104, 255, 0.32); }
 
@@ -64,22 +106,68 @@ body {
 }
 
 /* Shared bits */
-.wrap { max-width: 72rem; margin-inline: auto; padding-inline: 1.5rem; }
+.wrap {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 3vw, 2.5rem);
+}
 .prose-amethyst :where(h2) { color: var(--color-fg); }
 .prose-amethyst :where(a) { color: var(--color-accent-2); text-decoration: underline; }
+
+.cinema-display {
+  font-size: clamp(3.25rem, 8vw, 6rem);
+  font-weight: var(--font-weight-display);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+.glass-panel {
+  border: 1px solid var(--glass-line);
+  background: var(--glass-bg);
+  box-shadow:
+    0 28px 80px -44px rgba(146, 104, 255, 0.58),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+.pixel-field {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 21px 21px;
+}
+
+/* The current gradient is part of the brand. Ink is the accessible label colour
+   across both its amethyst and bright-teal endpoints. */
+a[href^='/download'].bg-linear-to-r {
+  color: var(--color-ink) !important;
+  text-shadow: none !important;
+}
 
 /* Premium card hover-lift: violet glow + inner cover zoom. */
 .lift {
   transition: transform 250ms ease, box-shadow 250ms ease;
-  will-change: transform;
 }
 .lift:hover {
   transform: translateY(-2px);
   box-shadow: 0 18px 40px -14px rgba(146, 104, 255, 0.35);
 }
 /* Mark the inner cover with .lift-img; it eases to ~1.04 on card hover. */
-.lift-img { transition: transform 250ms ease; will-change: transform; }
+.lift-img { transition: transform 250ms ease; }
 .lift:hover .lift-img { transform: scale(1.04); }
+
+@media (prefers-contrast: more) {
+  .glass-panel {
+    background: var(--color-ink);
+    border-color: rgba(255, 255, 255, 0.28);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lift, .lift:hover, .lift-img, .lift:hover .lift-img { transform: none; transition: none; }
 }

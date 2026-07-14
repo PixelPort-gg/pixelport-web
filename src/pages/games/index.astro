@@ -3,74 +3,211 @@ import Base from '../../layouts/Base.astro';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-// Build-time counts for the heading + filter labels (the client fetches the full
-// list at runtime and renders it paginated).
+interface GridGame {
+  slug: string;
+  title: string;
+  appid: number | null;
+  tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
+  p: number;
+}
+
+const PAGE = 60;
 const grid = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
-) as { tier: string }[];
+) as GridGame[];
+const initialGames = grid.slice(0, PAGE);
 const total = grid.length;
-const counts = grid.reduce<Record<string, number>>((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
+const counts = grid.reduce<Record<string, number>>(
+  (m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m),
+  {},
+);
 const fmt = (n: number) => n.toLocaleString('en-US');
 
+const tierInfo = {
+  verified: {
+    label: 'Verified',
+    badge: 'text-verified bg-verified/15 ring-verified/35',
+    dot: 'bg-verified',
+  },
+  playable: {
+    label: 'Playable',
+    badge: 'text-playable bg-playable/15 ring-playable/35',
+    dot: 'bg-playable',
+  },
+  'needs-attention': {
+    label: 'Needs attention',
+    badge: 'text-attention bg-attention/15 ring-attention/35',
+    dot: 'bg-attention',
+  },
+  unsupported: {
+    label: 'Unsupported',
+    badge: 'text-blocked bg-blocked/15 ring-blocked/35',
+    dot: 'bg-blocked',
+  },
+} as const;
+
 const filters = [
-  { key: 'all', label: `All ${fmt(total)}` },
-  { key: 'verified', label: `Verified ${fmt(counts.verified || 0)}` },
-  { key: 'playable', label: `Playable ${fmt(counts.playable || 0)}` },
-  { key: 'needs-attention', label: `Needs attention ${fmt(counts['needs-attention'] || 0)}` },
-  { key: 'unsupported', label: `Unsupported ${fmt(counts.unsupported || 0)}` },
+  { key: 'all', label: 'All', count: total },
+  { key: 'verified', label: 'Verified', count: counts.verified || 0 },
+  { key: 'playable', label: 'Playable', count: counts.playable || 0 },
+  { key: 'needs-attention', label: 'Needs attention', count: counts['needs-attention'] || 0 },
+  { key: 'unsupported', label: 'Unsupported', count: counts.unsupported || 0 },
 ];
+
+const coverUrl = (appid: number | null) =>
+  appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg` : null;
+const headerUrl = (appid: number | null) =>
+  appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg` : null;
 
 const seoTitle = 'Mac Game Compatibility Database: Which Windows Games Work on Mac';
 const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. One-click installs through Pixel Port, free during the beta.`;
 ---
 
 <Base title={seoTitle} description={description}>
-  <section class="wrap py-16">
-    <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Which games work on Mac?</h1>
-    <p class="mt-4 max-w-2xl text-lg text-muted">
-      {fmt(total)} games, each graded honestly from real launches and trusted compatibility reports.
-      Verified means a Mac ran it end to end; playable is graded but not yet hand-verified.
-    </p>
-
-    <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <div class="flex flex-wrap gap-2" role="tablist">
-        {
-          filters.map((f, i) => (
-            <button
-              data-filter={f.key}
-              aria-selected={i === 0 ? 'true' : 'false'}
-              class="rounded-full border border-line bg-surface/50 px-4 py-1.5 text-sm text-muted transition-colors hover:text-fg aria-selected:border-transparent aria-selected:bg-accent aria-selected:text-white"
-            >
-              {f.label}
-            </button>
-          ))
-        }
+  <header class="catalogue-masthead">
+    <div class="catalogue-masthead__grid" aria-hidden="true"></div>
+    <div class="wrap catalogue-masthead__inner">
+      <div class="catalogue-masthead__copy">
+        <h1>Find your next<br /><span>Mac game.</span></h1>
+        <p class="catalogue-lede">
+          {fmt(total)} Windows games, each graded with a straight answer. Real launches become
+          verified results; uncertain games keep their caveats; blockers stay visible.
+        </p>
+        <a href="#catalogue" class="catalogue-enter">Explore the catalogue <span aria-hidden="true">↓</span></a>
       </div>
-      <input
-        id="q"
-        type="search"
-        placeholder="Search games…"
-        autocomplete="off"
-        class="w-full rounded-full border border-line bg-surface/50 px-4 py-2 text-sm text-fg placeholder:text-muted focus:border-accent/50 sm:w-64"
-      />
+
+      <div class="signal-frame" aria-label="Compatibility breakdown">
+        <div class="signal-frame__screen">
+          {
+            filters.slice(1).map((filter) => (
+              <div class="signal-row">
+                <div class="signal-row__label">
+                  <span class={`signal-dot ${tierInfo[filter.key as keyof typeof tierInfo].dot}`} />
+                  <span>{filter.label}</span>
+                </div>
+                <div class="signal-row__track" aria-hidden="true">
+                  <span style={`--signal-width: ${(filter.count / total) * 100}%`} />
+                </div>
+                <strong>{fmt(filter.count)}</strong>
+              </div>
+            ))
+          }
+        </div>
+        <p>Grades update as real Macs report back.</p>
+      </div>
+    </div>
+  </header>
+
+  <section id="catalogue" class="wrap catalogue-section" aria-labelledby="catalogue-title">
+    <div class="catalogue-heading">
+      <div>
+        <h2 id="catalogue-title">Every verdict, in the open.</h2>
+      </div>
+      <p>
+        Verified means a Mac ran the game end to end. Playable is graded but not yet
+        hand-verified. Every other status says exactly what still needs work.
+      </p>
     </div>
 
-    <p id="count" class="mt-6 text-sm text-muted" aria-live="polite"></p>
+    <div class="catalogue-controls" aria-label="Catalogue controls">
+      <fieldset class="filter-fieldset">
+        <legend>Filter by compatibility</legend>
+        <div class="filter-group">
+          {
+            filters.map((filter, index) => (
+              <button
+                type="button"
+                data-filter={filter.key}
+                aria-pressed={index === 0 ? 'true' : 'false'}
+                disabled
+              >
+                <span>{filter.label}</span>
+                <span class="filter-count">{fmt(filter.count)}</span>
+              </button>
+            ))
+          }
+        </div>
+      </fieldset>
 
-    <ul id="grid" class="mt-4 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"></ul>
+      <label class="search-control" for="q">
+        <span>Search by title</span>
+        <span class="search-shell">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <path d="m16 16 4 4"></path>
+          </svg>
+          <input
+            id="q"
+            type="search"
+            placeholder="Search games…"
+            autocomplete="off"
+            disabled
+          />
+        </span>
+      </label>
+    </div>
 
-    <div class="mt-10 flex justify-center">
-      <button
-        id="more"
-        hidden
-        class="rounded-full border border-line bg-surface/60 px-6 py-2.5 text-sm font-medium text-fg transition-colors hover:border-accent/40"
-      >
-        Load more
-      </button>
+    <div class="catalogue-results-head">
+      <p id="count" aria-live="polite">
+        Showing {fmt(initialGames.length)} of {fmt(total)} games, ordered by popularity.
+      </p>
+    </div>
+
+    <ul id="grid" class="catalogue-grid">
+      {
+        initialGames.map((game) => {
+          const tier = tierInfo[game.tier];
+          const cover = coverUrl(game.appid);
+          const fallback = headerUrl(game.appid);
+          const card = (
+            <>
+              <div class="catalogue-card__art">
+                <span class="catalogue-card__fallback">{game.title}</span>
+                {
+                  cover && (
+                    <img
+                      src={cover}
+                      data-fb={fallback}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+                    />
+                  )
+                }
+                <span class={`catalogue-card__badge ${tier.badge}`}>{tier.label}</span>
+                <span class="catalogue-card__edge" aria-hidden="true"></span>
+              </div>
+              <p>{game.title}</p>
+            </>
+          );
+
+          return (
+            <li class="catalogue-card" data-tier={game.tier} data-title={game.title.toLowerCase()}>
+              {game.p ? (
+                <a href={`/games/${game.slug}`} aria-label={`${game.title}: ${tier.label}`}>{card}</a>
+              ) : (
+                <div aria-label={`${game.title}: ${tier.label}`}>{card}</div>
+              )}
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <p id="empty" class="catalogue-empty" hidden>
+      No games match that search and compatibility filter. Try another title or show all grades.
+    </p>
+
+    <div class="catalogue-more">
+      <button id="more" type="button" hidden>Load 60 more games</button>
     </div>
 
     <noscript>
-      <p class="mt-6 text-muted">Enable JavaScript to browse the full catalogue, or download Pixel Port to search it in the app.</p>
+      <p class="catalogue-noscript">
+        This is the first {fmt(initialGames.length)} games in popularity order. Enable JavaScript to
+        search, filter, and load the rest, or download Pixel Port to search the catalogue in the app.
+      </p>
     </noscript>
   </section>
 
@@ -85,75 +222,550 @@ const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon
     const grid = document.getElementById('grid');
     const more = document.getElementById('more');
     const count = document.getElementById('count');
+    const empty = document.getElementById('empty');
     const q = document.getElementById('q');
-    const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+    const filterButtons = [...document.querySelectorAll('[data-filter]')];
+    const esc = (value) => String(value).replace(/[&<>"']/g, (char) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    })[char]);
 
-    let all = [],
-      filtered = [],
-      shown = 0,
-      filter = 'all',
-      query = '';
+    let all = [];
+    let filtered = [];
+    let shown = grid.children.length;
+    const params = new URLSearchParams(location.search);
+    const requestedTier = params.get('tier');
+    let filter = filterButtons.some((button) => button.dataset.filter === requestedTier)
+      ? requestedTier
+      : 'all';
+    let query = (params.get('q') || '').trim().toLowerCase();
 
-    function card(g) {
-      const t = TIER[g.tier] || TIER.playable;
-      const cover = g.appid
-        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/library_600x900.jpg`
+    filterButtons.forEach((button) =>
+      button.setAttribute('aria-pressed', button.dataset.filter === filter ? 'true' : 'false'),
+    );
+    if (query) q.value = params.get('q').trim();
+
+    function syncUrl() {
+      const url = new URL(location.href);
+      if (filter === 'all') url.searchParams.delete('tier');
+      else url.searchParams.set('tier', filter);
+      if (query) url.searchParams.set('q', q.value.trim());
+      else url.searchParams.delete('q');
+      history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    function card(game) {
+      const tier = TIER[game.tier] || TIER.playable;
+      const title = esc(game.title);
+      const cover = game.appid
+        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${Number(game.appid)}/library_600x900.jpg`
         : '';
-      const header = g.appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${g.appid}/header.jpg` : '';
+      const fallback = game.appid
+        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${Number(game.appid)}/header.jpg`
+        : '';
       const inner = `
-        <div class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]">
-          <span class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95">${esc(g.title)}</span>
-          ${cover ? `<img src="${cover}" data-fb="${header}" alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}">` : ''}
-          <span class="absolute right-2 top-2 rounded-full px-2 py-0.5 text-[11px] font-semibold ring-1 backdrop-blur-md ${t.cls}">${t.label}</span>
+        <div class="catalogue-card__art">
+          <span class="catalogue-card__fallback">${title}</span>
+          ${cover ? `<img src="${cover}" data-fb="${fallback}" alt="" loading="lazy" decoding="async" onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}">` : ''}
+          <span class="catalogue-card__badge ${tier.cls}">${tier.label}</span>
+          <span class="catalogue-card__edge" aria-hidden="true"></span>
         </div>
-        <p class="mt-2 truncate text-sm font-medium text-fg">${esc(g.title)}</p>`;
-      return g.p
-        ? `<li><a href="/games/${g.slug}" class="lift group block">${inner}</a></li>`
-        : `<li><div class="group block cursor-default">${inner}</div></li>`;
+        <p>${title}</p>`;
+      return game.p
+        ? `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><a href="/games/${encodeURIComponent(game.slug)}" aria-label="${title}: ${tier.label}">${inner}</a></li>`
+        : `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><div aria-label="${title}: ${tier.label}">${inner}</div></li>`;
+    }
+
+    function setCount() {
+      const noun = filtered.length === 1 ? 'game' : 'games';
+      count.textContent = filtered.length
+        ? `Showing ${shown.toLocaleString()} of ${filtered.length.toLocaleString()} ${noun}.`
+        : '0 games match the current search and filter.';
+      empty.hidden = filtered.length !== 0;
+      more.hidden = shown >= filtered.length;
     }
 
     function renderMore() {
       const slice = filtered.slice(shown, shown + PAGE);
       grid.insertAdjacentHTML('beforeend', slice.map(card).join(''));
       shown += slice.length;
-      more.hidden = shown >= filtered.length;
+      setCount();
     }
 
     function apply() {
       filtered = all.filter(
-        (g) => (filter === 'all' || g.tier === filter) && (!query || g.title.toLowerCase().includes(query)),
+        (game) =>
+          (filter === 'all' || game.tier === filter) &&
+          (!query || game.title.toLowerCase().includes(query)),
       );
       shown = 0;
       grid.innerHTML = '';
-      count.textContent = `${filtered.length.toLocaleString()} game${filtered.length === 1 ? '' : 's'}`;
       renderMore();
     }
 
     more.addEventListener('click', renderMore);
-    document.querySelectorAll('[data-filter]').forEach((b) => {
-      b.addEventListener('click', () => {
-        document.querySelectorAll('[data-filter]').forEach((x) => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
-        filter = b.getAttribute('data-filter');
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach((item) => item.setAttribute('aria-pressed', item === button ? 'true' : 'false'));
+        filter = button.dataset.filter;
+        syncUrl();
         apply();
       });
     });
-    let t;
+
+    let timer;
     q.addEventListener('input', () => {
-      clearTimeout(t);
-      t = setTimeout(() => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
         query = q.value.trim().toLowerCase();
+        syncUrl();
         apply();
       }, 140);
     });
 
     fetch('/catalogue-grid.json')
-      .then((r) => r.json())
+      .then((response) => {
+        if (!response.ok) throw new Error('Catalogue request failed');
+        return response.json();
+      })
       .then((data) => {
-        all = data; // already sorted by popularity at build time
-        apply();
+        all = data;
+        filterButtons.forEach((button) => (button.disabled = false));
+        q.disabled = false;
+        if (filter !== 'all' || query) {
+          apply();
+        } else {
+          filtered = data;
+          shown = Math.min(grid.children.length, filtered.length);
+          setCount();
+        }
       })
       .catch(() => {
-        count.textContent = 'Could not load the catalogue. Please refresh.';
+        count.textContent = `Showing ${grid.children.length.toLocaleString()} games. Search, filters, and more results are temporarily unavailable.`;
       });
   </script>
+
+  <style is:global>
+    .catalogue-masthead {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-line);
+      background:
+        radial-gradient(circle at 76% 42%, rgba(63, 214, 206, 0.13), transparent 24rem),
+        radial-gradient(circle at 18% 20%, rgba(146, 104, 255, 0.2), transparent 31rem),
+        linear-gradient(145deg, rgba(22, 18, 42, 0.88), rgba(6, 4, 16, 0.96));
+    }
+
+    .catalogue-masthead::before,
+    .catalogue-masthead::after {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      pointer-events: none;
+    }
+
+    .catalogue-masthead::before {
+      inset: 0;
+      background: linear-gradient(90deg, transparent 49.8%, rgba(255, 255, 255, 0.035) 50%, transparent 50.2%);
+      mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    }
+
+    .catalogue-masthead::after {
+      right: max(-10rem, calc((100vw - 72rem) / 2 - 11rem));
+      top: 3.5rem;
+      width: 27rem;
+      height: 27rem;
+      border: 1px solid rgba(146, 104, 255, 0.14);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4rem rgba(146, 104, 255, 0.025), 0 0 0 8rem rgba(63, 214, 206, 0.018);
+    }
+
+    .catalogue-masthead__grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.32;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(90deg, black, transparent 54%, black);
+    }
+
+    .catalogue-masthead__inner {
+      display: grid;
+      min-height: min(43rem, calc(100svh - 4rem));
+      align-items: center;
+      gap: 4rem;
+      padding-block: 5rem;
+    }
+
+    .catalogue-masthead h1 {
+      max-width: 11ch;
+      font-size: clamp(3.2rem, 8vw, 6.8rem);
+      font-weight: 650;
+      letter-spacing: -0.065em;
+      line-height: 0.87;
+    }
+
+    .catalogue-masthead h1 span {
+      color: transparent;
+      background: linear-gradient(100deg, var(--color-accent) 10%, var(--color-accent-2));
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .catalogue-lede {
+      max-width: 39rem;
+      margin-top: 1.75rem;
+      color: var(--color-muted);
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      line-height: 1.7;
+    }
+
+    .catalogue-enter {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+      color: var(--color-fg);
+      font-size: 0.88rem;
+      font-weight: 650;
+    }
+
+    .catalogue-enter span {
+      display: grid;
+      width: 1.9rem;
+      height: 1.9rem;
+      place-items: center;
+      border: 1px solid rgba(63, 214, 206, 0.28);
+      border-radius: 50%;
+      color: var(--color-accent-2);
+    }
+
+    .signal-frame {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.4rem;
+      background: rgba(10, 8, 22, 0.74);
+      box-shadow: 0 2.4rem 6rem -3rem rgba(63, 214, 206, 0.35), inset 0 1px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(18px);
+    }
+
+    .signal-frame::before {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 2px;
+      content: '';
+      background: linear-gradient(to bottom, var(--color-accent), transparent 45%, var(--color-accent-2));
+      box-shadow: 0 0 24px rgba(146, 104, 255, 0.75);
+    }
+
+    .signal-frame__screen {
+      display: grid;
+      gap: 0.4rem;
+      padding: 1.15rem 1rem 1rem;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: minmax(7.8rem, 1fr) minmax(4rem, 1fr) auto;
+      align-items: center;
+      gap: 0.8rem;
+      min-height: 3rem;
+      border: 1px solid transparent;
+      border-radius: 0.75rem;
+      padding: 0.55rem 0.65rem;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .signal-row__label {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: rgba(245, 245, 247, 0.88);
+      font-size: 0.79rem;
+    }
+
+    .signal-dot { width: 0.42rem; height: 0.42rem; flex: none; border-radius: 50%; }
+
+    .signal-row__track {
+      height: 2px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .signal-row__track span {
+      display: block;
+      width: max(3px, var(--signal-width));
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+    }
+
+    .signal-row strong {
+      color: var(--color-fg);
+      font-size: 0.8rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .signal-frame > p {
+      border-top: 1px solid var(--color-line);
+      padding: 0.9rem 1.15rem;
+      color: var(--color-muted);
+      font-size: 0.72rem;
+    }
+
+    .catalogue-section { padding-block: 6rem 7rem; }
+
+    .catalogue-heading {
+      display: grid;
+      align-items: end;
+      gap: 1.5rem;
+    }
+
+    .catalogue-heading h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 650;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .catalogue-heading > p {
+      max-width: 35rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+    }
+
+    .catalogue-controls {
+      position: sticky;
+      top: 5rem;
+      z-index: 30;
+      display: grid;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 1.1rem;
+      padding: 0.85rem;
+      background: rgba(13, 10, 28, 0.8);
+      box-shadow: 0 1.3rem 3rem -2.2rem rgba(0, 0, 0, 0.75), inset 0 1px rgba(255, 255, 255, 0.035);
+      backdrop-filter: blur(18px) saturate(125%);
+    }
+
+    .filter-fieldset { min-width: 0; }
+    .filter-fieldset legend,
+    .search-control > span:first-child {
+      display: block;
+      margin-bottom: 0.55rem;
+      color: var(--color-muted);
+      font-size: 0.65rem;
+      font-weight: 650;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .filter-group { display: flex; gap: 0.45rem; overflow-x: auto; scrollbar-width: none; }
+    .filter-group::-webkit-scrollbar { display: none; }
+    .filter-group button {
+      display: inline-flex;
+      min-height: 2.75rem;
+      flex: none;
+      align-items: center;
+      gap: 0.55rem;
+      border: 1px solid var(--color-line);
+      border-radius: 0.75rem;
+      padding: 0.55rem 0.75rem;
+      color: var(--color-muted);
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 0.78rem;
+      transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+    }
+
+    .filter-group button:hover:not(:disabled) { border-color: rgba(146, 104, 255, 0.35); color: var(--color-fg); }
+    .filter-group button[aria-pressed='true'] {
+      border-color: rgba(146, 104, 255, 0.5);
+      color: var(--color-fg);
+      background: rgba(146, 104, 255, 0.15);
+      box-shadow: inset 0 -1px rgba(63, 214, 206, 0.28);
+    }
+    .filter-group button:disabled { cursor: wait; opacity: 0.65; }
+    .filter-count { color: rgba(245, 245, 247, 0.48); font-variant-numeric: tabular-nums; }
+
+    .search-control { display: block; min-width: 0; }
+    .search-shell { position: relative; display: block; }
+    .search-shell svg {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      width: 1rem;
+      height: 1rem;
+      transform: translateY(-50%);
+      fill: none;
+      stroke: var(--color-muted);
+      stroke-linecap: round;
+      stroke-width: 1.6;
+    }
+
+    .search-shell input {
+      width: 100%;
+      min-height: 2.75rem;
+      border: 1px solid var(--color-line);
+      border-radius: 0.75rem;
+      padding: 0.6rem 0.8rem 0.6rem 2.35rem;
+      color: var(--color-fg);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 0.82rem;
+    }
+    .search-shell input::placeholder { color: var(--color-muted); }
+    .search-shell input:disabled { cursor: wait; opacity: 0.65; }
+
+    .catalogue-results-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2rem;
+      color: var(--color-muted);
+      font-size: 0.75rem;
+    }
+    .catalogue-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .catalogue-card { min-width: 0; }
+    .catalogue-card > a,
+    .catalogue-card > div { display: block; }
+    .catalogue-card__art {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 0.8rem;
+      background:
+        linear-gradient(155deg, rgba(146, 104, 255, 0.8), rgba(63, 214, 206, 0.4)),
+        var(--color-surface);
+      box-shadow: 0 1rem 2.6rem -2rem rgba(146, 104, 255, 0.5);
+    }
+
+    .catalogue-card__fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 0.76rem;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .catalogue-card__art img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1), filter 520ms ease;
+    }
+
+    .catalogue-card__badge {
+      position: absolute;
+      top: 0.55rem;
+      right: 0.55rem;
+      border-radius: 999px;
+      padding: 0.24rem 0.48rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 0 0 1px currentColor;
+      backdrop-filter: blur(10px);
+    }
+
+    .catalogue-card__edge {
+      position: absolute;
+      inset: auto 0 0;
+      height: 2px;
+      opacity: 0;
+      background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+      box-shadow: 0 0 18px rgba(63, 214, 206, 0.65);
+      transition: opacity 160ms ease;
+    }
+
+    .catalogue-card p {
+      overflow: hidden;
+      margin-top: 0.65rem;
+      color: var(--color-fg);
+      font-size: 0.82rem;
+      font-weight: 550;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: color 160ms ease;
+    }
+
+    .catalogue-card > a:hover .catalogue-card__art img { transform: scale(1.035); filter: saturate(1.06); }
+    .catalogue-card > a:hover .catalogue-card__edge { opacity: 1; }
+    .catalogue-card > a:hover p { color: var(--color-accent-2); }
+
+    .catalogue-empty,
+    .catalogue-noscript {
+      margin-top: 2rem;
+      border: 1px solid var(--color-line);
+      border-radius: 1rem;
+      padding: 1rem 1.15rem;
+      color: var(--color-muted);
+      background: rgba(22, 18, 42, 0.45);
+      font-size: 0.84rem;
+    }
+
+    .catalogue-more { display: flex; justify-content: center; margin-top: 3rem; }
+    .catalogue-more button {
+      min-height: 2.75rem;
+      border: 1px solid rgba(146, 104, 255, 0.38);
+      border-radius: 999px;
+      padding: 0.65rem 1.25rem;
+      color: var(--color-fg);
+      background: rgba(146, 104, 255, 0.1);
+      font-size: 0.82rem;
+      font-weight: 650;
+    }
+    .catalogue-more button:hover { border-color: rgba(63, 214, 206, 0.5); background: rgba(63, 214, 206, 0.09); }
+
+    @media (min-width: 40rem) {
+      .catalogue-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap-inline: 1.1rem; }
+    }
+
+    @media (min-width: 48rem) {
+      .catalogue-masthead__inner { grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr); }
+      .catalogue-heading { grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.75fr); }
+      .catalogue-controls { grid-template-columns: minmax(0, 1fr) 15rem; align-items: end; }
+    }
+
+    @media (min-width: 64rem) {
+      .catalogue-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap-inline: 1.2rem; }
+    }
+
+    @media (min-width: 80rem) {
+      .catalogue-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap-inline: 1.25rem; }
+    }
+
+    @media (max-width: 39.999rem) {
+      .catalogue-masthead__inner { min-height: auto; padding-block: 4rem; }
+      .catalogue-masthead h1 { font-size: clamp(3rem, 16vw, 4.6rem); }
+      .catalogue-section { padding-block: 4rem 5rem; }
+      .catalogue-controls { top: 4.5rem; margin-inline: -0.5rem; }
+      .signal-row { grid-template-columns: minmax(7.5rem, 1fr) minmax(2.5rem, 0.6fr) auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .catalogue-card__art img,
+      .catalogue-card__edge,
+      .catalogue-card p { transition: none; }
+      .catalogue-card > a:hover .catalogue-card__art img { transform: none; }
+    }
+  </style>
 </Base>
