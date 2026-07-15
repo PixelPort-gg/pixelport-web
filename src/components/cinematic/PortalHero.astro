@@ -108,13 +108,7 @@ const header = (appid: number | null) =>
         </div>
       </PortalFrame>
       <div class="visual-footer">
-        <p class="visual-caption">
-          <span class="caption-static">A real Windows game goes in. A Mac-ready launch comes out.</span>
-          <span class="caption-scroll" aria-hidden="true">
-            <span class="scroll-cue"></span>
-            Scroll to move the game through Pixel Port.
-          </span>
-        </p>
+        <p class="visual-caption">A real Windows game goes in. A Mac-ready launch comes out.</p>
         {
           lead && (
             <a href={'/games/' + lead.slug} class="visual-link">
@@ -477,44 +471,12 @@ const header = (appid: number | null) =>
   }
 
   .visual-caption {
-    position: relative;
     min-width: 0;
     max-width: 34rem;
-    min-height: 1.5rem;
     margin: 0;
     color: var(--color-muted);
     font-size: 0.875rem;
     line-height: 1.5;
-  }
-
-  .caption-static {
-    display: block;
-  }
-
-  .caption-scroll {
-    position: absolute;
-    inset: 0 auto auto 0;
-    display: none;
-    align-items: center;
-    gap: 0.6rem;
-    white-space: nowrap;
-  }
-
-  .scroll-cue {
-    position: relative;
-    display: block;
-    width: 1.6rem;
-    height: 1px;
-    overflow: hidden;
-    background: rgba(154, 163, 181, 0.3);
-  }
-
-  .scroll-cue::after {
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 42%;
-    background: var(--color-accent-2);
-    content: '';
   }
 
   .visual-link {
@@ -640,32 +602,6 @@ const header = (appid: number | null) =>
     }
   }
 
-  @keyframes caption-instruction {
-    0%,
-    16% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    28%,
-    100% {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-  }
-
-  @keyframes caption-result {
-    0%,
-    62% {
-      opacity: 0;
-      transform: translateY(4px);
-    }
-    82%,
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   @supports (animation-timeline: view()) and (animation-range: contain 0% contain 100%) {
     @media (min-width: 980px) and (min-height: 680px) and (prefers-reduced-motion: no-preference) {
       .hero {
@@ -749,23 +685,12 @@ const header = (appid: number | null) =>
         transform-origin: left center;
       }
 
-      .caption-scroll {
-        display: flex;
-        animation: caption-instruction 1s linear both;
-      }
-
-      .caption-static {
-        animation: caption-result 1s linear both;
-      }
-
       .source-art,
       .source-label,
       .source-game > strong,
       .portal-mark,
       .hero-visual :global(.portal-frame),
-      .ready-panel-content,
-      .caption-scroll,
-      .caption-static {
+      .ready-panel-content {
         animation-timeline: --hero-passage;
         animation-range: contain 0% contain 100%;
       }
@@ -888,9 +813,7 @@ const header = (appid: number | null) =>
     .source-game > strong,
     .portal-mark,
     .ready-panel-content,
-    .hero-visual :global(.portal-frame),
-    .caption-scroll,
-    .caption-static {
+    .hero-visual :global(.portal-frame) {
       animation: none;
       transition: none;
     }
@@ -909,10 +832,6 @@ const header = (appid: number | null) =>
 
     .hero-visual :global(.portal-frame) {
       --portal-energy: 0;
-    }
-
-    .caption-scroll {
-      display: none;
     }
 
     .announcement:hover .announcement-arrow,
