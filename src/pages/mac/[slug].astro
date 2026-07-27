@@ -11,6 +11,7 @@ import {
   ART_ONERROR,
   type CompatGame,
 } from '../../lib/compat';
+import { nativeAlternative } from '../../lib/nativeAlternative';
 
 export function getStaticPaths() {
   const games = (snapshot as any).games as CompatGame[];
@@ -22,6 +23,7 @@ const all = (snapshot as any).games as CompatGame[];
 const meta = compatMeta[game.tier];
 const v = verdict(game);
 const isNo = game.tier === 'unsupported';
+const alt = nativeAlternative(game.appid);
 
 // Cross-links: verified/playable pages point at same-tier company; untested and
 // honest-no pages point at what genuinely DOES run. Seeded by slug so different
@@ -51,6 +53,14 @@ const faq = [
     q: 'Do I need Boot Camp or a Windows license?',
     a: 'No. Pixel Port runs Windows games directly on macOS — no Boot Camp, no virtual machine, no Windows license. Download it free, pick a game, and press play.',
   },
+  ...(alt
+    ? [
+        {
+          q: `Is there a native Mac version of ${game.name}?`,
+          a: `Yes — there's a native ${alt.platform} build of ${game.name}. ${alt.note} Pixel Port is a separate option: it runs the Steam copy you already own, with your existing saves, DLC, and Steam friends, so you don't have to buy the game a second time.`,
+        },
+      ]
+    : []),
 ];
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -137,6 +147,30 @@ const jsonLd = {
         <p class="mt-3 max-w-2xl text-lg text-muted">{v.body}</p>
       </div>
     </header>
+
+    {
+      alt && (
+        <section class="mt-10 max-w-2xl rounded-2xl border border-line bg-surface/50 p-6">
+          <h2 class="text-xl font-semibold">Already own it on Steam? Don't buy it twice.</h2>
+          <p class="mt-3 text-fg/85">
+            If you don't own {game.name} yet, the native Mac version on the {alt.platform} is a solid
+            option. {alt.note}
+          </p>
+          <p class="mt-3 text-fg/85">
+            If you already own {game.name} on Steam, Pixel Port runs your Steam copy on your Mac — your
+            saves, your DLC, your Steam friends — no second purchase.
+          </p>
+          <a
+            href={alt.url}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class="mt-3 inline-block text-sm font-medium text-accent-2 hover:underline"
+          >
+            View the {alt.platform} listing &rarr;
+          </a>
+        </section>
+      )
+    }
 
     {
       isNo ? (
