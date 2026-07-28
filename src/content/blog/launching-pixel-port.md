@@ -1,6 +1,6 @@
 ---
 title: "Pixel Port is here"
-description: "Play Windows games on your Mac, honestly. Native-feeling, fast, and free to try in beta."
+description: "Play Windows games on your Mac, honestly. Native-feeling, fast, and built for Apple Silicon."
 date: 2026-06-28
 ---
 

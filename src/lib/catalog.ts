@@ -46,15 +46,15 @@ export function generate(e: any) {
   }
   const summary =
     e.tier === 'verified'
-      ? `${e.title} is verified on Apple Silicon: a real Mac ran it end to end through Pixel Port's free runtime.`
+      ? `${e.title} is verified on Apple Silicon: a real Mac ran it end to end through Pixel Port's runtime.`
       : e.tier === 'needs-attention'
-        ? `${e.title} runs on Pixel Port's free runtime with some caveats, so we have it marked needs attention while we smooth it out.`
-        : `${e.title} is graded playable on Apple Silicon through Pixel Port's free runtime.`;
+        ? `${e.title} runs on Pixel Port's runtime with some caveats, so we have it marked needs attention while we smooth it out.`
+        : `${e.title} is graded playable on Apple Silicon through Pixel Port's runtime.`;
   return {
     ...base,
     summary,
     steps: [
-      { title: 'Install Pixel Port', body: 'Download Pixel Port and let it set up the free runtime on first launch.' },
+      { title: 'Install Pixel Port', body: 'Download Pixel Port and let it set up the runtime on first launch.' },
       { title: `Add ${e.title}`, body: `Find ${e.title} in the catalogue and click Install & Play. Pixel Port fetches it and configures it for your Mac automatically.` },
       { title: 'Play', body: 'Launch it from your Library. No bottles, no winetricks, no terminal.' },
     ],

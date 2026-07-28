@@ -49,7 +49,7 @@ export function verdict(g: CompatGame): { headline: string; body: string } {
     case 'verified':
       return {
         headline: `Yes — ${g.name} runs on Mac.`,
-        body: `Verified on real Apple Silicon hardware: a real Mac took ${g.name} end to end through Pixel Port's free runtime — install, launch, and in-game. No Boot Camp, no Windows license, no setup.`,
+        body: `Verified on real Apple Silicon hardware: a real Mac took ${g.name} end to end through Pixel Port's runtime — install, launch, and in-game. No Boot Camp, no Windows license, no setup.`,
       };
     case 'playable':
       return {
@@ -59,7 +59,7 @@ export function verdict(g: CompatGame): { headline: string; body: string } {
     case 'untested':
       return {
         headline: `Untested — nobody has confirmed ${g.name} on Mac yet.`,
-        body: `${g.name} is in the Pixel Port catalogue, but no one has confirmed a full run on Apple Silicon so far. We only claim what we've seen. Try it free and your result helps grade it for everyone.`,
+        body: `${g.name} is in the Pixel Port catalogue, but no one has confirmed a full run on Apple Silicon so far. We only claim what we've seen. Try it and your result helps grade it for everyone.`,
       };
     case 'unsupported':
       return {
@@ -72,11 +72,11 @@ export function verdict(g: CompatGame): { headline: string; body: string } {
 export function metaDescription(g: CompatGame): string {
   switch (g.tier) {
     case 'verified':
-      return `Yes — ${g.name} runs on Apple Silicon Macs, verified end to end on real hardware through Pixel Port's free runtime. One-click install, no Boot Camp.`;
+      return `Yes — ${g.name} runs on Apple Silicon Macs, verified end to end on real hardware through Pixel Port's runtime. One-click install, no Boot Camp.`;
     case 'playable':
-      return `Yes — ${g.name} is playable on Apple Silicon Macs through Pixel Port, graded from community and catalogue confidence. Free and one-click.`;
+      return `Yes — ${g.name} is playable on Apple Silicon Macs through Pixel Port, graded from community and catalogue confidence. One-click install.`;
     case 'untested':
-      return `${g.name} is untested on Apple Silicon so far. It's in the Pixel Port catalogue — try it free on your Mac and help grade it for everyone.`;
+      return `${g.name} is untested on Apple Silicon so far. It's in the Pixel Port catalogue — try it on your Mac and help grade it for everyone.`;
     case 'unsupported':
       return `Honest answer: no — ${g.name} doesn't run on Apple Silicon Macs right now, and we won't pretend otherwise. Here's the real reason, plus verified games that do run.`;
   }

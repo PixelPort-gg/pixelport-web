@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 
 const seoTitle = 'The Best Whisky Alternative for Mac (2026): One Click, No Bottles';
 const description =
-  'Whisky stopped getting updates in 2025. Pixel Port is the one-click way to keep playing Windows games on your Mac, free during the beta. No bottles, no winetricks, no terminal.';
+  'Whisky stopped getting updates in 2025. Pixel Port is the one-click way to keep playing Windows games on your Mac. No bottles, no winetricks, no terminal.';
 
 const canonical = new URL('/whisky-alternative', Astro.site).toString();
 const jsonLd = {
@@ -27,9 +27,9 @@ const jsonLd = {
 };
 
 const rows = [
-  { tool: 'Whisky', price: 'Free', setup: 'Manual bottles + winetricks', upkeep: 'Discontinued in 2025', cls: 'text-muted' },
-  { tool: 'CrossOver', price: 'Paid (~$50/yr)', setup: 'Mostly manual', upkeep: 'Maintained', cls: 'text-muted' },
-  { tool: 'Pixel Port', price: 'Free during beta', setup: 'One click', upkeep: 'Actively maintained', cls: 'text-fg font-semibold' },
+  { tool: 'Whisky', setup: 'Manual bottles + winetricks', upkeep: 'Discontinued in 2025', cls: 'text-muted' },
+  { tool: 'CrossOver', setup: 'Mostly manual', upkeep: 'Maintained', cls: 'text-muted' },
+  { tool: 'Pixel Port', setup: 'One click', upkeep: 'Actively maintained', cls: 'text-fg font-semibold' },
 ];
 ---
 
@@ -45,9 +45,9 @@ const rows = [
       The best Whisky alternative for Mac
     </h1>
     <p class="mt-5 max-w-2xl text-lg text-muted">
-      Whisky, the free Wine wrapper a lot of Mac gamers relied on, stopped getting updates in 2025.
+      Whisky, the Wine wrapper a lot of Mac gamers relied on, stopped getting updates in 2025.
       Pixel Port is the one-click way to keep playing Windows games on your Mac, and it does the
-      setup for you. Free during the beta.
+      setup for you.
     </p>
     <div class="mt-8">
       <a
@@ -61,7 +61,7 @@ const rows = [
     <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
       <h2>What happened to Whisky?</h2>
       <p>
-        Whisky was a free, open-source wrapper around Wine that made it easier to run Windows games on
+        Whisky was an open-source wrapper around Wine that made it easier to run Windows games on
         Apple Silicon. In 2025 its developer stepped back and the project was discontinued. It still
         launches for some people, but it no longer receives updates, compatibility fixes, or support for
         new versions of macOS. And even at its best, Whisky still asked you to create bottles, install
@@ -70,8 +70,8 @@ const rows = [
 
       <h2>Why Pixel Port is the natural successor</h2>
       <p>
-        Pixel Port removes the thing people did not love about Whisky, the manual setup, and it is free
-        to use while in beta. You install Pixel Port once, pick a game, and click. Our bundled
+        Pixel Port removes the thing people did not love about Whisky: the manual setup. You install
+        Pixel Port once, pick a game, and click. Our bundled
         runtime, Prism, translates the game's DirectX calls straight to Metal, and the Synthesis Engine
         works out how each game should run on your Mac automatically. No bottles to manage, no winetricks,
         no terminal.
@@ -88,7 +88,6 @@ const rows = [
         <thead class="bg-surface/60 text-muted">
           <tr>
             <th class="px-5 py-3 font-medium">Tool</th>
-            <th class="px-5 py-3 font-medium">Price</th>
             <th class="px-5 py-3 font-medium">Setup</th>
             <th class="px-5 py-3 font-medium">Upkeep</th>
           </tr>
@@ -98,7 +97,6 @@ const rows = [
             rows.map((r) => (
               <tr class={r.tool === 'Pixel Port' ? 'bg-accent/10' : 'bg-surface/30'}>
                 <td class={`px-5 py-4 ${r.cls}`}>{r.tool}</td>
-                <td class="px-5 py-4 text-fg/85">{r.price}</td>
                 <td class="px-5 py-4 text-fg/85">{r.setup}</td>
                 <td class="px-5 py-4 text-fg/85">{r.upkeep}</td>
               </tr>

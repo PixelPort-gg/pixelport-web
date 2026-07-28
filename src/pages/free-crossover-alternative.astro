@@ -1,9 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const seoTitle = 'A CrossOver Alternative for Mac (2026), Free During Beta';
+const seoTitle = 'A CrossOver Alternative for Mac (2026)';
 const description =
-  'CrossOver costs around $50 a year and still asks you to configure each game. Pixel Port is free during its beta, sets games up for you in one click, and is honest about what works.';
+  'Pixel Port is a one-click CrossOver alternative for Mac that configures each game automatically and is honest about what works.';
 
 const canonical = new URL('/free-crossover-alternative', Astro.site).toString();
 const jsonLd = {
@@ -11,7 +11,7 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'Article',
-      headline: 'A CrossOver alternative for Mac in 2026, free during beta',
+      headline: 'A CrossOver alternative for Mac in 2026',
       description,
       url: canonical,
       author: { '@type': 'Organization', name: 'Pixel Port' },
@@ -27,8 +27,8 @@ const jsonLd = {
 };
 
 const rows = [
-  { tool: 'CrossOver', price: 'Paid, ~$50/yr', setup: 'Mostly manual per game', honest: 'Closed product', cls: 'text-muted' },
-  { tool: 'Pixel Port', price: 'Free during beta', setup: 'One click', honest: 'Honest compatibility tiers', cls: 'text-fg font-semibold' },
+  { tool: 'CrossOver', setup: 'Mostly manual per game', honest: 'Closed product', cls: 'text-muted' },
+  { tool: 'Pixel Port', setup: 'One click', honest: 'Honest compatibility tiers', cls: 'text-fg font-semibold' },
 ];
 ---
 
@@ -44,8 +44,8 @@ const rows = [
       A CrossOver alternative for Mac
     </h1>
     <p class="mt-5 max-w-2xl text-lg text-muted">
-      CrossOver is a paid compatibility layer that still asks you to set up each game by hand. Pixel
-      Port is free during its beta, does the setup for you in one click, and tells you the truth about
+      CrossOver still asks you to set up each game by hand. Pixel Port does the setup for you in one
+      click and tells you the truth about
       what runs before you install.
     </p>
     <div class="mt-8">
@@ -60,17 +60,17 @@ const rows = [
     <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
       <h2>CrossOver, briefly</h2>
       <p>
-        CrossOver is a well-made, paid Wine-based compatibility layer that has been around for years. It
-        costs roughly $50 a year. For most games you are still picking a bottle, installing dependencies,
-        and tweaking settings until things work.
+        CrossOver is a well-made Wine-based compatibility layer that has been around for years. For most
+        games you are still picking a bottle, installing dependencies, and tweaking settings until
+        things work.
       </p>
 
       <h2>Why Pixel Port</h2>
       <p>
-        Pixel Port is free during its beta and built around a single click. You install it once, find a
+        Pixel Port is built around a single click. You install it once, find a
         game in the catalogue, and play. Our bundled runtime, Prism, translates DirectX straight to Metal
         on Apple Silicon, and the Synthesis Engine figures out how each game should run for you. No
-        manual configuration, and nothing to pay while we are in beta.
+        manual configuration.
       </p>
       <p>
         We are also honest. Every game carries a compatibility tier earned from real launches, so you
@@ -84,7 +84,6 @@ const rows = [
         <thead class="bg-surface/60 text-muted">
           <tr>
             <th class="px-5 py-3 font-medium">Tool</th>
-            <th class="px-5 py-3 font-medium">Price</th>
             <th class="px-5 py-3 font-medium">Setup</th>
             <th class="px-5 py-3 font-medium">Transparency</th>
           </tr>
@@ -94,7 +93,6 @@ const rows = [
             rows.map((r) => (
               <tr class={r.tool === 'Pixel Port' ? 'bg-accent/10' : 'bg-surface/30'}>
                 <td class={`px-5 py-4 ${r.cls}`}>{r.tool}</td>
-                <td class="px-5 py-4 text-fg/85">{r.price}</td>
                 <td class="px-5 py-4 text-fg/85">{r.setup}</td>
                 <td class="px-5 py-4 text-fg/85">{r.honest}</td>
               </tr>
@@ -115,9 +113,9 @@ const rows = [
     </div>
 
     <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
-      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">One click, free during the beta</h2>
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">One click from install to play</h2>
       <p class="mx-auto mt-3 max-w-lg text-muted">
-        Try Pixel Port before you pay for anything. Download, pick a game, play.
+        Download Pixel Port, pick a game, and play.
       </p>
       <a
         href="/download"

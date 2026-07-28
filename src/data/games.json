@@ -5,7 +5,7 @@
   "appid": 945360,
   "tier": "verified",
   "genre": "Party",
-  "summary": "Among Us is fully playable on Pixel Port's free runtime, Steam sign-in and online lobbies included. It is one of our most-tested titles on Apple Silicon.",
+  "summary": "Among Us is fully playable on Pixel Port's runtime, Steam sign-in and online lobbies included. It is one of our most-tested titles on Apple Silicon.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -13,7 +13,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Among Us",
@@ -55,7 +55,7 @@
   "appid": 881100,
   "tier": "playable",
   "genre": "Roguelite",
-  "summary": "Noita runs well on Apple Silicon through Pixel Port's free runtime. It is an OpenGL 3.0 game with no anti-cheat, so it needs no special configuration.",
+  "summary": "Noita runs well on Apple Silicon through Pixel Port's runtime. It is an OpenGL 3.0 game with no anti-cheat, so it needs no special configuration.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -64,7 +64,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Noita",
@@ -129,7 +129,7 @@
   "appid": 2905170,
   "tier": "playable",
   "genre": "Roguelite",
-  "summary": "Magic Archery runs on Apple Silicon through Pixel Port's free runtime, no manual setup required.",
+  "summary": "Magic Archery runs on Apple Silicon through Pixel Port's runtime, no manual setup required.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -151,7 +151,7 @@
   "appid": 975370,
   "tier": "playable",
   "genre": "Simulation",
-  "summary": "Dwarf Fortress, the famously deep colony sim, runs on Apple Silicon through Pixel Port's free runtime.",
+  "summary": "Dwarf Fortress, the famously deep colony sim, runs on Apple Silicon through Pixel Port's runtime.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -173,7 +173,7 @@
   "appid": 212500,
   "tier": "playable",
   "genre": "MMORPG",
-  "summary": "The Lord of the Rings Online runs on Apple Silicon through Pixel Port's free runtime.",
+  "summary": "The Lord of the Rings Online runs on Apple Silicon through Pixel Port's runtime.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -196,7 +196,7 @@
   "appid": 233860,
   "tier": "playable",
   "genre": "RPG",
-  "summary": "Kenshi, the open-ended squad RPG, runs on Apple Silicon through Pixel Port's free runtime.",
+  "summary": "Kenshi, the open-ended squad RPG, runs on Apple Silicon through Pixel Port's runtime.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -218,7 +218,7 @@
   "appid": 1623730,
   "tier": "verified",
   "genre": "Survival",
-  "summary": "Palworld 1.0 is verified on Pixel Port \u2014 re-run on real Apple Silicon hardware the day 1.0 shipped (July 10, 2026), on the free runtime. It runs the Steam copy you already own, saves included. The official native Mac port is sold separately and doesn't share your Steam saves; Pixel Port runs the copy (and the hours) you already have.",
+  "summary": "Palworld 1.0 is verified on Pixel Port \u2014 re-run on real Apple Silicon hardware the day 1.0 shipped (July 10, 2026), on the runtime. It runs the Steam copy you already own, saves included. The official native Mac port is sold separately and doesn't share your Steam saves; Pixel Port runs the copy (and the hours) you already have.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -228,7 +228,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the free runtime set up on first launch."
+    "body": "Download Pixel Port and let the runtime set up on first launch."
    },
    {
     "title": "Install & Play",
@@ -236,7 +236,7 @@
    },
    {
     "title": "First launch",
-    "body": "UE5 compiles shaders on the first run \u2014 expect a slower first session, smooth after. 1.0's World Tree and Sky Islands arrive as a free update to the same copy."
+    "body": "UE5 compiles shaders on the first run \u2014 expect a slower first session, smooth after. 1.0's World Tree and Sky Islands arrive as an update to the same copy."
    }
   ],
   "lastTested": "2026-07-10"
@@ -247,7 +247,7 @@
   "appid": 2135150,
   "tier": "needs-attention",
   "genre": "Roguelike RPG",
-  "summary": "Elin installs and launches on Pixel Port's free runtime. Some mod-manager features still need extra setup, so we list it as needs attention while we smooth that out.",
+  "summary": "Elin installs and launches on Pixel Port's runtime. Some mod-manager features still need extra setup, so we list it as needs attention while we smooth that out.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -269,7 +269,7 @@
   "appid": 2567870,
   "tier": "needs-attention",
   "genre": "Co-op platformer",
-  "summary": "Chained Together runs on Pixel Port's free runtime, with a few caveats around co-op that we are still working through.",
+  "summary": "Chained Together runs on Pixel Port's runtime, with a few caveats around co-op that we are still working through.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -396,7 +396,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Portal 2",
@@ -424,7 +424,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Megabonk",
@@ -451,7 +451,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Install & Play",
@@ -475,7 +475,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Tell Me Why",
@@ -502,7 +502,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Install & Play",
@@ -525,7 +525,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Install & Play",
@@ -548,7 +548,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Lethal Company",
@@ -575,7 +575,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Sekiro",
@@ -602,7 +602,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Sons of the Forest",
@@ -629,7 +629,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Subnautica",
@@ -655,7 +655,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Install & Play",
@@ -678,7 +678,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Devil May Cry 5",
@@ -705,7 +705,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add NieR: Automata",
@@ -732,7 +732,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Dark Souls: Remastered",
@@ -759,7 +759,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Install & Play",
@@ -782,7 +782,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Install & Play",
@@ -804,7 +804,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Dyson Sphere Program",
@@ -831,7 +831,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Outer Wilds",
@@ -858,7 +858,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Sifu",
@@ -885,7 +885,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Half-Life 2",
@@ -912,7 +912,7 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the free runtime on first launch."
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
    },
    {
     "title": "Add Borderlands 2",

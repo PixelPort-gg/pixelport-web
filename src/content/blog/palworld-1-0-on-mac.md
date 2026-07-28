@@ -1,32 +1,32 @@
 ---
 title: "Palworld 1.0 lands July 10 — here's the honest state of playing it on a Mac"
-description: "Palworld leaves Early Access on July 10, 2026 as a free update. What that means for Mac players, what works today through Pixel Port, and what we'll verify the day 1.0 drops."
+description: "Palworld leaves Early Access on July 10, 2026. What that means for Mac players, what works today through Pixel Port, and what we'll verify the day 1.0 drops."
 date: 2026-07-08
 ---
 
 Palworld leaves Early Access on **July 10, 2026** (announced at Summer Game Fest): the
 World Tree endgame, the Sky Islands, and the end of the main story — shipped as a
-**free update to the copy you already own** on Steam.
+**update to the copy you already own** on Steam.
 
 If you're on a Mac, you've got two very different paths, and it's worth being precise
 about them.
 
-## Path one: the native Mac port — a separate purchase
+## Path one: the native Mac port
 
 Palworld has an official macOS port. It's good, and if you want the fully supported
-route, buy it. But it's a **separate purchase** — your Steam (Windows) copy, your
+route, use it. But your Steam (Windows) copy, your
 hundreds of hours, and your dedicated-server world don't transfer to it. For people
-who already own Palworld on Steam, "buy it again" is a frustrating answer.
+who already own Palworld on Steam, starting over is a frustrating answer.
 
 ## Path two: run the Steam copy you already own
 
-Pixel Port runs Windows Steam games on Apple Silicon — one click, free during the
-beta. Palworld's profile is friendly to translation: Unreal Engine 5 on the D3D11
+Pixel Port runs Windows Steam games on Apple Silicon in one click. Palworld's profile
+is friendly to translation: Unreal Engine 5 on the D3D11
 path, no kernel anti-cheat, standard Steamworks.
 
 **Update, July 10:** we said we'd verify 1.0 on real hardware the day it dropped and
 publish what we found — here it is. **Palworld 1.0 is Verified**: re-run on Apple
-Silicon on the free stack the day of release, same recipe (DXMT graphics, the default
+Silicon on the Pixel Port stack the day of release, same recipe (DXMT graphics, the default
 `Palworld.exe` target), running the Steam copy — saves included.
 [The Palworld compat page](/mac/palworld-1623730/) always shows the current tier.
 

@@ -13,7 +13,7 @@ interface Props {
 }
 const {
   title,
-  description = 'Play Windows games on your Mac, honestly. Fast, native-feeling, free to try in beta.',
+  description = 'Play Windows games on your Mac, honestly. Fast, native-feeling, and built for Apple Silicon.',
   ogImage,
 } = Astro.props;
 const fullTitle = title === 'Pixel Port' ? title : `${title} · Pixel Port`;
@@ -66,8 +66,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           "applicationCategory": "GameApplication",
           "url": "https://pixelport.gg/",
           "downloadUrl": "https://pixelport.gg/download",
-          "description": "Pixel Port downloads, configures, and launches Windows games on your Mac automatically. Free during the beta. Built for Apple Silicon.",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          "description": "Pixel Port downloads, configures, and launches Windows games on your Mac automatically. Built for Apple Silicon."
         }
       ]
     })} />

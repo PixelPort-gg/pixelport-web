@@ -7,17 +7,17 @@ order: 1
 ## The problem
 
 Apple Silicon Macs are fast, but games are built for Windows and DirectX, not macOS
-and Metal. Bridging that gap has always meant manual, fragile setup: paid
-compatibility layers, hand-built Wine bottles, virtual machines, partitions. It
+and Metal. Bridging that gap has always meant manual, fragile setup: compatibility
+layers, hand-built Wine bottles, virtual machines, partitions. It
 works sometimes, if you are willing to spend an evening on it.
 
 Pixel Port does that work for you, automatically, and proves the result.
 
 ## Prism, the runtime
 
-Prism is our free runtime. It pairs a modern Wine build with DXMT, which translates
+Prism is our runtime. It pairs a modern Wine build with DXMT, which translates
 a game's DirectX calls straight to Metal on Apple Silicon. Most games never notice
-they left Windows. There is no licence to buy and no bottle to maintain.
+they left Windows. There is no bottle to maintain.
 
 ## The Synthesis Engine
 

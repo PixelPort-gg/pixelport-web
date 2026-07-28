@@ -6,7 +6,7 @@ date: 2026-07-08
 
 Among Us just reached our top compatibility tier: **verified**.
 
-Verified is the highest grade in our honest compatibility map, and it is earned rather than assumed. It means a real Mac ran Among Us end to end on Pixel Port's free runtime. Not a guess, not a community report, a confirmed play on Apple Silicon.
+Verified is the highest grade in our honest compatibility map, and it is earned rather than assumed. It means a real Mac ran Among Us end to end on Pixel Port's runtime. Not a guess, not a community report, a confirmed play on Apple Silicon.
 
 Every game on Pixel Port carries a tier so you always know what to expect before you install: verified (a Mac ran it end to end), playable (graded but not yet hand-verified), needs attention (runs with caveats), and unsupported (a hard blocker like kernel anti-cheat). Among Us just moved to the top of that list.
 

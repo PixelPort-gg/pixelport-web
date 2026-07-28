@@ -23,10 +23,10 @@ Running a Windows game on Apple Silicon means translating three things at once: 
 processor instructions (Rosetta handles this), the operating system calls (Wine
 handles this), and DirectX graphics into Metal (the hard part — a modern
 Direct3D-to-Metal layer handles this). All three exist as open technology. What
-stopped existing in 2025 — when Whisky was discontinued and the free prebuilt runtimes
-went offline — was a maintained, free, ready-to-use assembly of them.
+stopped existing in 2025 — when Whisky was discontinued and the prebuilt runtimes
+went offline — was a maintained, ready-to-use assembly of them.
 
-That's the half we rebuilt. Pixel Port ships a free runtime (Wine 11 + DirectX-to-Metal,
+That's the half we rebuilt. Pixel Port ships a runtime (Wine 11 + DirectX-to-Metal,
 built for Apple Silicon) and wraps it in the thing the old tools never had: per-game
 answers. Connect Steam, and your library shows an honest tier for every game — 
 *Verified* (ran on real Apple Silicon hardware, measurements published), *Playable*
@@ -38,13 +38,12 @@ than waste your evening). One click installs and launches the games that work.
 
 Portal 2's Mac port died with Catalina in 2019; it runs again, using about 340 MB of
 memory. A brand-new Unreal Engine 5.6 multiplayer game — MECCHA CHAMELEON — joined a
-live server and played a full match on the fully free stack. Neither needed a bottle,
+live server and played a full match on the same stack. Neither needed a bottle,
 a graphics-backend menu, or a Terminal command.
 
 The honest fine print: Pixel Port is in beta, with rough edges we're fixing daily.
 Apple Silicon only (M1+, macOS 14+). You need to own your games — it runs the Steam
-copy you already own; it doesn't sell, bundle, or pirate games. It's free during the
-beta.
+copy you already own; it doesn't sell, bundle, or pirate games.
 
 Your Steam client is native now. Here's the other half:
 [check which of your games run →](/mac/)

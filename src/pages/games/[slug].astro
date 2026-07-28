@@ -51,7 +51,7 @@ const seoTitle = isBlocked
   : `Play ${game.title} on Mac in One Click (Apple Silicon)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
-  : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4) through Pixel Port, free during the beta.`;
+  : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4) through Pixel Port.`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 const jsonLd = {
@@ -251,13 +251,13 @@ const jsonLd = {
             isBlocked ? (
               <>
                 <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that runs <span aria-hidden="true">→</span></a>
-                <a href="/download" class="game-rail-secondary">Download Pixel Port free</a>
+                <a href="/download" class="game-rail-secondary">Download Pixel Port</a>
                 <p>Check compatibility before installing. No fabricated green lights.</p>
               </>
             ) : (
               <>
                 <a href="/download" class="game-rail-cta">Download &amp; play <span aria-hidden="true">→</span></a>
-                <p>Free during beta. No Boot Camp, Windows license, or terminal setup.</p>
+                <p>No Boot Camp, Windows license, or terminal setup.</p>
               </>
             )
           }

@@ -49,7 +49,7 @@ const faq = [
   },
   {
     q: 'Do I need Boot Camp or a Windows license?',
-    a: 'No. Pixel Port runs Windows games directly on macOS — no Boot Camp, no virtual machine, no Windows license. Download it free, pick a game, and press play.',
+    a: 'No. Pixel Port runs Windows games directly on macOS — no Boot Camp, no virtual machine, no Windows license. Download it, pick a game, and press play.',
   },
 ];
 const jsonLd = {
@@ -142,7 +142,7 @@ const evidence =
           }]}>{v.headline}</p>
           <p class="compat-summary">{v.body}</p>
           <a href={isNo ? '#alternatives' : '/download'} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
-            {isNo ? 'See verified alternatives' : game.tier === 'untested' ? 'Try it free on your Mac' : `Download & play ${game.name}`}
+            {isNo ? 'See verified alternatives' : game.tier === 'untested' ? 'Try it on your Mac' : `Download & play ${game.name}`}
             <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -190,7 +190,7 @@ const evidence =
                 {[
                   {
                     title: 'Install Pixel Port',
-                    body: 'Download Pixel Port free. It sets up everything a Windows game needs on first launch.',
+                    body: 'Download Pixel Port. It sets up everything a Windows game needs on first launch.',
                   },
                   {
                     title: `Add ${game.name}`,
@@ -287,15 +287,15 @@ const evidence =
             isNo ? (
               <>
                 <a href="#alternatives" class="compat-rail-cta compat-rail-cta--quiet">See what runs <span aria-hidden="true">→</span></a>
-                <a href="/download" class="compat-rail-secondary">Download Pixel Port free</a>
+                <a href="/download" class="compat-rail-secondary">Download Pixel Port</a>
                 <p>Know what runs before you waste an evening. Every no stays visible.</p>
               </>
             ) : (
               <>
                 <a href="/download" class="compat-rail-cta">
-                  {game.tier === 'untested' ? 'Try it free' : 'Download & play'} <span aria-hidden="true">→</span>
+                  {game.tier === 'untested' ? 'Try it' : 'Download & play'} <span aria-hidden="true">→</span>
                 </a>
-                <p>Free download. Honest compatibility, game by game.</p>
+                <p>Honest compatibility, game by game.</p>
               </>
             )
           }
