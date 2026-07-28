@@ -1,0 +1,448 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-28T16:21:00Z",
+  "title": "Design System: Pixel Port",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Port Black",
+        "canonical": "#0A0816",
+        "tonalRamp": [
+          "oklch(15% 0.0301 289.04)",
+          "oklch(27% 0.0301 289.04)",
+          "oklch(39% 0.0301 289.04)",
+          "oklch(51% 0.0301 289.04)",
+          "oklch(63% 0.0301 289.04)",
+          "oklch(75% 0.0301 289.04)",
+          "oklch(87% 0.0301 289.04)",
+          "oklch(95% 0.0301 289.04)"
+        ]
+      },
+      "base-top": {
+        "role": "neutral",
+        "displayName": "Violet Night",
+        "canonical": "#0D0A1C",
+        "tonalRamp": [
+          "oklch(15% 0.0372 289.14)",
+          "oklch(27% 0.0372 289.14)",
+          "oklch(39% 0.0372 289.14)",
+          "oklch(51% 0.0372 289.14)",
+          "oklch(63% 0.0372 289.14)",
+          "oklch(75% 0.0372 289.14)",
+          "oklch(87% 0.0372 289.14)",
+          "oklch(95% 0.0372 289.14)"
+        ]
+      },
+      "base-bottom": {
+        "role": "neutral",
+        "displayName": "Abyss Violet",
+        "canonical": "#060410",
+        "tonalRamp": [
+          "oklch(15% 0.0302 291.39)",
+          "oklch(27% 0.0302 291.39)",
+          "oklch(39% 0.0302 291.39)",
+          "oklch(51% 0.0302 291.39)",
+          "oklch(63% 0.0302 291.39)",
+          "oklch(75% 0.0302 291.39)",
+          "oklch(87% 0.0302 291.39)",
+          "oklch(95% 0.0302 291.39)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Deep Violet Surface",
+        "canonical": "#16122A",
+        "tonalRamp": [
+          "oklch(15% 0.0469 289.14)",
+          "oklch(27% 0.0469 289.14)",
+          "oklch(39% 0.0469 289.14)",
+          "oklch(51% 0.0469 289.14)",
+          "oklch(63% 0.0469 289.14)",
+          "oklch(75% 0.0469 289.14)",
+          "oklch(87% 0.0469 289.14)",
+          "oklch(95% 0.0469 289.14)"
+        ]
+      },
+      "surface-2": {
+        "role": "neutral",
+        "displayName": "Raised Violet",
+        "canonical": "#1F1838",
+        "tonalRamp": [
+          "oklch(15% 0.0598 291.18)",
+          "oklch(27% 0.0598 291.18)",
+          "oklch(39% 0.0598 291.18)",
+          "oklch(51% 0.0598 291.18)",
+          "oklch(63% 0.0598 291.18)",
+          "oklch(75% 0.0598 291.18)",
+          "oklch(87% 0.0598 291.18)",
+          "oklch(95% 0.0598 291.18)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Spectral Line",
+        "canonical": "#FFFFFF14",
+        "tonalRamp": [
+          "oklch(15% 0 0 / 0.08)",
+          "oklch(27% 0 0 / 0.08)",
+          "oklch(39% 0 0 / 0.08)",
+          "oklch(51% 0 0 / 0.08)",
+          "oklch(63% 0 0 / 0.08)",
+          "oklch(75% 0 0 / 0.08)",
+          "oklch(87% 0 0 / 0.08)",
+          "oklch(95% 0 0 / 0.08)"
+        ]
+      },
+      "amethyst": {
+        "role": "primary",
+        "displayName": "Deep Amethyst",
+        "canonical": "#9268FF",
+        "tonalRamp": [
+          "oklch(15% 0.2143 291.99)",
+          "oklch(27% 0.2143 291.99)",
+          "oklch(39% 0.2143 291.99)",
+          "oklch(51% 0.2143 291.99)",
+          "oklch(63% 0.2143 291.99)",
+          "oklch(75% 0.2143 291.99)",
+          "oklch(87% 0.2143 291.99)",
+          "oklch(95% 0.2143 291.99)"
+        ]
+      },
+      "signal-teal": {
+        "role": "secondary",
+        "displayName": "Signal Teal",
+        "canonical": "#3FD6CE",
+        "tonalRamp": [
+          "oklch(15% 0.1235 189.72)",
+          "oklch(27% 0.1235 189.72)",
+          "oklch(39% 0.1235 189.72)",
+          "oklch(51% 0.1235 189.72)",
+          "oklch(63% 0.1235 189.72)",
+          "oklch(75% 0.1235 189.72)",
+          "oklch(87% 0.1235 189.72)",
+          "oklch(95% 0.1235 189.72)"
+        ]
+      },
+      "verified": {
+        "role": "tertiary",
+        "displayName": "Verified Green",
+        "canonical": "#4AD991",
+        "tonalRamp": [
+          "oklch(15% 0.1603 157.25)",
+          "oklch(27% 0.1603 157.25)",
+          "oklch(39% 0.1603 157.25)",
+          "oklch(51% 0.1603 157.25)",
+          "oklch(63% 0.1603 157.25)",
+          "oklch(75% 0.1603 157.25)",
+          "oklch(87% 0.1603 157.25)",
+          "oklch(95% 0.1603 157.25)"
+        ]
+      },
+      "playable": {
+        "role": "tertiary",
+        "displayName": "Playable Amber",
+        "canonical": "#F0B43E",
+        "tonalRamp": [
+          "oklch(15% 0.1458 80.34)",
+          "oklch(27% 0.1458 80.34)",
+          "oklch(39% 0.1458 80.34)",
+          "oklch(51% 0.1458 80.34)",
+          "oklch(63% 0.1458 80.34)",
+          "oklch(75% 0.1458 80.34)",
+          "oklch(87% 0.1458 80.34)",
+          "oklch(95% 0.1458 80.34)"
+        ]
+      },
+      "attention": {
+        "role": "tertiary",
+        "displayName": "Attention Orange",
+        "canonical": "#F0894E",
+        "tonalRamp": [
+          "oklch(15% 0.1457 48.82)",
+          "oklch(27% 0.1457 48.82)",
+          "oklch(39% 0.1457 48.82)",
+          "oklch(51% 0.1457 48.82)",
+          "oklch(63% 0.1457 48.82)",
+          "oklch(75% 0.1457 48.82)",
+          "oklch(87% 0.1457 48.82)",
+          "oklch(95% 0.1457 48.82)"
+        ]
+      },
+      "blocked": {
+        "role": "tertiary",
+        "displayName": "Blocked Rose",
+        "canonical": "#E0556B",
+        "tonalRamp": [
+          "oklch(15% 0.1733 14.01)",
+          "oklch(27% 0.1733 14.01)",
+          "oklch(39% 0.1733 14.01)",
+          "oklch(51% 0.1733 14.01)",
+          "oklch(63% 0.1733 14.01)",
+          "oklch(75% 0.1733 14.01)",
+          "oklch(87% 0.1733 14.01)",
+          "oklch(95% 0.1733 14.01)"
+        ]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Cool White",
+        "canonical": "#F5F5F7",
+        "tonalRamp": [
+          "oklch(15% 0.0027 286.35)",
+          "oklch(27% 0.0027 286.35)",
+          "oklch(39% 0.0027 286.35)",
+          "oklch(51% 0.0027 286.35)",
+          "oklch(63% 0.0027 286.35)",
+          "oklch(75% 0.0027 286.35)",
+          "oklch(87% 0.0027 286.35)",
+          "oklch(95% 0.0027 286.35)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Steel Mist",
+        "canonical": "#9AA3B5",
+        "tonalRamp": [
+          "oklch(15% 0.0281 264.38)",
+          "oklch(27% 0.0281 264.38)",
+          "oklch(39% 0.0281 264.38)",
+          "oklch(51% 0.0281 264.38)",
+          "oklch(63% 0.0281 264.38)",
+          "oklch(75% 0.0281 264.38)",
+          "oklch(87% 0.0281 264.38)",
+          "oklch(95% 0.0281 264.38)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "One dominant proposition per scene."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section-level ideas and catalogue introductions."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Game names, component titles, and short decision labels."
+      },
+      "subhead": {
+        "displayName": "Subhead",
+        "purpose": "Compact scene headlines and responsive result titles."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Explanatory copy directly supporting a display or headline."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable supporting and long-form copy."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Compact supporting copy where body text would overpower the layout."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Readable metadata, trust signals, and compact announcements."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Desktop navigation and compact interactive labels."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Metadata, compatibility details, and compact control context."
+      }
+    },
+    "shadows": [
+      {
+        "name": "brand-glow",
+        "value": "0 18px 50px -12px rgba(146, 104, 255, 0.45)",
+        "purpose": "Rare amethyst halo for signature portal or launch moments."
+      },
+      {
+        "name": "glass-ambient",
+        "value": "0 28px 80px -44px rgba(146, 104, 255, 0.58), inset 0 1px 0 rgba(255, 255, 255, 0.035)",
+        "purpose": "Separates overlays while retaining the violet atmosphere."
+      },
+      {
+        "name": "interactive-lift",
+        "value": "0 18px 40px -14px rgba(146, 104, 255, 0.35)",
+        "purpose": "Short hover response for image-led interactive surfaces."
+      },
+      {
+        "name": "cover-atmosphere",
+        "value": "0 1rem 2.6rem -2rem rgba(146, 104, 255, 0.5)",
+        "purpose": "Close amethyst atmosphere directly behind game artwork."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-cinema",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Decisive portal and transform-based movement."
+      },
+      {
+        "name": "time-cut",
+        "value": "160ms",
+        "purpose": "Control feedback, borders, arrows, and active states."
+      },
+      {
+        "name": "time-reveal",
+        "value": "520ms",
+        "purpose": "A meaningful reveal within one scene."
+      },
+      {
+        "name": "time-passage",
+        "value": "900ms",
+        "purpose": "A complete source-to-result portal transition."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-navigation",
+        "value": "40rem"
+      },
+      {
+        "name": "content-stack",
+        "value": "48rem"
+      },
+      {
+        "name": "catalogue-wide",
+        "value": "64rem"
+      },
+      {
+        "name": "wide-canvas",
+        "value": "80rem"
+      },
+      {
+        "name": "cinematic-hero",
+        "value": "980px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The clearest action on a scene, including desktop download.",
+      "html": "<button class=\"ds-btn-primary\">Download latest .dmg</button>",
+      "css": ".ds-btn-primary { min-height: 48px; padding: 0.78rem 1.35rem; border: 0; border-radius: 999px; background: var(--color-accent-2, #3FD6CE); color: var(--color-ink, #0A0816); font: 700 1rem/1.65 \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: transform 160ms ease, filter 160ms ease; } .ds-btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); } .ds-btn-primary:active { transform: translateY(0); } .ds-btn-primary:focus-visible { outline: 2px solid var(--color-accent, #9268FF); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A lower-commitment path such as browsing compatible games.",
+      "html": "<button class=\"ds-btn-secondary\">See what runs <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-btn-secondary { display: inline-flex; min-height: 48px; align-items: center; gap: 0.65rem; padding: 0.78rem 1.35rem; border: 1px solid var(--color-line, #FFFFFF14); border-radius: 999px; background: #100D21; color: var(--color-fg, #F5F5F7); font: 700 1rem/1.65 \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: transform 160ms ease, border-color 160ms ease; } .ds-btn-secondary:hover { border-color: rgba(146, 104, 255, 0.52); transform: translateY(-1px); } .ds-btn-secondary:active { transform: translateY(0); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--color-accent, #9268FF); outline-offset: 2px; }"
+    },
+    {
+      "name": "Catalogue Filter",
+      "kind": "chip",
+      "refersTo": "filter-selected",
+      "description": "A compact, explicit catalogue state selector.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">Verified <span>53</span></button>",
+      "css": ".ds-filter { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.55rem; padding: 0.55rem 0.75rem; border: 1px solid rgba(146, 104, 255, 0.5); border-radius: 12px; background: rgba(146, 104, 255, 0.15); box-shadow: inset 0 -1px rgba(63, 214, 206, 0.28); color: var(--color-fg, #F5F5F7); font: 400 0.78rem/1.65 \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; cursor: pointer; transition: border-color 160ms ease, background-color 160ms ease; } .ds-filter span { color: rgba(245, 245, 247, 0.55); font-variant-numeric: tabular-nums; } .ds-filter:hover { border-color: var(--color-accent, #9268FF); } .ds-filter:focus-visible { outline: 2px solid var(--color-accent, #9268FF); outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Catalogue search with a persistent, readable placeholder.",
+      "html": "<label class=\"ds-search\"><span>Search catalogue</span><span class=\"ds-search-shell\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"6\"></circle><path d=\"m16 16 4 4\"></path></svg><input type=\"search\" placeholder=\"Search by game title\" /></span></label>",
+      "css": ".ds-search { display: grid; gap: 0.55rem; color: var(--color-muted, #9AA3B5); font: 600 0.75rem/1.45 \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; } .ds-search-shell { position: relative; display: block; } .ds-search svg { position: absolute; top: 50%; left: 0.8rem; width: 1rem; height: 1rem; transform: translateY(-50%); fill: none; stroke: var(--color-muted, #9AA3B5); stroke-width: 1.6; stroke-linecap: round; } .ds-search input { width: 100%; min-height: 2.75rem; padding: 0.6rem 0.8rem 0.6rem 2.35rem; border: 1px solid var(--color-line, #FFFFFF14); border-radius: 12px; background: rgba(255, 255, 255, 0.03); color: var(--color-fg, #F5F5F7); font: 400 0.82rem/1.65 \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; } .ds-search input::placeholder { color: var(--color-muted, #9AA3B5); } .ds-search input:focus-visible { outline: 2px solid var(--color-accent, #9268FF); outline-offset: 2px; }"
+    },
+    {
+      "name": "Verified Badge",
+      "kind": "chip",
+      "refersTo": "status-verified",
+      "description": "An evidence status that always names its meaning.",
+      "html": "<span class=\"ds-badge-verified\"><span aria-hidden=\"true\">✓</span> Verified</span>",
+      "css": ".ds-badge-verified { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.24rem 0.48rem; border-radius: 999px; background: rgba(74, 217, 145, 0.15); box-shadow: 0 0 0 1px currentColor; color: var(--color-verified, #4AD991); font: 700 0.68rem/1 \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; }"
+    },
+    {
+      "name": "Catalogue Card",
+      "kind": "card",
+      "description": "An image-led game result with an explicit compatibility grade.",
+      "html": "<a class=\"ds-game-card\" href=\"#\"><span class=\"ds-game-art\"><img src=\"https://cdn.cloudflare.steamstatic.com/steam/apps/1623730/library_600x900.jpg\" alt=\"Palworld cover art\" /><span class=\"ds-game-status\"><span aria-hidden=\"true\">✓</span> Verified</span><span class=\"ds-game-edge\" aria-hidden=\"true\"></span></span><strong>Palworld</strong><span>View compatibility →</span></a>",
+      "css": ".ds-game-card { display: grid; width: min(13rem, 100%); gap: 0.55rem; color: var(--color-fg, #F5F5F7); font-family: \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; text-decoration: none; } .ds-game-art { position: relative; display: block; overflow: hidden; aspect-ratio: 2 / 3; border: 1px solid rgba(255, 255, 255, 0.09); border-radius: 12.8px; background: var(--color-surface, #16122A); box-shadow: 0 1rem 2.6rem -2rem rgba(146, 104, 255, 0.5); } .ds-game-art img { width: 100%; height: 100%; object-fit: cover; transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1), filter 520ms ease; } .ds-game-status { position: absolute; top: 0.55rem; right: 0.55rem; display: inline-flex; gap: 0.25rem; padding: 0.24rem 0.48rem; border-radius: 999px; background: rgba(74, 217, 145, 0.15); box-shadow: 0 0 0 1px currentColor; color: var(--color-verified, #4AD991); font-size: 0.68rem; font-weight: 700; line-height: 1; } .ds-game-edge { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--color-accent, #9268FF), var(--color-accent-2, #3FD6CE)); opacity: 0; transition: opacity 160ms ease; } .ds-game-card strong { font-size: 0.88rem; font-weight: 650; } .ds-game-card > span:last-child { color: var(--color-muted, #9AA3B5); font-size: 0.75rem; } .ds-game-card:hover img { filter: saturate(1.06); transform: scale(1.035); } .ds-game-card:hover .ds-game-edge { opacity: 1; } .ds-game-card:focus-visible { outline: 2px solid var(--color-accent, #9268FF); outline-offset: 3px; }"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "description": "A quiet header rail with one unmistakable teal action.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Preview navigation\"><a class=\"ds-brand\" href=\"#\"><span>P</span> Pixel Port</a><span class=\"ds-nav-links\"><a class=\"ds-nav-active\" href=\"#\">Games</a><a href=\"#\">Docs</a><a href=\"#\">Stats</a></span><a class=\"ds-nav-download\" href=\"#\">Download</a></nav>",
+      "css": ".ds-nav { display: flex; min-height: 4rem; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 0.5rem; border-bottom: 1px solid var(--color-line, #FFFFFF14); background: rgba(6, 4, 16, 0.9); color: var(--color-fg, #F5F5F7); font-family: \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; } .ds-nav a { color: inherit; text-decoration: none; } .ds-brand { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.875rem; font-weight: 650; } .ds-brand span { display: grid; width: 1.65rem; height: 1.65rem; place-items: center; border-radius: 7px; background: var(--color-ink, #0A0816); color: var(--color-accent, #9268FF); font-weight: 800; } .ds-nav-links { display: flex; align-items: center; gap: 0.35rem; } .ds-nav-links a { position: relative; padding: 0.55rem 0.75rem; border-radius: 999px; color: var(--color-muted, #9AA3B5); font-size: 0.8125rem; } .ds-nav-links a:hover, .ds-nav-links .ds-nav-active { background: rgba(255, 255, 255, 0.045); color: var(--color-fg, #F5F5F7); } .ds-nav-active::after { position: absolute; right: 50%; bottom: 0.25rem; width: 3px; height: 3px; border-radius: 50%; background: var(--color-accent-2, #3FD6CE); content: \"\"; } .ds-nav-download { display: inline-grid; min-height: 2.75rem; place-items: center; padding-inline: 1.1rem; border-radius: 999px; background: var(--color-accent-2, #3FD6CE); color: var(--color-ink, #0A0816) !important; font-size: 0.8125rem; font-weight: 760; } .ds-nav a:focus-visible { outline: 2px solid var(--color-accent, #9268FF); outline-offset: 2px; }"
+    },
+    {
+      "name": "Portal Frame",
+      "kind": "custom",
+      "description": "The signature source-to-Mac transformation surface.",
+      "html": "<div class=\"ds-portal\"><span class=\"ds-portal-source\">Your Steam game<strong>PALWORLD</strong></span><span class=\"ds-portal-threshold\" aria-hidden=\"true\"></span><span class=\"ds-portal-result\"><em>✓ Ready on Mac</em><strong>Palworld</strong><span>Launch game ▶</span></span></div>",
+      "css": ".ds-portal { position: relative; isolation: isolate; display: grid; min-height: 18rem; grid-template-columns: 1fr 0.5fr 1fr; align-items: center; gap: 1rem; overflow: hidden; padding: 1.5rem; border: 1px solid rgba(146, 104, 255, 0.28); border-radius: 16px; background: radial-gradient(circle at 18% 30%, rgba(146, 104, 255, 0.13), transparent 34%), radial-gradient(circle at 82% 70%, rgba(63, 214, 206, 0.09), transparent 36%), #090717; color: var(--color-fg, #F5F5F7); font-family: \"Geologica Variable\", ui-sans-serif, system-ui, sans-serif; } .ds-portal-source, .ds-portal-result { position: relative; z-index: 1; display: grid; gap: 0.65rem; color: var(--color-muted, #9AA3B5); font-size: 0.75rem; } .ds-portal-source strong { display: grid; min-height: 9rem; place-items: center; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 12px; background: linear-gradient(145deg, #5C40B0, #228C86); color: var(--color-fg, #F5F5F7); font-size: 0.9rem; } .ds-portal-threshold { position: absolute; top: -10%; bottom: -10%; left: 47%; width: 2px; background: linear-gradient(180deg, transparent, var(--color-accent, #9268FF), var(--color-accent-2, #3FD6CE), transparent); box-shadow: 0 0 20px 3px rgba(146, 104, 255, 0.24), 0 0 54px 14px rgba(63, 214, 206, 0.08); transform: rotate(7deg); } .ds-portal-result { grid-column: 3; padding: 1.25rem; border: 1px solid rgba(63, 214, 206, 0.24); border-radius: 14px; background: rgba(10, 8, 22, 0.72); } .ds-portal-result em { color: var(--color-verified, #4AD991); font-style: normal; } .ds-portal-result strong { color: var(--color-fg, #F5F5F7); font-size: 1.15rem; } .ds-portal-result > span { width: fit-content; padding: 0.55rem 0.8rem; border-radius: 999px; background: var(--color-accent-2, #3FD6CE); color: var(--color-ink, #0A0816); font-weight: 700; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Verified Portal",
+    "overview": "Pixel Port is a cinematic passage from uncertain Windows-game compatibility to a clear, evidence-backed Mac launch. Its violet-black environment feels focused rather than gloomy: real game artwork, compatibility grades, and launch data remain the subject while amethyst and teal describe the route through the product.\n\nThe visual voice is cinematic, precise, and reassuring. Generous scenes create drama, compact controls keep decisions direct, and the portal motif gives technical transformation a physical form without exposing terminal-heavy complexity. Dark tonal layers, fine spectral lines, and limited ambient glows provide depth; the interface does not depend on decorative glass or constant neon.\n\nLayouts are fluid and content-led. The core wrapper tops out at 80rem with `clamp(1.25rem, 3vw, 2.5rem)` gutters, display copy stays balanced and short, and body copy is capped near 65–75 characters. Motion uses a fast 160ms cut for control feedback and a 520–900ms cinematic cadence for meaningful transitions, with an instant reduced-motion path.",
+    "keyCharacteristics": [
+      "Violet-black tonal depth with amethyst-to-teal portal energy",
+      "Real game artwork and evidence before decoration",
+      "Compact, tactile, confidence-first controls",
+      "Large, balanced Geologica display type with calm supporting copy",
+      "Device-aware conversion and responsive layouts from 20rem upward",
+      "Explicit status language that never relies on color alone"
+    ],
+    "rules": [
+      {
+        "name": "The Evidence Color Rule",
+        "body": "Compatibility colors are reserved for compatibility meaning and always travel with a label, icon, or both.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Energy Rule",
+        "body": "Deep Amethyst explains structure and passage; Signal Teal identifies the clearest next action. Do not make both colors compete for the same role.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family, Many Gears Rule",
+        "body": "Use Geologica’s variable weight and decisive scale changes before introducing another typeface.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plain Technical Language Rule",
+        "body": "Technical credibility comes from precise words and observable evidence, not monospace costumes or strings of uppercase metadata.",
+        "section": "typography"
+      },
+      {
+        "name": "The Grounded-by-Default Rule",
+        "body": "Surfaces are separated by tone and one-pixel lines first. A glow or shadow must explain portal energy, hierarchy, or interaction state.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do lead with real game artwork, catalogue counts, compatibility labels, and launch evidence.",
+      "Do keep body copy at `#9AA3B5` or brighter on the violet-black background and verify at least 4.5:1 contrast.",
+      "Do use `#3FD6CE` with `#0A0816` text for the clearest primary action.",
+      "Do pair every compatibility color with plain-language status text and an icon where space permits.",
+      "Do use 12px controls, 16px signature surfaces, and full pills only for compact actions or statuses.",
+      "Do use `cubic-bezier(0.16, 1, 0.3, 1)` for purposeful cinematic movement and provide an instant reduced-motion alternative.",
+      "Do adapt the conversion path to the visitor’s device rather than presenting a desktop-only action as the mobile default."
+    ],
+    "donts": [
+      "Don't resemble a terminal-heavy compatibility tool; keep technical detail readable and human.",
+      "Don't become a generic neon gamer site; amethyst and teal are directional signals, not constant glow.",
+      "Don't become an overpromising utility that hides caveats; preserve grades, limitations, and evidence near decisions.",
+      "Don't use compatibility colors decoratively or rely on color alone to convey a grade.",
+      "Don't add gradient-filled text, decorative grid overlays, repeated uppercase eyebrows, or numbered section scaffolding.",
+      "Don't spread glass panels and broad shadows across generic cards; depth must have a structural purpose.",
+      "Don't exceed a 16px card radius without a named signature reason, and never use a pill radius on a content card.",
+      "Don't animate content from an invisible default or remove essential context on small screens."
+    ]
+  }
+}

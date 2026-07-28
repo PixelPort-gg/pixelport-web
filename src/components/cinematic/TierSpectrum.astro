@@ -15,25 +15,25 @@ const tiers = [
     key: 'verified',
     label: 'Verified',
     icon: '✓',
-    detail: 'A human confirmed the full launch on a real Mac.',
+    detail: 'Human-confirmed end to end on a real Mac.',
   },
   {
     key: 'playable',
     label: 'Playable',
     icon: '◐',
-    detail: 'Auto-tested or community-confirmed, but not yet verified end to end.',
+    detail: 'Auto-tested or community-confirmed; full verification is pending.',
   },
   {
     key: 'needs-attention',
     label: 'Needs attention',
     icon: '!',
-    detail: 'The game runs with a caveat or a known workaround.',
+    detail: 'Runs with a known caveat or workaround.',
   },
   {
     key: 'unsupported',
     label: 'Unsupported',
     icon: '×',
-    detail: 'A hard blocker, such as kernel-level anti-cheat, prevents launch.',
+    detail: 'A hard blocker—often kernel-level anti-cheat—prevents launch.',
   },
 ];
 ---
@@ -240,17 +240,73 @@ const tiers = [
     }
   }
 
+  @media (max-width: 759px) {
+    .confidence {
+      padding: clamp(3.5rem, 10vw, 4.25rem) 0 clamp(2rem, 7vw, 3rem);
+    }
+
+    .confidence-heading {
+      gap: 0.9rem;
+    }
+
+    h2 {
+      font-size: clamp(2.25rem, 10vw, 2.75rem);
+      line-height: 1.02;
+    }
+
+    .confidence-heading > p {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .coverage {
+      margin-top: 2rem;
+    }
+  }
+
   @media (max-width: 600px) {
     .tier-row {
-      grid-template-columns: auto minmax(0, 1fr) auto;
+      min-height: 80px;
+      grid-template-columns: 2.125rem minmax(0, 1fr) minmax(3.65rem, auto);
+      gap: 0.65rem;
+      padding-block: 0.7rem;
     }
 
     .tier-arrow {
       display: none;
     }
 
+    .tier-icon {
+      width: 34px;
+      height: 34px;
+    }
+
+    .tier-copy strong {
+      font-size: 0.9375rem;
+    }
+
     .tier-copy span {
       font-size: 0.875rem;
+      line-height: 1.4;
+    }
+
+    .tier-count {
+      min-width: 3.65rem;
+      justify-self: end;
+      font-size: clamp(1.125rem, 5vw, 1.35rem);
+      text-align: right;
+    }
+
+    .coverage-note {
+      margin-top: 0.8rem;
+    }
+
+    .coverage-note a {
+      display: flex;
+      width: fit-content;
+      min-height: 2.75rem;
+      align-items: center;
+      margin: 0.15rem 0 0;
     }
   }
 

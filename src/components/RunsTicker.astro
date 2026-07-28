@@ -152,7 +152,11 @@ const header = (appid: number) =>
     overflow: hidden;
     border-radius: 12px;
     /* The permanent backdrop, so the chip is never empty. */
-    background: linear-gradient(150deg, #5c40b0, #228c86);
+    background: linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--color-accent) 72%, var(--color-surface)),
+      color-mix(in srgb, var(--color-accent-2) 58%, var(--color-surface))
+    );
     border: 1px solid var(--color-line, rgba(255, 255, 255, 0.08));
     box-shadow: 0 10px 30px -14px rgba(146, 104, 255, 0.5);
   }

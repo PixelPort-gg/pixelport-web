@@ -25,40 +25,31 @@ const header = (appid: number | null) =>
     <div class="hero-copy">
       <a href="/mac/palworld-1623730/" class="announcement">
         <span class="live-dot" aria-hidden="true"></span>
-        <span><strong>Palworld 1.0 is here.</strong> Play the Steam copy you already own on your Mac.</span>
+        <span class="announcement-copy">
+          <strong>Palworld 1.0</strong>
+          <span class="announcement-desktop"> is here. Play the Steam copy you already own on your Mac.</span>
+          <span class="announcement-mobile"> is ready on Mac.</span>
+        </span>
         <span class="announcement-arrow" aria-hidden="true">&rarr;</span>
       </a>
 
       <h1 id="hero-title">Game on Mac with a single click.</h1>
       <p class="lede">
-        Pixel Port runs supported Windows games you own through Steam on Apple Silicon. Pick a
-        graded game and it prepares the runtime, applies the launch settings, and opens it.
-        No bottles, virtual machine, partition, or terminal setup.
+        Play supported Windows Steam games on Apple Silicon Mac with one-click setup—no Wine
+        bottles, virtual machines, partitions, or terminal.
       </p>
 
       <div class="actions">
-        <a href="/download" class="button button--primary">Download latest .dmg</a>
-        <a href="/games" class="button button--secondary">See what runs <span aria-hidden="true">&rarr;</span></a>
+        <a href="/download" class="button button--primary" aria-label="Download the latest Pixel Port DMG">
+          <span class="button-label-desktop">Download latest .dmg</span>
+          <span class="button-label-mobile">Download for Mac</span>
+        </a>
+        <a href="/games" class="button button--secondary" aria-label="Browse compatible games">
+          <span class="button-label-desktop">See what runs</span>
+          <span class="button-label-mobile">Browse games</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
-
-      <dl class="trust" aria-label="Download and compatibility details">
-        <div>
-          <dt>Download</dt>
-          <dd>Latest DMG · Apple Silicon</dd>
-        </div>
-        <div>
-          <dt>Runs on</dt>
-          <dd>Apple Silicon (M1+) · macOS 14+</dd>
-        </div>
-        <div>
-          <dt>Your library</dt>
-          <dd>Uses Steam games you own</dd>
-        </div>
-        <div>
-          <dt>Privacy</dt>
-          <dd><a href="/privacy">Anonymous by default</a></dd>
-        </div>
-      </dl>
     </div>
 
     <div class="hero-visual">
@@ -102,13 +93,19 @@ const header = (appid: number | null) =>
               <span class="ready-status"><span aria-hidden="true">&#10003;</span> Ready on Mac</span>
               <strong>{lead?.title ?? 'Your game'}</strong>
               <p>Pixel Port prepared the runtime and launch settings.</p>
-              <span class="launch-action">Launch game <span aria-hidden="true">&#9654;</span></span>
+              <span class="availability-note">
+                <span class="availability-mark" aria-hidden="true"></span>
+                Launches from the Pixel Port app
+              </span>
             </div>
           </div>
         </div>
       </PortalFrame>
       <div class="visual-footer">
-        <p class="visual-caption">A real Windows game goes in. A Mac-ready launch comes out.</p>
+        <p class="visual-caption">
+          <span class="visual-caption-desktop">A real Windows game goes in. A Mac-ready launch comes out.</span>
+          <span class="visual-caption-mobile">Your Steam game in. A Mac-ready launch out.</span>
+        </p>
         {
           lead && (
             <a href={'/games/' + lead.slug} class="visual-link">
@@ -118,6 +115,25 @@ const header = (appid: number | null) =>
         }
       </div>
     </div>
+
+    <dl class="trust" aria-label="Download and compatibility details">
+      <div>
+        <dt>Download</dt>
+        <dd>Latest DMG · Apple Silicon</dd>
+      </div>
+      <div>
+        <dt>Runs on</dt>
+        <dd>Apple Silicon (M1+) · macOS 14+</dd>
+      </div>
+      <div>
+        <dt>Your library</dt>
+        <dd>Uses Steam games you own</dd>
+      </div>
+      <div>
+        <dt>Privacy</dt>
+        <dd><a href="/privacy">Anonymous by default</a></dd>
+      </div>
+    </dl>
   </div>
 </section>
 
@@ -158,13 +174,25 @@ const header = (appid: number | null) =>
   .hero-layout {
     display: grid;
     min-width: 0;
-    gap: clamp(3rem, 6vw, 5.5rem);
+    grid-template-areas:
+      'copy'
+      'visual'
+      'trust';
+    gap: clamp(2rem, 5vw, 3.25rem);
     align-items: center;
   }
 
   .hero-copy,
   .hero-visual {
     min-width: 0;
+  }
+
+  .hero-copy {
+    grid-area: copy;
+  }
+
+  .hero-visual {
+    grid-area: visual;
   }
 
   .announcement {
@@ -192,6 +220,12 @@ const header = (appid: number | null) =>
   .announcement:hover .announcement-arrow,
   .announcement:focus-visible .announcement-arrow {
     transform: translateX(3px);
+  }
+
+  .announcement-mobile,
+  .button-label-mobile,
+  .visual-caption-mobile {
+    display: none;
   }
 
   .live-dot {
@@ -272,9 +306,11 @@ const header = (appid: number | null) =>
 
   .trust {
     display: grid;
+    grid-area: trust;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: 43rem;
     gap: 0.9rem 1.5rem;
-    margin: 1.7rem 0 0;
+    margin: 0;
     padding-top: 1.25rem;
     border-top: 1px solid var(--color-line);
   }
@@ -343,8 +379,12 @@ const header = (appid: number | null) =>
     aspect-ratio: 2 / 3;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 12px;
-    background: linear-gradient(145deg, #5c40b0, #228c86);
-    box-shadow: 0 24px 40px -28px rgba(0, 0, 0, 0.95);
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-accent) 72%, var(--color-surface)),
+      color-mix(in srgb, var(--color-accent-2) 58%, var(--color-surface))
+    );
+    box-shadow: 0 24px 40px -28px color-mix(in srgb, var(--color-base-bottom) 95%, transparent);
   }
 
   .source-art img {
@@ -414,7 +454,7 @@ const header = (appid: number | null) =>
     min-width: 0;
     padding: clamp(1.1rem, 2.5vw, 1.75rem);
     border: 1px solid rgba(63, 214, 206, 0.24);
-    border-radius: 14px;
+    border-radius: 12px;
     background: #101526;
   }
 
@@ -446,19 +486,25 @@ const header = (appid: number | null) =>
     line-height: 1.5;
   }
 
-  .launch-action {
+  .availability-note {
     display: flex;
-    min-height: 44px;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 0.55rem;
     margin-top: 1.2rem;
-    padding: 0.7rem 0.9rem;
-    border-radius: 999px;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    font-weight: 550;
+  }
+
+  .availability-mark {
+    width: 0.45rem;
+    height: 0.45rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
     background: var(--color-accent-2);
-    color: var(--color-ink);
-    font-size: 0.875rem;
-    font-weight: 750;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent-2) 12%, transparent);
   }
 
   .visual-footer {
@@ -575,8 +621,8 @@ const header = (appid: number | null) =>
   @keyframes result-resolution {
     0%,
     48% {
-      opacity: 0;
-      transform: translateX(-1.5rem) scale(0.97);
+      opacity: 0.24;
+      transform: translateX(-0.8rem) scale(0.985);
     }
     64% {
       opacity: 0.48;
@@ -641,7 +687,7 @@ const header = (appid: number | null) =>
 
       .trust {
         gap: 0.7rem 1.5rem;
-        margin-top: 1.2rem;
+        margin-top: 0;
         padding-top: 0.95rem;
       }
 
@@ -700,6 +746,11 @@ const header = (appid: number | null) =>
   @media (min-width: 980px) {
     .hero-layout {
       grid-template-columns: minmax(0, 0.9fr) minmax(500px, 1.1fr);
+      grid-template-areas:
+        'copy visual'
+        'trust visual';
+      column-gap: clamp(3rem, 6vw, 5.5rem);
+      row-gap: 1.25rem;
     }
 
     .trust {
@@ -717,15 +768,9 @@ const header = (appid: number | null) =>
     }
 
     .ready-panel-content p {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
     }
 
-    .launch-action {
-      gap: 0.4rem;
-      padding-inline: 0.7rem;
-      font-size: 0.75rem;
-      white-space: nowrap;
-    }
   }
 
   @media (max-width: 979px) {
@@ -736,71 +781,205 @@ const header = (appid: number | null) =>
     .hero-copy {
       max-width: 44rem;
     }
+
+    .hero-visual :global(.portal-frame),
+    .launch-crossing {
+      min-height: clamp(340px, 50vw, 420px);
+    }
+
+    .hero-visual :global(.portal-frame) {
+      aspect-ratio: auto;
+    }
+
+    .source-art {
+      width: min(100%, clamp(96px, 16vw, 146px));
+    }
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 40rem) {
     .hero {
-      padding-top: 5rem;
+      padding-block: 4.75rem 3.75rem;
+    }
+
+    .hero-layout {
+      gap: 1.6rem;
     }
 
     .announcement {
       align-items: flex-start;
+      gap: 0.55rem;
+      margin-bottom: 1.35rem;
+      font-size: 0.875rem;
     }
 
-    .announcement-arrow {
+    .announcement-desktop,
+    .button-label-desktop,
+    .visual-caption-desktop {
       display: none;
     }
 
+    .announcement-mobile,
+    .button-label-mobile,
+    .visual-caption-mobile {
+      display: inline;
+    }
+
+    .announcement-arrow {
+      margin-left: auto;
+    }
+
     h1 {
-      font-size: clamp(2.85rem, 14vw, 4.25rem);
+      max-width: 9ch;
+      font-size: clamp(2.75rem, calc(2.25rem + 3vw), 3rem);
+      line-height: 0.98;
+    }
+
+    .lede {
+      margin-top: 1.15rem;
+      font-size: 0.9375rem;
+      line-height: 1.58;
     }
 
     .actions {
       display: grid;
+      grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+      gap: 0.6rem;
+      margin-top: 1.45rem;
     }
 
     .button {
       width: 100%;
+      min-height: 50px;
+      gap: 0.45rem;
+      padding-inline: 0.8rem;
+      font-size: 0.875rem;
+      white-space: nowrap;
     }
 
     .trust {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      max-width: none;
+      padding-top: 0;
+      border-block: 1px solid var(--color-line);
+    }
+
+    .trust div {
+      padding-block: 0.85rem;
+    }
+
+    .trust div:nth-child(odd) {
+      padding-right: 0.85rem;
+    }
+
+    .trust div:nth-child(even) {
+      padding-left: 0.85rem;
+      border-left: 1px solid var(--color-line);
+    }
+
+    .trust div:nth-child(n + 3) {
+      border-top: 1px solid var(--color-line);
+    }
+
+    .trust dt {
+      font-size: 0.75rem;
+    }
+
+    .trust dd {
+      font-size: 0.8125rem;
     }
 
     .hero-visual :global(.portal-frame) {
-      min-height: 610px;
+      min-height: clamp(270px, calc(200px + 22vw), 340px);
       aspect-ratio: auto;
     }
 
     .launch-crossing {
-      min-height: 610px;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      justify-items: center;
+      min-height: clamp(270px, calc(200px + 22vw), 340px);
+      grid-template-columns:
+        minmax(68px, 0.72fr)
+        clamp(48px, calc(24px + 7.5vw), 72px)
+        minmax(136px, 1.28fr);
+      gap: 0.55rem;
+      padding: 1rem 0.85rem;
     }
 
     .source-game {
-      width: min(100%, 180px);
+      width: 100%;
     }
 
     .source-art {
-      width: 118px;
+      width: min(100%, clamp(74px, calc(45px + 9vw), 102px));
+      border-radius: 12px;
+    }
+
+    .source-label {
+      margin-bottom: 0.45rem;
+      font-size: 0.75rem;
+      line-height: 1.35;
+    }
+
+    .source-game > strong {
+      margin-top: 0.45rem;
+      font-size: 0.75rem;
     }
 
     .portal-mark {
-      width: 76px;
+      width: clamp(48px, calc(24px + 7.5vw), 72px);
     }
 
     .ready-panel {
       width: 100%;
+      padding: 0.85rem 0.75rem;
+      border-radius: 12px;
+    }
+
+    .ready-status {
+      font-size: 0.75rem;
+    }
+
+    .ready-panel-content > strong {
+      margin-top: 0.45rem;
+      font-size: clamp(1rem, calc(0.8rem + 1vw), 1.2rem);
+    }
+
+    .ready-panel-content p {
+      display: none;
+    }
+
+    .availability-note {
+      margin-top: 0.8rem;
+      padding-top: 0.65rem;
+      font-size: 0.75rem;
     }
 
     .visual-footer {
       display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.75rem;
+      align-items: start;
+      margin-top: 0.7rem;
     }
 
     .visual-link {
-      justify-self: start;
+      align-self: start;
+      justify-self: end;
+      font-size: 0.75rem;
+    }
+
+    .visual-caption {
+      font-size: 0.8125rem;
+    }
+  }
+
+  @media (max-width: 22rem) {
+    .actions {
+      grid-template-columns: 1fr;
+    }
+
+    .launch-crossing {
+      grid-template-columns: 66px 48px minmax(124px, 1fr);
+      padding-inline: 0.7rem;
     }
   }
 

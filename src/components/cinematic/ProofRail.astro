@@ -75,7 +75,7 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
                   alt=""
                   width="240"
                   height="360"
-                  loading={index < 2 ? 'eager' : 'lazy'}
+                  loading="lazy"
                   decoding="async"
                 />
                 <span class={'tier tier--' + game.tier}>
@@ -261,7 +261,11 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
     aspect-ratio: 2 / 3;
     border: 1px solid var(--color-line);
     border-radius: 12px;
-    background: linear-gradient(145deg, #5c40b0, #228c86);
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-accent) 72%, var(--color-surface)),
+      color-mix(in srgb, var(--color-accent-2) 58%, var(--color-surface))
+    );
   }
 
   .cover img {
@@ -382,8 +386,68 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
   }
 
   @media (max-width: 759px) {
+    .proof {
+      padding-block: clamp(3.5rem, 10vw, 4.25rem);
+    }
+
+    .proof-heading {
+      gap: 0.9rem;
+    }
+
+    h2 {
+      font-size: clamp(2.25rem, 10vw, 2.75rem);
+      line-height: 1.02;
+    }
+
+    .proof-heading p {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    .stats {
+      margin-top: 2rem;
+    }
+
     .stats div:nth-child(n + 3) {
       border-top: 1px solid var(--color-line);
+    }
+
+    .game-grid {
+      box-sizing: border-box;
+      max-width: 100%;
+      grid-auto-columns: clamp(15rem, 78vw, 22rem);
+      grid-auto-flow: column;
+      grid-template-columns: none;
+      gap: 0.875rem;
+      margin-top: 2.25rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      padding: 0.2rem 1.25rem 0.45rem 0.2rem;
+      scroll-padding-inline: 0.2rem;
+      scroll-snap-type: inline mandatory;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .game-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .game-grid li {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+
+    .grade-note {
+      margin-top: 1rem;
+    }
+
+    .grade-note a {
+      display: flex;
+      width: fit-content;
+      min-height: 2.75rem;
+      align-items: center;
+      margin: 0.15rem 0 0;
     }
   }
 

@@ -254,14 +254,42 @@ const groups = [
   }
 
   @media (max-width: 36rem) {
+    .site-footer {
+      margin-top: 4.5rem;
+    }
+
     .footer-main,
     .credits-inner {
       width: min(100% - 2rem, 72rem);
     }
 
+    .footer-main {
+      gap: 3rem;
+      padding-block: 3.75rem;
+    }
+
+    .footer-statement p {
+      margin-top: 1.75rem;
+      font-size: clamp(2.35rem, 12vw, 3.25rem);
+      line-height: 1;
+    }
+
+    .footer-download {
+      margin-top: 1.75rem;
+    }
+
     .footer-directory {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      row-gap: 2.5rem;
+      row-gap: 1.75rem;
+    }
+
+    .footer-group h2 {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-group a {
+      min-height: 2.75rem;
+      padding-block: 0.45rem;
     }
 
     .credits-inner {

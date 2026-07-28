@@ -46,7 +46,7 @@ const stages = [
 
     <div class="artifact" aria-label={'How Pixel Port prepares ' + title + ' for Mac'}>
       <div class="selected-game">
-        <span class="selected-label">Selected from your library</span>
+        <span class="selected-label">From your Steam library</span>
         {
           game ? (
             <a href={'/games/' + game.slug} class="selected-link">
@@ -90,12 +90,15 @@ const stages = [
         }
       </ol>
 
-      <div class="launch-result">
+      <div class="launch-result" aria-hidden="true">
         <img src="/brand/mark.svg" alt="" width="72" height="72" />
         <span class="result-status"><span aria-hidden="true">&#10003;</span> Ready on Mac</span>
         <strong>{title}</strong>
         <p>Apple Silicon launch prepared</p>
-        <span class="launch-button">Launch game <span aria-hidden="true">&#9654;</span></span>
+        <span class="availability-note">
+          <span class="availability-mark" aria-hidden="true"></span>
+          Launches from the Pixel Port app
+        </span>
       </div>
     </div>
 
@@ -206,7 +209,11 @@ const stages = [
     aspect-ratio: 2 / 3;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 12px;
-    background: linear-gradient(145deg, #5c40b0, #228c86);
+    background: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-accent) 72%, var(--color-surface)),
+      color-mix(in srgb, var(--color-accent-2) 58%, var(--color-surface))
+    );
   }
 
   .selected-art img {
@@ -334,20 +341,26 @@ const stages = [
     font-size: 0.875rem;
   }
 
-  .launch-button {
+  .availability-note {
     display: flex;
     width: 100%;
-    min-height: 46px;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 0.55rem;
     margin-top: 1.4rem;
-    padding: 0.75rem 0.95rem;
-    border-radius: 999px;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    font-weight: 550;
+  }
+
+  .availability-mark {
+    width: 0.45rem;
+    height: 0.45rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
     background: var(--color-accent-2);
-    color: var(--color-ink);
-    font-size: 0.875rem;
-    font-weight: 750;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent-2) 12%, transparent);
   }
 
   .learning {
@@ -432,32 +445,88 @@ const stages = [
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 40rem) {
+    .sequence {
+      padding-block: 4.25rem;
+    }
+
+    h2 {
+      max-width: 12ch;
+      font-size: clamp(2.35rem, 11vw, 3rem);
+      line-height: 1;
+    }
+
+    .sequence-heading {
+      gap: 0.9rem;
+    }
+
+    .sequence-heading > p {
+      font-size: 0.9375rem;
+      line-height: 1.58;
+    }
+
     .artifact {
       grid-template-columns: 1fr;
+      margin-top: 2.25rem;
     }
 
     .selected-game,
-    .stages,
     .launch-result {
-      padding: 1.35rem;
+      display: none;
     }
 
     .stages {
-      border-top: 1px solid var(--color-line);
+      grid-column: 1;
+      grid-row: 1;
+      padding: 0.45rem 1.15rem;
+      border-top: 0;
       border-left: 0;
     }
 
-    .selected-art {
-      width: 120px;
+    .stages li {
+      gap: 0.75rem;
+      padding-block: 0.95rem;
+    }
+
+    .stage-mark {
+      width: 9px;
+      height: 9px;
+      margin-top: 0.42rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    .stages p {
+      margin-top: 0.35rem;
+      font-size: 0.8125rem;
+      line-height: 1.5;
     }
 
     .learning {
-      grid-template-columns: 1fr;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.85rem;
+      margin-top: 1rem;
+      padding-block: 1rem;
     }
 
     .learning a {
-      grid-column: auto;
+      grid-column: 2;
+    }
+
+    .learning-mark {
+      width: 36px;
+      height: 36px;
+    }
+
+    .learning strong {
+      font-size: 0.9375rem;
+    }
+
+    .learning p,
+    .learning a {
+      font-size: 0.8125rem;
     }
   }
 
