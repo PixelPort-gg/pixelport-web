@@ -55,7 +55,7 @@
     position: absolute;
     top: -14%;
     bottom: -14%;
-    left: 50%;
+    left: calc(45.6% - 1px);
     z-index: -1;
     width: 2px;
     background: linear-gradient(180deg, transparent, var(--color-accent), #7d89e9 48%, var(--color-accent-2), transparent);
@@ -64,6 +64,12 @@
       0 0 54px 14px rgba(63, 214, 206, 0.08);
     opacity: 0.82;
     transform: rotate(7deg);
+  }
+
+  @media (max-width: 620px) {
+    .portal-threshold {
+      left: calc(50% - 1px);
+    }
   }
 
   .portal-radiance {
