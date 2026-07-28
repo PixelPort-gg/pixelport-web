@@ -4,12 +4,18 @@ import games from '../../data/games.resolved.json';
 import catalogue from '../../data/catalogue.json';
 import { tierMeta, coverUrl, coverFallbackUrl, engineLabel, prettyAC, generate, type Tier } from '../../lib/catalog';
 
-// Seeded "you can play these" recommendations — curated games that genuinely run,
-// rotated deterministically by slug so different pages surface different trios.
-const pool = games.filter((g) => (g.tier === 'verified' || g.tier === 'playable') && g.appid);
-function seededPicks(slug: string) {
-  const seed = [...slug].reduce((a, c) => a + c.charCodeAt(0), 0);
-  return [0, 1, 2].map((i) => pool[(seed + i) % pool.length]);
+// Seeded recommendations keep the page useful and deterministic. Curated
+// alternatives on authored blocker pages take precedence when they exist.
+const playablePool = games.filter((g) => (g.tier === 'verified' || g.tier === 'playable') && g.appid);
+function seededPicks(game: any) {
+  const seed = [...game.slug].reduce((sum: number, char: string) => sum + char.charCodeAt(0), 0);
+  const seeded = [0, 1, 2, 3, 4].map((index) => playablePool[(seed + index) % playablePool.length]);
+  const curated = (game.blocker?.alternatives ?? [])
+    .map((slug: string) => playablePool.find((item) => item.slug === slug))
+    .filter(Boolean);
+  return [...curated, ...seeded]
+    .filter((item, index, list) => item && list.findIndex((candidate) => candidate?.slug === item.slug) === index)
+    .slice(0, 3);
 }
 
 export function getStaticPaths() {
@@ -23,16 +29,18 @@ const { game } = Astro.props as { game: any };
 const meta = tierMeta[game.tier as Tier];
 const cover = coverUrl(game.appid);
 const fb = coverFallbackUrl(game.appid);
+const landscape = fb;
 const isBlocked = game.tier === 'unsupported';
-const picks = seededPicks(game.slug);
+const picks = seededPicks(game);
 
-// Quick-facts row adapts to what we know about the game.
+// Quick facts adapt to the source: authored pages surface genre/test date;
+// generated catalogue pages surface the compatibility profile we actually know.
 const facts: [string, string][] = game._cat
   ? ([
       ['Engine', engineLabel(game.engine)],
       ['Graphics', game.graphics ? String(game.graphics).toUpperCase() : null],
       ['Anti-cheat', prettyAC(game.antiCheat)],
-    ].filter(([, v]) => v) as [string, string][])
+    ].filter(([, value]) => value) as [string, string][])
   : ([['Genre', game.genre], game.lastTested ? ['Last tested', game.lastTested] : null].filter(
       Boolean,
     ) as [string, string][]);
@@ -71,141 +79,479 @@ const jsonLd = {
 <Base title={seoTitle} description={description}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 
-  <article class="wrap py-16">
-    <a href="/games" class="text-sm text-muted hover:text-fg">&larr; All games</a>
+  <article>
+    <header class:list={['game-masthead', { 'game-masthead--blocked': isBlocked }]}>
+      {
+        landscape && (
+          <img
+            src={landscape}
+            alt=""
+            class="game-masthead__landscape"
+            aria-hidden="true"
+            onerror="this.remove();"
+          />
+        )
+      }
+      <div class="game-masthead__veil" aria-hidden="true"></div>
+      <div class="game-masthead__pixels" aria-hidden="true"></div>
 
-    <header class="mt-6 flex flex-col gap-7 sm:flex-row sm:items-start">
-      <div class="w-36 shrink-0 sm:w-44">
-        <div class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]">
-          <span class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95">
-            {game.title}
-          </span>
-          {
-            cover && (
-              <img
-                src={cover}
-                data-fb={fb}
-                alt={`${game.title} cover art`}
-                class="absolute inset-0 h-full w-full object-cover"
-                onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
-              />
-            )
-          }
+      <div class="wrap game-masthead__inner">
+        <a href="/games" class="game-back-link"><span aria-hidden="true">←</span> All games</a>
+
+        <div class="game-cover-stage">
+          <div class="game-cover">
+            <span>{game.title}</span>
+            {
+              cover && (
+                <img
+                  src={cover}
+                  data-fb={fb}
+                  alt={`${game.title} cover art`}
+                  decoding="async"
+                  onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+                />
+              )
+            }
+          </div>
+          <span class="game-cover-stage__edge" aria-hidden="true"></span>
         </div>
-      </div>
 
-      <div class="min-w-0">
-        <span class={`inline-block rounded-full px-3 py-1 text-sm font-semibold ring-1 ${meta.badge}`}>
-          {meta.label}{!isBlocked ? ' on Mac' : ''}
-        </span>
-        <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">{h1}</h1>
-        <p class="mt-4 max-w-2xl text-lg text-muted">{game.summary}</p>
+        <div class="game-masthead__copy">
+          <span class={`game-tier-badge ${meta.badge}`}>
+            <span aria-hidden="true"></span>
+            {meta.label}{!isBlocked ? ' on Mac' : ''}
+          </span>
+          <h1>{h1}</h1>
+          <p class="game-summary">{game.summary}</p>
+          <a href={isBlocked ? '#alternatives' : '/download'} class:list={['game-primary-cta', { 'game-primary-cta--blocked': isBlocked }]}>
+            {isBlocked ? 'See games that run' : `Download & play ${game.title}`}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </header>
 
-    {
-      isBlocked ? (
-        <div class="mt-12 max-w-2xl space-y-6">
-          <div class="rounded-2xl border border-blocked/30 bg-blocked/10 p-6">
-            <h2 class="font-semibold text-blocked">What blocks it</h2>
-            <p class="mt-2 text-fg/85">
-              {game.title} uses {game.blocker.antiCheat}. Anti-cheat like this needs to run deep in the
-              system, and that access is not available to a compatibility layer on macOS. This is not a
-              graphics or performance limit, and it is not something Pixel Port can work around.
-            </p>
-          </div>
-
-          <div class="rounded-2xl border border-line bg-surface/50 p-6">
-            <h2 class="font-semibold text-fg">Who this is up to</h2>
-            <p class="mt-1 text-sm font-medium text-accent-2">{game.blocker.whoDecides}</p>
-            <p class="mt-3 text-fg/85">{game.blocker.status}</p>
-          </div>
-
-          <div class="rounded-2xl border border-line bg-surface/50 p-6">
-            <h2 class="font-semibold text-fg">You can play these on Mac</h2>
-            <ul class="mt-4 grid grid-cols-3 gap-3">
-              {picks.map((p) => (
-                <li>
-                  <a href={`/games/${p.slug}`} class="lift group block">
-                    <div class="relative aspect-[2/3] overflow-hidden rounded-lg border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86]">
-                      <span class="absolute inset-0 flex items-center justify-center p-2 text-center text-[11px] font-semibold text-white/95">
-                        {p.title}
-                      </span>
-                      {coverUrl(p.appid) && (
-                        <img
-                          src={coverUrl(p.appid)}
-                          data-fb={coverFallbackUrl(p.appid)}
-                          alt={`${p.title} cover art`}
-                          loading="lazy"
-                          class="lift-img absolute inset-0 h-full w-full object-cover"
-                          onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
-                        />
-                      )}
-                    </div>
-                    <p class="mt-2 truncate text-xs font-medium text-fg group-hover:text-accent-2">{p.title}</p>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <a href="/games" class="inline-block text-sm font-medium text-accent-2 hover:underline">
-            Browse the full catalogue and what runs on Mac &rarr;
-          </a>
-        </div>
-      ) : (
-        <Fragment>
-          {facts.length > 0 && (
-            <dl class="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
-              {facts.map(([k, v]) => (
-                <div class="rounded-xl border border-line bg-surface/50 p-4">
-                  <dt class="text-xs uppercase tracking-wide text-muted">{k}</dt>
-                  <dd class="mt-1 text-sm text-fg">{v}</dd>
+    <div class="wrap game-detail-shell">
+      <div class="game-detail-main">
+        {
+          isBlocked ? (
+            <>
+              <section class="game-section game-section--first" aria-labelledby="blocker-heading">
+                <h2 id="blocker-heading">What stops {game.title}</h2>
+                <div class="blocker-panel">
+                  <span class="blocker-panel__line" aria-hidden="true"></span>
+                  <p class="blocker-panel__label">{game.blocker.antiCheat}</p>
+                  <p>
+                    Anti-cheat like this needs to run deep in the system, and that access is not
+                    available to a compatibility layer on macOS. This is not a graphics or performance
+                    limit, and it is not something Pixel Port can work around.
+                  </p>
                 </div>
-              ))}
-            </dl>
-          )}
+              </section>
 
-          <section class="mt-12 max-w-2xl">
-            <h2 class="text-2xl font-semibold">What you need</h2>
-            <ul class="mt-4 space-y-2 text-fg/85">
-              {game.requirements.map((r: string) => (
-                <li class="flex gap-2">
-                  <span class="text-accent-2">&bull;</span>
-                  {r}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section class="mt-12 max-w-2xl">
-            <h2 class="text-2xl font-semibold">Step by step</h2>
-            <ol class="mt-6 space-y-5">
-              {game.steps.map((s: { title: string; body: string }, i: number) => (
-                <li class="flex gap-4 rounded-2xl border border-line bg-surface/50 p-5">
-                  <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-2 text-sm font-bold text-white">
-                    {i + 1}
-                  </span>
+              <section class="game-section" aria-labelledby="decision-heading">
+                <h2 id="decision-heading">Who can change this?</h2>
+                <div class="decision-panel">
                   <div>
-                    <h3 class="font-semibold text-fg">{s.title}</h3>
-                    <p class="mt-1 text-sm text-fg/80">{s.body}</p>
+                    <span>Decision owner</span>
+                    <strong>{game.blocker.whoDecides}</strong>
                   </div>
-                </li>
-              ))}
-            </ol>
-          </section>
+                  <p>{game.blocker.status}</p>
+                </div>
+              </section>
 
-          <div class="mt-14 max-w-2xl rounded-2xl border border-accent/30 bg-accent/10 p-6">
-            <p class="text-lg font-medium">Ready to play {game.title} on your Mac?</p>
-            <a
-              href="/download"
-              class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
-            >
-              Download &amp; Play {game.title}
-            </a>
+              <section id="alternatives" class="game-section" aria-labelledby="alternatives-heading">
+                <h2 id="alternatives-heading">You can play these on Mac</h2>
+                <p class="game-section__lede">
+                  These games have a verified or playable result on Apple Silicon right now.
+                </p>
+                <ul class="game-picks">
+                  {picks.map((pick) => (
+                    <li>
+                      <a href={`/games/${pick.slug}`}>
+                        <div class="game-pick__art">
+                          <span>{pick.title}</span>
+                          {coverUrl(pick.appid) && (
+                            <img
+                              src={coverUrl(pick.appid)}
+                              data-fb={coverFallbackUrl(pick.appid)}
+                              alt={`${pick.title} cover art`}
+                              loading="lazy"
+                              decoding="async"
+                              onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+                            />
+                          )}
+                        </div>
+                        <p>{pick.title}</p>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <a href="/games" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
+              </section>
+            </>
+          ) : (
+            <>
+              <section class="game-section game-section--first" aria-labelledby="requirements-heading">
+                <h2 id="requirements-heading">What you need</h2>
+                <ul class="requirements-list">
+                  {game.requirements.map((requirement: string) => (
+                    <li><span aria-hidden="true">✓</span>{requirement}</li>
+                  ))}
+                </ul>
+              </section>
+
+              <section class="game-section" aria-labelledby="steps-heading">
+                <h2 id="steps-heading">From Windows game to Mac launch</h2>
+                <ol class="launch-steps">
+                  {game.steps.map((step: { title: string; body: string }, index: number) => (
+                    <li>
+                      <div class="launch-step__number"><span>{String(index + 1).padStart(2, '0')}</span></div>
+                      <div>
+                        <h3>{step.title}</h3>
+                        <p>{step.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </>
+          )
+        }
+      </div>
+
+      <aside class="game-detail-rail" aria-label={`${game.title} compatibility facts`}>
+        <div class="game-detail-rail__inner">
+          <div class="game-rail-verdict">
+            <span class={meta.text} aria-hidden="true"></span>
+            <div>
+              <small>Current grade</small>
+              <strong class={meta.text}>{meta.label}</strong>
+            </div>
           </div>
-        </Fragment>
-      )
-    }
+
+          <dl>
+            {facts.map(([key, value]) => (
+              <div>
+                <dt>{key}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+            <div>
+              <dt>Hardware</dt>
+              <dd>Apple Silicon</dd>
+            </div>
+            <div>
+              <dt>System</dt>
+              <dd>macOS 14+</dd>
+            </div>
+          </dl>
+
+          {
+            isBlocked ? (
+              <>
+                <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that runs <span aria-hidden="true">→</span></a>
+                <a href="/download" class="game-rail-secondary">Download Pixel Port free</a>
+                <p>Check compatibility before installing. No fabricated green lights.</p>
+              </>
+            ) : (
+              <>
+                <a href="/download" class="game-rail-cta">Download &amp; play <span aria-hidden="true">→</span></a>
+                <p>Free during beta. No Boot Camp, Windows license, or terminal setup.</p>
+              </>
+            )
+          }
+        </div>
+      </aside>
+    </div>
   </article>
+
+  <style>
+    .game-masthead {
+      position: relative;
+      isolation: isolate;
+      min-height: 39rem;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-line);
+      background:
+        radial-gradient(circle at 75% 30%, rgba(63, 214, 206, 0.13), transparent 26rem),
+        radial-gradient(circle at 18% 25%, rgba(146, 104, 255, 0.2), transparent 28rem),
+        var(--color-base-bottom);
+    }
+
+    .game-masthead--blocked {
+      background:
+        radial-gradient(circle at 76% 32%, rgba(224, 85, 107, 0.13), transparent 25rem),
+        radial-gradient(circle at 18% 25%, rgba(146, 104, 255, 0.15), transparent 28rem),
+        var(--color-base-bottom);
+    }
+
+    .game-masthead__landscape {
+      position: absolute;
+      z-index: -4;
+      inset: -4%;
+      width: 108%;
+      height: 108%;
+      object-fit: cover;
+      opacity: 0.29;
+      filter: saturate(0.72) contrast(1.08);
+    }
+
+    .game-masthead__veil {
+      position: absolute;
+      z-index: -3;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6, 4, 16, 0.96) 0%, rgba(6, 4, 16, 0.75) 46%, rgba(6, 4, 16, 0.62) 100%),
+        linear-gradient(0deg, var(--color-base-bottom), transparent 48%, rgba(10, 8, 22, 0.25));
+    }
+
+    .game-masthead__pixels {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 21px 21px;
+      mask-image: linear-gradient(90deg, black, transparent 45%, black);
+    }
+
+    .game-masthead__inner {
+      display: grid;
+      grid-template-columns: 10.5rem minmax(0, 1fr);
+      align-items: end;
+      gap: 2.5rem;
+      min-height: 39rem;
+      padding-block: 2rem 4.5rem;
+    }
+
+    .game-back-link {
+      grid-column: 1 / -1;
+      align-self: start;
+      display: inline-flex;
+      width: fit-content;
+      min-height: 2.75rem;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--color-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .game-back-link:hover { color: var(--color-fg); }
+    .game-back-link span { color: var(--color-accent-2); }
+
+    .game-cover-stage {
+      position: relative;
+      width: 100%;
+      filter: drop-shadow(0 2rem 2rem rgba(0, 0, 0, 0.45));
+    }
+
+    .game-cover-stage::before {
+      position: absolute;
+      inset: 8% -11% -8% 12%;
+      z-index: -1;
+      border: 1px solid rgba(146, 104, 255, 0.28);
+      content: '';
+      transform: translate(0.6rem, 0.6rem);
+    }
+
+    .game-cover {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 0.8rem;
+      background: linear-gradient(150deg, #5c40b0, #228c86);
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .game-cover > span {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .game-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .game-cover-stage__edge {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, var(--color-accent), transparent 48%, var(--color-accent-2));
+      box-shadow: 0 0 20px rgba(146, 104, 255, 0.75);
+    }
+
+    .game-masthead__copy { max-width: 47rem; padding-bottom: 0.25rem; }
+    .game-tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      border-radius: 999px;
+      padding: 0.43rem 0.7rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 0 0 1px currentColor;
+      backdrop-filter: blur(12px);
+    }
+    .game-tier-badge > span { width: 0.36rem; height: 0.36rem; border-radius: 50%; background: currentColor; box-shadow: 0 0 12px currentColor; }
+
+    .game-masthead h1 {
+      max-width: 15ch;
+      margin-top: 1rem;
+      font-size: clamp(2.8rem, 6.2vw, 5.4rem);
+      font-weight: 650;
+      letter-spacing: -0.058em;
+      line-height: 0.95;
+      text-wrap: balance;
+    }
+
+    .game-summary { max-width: 43rem; margin-top: 1.25rem; color: rgba(245, 245, 247, 0.72); font-size: 1.05rem; line-height: 1.68; }
+
+    .game-primary-cta,
+    .game-rail-cta {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      border-radius: 999px;
+      color: var(--color-ink);
+      background: linear-gradient(100deg, var(--color-accent), var(--color-accent-2));
+      box-shadow: var(--shadow-glow);
+      font-weight: 750;
+    }
+
+    .game-primary-cta { margin-top: 1.6rem; padding: 0.75rem 1.15rem; font-size: 0.85rem; }
+    .game-primary-cta--blocked { color: var(--color-fg); background: rgba(224, 85, 107, 0.12); box-shadow: inset 0 0 0 1px rgba(224, 85, 107, 0.42); }
+
+    .game-detail-shell { display: grid; gap: 3rem; padding-block: 5rem 7rem; }
+    .game-detail-main { min-width: 0; }
+    .game-section { padding-top: 4.5rem; border-top: 1px solid var(--color-line); }
+    .game-section--first { padding-top: 0; border-top: 0; }
+    .game-section + .game-section { margin-top: 4.5rem; }
+    .game-section h2 {
+      max-width: 19ch;
+      font-size: clamp(1.75rem, 4vw, 2.65rem);
+      font-weight: 650;
+      letter-spacing: -0.035em;
+      line-height: 1.06;
+      text-wrap: balance;
+    }
+    .game-section__lede { max-width: 37rem; margin-top: 1rem; color: var(--color-muted); line-height: 1.65; }
+
+    .requirements-list { display: grid; gap: 0.75rem; margin-top: 1.7rem; }
+    .requirements-list li {
+      display: flex;
+      min-height: 3.7rem;
+      align-items: center;
+      gap: 0.85rem;
+      border: 1px solid var(--color-line);
+      border-radius: 0.85rem;
+      padding: 0.9rem 1rem;
+      color: rgba(245, 245, 247, 0.84);
+      background: rgba(22, 18, 42, 0.4);
+    }
+    .requirements-list span { display: grid; width: 1.5rem; height: 1.5rem; flex: none; place-items: center; border-radius: 50%; color: var(--color-accent-2); background: rgba(63, 214, 206, 0.1); font-size: 0.72rem; }
+
+    .launch-steps { position: relative; display: grid; gap: 0; margin-top: 1.9rem; }
+    .launch-steps::before { position: absolute; top: 1.2rem; bottom: 1.2rem; left: 1.45rem; width: 1px; content: ''; background: linear-gradient(var(--color-accent), var(--color-accent-2)); opacity: 0.35; }
+    .launch-steps li { position: relative; display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding: 0 0 2rem; }
+    .launch-steps li:last-child { padding-bottom: 0; }
+    .launch-step__number { display: flex; justify-content: center; }
+    .launch-step__number span { z-index: 1; display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid rgba(146, 104, 255, 0.4); border-radius: 50%; color: var(--color-accent-2); background: var(--color-base-bottom); font-size: 0.65rem; font-weight: 750; }
+    .launch-steps li > div:last-child { border: 1px solid var(--color-line); border-radius: 1rem; padding: 1.1rem 1.2rem; background: linear-gradient(120deg, rgba(31, 24, 56, 0.63), rgba(22, 18, 42, 0.3)); }
+    .launch-steps h3 { font-weight: 650; }
+    .launch-steps p { margin-top: 0.45rem; color: rgba(245, 245, 247, 0.7); font-size: 0.9rem; line-height: 1.6; }
+
+    .blocker-panel,
+    .decision-panel { margin-top: 1.7rem; border: 1px solid var(--color-line); border-radius: 1rem; background: rgba(22, 18, 42, 0.45); }
+    .blocker-panel { position: relative; overflow: hidden; padding: 1.4rem; }
+    .blocker-panel__line { position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--color-blocked); box-shadow: 0 0 18px rgba(224, 85, 107, 0.65); }
+    .blocker-panel__label { color: var(--color-blocked) !important; font-size: 0.8rem !important; font-weight: 700; }
+    .blocker-panel p:last-child { margin-top: 0.75rem; color: rgba(245, 245, 247, 0.78); line-height: 1.68; }
+    .decision-panel { overflow: hidden; }
+    .decision-panel > div { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--color-line); padding: 1rem 1.2rem; }
+    .decision-panel span { color: var(--color-muted); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .decision-panel strong { color: var(--color-accent-2); font-size: 0.84rem; }
+    .decision-panel > p { padding: 1.2rem; color: rgba(245, 245, 247, 0.78); line-height: 1.68; }
+
+    .game-picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1.6rem; }
+    .game-pick__art { position: relative; aspect-ratio: 2 / 3; overflow: hidden; border: 1px solid var(--color-line); border-radius: 0.65rem; background: linear-gradient(150deg, #5c40b0, #228c86); }
+    .game-pick__art > span { position: absolute; inset: 0; display: grid; place-items: center; padding: 0.65rem; color: white; font-size: 0.65rem; font-weight: 650; text-align: center; }
+    .game-pick__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .game-picks a > p { overflow: hidden; margin-top: 0.55rem; color: var(--color-fg); font-size: 0.75rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+    .game-picks a:hover img { transform: scale(1.035); }
+    .game-picks a:hover > p { color: var(--color-accent-2); }
+    .game-text-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.7rem; margin-top: 1.4rem; color: var(--color-accent-2); font-size: 0.82rem; font-weight: 650; }
+
+    .game-detail-rail__inner {
+      position: sticky;
+      top: 5.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.1rem;
+      padding: 1.25rem;
+      background: linear-gradient(145deg, rgba(31, 24, 56, 0.76), rgba(13, 10, 28, 0.82));
+      box-shadow: 0 1.8rem 4rem -3rem rgba(146, 104, 255, 0.6), inset 0 1px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(16px);
+    }
+    .game-detail-rail__inner::before { position: absolute; inset: 0 0 auto; height: 2px; content: ''; background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2)); }
+    .game-rail-verdict { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.25rem; }
+    .game-rail-verdict > span { width: 0.6rem; height: 0.6rem; flex: none; border-radius: 50%; background: currentColor; box-shadow: 0 0 14px currentColor; }
+    .game-rail-verdict small { display: block; color: var(--color-muted); font-size: 0.65rem; }
+    .game-rail-verdict strong { display: block; margin-top: 0.1rem; font-size: 0.95rem; }
+    .game-detail-rail dl { display: grid; gap: 0; margin-top: 1.25rem; border-block: 1px solid var(--color-line); }
+    .game-detail-rail dl > div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.72rem; border-bottom: 1px solid var(--color-line); }
+    .game-detail-rail dl > div:last-child { border-bottom: 0; }
+    .game-detail-rail dt { color: var(--color-muted); font-size: 0.69rem; }
+    .game-detail-rail dd { color: rgba(245, 245, 247, 0.9); font-size: 0.72rem; font-weight: 600; text-align: right; }
+    .game-rail-cta { width: 100%; margin-top: 1.25rem; padding: 0.72rem 0.9rem; font-size: 0.78rem; }
+    .game-rail-cta--quiet { color: var(--color-fg); background: rgba(224, 85, 107, 0.12); box-shadow: inset 0 0 0 1px rgba(224, 85, 107, 0.4); }
+    .game-rail-secondary { display: flex; min-height: 2.75rem; align-items: center; justify-content: center; color: var(--color-accent-2); font-size: 0.75rem; font-weight: 650; }
+    .game-detail-rail__inner > p:last-child { margin-top: 0.75rem; color: var(--color-muted); font-size: 0.7rem; line-height: 1.5; text-align: center; }
+
+    @media (min-width: 48rem) {
+      .game-masthead__inner { grid-template-columns: 11.5rem minmax(0, 1fr); }
+      .game-detail-shell { grid-template-columns: minmax(0, 1fr) 17.5rem; gap: 4rem; }
+    }
+
+    @media (min-width: 64rem) {
+      .game-masthead__inner { grid-template-columns: 13rem minmax(0, 1fr); gap: 3.5rem; }
+      .game-detail-shell { grid-template-columns: minmax(0, 42rem) 18rem; justify-content: space-between; gap: 5rem; }
+    }
+
+    @media (max-width: 47.999rem) {
+      .game-masthead,
+      .game-masthead__inner { min-height: auto; }
+      .game-masthead__inner { grid-template-columns: 1fr; gap: 1.4rem; padding-block: 1rem 3.5rem; }
+      .game-back-link { margin-bottom: 0.75rem; }
+      .game-cover-stage { width: 7.5rem; }
+      .game-masthead__copy { padding-bottom: 0; }
+      .game-tier-badge { font-size: 0.66rem; }
+      .game-masthead h1 { margin-top: 0.8rem; font-size: clamp(2rem, 8.3vw, 3rem); }
+      .game-summary { font-size: 0.94rem; }
+      .game-detail-shell { padding-block: 3.5rem 5rem; }
+      .game-detail-rail { order: -1; }
+      .game-detail-rail__inner { position: static; }
+    }
+
+    @media (max-width: 25rem) {
+      .game-cover-stage { width: 6.2rem; }
+      .game-masthead h1 { font-size: 1.85rem; }
+      .game-picks { gap: 0.55rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .game-pick__art img { transition: none; }
+      .game-picks a:hover img { transform: none; }
+    }
+  </style>
 </Base>

@@ -1,28 +1,199 @@
 ---
 import Base from '../../layouts/Base.astro';
+import PageIntro from '../../components/editorial/PageIntro.astro';
 import { getCollection } from 'astro:content';
 
 const docs = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Base title="Docs" description="How Pixel Port works: Prism, the Synthesis Engine, the Distributed Validation Network, and our honest compatibility tiers.">
-  <section class="wrap py-16">
-    <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Docs</h1>
-    <p class="mt-4 max-w-2xl text-lg text-muted">How the runtime, the Synthesis Engine, and our honest compatibility tiers work.</p>
-    <ul class="mt-10 space-y-3">
-      {
-        docs.map((d) => (
-          <li>
-            <a
-              href={`/docs/${d.id}`}
-              class="block rounded-xl border border-line bg-surface/50 p-5 transition-colors hover:border-accent/40 hover:bg-surface"
-            >
-              <h2 class="font-semibold text-fg">{d.data.title}</h2>
-              {d.data.description && <p class="mt-1 text-sm text-muted">{d.data.description}</p>}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+  <PageIntro
+    title="Docs"
+    description="How the runtime, the Synthesis Engine, and our honest compatibility tiers work."
+  />
+
+  <section class="docs-index" aria-labelledby="docs-title">
+    <div class="docs-layout">
+      <aside class="system-map" aria-label="Pixel Port system overview">
+        <h2 id="docs-title">One launch.<br />A connected system.</h2>
+        <p class="map-copy">
+          Follow a game from configuration through translation and validation, with the limits
+          explained as clearly as the wins.
+        </p>
+        <div class="route-map" aria-hidden="true">
+          <span>Game</span>
+          <i></i>
+          <span>Synthesis</span>
+          <i></i>
+          <span>Prism</span>
+          <i></i>
+          <span>Metal</span>
+        </div>
+      </aside>
+
+      <ol class="docs-list">
+        {
+          docs.map((doc) => (
+            <li>
+              <a href={`/docs/${doc.id}`} class="doc-entry">
+                <div>
+                  <h3>{doc.data.title}</h3>
+                  {doc.data.description && <p>{doc.data.description}</p>}
+                </div>
+                <span class="doc-arrow" aria-hidden="true">Read ↗</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
   </section>
+
+  <style>
+    .docs-index {
+      width: min(68rem, calc(100% - 3rem));
+      margin-inline: auto;
+      padding-block: clamp(4.5rem, 9vw, 8rem) 2rem;
+    }
+
+    .docs-layout {
+      display: grid;
+      grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(3rem, 8vw, 7.5rem);
+    }
+
+    .system-map {
+      position: relative;
+      align-self: start;
+      overflow: hidden;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      border: 1px solid var(--color-line);
+      border-radius: 1.35rem;
+      background:
+        repeating-linear-gradient(0deg, transparent 0 20px, rgba(255, 255, 255, 0.02) 20px 21px),
+        repeating-linear-gradient(90deg, transparent 0 20px, rgba(255, 255, 255, 0.02) 20px 21px),
+        color-mix(in srgb, var(--color-surface) 54%, transparent);
+    }
+
+    .system-map::after {
+      position: absolute;
+      top: -4rem;
+      right: -4rem;
+      width: 11rem;
+      height: 11rem;
+      border-radius: 50%;
+      background: rgba(146, 104, 255, 0.13);
+      content: '';
+      filter: blur(2.8rem);
+      pointer-events: none;
+    }
+
+    .system-map h2 {
+      margin: 0;
+      color: var(--color-fg);
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      font-weight: 620;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+
+    .map-copy {
+      margin: 1.2rem 0 0;
+      color: var(--color-muted);
+      font-size: 0.875rem;
+      line-height: 1.65;
+    }
+
+    .route-map {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 2.25rem;
+      color: color-mix(in srgb, var(--color-fg) 83%, transparent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.625rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .route-map span {
+      padding: 0.35rem 0.5rem;
+      border: 1px solid var(--color-line);
+      border-radius: 0.35rem;
+      background: color-mix(in srgb, var(--color-base-bottom) 50%, transparent);
+    }
+
+    .route-map i {
+      width: 1px;
+      height: 0.75rem;
+      margin-left: 1rem;
+      background: linear-gradient(var(--color-accent), var(--color-accent-2));
+    }
+
+    .docs-list {
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--color-line);
+      list-style: none;
+    }
+
+    .doc-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.25rem;
+      align-items: start;
+      padding-block: 1.65rem;
+      border-bottom: 1px solid var(--color-line);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .doc-entry h3 {
+      margin: 0;
+      color: var(--color-fg);
+      font-size: 1.075rem;
+      font-weight: 620;
+      letter-spacing: -0.025em;
+      transition: color 160ms ease;
+    }
+
+    .doc-entry p {
+      max-width: 38rem;
+      margin: 0.55rem 0 0;
+      color: var(--color-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .doc-arrow {
+      color: var(--color-muted);
+      font-size: 0.6875rem;
+      font-weight: 650;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 160ms ease;
+    }
+
+    .doc-entry:hover h3,
+    .doc-entry:hover .doc-arrow {
+      color: var(--color-accent-2);
+    }
+
+    @media (max-width: 45rem) {
+      .docs-index {
+        width: min(100% - 2rem, 68rem);
+      }
+
+      .docs-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .doc-entry h3,
+      .doc-arrow {
+        transition: none;
+      }
+    }
+  </style>
 </Base>

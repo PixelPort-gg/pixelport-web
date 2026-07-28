@@ -23,13 +23,12 @@ const meta = compatMeta[game.tier];
 const v = verdict(game);
 const isNo = game.tier === 'unsupported';
 
-// Cross-links: verified/playable pages point at same-tier company; untested and
-// honest-no pages point at what genuinely DOES run. Seeded by slug so different
-// pages surface different picks, deterministically.
+// Verified/playable pages keep their same-tier company. Untested and honest-no
+// pages immediately point to games that are genuinely verified on real Macs.
 const linkTier = game.tier === 'verified' || game.tier === 'playable' ? game.tier : 'verified';
 const pool = all.filter((g) => g.tier === linkTier && g.appid !== game.appid);
-const seed = [...game.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
-const picks = [0, 1, 2, 3].map((i) => pool[(seed + i) % pool.length]);
+const seed = [...game.slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+const picks = [0, 1, 2, 3].map((index) => pool[(seed + index) % pool.length]);
 const picksHeading =
   game.tier === 'verified'
     ? 'Also verified on Mac'
@@ -38,6 +37,7 @@ const picksHeading =
       : 'These run on Mac — verified';
 
 const art = artChain(game.appid);
+const landscape = ogImage(game.appid);
 const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
 const description = metaDescription(game);
 const canonical = new URL(pagePath(game), Astro.site).toString();
@@ -85,166 +85,413 @@ const jsonLd = {
     },
   ],
 };
+
+const evidence =
+  game.tier === 'verified'
+    ? 'Real Mac run'
+    : game.tier === 'playable'
+      ? 'Community + template'
+      : game.tier === 'untested'
+        ? 'Awaiting first run'
+        : 'Known blocker';
 ---
 
 <Base title={title} description={description} ogImage={ogImage(game.appid)}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 
-  <article class="wrap py-16">
-    <a href="/mac/" class="text-sm text-muted hover:text-fg">&larr; Does it run on Mac?</a>
+  <article>
+    <header class:list={['compat-masthead', { 'compat-masthead--blocked': isNo }]}>
+      <img
+        src={landscape}
+        alt=""
+        class="compat-masthead__landscape"
+        aria-hidden="true"
+        onerror="this.remove();"
+      />
+      <div class="compat-masthead__veil" aria-hidden="true"></div>
+      <div class="compat-masthead__pixels" aria-hidden="true"></div>
 
-    <header class="mt-6 flex flex-col gap-7 sm:flex-row sm:items-start">
-      <div class="w-36 shrink-0 sm:w-44">
-        <div
-          class="relative aspect-[2/3] overflow-hidden rounded-xl border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86] shadow-[var(--shadow-glow)]"
-        >
-          <span
-            class="absolute inset-0 flex items-center justify-center p-3 text-center text-sm font-semibold text-white/95"
-          >
-            {game.name}
-          </span>
-          <img
-            src={art.src}
-            data-fb={art.fallbacks}
-            alt={`${game.name} cover art`}
-            class="absolute inset-0 h-full w-full object-cover"
-            onerror={ART_ONERROR}
-          />
+      <div class="wrap compat-masthead__inner">
+        <a href="/mac/" class="compat-back-link"><span aria-hidden="true">←</span> Does it run on Mac?</a>
+
+        <div class="compat-cover-stage">
+          <div class="compat-cover">
+            <span>{game.name}</span>
+            <img
+              src={art.src}
+              data-fb={art.fallbacks}
+              alt={`${game.name} cover art`}
+              decoding="async"
+              onerror={ART_ONERROR}
+            />
+          </div>
+          <span class="compat-cover-stage__edge" aria-hidden="true"></span>
         </div>
-      </div>
 
-      <div class="min-w-0">
-        <span class={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold ring-1 ${meta.badge}`}>
-          <span class={`h-1.5 w-1.5 rounded-full ${meta.dot}`}></span>
-          {meta.short}
-        </span>
-        <h1 class="mt-3 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-          Does {game.name} run on Mac?
-        </h1>
-        <p
-          class={`mt-4 text-xl font-medium ${
-            isNo
-              ? 'text-blocked'
-              : game.tier === 'untested'
-                ? 'text-fg'
-                : game.tier === 'playable'
-                  ? 'text-playable'
-                  : 'text-verified'
-          }`}
-        >
-          {v.headline}
-        </p>
-        <p class="mt-3 max-w-2xl text-lg text-muted">{v.body}</p>
+        <div class="compat-masthead__copy">
+          <span class={`compat-tier-badge ${meta.badge}`}>
+            <span class={meta.dot} aria-hidden="true"></span>
+            {meta.short}
+          </span>
+          <h1>Does {game.name} run on Mac?</h1>
+          <p class:list={['compat-headline', {
+            'text-blocked': isNo,
+            'text-fg': game.tier === 'untested',
+            'text-playable': game.tier === 'playable',
+            'text-verified': game.tier === 'verified',
+          }]}>{v.headline}</p>
+          <p class="compat-summary">{v.body}</p>
+          <a href={isNo ? '#alternatives' : '/download'} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
+            {isNo ? 'See verified alternatives' : game.tier === 'untested' ? 'Try it free on your Mac' : `Download & play ${game.name}`}
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </header>
 
-    {
-      isNo ? (
-        <div class="mt-12 max-w-2xl space-y-6">
-          {game.reason && (
-            <div class="rounded-2xl border border-blocked/30 bg-blocked/10 p-6">
-              <h2 class="font-semibold text-blocked">Why it doesn't run</h2>
-              <p class="mt-2 text-fg/85">{game.reason}</p>
-              <p class="mt-3 text-sm text-muted">
-                Blocks like this sit with the game's publisher, not with your Mac. If that ever
-                changes, this page changes with it.
-              </p>
-            </div>
-          )}
-          <div class="rounded-2xl border border-line bg-surface/50 p-6">
-            <h2 class="font-semibold text-fg">The good news</h2>
-            <p class="mt-2 text-fg/85">
-              Plenty of Windows games genuinely do run on Apple Silicon — verified end to end on
-              real Macs, free through Pixel Port. Start with the ones below.
-            </p>
-          </div>
-        </div>
-      ) : (
-        <section class="mt-12 max-w-2xl">
-          <h2 class="text-2xl font-semibold">
-            {game.tier === 'untested' ? `Try ${game.name} on your Mac` : `Play ${game.name} on your Mac`}
-          </h2>
-          <ol class="mt-6 space-y-5">
-            {[
-              {
-                title: 'Install Pixel Port',
-                body: 'Download Pixel Port free. It sets up everything a Windows game needs on first launch.',
-              },
-              {
-                title: `Add ${game.name}`,
-                body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
-              },
-              {
-                title: game.tier === 'untested' ? 'Play — and help grade it' : 'Play',
-                body:
-                  game.tier === 'untested'
-                    ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
-                    : 'Launch it from your Library. No bottles, no terminal, no tinkering.',
-              },
-            ].map((s, i) => (
-              <li class="flex gap-4 rounded-2xl border border-line bg-surface/50 p-5">
-                <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-accent to-accent-2 text-sm font-bold text-white">
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 class="font-semibold text-fg">{s.title}</h3>
-                  <p class="mt-1 text-sm text-fg/80">{s.body}</p>
+    <div class="wrap compat-detail-shell">
+      <div class="compat-detail-main">
+        {
+          isNo ? (
+            <section class="compat-section compat-section--first" aria-labelledby="reason-heading">
+              <h2 id="reason-heading">Why it doesn’t run</h2>
+              {game.reason ? (
+                <div class="compat-blocker-panel">
+                  <span aria-hidden="true"></span>
+                  <p class="compat-blocker-panel__reason">{game.reason}</p>
+                  <p>
+                    Blocks like this sit with the game’s publisher, not with your Mac. If that ever
+                    changes, this page changes with it.
+                  </p>
                 </div>
-              </li>
-            ))}
-          </ol>
+              ) : (
+                <div class="compat-blocker-panel">
+                  <span aria-hidden="true"></span>
+                  <p>
+                    This game has a confirmed compatibility blocker on Apple Silicon. We only publish
+                    the cause when the evidence is specific enough to be useful.
+                  </p>
+                </div>
+              )}
+              <div class="compat-good-news">
+                <strong>The good news</strong>
+                <p>
+                  Plenty of Windows games genuinely do run on Apple Silicon, verified end to end on
+                  real Macs. Start with the results below.
+                </p>
+              </div>
+            </section>
+          ) : (
+            <section class="compat-section compat-section--first" aria-labelledby="steps-heading">
+              <h2 id="steps-heading">
+                {game.tier === 'untested' ? `Try ${game.name} on your Mac` : `Play ${game.name} on your Mac`}
+              </h2>
+              <ol class="compat-launch-steps">
+                {[
+                  {
+                    title: 'Install Pixel Port',
+                    body: 'Download Pixel Port free. It sets up everything a Windows game needs on first launch.',
+                  },
+                  {
+                    title: `Add ${game.name}`,
+                    body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
+                  },
+                  {
+                    title: game.tier === 'untested' ? 'Play — and help grade it' : 'Play',
+                    body:
+                      game.tier === 'untested'
+                        ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
+                        : 'Launch it from your Library. No bottles, no terminal, no tinkering.',
+                  },
+                ].map((step, index) => (
+                  <li>
+                    <div class="compat-step__number"><span>{String(index + 1).padStart(2, '0')}</span></div>
+                    <div>
+                      <h3>{step.title}</h3>
+                      <p>{step.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )
+        }
+
+        <section id="alternatives" class="compat-section" aria-labelledby="alternatives-heading">
+          <h2 id="alternatives-heading">{picksHeading}</h2>
+          <p class="compat-section__lede">
+            {isNo || game.tier === 'untested'
+              ? 'Every title below has completed a verified run on real Apple Silicon hardware.'
+              : 'Explore more games with the same compatibility grade.'}
+          </p>
+          <ul class="compat-picks">
+            {
+              picks.map((pick) => {
+                const pickArt = artChain(pick.appid);
+                return (
+                  <li>
+                    <a href={pagePath(pick)} aria-label={`${pick.name}: ${compatMeta[pick.tier].label}`}>
+                      <div class="compat-pick__art">
+                        <span>{pick.name}</span>
+                        <img
+                          src={pickArt.src}
+                          data-fb={pickArt.fallbacks}
+                          alt={`${pick.name} cover art`}
+                          loading="lazy"
+                          decoding="async"
+                          onerror={ART_ONERROR}
+                        />
+                        <span class={`compat-pick__badge ${compatMeta[pick.tier].badge}`}>{compatMeta[pick.tier].label}</span>
+                      </div>
+                      <p>{pick.name}</p>
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+          <a href="/mac/" class="compat-text-link">Browse all straight answers <span aria-hidden="true">→</span></a>
         </section>
-      )
-    }
+      </div>
 
-    <section class="mt-12 max-w-2xl">
-      <h2 class="text-2xl font-semibold">{picksHeading}</h2>
-      <ul class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {
-          picks.map((p) => {
-            const pa = artChain(p.appid);
-            return (
-              <li>
-                <a href={pagePath(p)} class="group block">
-                  <div class="relative aspect-[2/3] overflow-hidden rounded-lg border border-line bg-linear-to-br from-[#5C40B0] to-[#228C86]">
-                    <span class="absolute inset-0 flex items-center justify-center p-2 text-center text-[11px] font-semibold text-white/95">
-                      {p.name}
-                    </span>
-                    <img
-                      src={pa.src}
-                      data-fb={pa.fallbacks}
-                      alt={`${p.name} cover art`}
-                      loading="lazy"
-                      class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-                      onerror={ART_ONERROR}
-                    />
-                  </div>
-                  <p class="mt-2 truncate text-xs font-medium text-fg group-hover:text-accent-2">{p.name}</p>
+      <aside class="compat-detail-rail" aria-label={`${game.name} compatibility verdict`}>
+        <div class="compat-detail-rail__inner">
+          <div class="compat-rail-verdict">
+            <span class={meta.dot} aria-hidden="true"></span>
+            <div>
+              <small>Current verdict</small>
+              <strong>{meta.label}</strong>
+            </div>
+          </div>
+
+          <dl>
+            <div>
+              <dt>Hardware</dt>
+              <dd>Apple Silicon</dd>
+            </div>
+            <div>
+              <dt>System</dt>
+              <dd>macOS 14+</dd>
+            </div>
+            <div>
+              <dt>Evidence</dt>
+              <dd>{evidence}</dd>
+            </div>
+            <div>
+              <dt>Setup</dt>
+              <dd>No Boot Camp</dd>
+            </div>
+          </dl>
+
+          {
+            isNo ? (
+              <>
+                <a href="#alternatives" class="compat-rail-cta compat-rail-cta--quiet">See what runs <span aria-hidden="true">→</span></a>
+                <a href="/download" class="compat-rail-secondary">Download Pixel Port free</a>
+                <p>Know what runs before you waste an evening. Every no stays visible.</p>
+              </>
+            ) : (
+              <>
+                <a href="/download" class="compat-rail-cta">
+                  {game.tier === 'untested' ? 'Try it free' : 'Download & play'} <span aria-hidden="true">→</span>
                 </a>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </section>
-
-    <div class="mt-14 max-w-2xl rounded-2xl border border-accent/30 bg-accent/10 p-6">
-      <p class="text-lg font-medium">
-        {
-          isNo
-            ? 'Pixel Port tells you what runs before you waste an evening.'
-            : game.tier === 'untested'
-              ? `Be the first Mac to grade ${game.name}.`
-              : `Ready to play ${game.name} on your Mac?`
-        }
-      </p>
-      <p class="mt-1 text-sm text-muted">Free download. Honest compatibility, game by game.</p>
-      <a
-        href="/download"
-        class="mt-4 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-6 py-3 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-transform active:scale-[0.98]"
-      >
-        {isNo ? 'Download Pixel Port Free' : `Download & Play${game.tier === 'untested' ? '' : ` ${game.name}`} Free`}
-      </a>
+                <p>Free download. Honest compatibility, game by game.</p>
+              </>
+            )
+          }
+        </div>
+      </aside>
     </div>
   </article>
+
+  <style>
+    .compat-masthead {
+      position: relative;
+      isolation: isolate;
+      min-height: 42rem;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-line);
+      background:
+        radial-gradient(circle at 78% 30%, rgba(63, 214, 206, 0.14), transparent 27rem),
+        radial-gradient(circle at 16% 24%, rgba(146, 104, 255, 0.2), transparent 30rem),
+        var(--color-base-bottom);
+    }
+
+    .compat-masthead--blocked {
+      background:
+        radial-gradient(circle at 78% 30%, rgba(224, 85, 107, 0.14), transparent 26rem),
+        radial-gradient(circle at 16% 24%, rgba(146, 104, 255, 0.16), transparent 30rem),
+        var(--color-base-bottom);
+    }
+
+    .compat-masthead__landscape {
+      position: absolute;
+      z-index: -4;
+      inset: -4%;
+      width: 108%;
+      height: 108%;
+      object-fit: cover;
+      opacity: 0.3;
+      filter: saturate(0.7) contrast(1.12);
+    }
+
+    .compat-masthead__veil {
+      position: absolute;
+      z-index: -3;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(6, 4, 16, 0.97), rgba(6, 4, 16, 0.76) 48%, rgba(6, 4, 16, 0.6)),
+        linear-gradient(0deg, var(--color-base-bottom), transparent 52%, rgba(10, 8, 22, 0.2));
+    }
+
+    .compat-masthead__pixels {
+      position: absolute;
+      z-index: -2;
+      inset: 0;
+      opacity: 0.22;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 21px 21px;
+      mask-image: linear-gradient(90deg, black, transparent 44%, black);
+    }
+
+    .compat-masthead__inner {
+      display: grid;
+      grid-template-columns: 10.5rem minmax(0, 1fr);
+      align-items: end;
+      gap: 2.5rem;
+      min-height: 42rem;
+      padding-block: 2rem 4.5rem;
+    }
+
+    .compat-back-link {
+      grid-column: 1 / -1;
+      align-self: start;
+      display: inline-flex;
+      width: fit-content;
+      min-height: 2.75rem;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--color-muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .compat-back-link:hover { color: var(--color-fg); }
+    .compat-back-link span { color: var(--color-accent-2); }
+
+    .compat-cover-stage { position: relative; width: 100%; filter: drop-shadow(0 2rem 2rem rgba(0, 0, 0, 0.48)); }
+    .compat-cover-stage::before { position: absolute; inset: 8% -11% -8% 12%; z-index: -1; border: 1px solid rgba(146, 104, 255, 0.28); content: ''; transform: translate(0.6rem, 0.6rem); }
+    .compat-cover { position: relative; aspect-ratio: 2 / 3; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.22); border-radius: 0.8rem; background: linear-gradient(150deg, #5c40b0, #228c86); box-shadow: inset 0 1px rgba(255, 255, 255, 0.12); }
+    .compat-cover > span { position: absolute; inset: 0; display: grid; place-items: center; padding: 1rem; color: white; font-size: 0.78rem; font-weight: 650; text-align: center; }
+    .compat-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .compat-cover-stage__edge { position: absolute; inset: 0 auto 0 0; width: 2px; border-radius: 999px; background: linear-gradient(to bottom, var(--color-accent), transparent 48%, var(--color-accent-2)); box-shadow: 0 0 20px rgba(146, 104, 255, 0.75); }
+
+    .compat-masthead__copy { max-width: 48rem; padding-bottom: 0.2rem; }
+    .compat-tier-badge { display: inline-flex; align-items: center; gap: 0.55rem; border-radius: 999px; padding: 0.43rem 0.7rem; font-size: 0.72rem; font-weight: 700; box-shadow: 0 0 0 1px currentColor; backdrop-filter: blur(12px); }
+    .compat-tier-badge > span { width: 0.36rem; height: 0.36rem; border-radius: 50%; box-shadow: 0 0 12px currentColor; }
+    .compat-masthead h1 { max-width: 15ch; margin-top: 1rem; font-size: clamp(2.7rem, 6vw, 5.25rem); font-weight: 650; letter-spacing: -0.058em; line-height: 0.95; text-wrap: balance; }
+    .compat-headline { margin-top: 1.15rem; font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 700; }
+    .compat-summary { max-width: 45rem; margin-top: 0.65rem; color: rgba(245, 245, 247, 0.72); font-size: 1rem; line-height: 1.65; }
+
+    .compat-primary-cta,
+    .compat-rail-cta { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: 0.8rem; border-radius: 999px; color: var(--color-ink); background: linear-gradient(100deg, var(--color-accent), var(--color-accent-2)); box-shadow: var(--shadow-glow); font-weight: 750; }
+    .compat-primary-cta { margin-top: 1.45rem; padding: 0.75rem 1.15rem; font-size: 0.84rem; }
+    .compat-primary-cta--blocked { color: var(--color-fg); background: rgba(224, 85, 107, 0.12); box-shadow: inset 0 0 0 1px rgba(224, 85, 107, 0.42); }
+
+    .compat-detail-shell { display: grid; gap: 3rem; padding-block: 5rem 7rem; }
+    .compat-detail-main { min-width: 0; }
+    .compat-section { padding-top: 4.5rem; border-top: 1px solid var(--color-line); }
+    .compat-section--first { padding-top: 0; border-top: 0; }
+    .compat-section + .compat-section { margin-top: 4.5rem; }
+    .compat-section h2 { max-width: 20ch; font-size: clamp(1.75rem, 4vw, 2.65rem); font-weight: 650; letter-spacing: -0.035em; line-height: 1.06; text-wrap: balance; }
+    .compat-section__lede { max-width: 38rem; margin-top: 1rem; color: var(--color-muted); line-height: 1.65; }
+
+    .compat-launch-steps { position: relative; display: grid; gap: 0; margin-top: 1.9rem; }
+    .compat-launch-steps::before { position: absolute; top: 1.2rem; bottom: 1.2rem; left: 1.45rem; width: 1px; content: ''; background: linear-gradient(var(--color-accent), var(--color-accent-2)); opacity: 0.35; }
+    .compat-launch-steps li { position: relative; display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding: 0 0 2rem; }
+    .compat-launch-steps li:last-child { padding-bottom: 0; }
+    .compat-step__number { display: flex; justify-content: center; }
+    .compat-step__number span { z-index: 1; display: grid; width: 2.6rem; height: 2.6rem; place-items: center; border: 1px solid rgba(146, 104, 255, 0.4); border-radius: 50%; color: var(--color-accent-2); background: var(--color-base-bottom); font-size: 0.65rem; font-weight: 750; }
+    .compat-launch-steps li > div:last-child { border: 1px solid var(--color-line); border-radius: 1rem; padding: 1.1rem 1.2rem; background: linear-gradient(120deg, rgba(31, 24, 56, 0.63), rgba(22, 18, 42, 0.3)); }
+    .compat-launch-steps h3 { font-weight: 650; }
+    .compat-launch-steps p { margin-top: 0.45rem; color: rgba(245, 245, 247, 0.7); font-size: 0.9rem; line-height: 1.6; }
+
+    .compat-blocker-panel,
+    .compat-good-news { margin-top: 1.7rem; border: 1px solid var(--color-line); border-radius: 1rem; background: rgba(22, 18, 42, 0.45); }
+    .compat-blocker-panel { position: relative; overflow: hidden; padding: 1.4rem; }
+    .compat-blocker-panel > span { position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--color-blocked); box-shadow: 0 0 18px rgba(224, 85, 107, 0.65); }
+    .compat-blocker-panel__reason { color: var(--color-blocked) !important; font-weight: 700; }
+    .compat-blocker-panel p { color: rgba(245, 245, 247, 0.78); line-height: 1.68; }
+    .compat-blocker-panel p + p { margin-top: 0.75rem; }
+    .compat-good-news { padding: 1.2rem 1.4rem; }
+    .compat-good-news strong { color: var(--color-accent-2); font-size: 0.85rem; }
+    .compat-good-news p { margin-top: 0.45rem; color: rgba(245, 245, 247, 0.74); line-height: 1.65; }
+
+    .compat-picks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.8rem; margin-top: 1.6rem; }
+    .compat-pick__art { position: relative; aspect-ratio: 2 / 3; overflow: hidden; border: 1px solid var(--color-line); border-radius: 0.65rem; background: linear-gradient(150deg, #5c40b0, #228c86); }
+    .compat-pick__art > span:first-child { position: absolute; inset: 0; display: grid; place-items: center; padding: 0.65rem; color: white; font-size: 0.65rem; font-weight: 650; text-align: center; }
+    .compat-pick__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .compat-pick__badge { position: absolute; top: 0.45rem; right: 0.45rem; border-radius: 999px; padding: 0.22rem 0.4rem; font-size: 0.55rem; font-weight: 700; box-shadow: 0 0 0 1px currentColor; backdrop-filter: blur(10px); }
+    .compat-picks a > p { overflow: hidden; margin-top: 0.55rem; color: var(--color-fg); font-size: 0.72rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+    .compat-picks a:hover img { transform: scale(1.035); }
+    .compat-picks a:hover > p { color: var(--color-accent-2); }
+    .compat-text-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.7rem; margin-top: 1.35rem; color: var(--color-accent-2); font-size: 0.82rem; font-weight: 650; }
+
+    .compat-detail-rail__inner { position: sticky; top: 5.5rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.1rem; padding: 1.25rem; background: linear-gradient(145deg, rgba(31, 24, 56, 0.76), rgba(13, 10, 28, 0.82)); box-shadow: 0 1.8rem 4rem -3rem rgba(146, 104, 255, 0.6), inset 0 1px rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); }
+    .compat-detail-rail__inner::before { position: absolute; inset: 0 0 auto; height: 2px; content: ''; background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2)); }
+    .compat-rail-verdict { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.25rem; }
+    .compat-rail-verdict > span { width: 0.6rem; height: 0.6rem; flex: none; border-radius: 50%; box-shadow: 0 0 14px currentColor; }
+    .compat-rail-verdict small { display: block; color: var(--color-muted); font-size: 0.65rem; }
+    .compat-rail-verdict strong { display: block; margin-top: 0.1rem; color: var(--color-fg); font-size: 0.95rem; }
+    .compat-detail-rail dl { display: grid; margin-top: 1.25rem; border-block: 1px solid var(--color-line); }
+    .compat-detail-rail dl > div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.72rem; border-bottom: 1px solid var(--color-line); }
+    .compat-detail-rail dl > div:last-child { border-bottom: 0; }
+    .compat-detail-rail dt { color: var(--color-muted); font-size: 0.69rem; }
+    .compat-detail-rail dd { color: rgba(245, 245, 247, 0.9); font-size: 0.72rem; font-weight: 600; text-align: right; }
+    .compat-rail-cta { width: 100%; margin-top: 1.25rem; padding: 0.72rem 0.9rem; font-size: 0.78rem; }
+    .compat-rail-cta--quiet { color: var(--color-fg); background: rgba(224, 85, 107, 0.12); box-shadow: inset 0 0 0 1px rgba(224, 85, 107, 0.4); }
+    .compat-rail-secondary { display: flex; min-height: 2.75rem; align-items: center; justify-content: center; color: var(--color-accent-2); font-size: 0.75rem; font-weight: 650; }
+    .compat-detail-rail__inner > p:last-child { margin-top: 0.75rem; color: var(--color-muted); font-size: 0.7rem; line-height: 1.5; text-align: center; }
+
+    @media (min-width: 40rem) {
+      .compat-picks { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 48rem) {
+      .compat-masthead__inner { grid-template-columns: 11.5rem minmax(0, 1fr); }
+      .compat-detail-shell { grid-template-columns: minmax(0, 1fr) 17.5rem; gap: 4rem; }
+    }
+
+    @media (min-width: 64rem) {
+      .compat-masthead__inner { grid-template-columns: 13rem minmax(0, 1fr); gap: 3.5rem; }
+      .compat-detail-shell { grid-template-columns: minmax(0, 42rem) 18rem; justify-content: space-between; gap: 5rem; }
+    }
+
+    @media (max-width: 47.999rem) {
+      .compat-masthead,
+      .compat-masthead__inner { min-height: auto; }
+      .compat-masthead__inner { grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1.4rem; padding-block: 1rem 3.5rem; }
+      .compat-back-link { margin-bottom: 1.5rem; }
+      .compat-masthead__copy { padding-bottom: 0; }
+      .compat-tier-badge { font-size: 0.64rem; }
+      .compat-masthead h1 { margin-top: 0.8rem; font-size: clamp(2rem, 8.3vw, 3rem); }
+      .compat-headline { font-size: 0.96rem; line-height: 1.35; }
+      .compat-summary { font-size: 0.88rem; line-height: 1.55; }
+      .compat-primary-cta { padding-inline: 0.85rem; font-size: 0.74rem; text-align: center; }
+      .compat-detail-shell { padding-block: 3.5rem 5rem; }
+      .compat-detail-rail { order: -1; }
+      .compat-detail-rail__inner { position: static; }
+    }
+
+    @media (max-width: 25rem) {
+      .compat-masthead__inner { grid-template-columns: 6.2rem minmax(0, 1fr); }
+      .compat-masthead h1 { font-size: 1.8rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .compat-pick__art img { transition: none; }
+      .compat-picks a:hover img { transform: none; }
+    }
+  </style>
 </Base>

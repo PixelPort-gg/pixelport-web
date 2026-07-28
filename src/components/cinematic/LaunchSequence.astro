@@ -1,0 +1,474 @@
+---
+type LaunchGame = {
+  appid: number | null;
+  slug: string;
+  title: string;
+  tier: string;
+};
+
+interface Props {
+  game?: LaunchGame;
+}
+
+const { game } = Astro.props;
+const title = game?.title ?? 'Your game';
+const cover = game?.appid
+  ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/library_600x900.jpg'
+  : null;
+const fallback = game?.appid
+  ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/header.jpg'
+  : null;
+const stages = [
+  {
+    title: 'Choose with confidence',
+    body: 'Check the compatibility grade before you install, then select a supported game from your Steam library.',
+  },
+  {
+    title: 'Pixel Port prepares it',
+    body: 'The first launch sets up the free runtime and the launch settings automatically.',
+  },
+  {
+    title: 'Play your Steam copy',
+    body: 'Pixel Port opens the game you already own. No Windows licence, virtual machine, bottle, or partition required.',
+  },
+];
+---
+
+<section class="sequence" aria-labelledby="sequence-title">
+  <div class="wrap">
+    <header class="sequence-heading">
+      <h2 id="sequence-title">From your Steam library to a Mac launch.</h2>
+      <p>
+        One clear flow replaces the fragile setup work. You choose a graded game; Pixel Port
+        handles the route underneath and gives you a launch you can repeat.
+      </p>
+    </header>
+
+    <div class="artifact" aria-label={'How Pixel Port prepares ' + title + ' for Mac'}>
+      <div class="selected-game">
+        <span class="selected-label">Selected from your library</span>
+        {
+          game ? (
+            <a href={'/games/' + game.slug} class="selected-link">
+              <span class="selected-art">
+                <span class="art-fallback">{title}</span>
+                {cover && (
+                  <img
+                    src={cover}
+                    data-fallback={fallback}
+                    alt=""
+                    width="220"
+                    height="330"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </span>
+              <strong>{title}</strong>
+              <span>View compatibility <span aria-hidden="true">&rarr;</span></span>
+            </a>
+          ) : (
+            <div class="selected-link">
+              <span class="selected-art"><span class="art-fallback">{title}</span></span>
+              <strong>{title}</strong>
+            </div>
+          )
+        }
+      </div>
+
+      <ol class="stages">
+        {
+          stages.map((stage) => (
+            <li>
+              <span class="stage-mark" aria-hidden="true"></span>
+              <div>
+                <h3>{stage.title}</h3>
+                <p>{stage.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="launch-result">
+        <img src="/brand/mark.svg" alt="" width="72" height="72" />
+        <span class="result-status"><span aria-hidden="true">&#10003;</span> Ready on Mac</span>
+        <strong>{title}</strong>
+        <p>Apple Silicon launch prepared</p>
+        <span class="launch-button">Launch game <span aria-hidden="true">&#9654;</span></span>
+      </div>
+    </div>
+
+    <aside class="learning" aria-label="How launch evidence improves compatibility">
+      <span class="learning-mark" aria-hidden="true">&#8644;</span>
+      <div>
+        <strong>Every launch sharpens the catalogue.</strong>
+        <p>
+          An anonymous success or failure signal improves the confidence shown to the next Mac
+          gamer. No ad identifiers or third-party analytics.
+        </p>
+      </div>
+      <a href="/stats">See launch data <span aria-hidden="true">&rarr;</span></a>
+    </aside>
+  </div>
+</section>
+
+<script>
+  for (const img of document.querySelectorAll<HTMLImageElement>('.selected-art img[data-fallback]')) {
+    img.addEventListener('error', () => {
+      const next = img.dataset.fallback;
+      if (next) {
+        img.dataset.fallback = '';
+        img.src = next;
+      } else {
+        img.remove();
+      }
+    });
+  }
+</script>
+
+<style>
+  .sequence {
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+
+  .sequence-heading {
+    display: grid;
+    gap: 1.25rem;
+    align-items: end;
+  }
+
+  h2 {
+    max-width: 14ch;
+    margin: 0;
+    color: var(--color-fg);
+    font-size: clamp(2.5rem, 5.5vw, 5.25rem);
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .sequence-heading > p {
+    max-width: 40rem;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  .artifact {
+    display: grid;
+    min-width: 0;
+    margin-top: clamp(2.75rem, 6vw, 5rem);
+    overflow: hidden;
+    border: 1px solid rgba(146, 104, 255, 0.28);
+    border-radius: 16px;
+    background: #0b0919;
+  }
+
+  .selected-game,
+  .stages,
+  .launch-result {
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 2.25rem);
+  }
+
+  .selected-game {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    background: radial-gradient(circle at 50% 46%, rgba(146, 104, 255, 0.15), transparent 62%);
+  }
+
+  .selected-label {
+    margin-bottom: 0.8rem;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .selected-link {
+    display: grid;
+    min-width: 0;
+    justify-items: center;
+    color: var(--color-fg);
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .selected-art {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: min(100%, 150px);
+    aspect-ratio: 2 / 3;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 12px;
+    background: linear-gradient(145deg, #5c40b0, #228c86);
+  }
+
+  .selected-art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .selected-link:hover img,
+  .selected-link:focus-visible img {
+    transform: scale(1.025);
+  }
+
+  .art-fallback {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 0.75rem;
+    font-weight: 700;
+  }
+
+  .selected-link > strong {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .selected-link > span:last-child {
+    margin-top: 0.25rem;
+    color: var(--color-accent-2);
+    font-size: 0.75rem;
+  }
+
+  .stages {
+    display: grid;
+    align-content: center;
+    margin: 0;
+    list-style: none;
+  }
+
+  .stages li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.9rem;
+    padding-block: 1.2rem;
+  }
+
+  .stages li + li {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .stage-mark {
+    width: 10px;
+    height: 10px;
+    margin-top: 0.48rem;
+    border: 2px solid var(--color-accent);
+    border-radius: 50%;
+  }
+
+  .stages li:last-child .stage-mark {
+    border-color: var(--color-accent-2);
+    background: var(--color-accent-2);
+  }
+
+  h3 {
+    margin: 0;
+    color: var(--color-fg);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 650;
+    letter-spacing: -0.015em;
+  }
+
+  .stages p {
+    max-width: 46ch;
+    margin: 0.45rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .launch-result {
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    border-color: var(--color-line);
+    background:
+      radial-gradient(circle at 30% 28%, rgba(63, 214, 206, 0.1), transparent 44%),
+      #0c1020;
+  }
+
+  .launch-result img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.1rem;
+    filter: drop-shadow(0 10px 20px rgba(146, 104, 255, 0.3));
+  }
+
+  .result-status {
+    color: var(--color-verified);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .launch-result > strong {
+    overflow: hidden;
+    max-width: 100%;
+    margin-top: 0.35rem;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .launch-result p {
+    margin: 0.25rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+
+  .launch-button {
+    display: flex;
+    width: 100%;
+    min-height: 46px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.4rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 999px;
+    background: var(--color-accent-2);
+    color: var(--color-ink);
+    font-size: 0.875rem;
+    font-weight: 750;
+  }
+
+  .learning {
+    display: grid;
+    min-width: 0;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.25rem;
+    padding: 1.1rem 0;
+    border-block: 1px solid var(--color-line);
+  }
+
+  .learning-mark {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgba(146, 104, 255, 0.38);
+    border-radius: 50%;
+    color: var(--color-accent);
+  }
+
+  .learning strong {
+    color: var(--color-fg);
+    font-size: 1rem;
+  }
+
+  .learning p {
+    max-width: 65ch;
+    margin: 0.28rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .learning a {
+    color: var(--color-accent-2);
+    font-size: 0.875rem;
+    text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 900px) {
+    .sequence-heading {
+      grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.92fr);
+    }
+
+    .artifact {
+      grid-template-columns: minmax(180px, 0.68fr) minmax(330px, 1.4fr) minmax(220px, 0.92fr);
+    }
+
+    .stages,
+    .launch-result {
+      border-left: 1px solid var(--color-line);
+    }
+
+    .learning {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .artifact {
+      grid-template-columns: minmax(150px, 0.72fr) minmax(0, 1.28fr);
+    }
+
+    .stages {
+      border-left: 1px solid var(--color-line);
+    }
+
+    .launch-result {
+      grid-column: 1 / -1;
+      border-top: 1px solid var(--color-line);
+    }
+
+    .learning {
+      grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .learning a {
+      grid-column: 2;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .artifact {
+      grid-template-columns: 1fr;
+    }
+
+    .selected-game,
+    .stages,
+    .launch-result {
+      padding: 1.35rem;
+    }
+
+    .stages {
+      border-top: 1px solid var(--color-line);
+      border-left: 0;
+    }
+
+    .selected-art {
+      width: 120px;
+    }
+
+    .learning {
+      grid-template-columns: 1fr;
+    }
+
+    .learning a {
+      grid-column: auto;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .selected-art img {
+      transition: none;
+    }
+
+    .selected-link:hover img,
+    .selected-link:focus-visible img {
+      transform: none;
+    }
+  }
+</style>

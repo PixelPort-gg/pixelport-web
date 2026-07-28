@@ -1,248 +1,31 @@
 ---
 import Base from '../layouts/Base.astro';
-import HeroVisual from '../components/HeroVisual.astro';
-import RunsTicker from '../components/RunsTicker.astro';
-import StatsBar from '../components/StatsBar.astro';
-import Reveal from '../components/Reveal.astro';
-import OldVsNew from '../components/OldVsNew.astro';
+import PortalHero from '../components/cinematic/PortalHero.astro';
+import ProofRail from '../components/cinematic/ProofRail.astro';
+import LaunchSequence from '../components/cinematic/LaunchSequence.astro';
+import TierSpectrum from '../components/cinematic/TierSpectrum.astro';
 import games from '../data/games.resolved.json';
 
-// Palworld pinned while the 1.0 launch window is hot (July 2026) — swap back to
-// pure catalogue order once the wave passes.
-const palworld = games.find((g) => g.appid === 1623730);
-const featured = [palworld, ...games.filter((g) => g.appid !== 1623730)].filter(Boolean).slice(0, 3);
-const tierClass = (t: string) =>
-  t === 'verified'
-    ? 'text-verified bg-verified/15 ring-verified/30'
-    : 'text-playable bg-playable/15 ring-playable/30';
-
-const pillars = [
-  {
-    name: 'Prism',
-    tag: 'the runtime',
-    body: 'A free, modern runtime that translates a game’s DirectX calls straight to Metal on Apple Silicon. Most games never notice they left Windows. No licence, no bottle to babysit.',
-  },
-  {
-    name: 'Synthesis Engine',
-    tag: 'the brain',
-    body: 'It reads each game and works out how it should run on your Mac: the graphics path, the dependencies, the launch plan, all worked out automatically. You click once; it does the thinking.',
-  },
-  {
-    name: 'Distributed Validation Network',
-    tag: 'the flywheel',
-    body: 'Every launch makes Pixel Port smarter. When one Mac proves a game runs, it is proven for everyone. The catalogue gets more reliable the more people play.',
-  },
-];
+// Palworld stays the lead while the 1.0 launch window is current. The supporting
+// titles are hand-verified catalogue entries, not invented campaign examples.
+const preferred = [1623730, 945360, 881100];
+const featured = preferred
+  .map((appid) => games.find((game) => game.appid === appid))
+  .filter((game): game is (typeof games)[number] => Boolean(game));
 ---
 
 <Base
   title="Play Windows Games on Mac in One Click"
   description="Pixel Port downloads, configures, and launches Windows games on your Mac automatically. Free during the beta. No Wine setup, no bottles, no VM. Built for Apple Silicon."
 >
-  <!-- Hero -->
-  <section class="wrap grid items-center gap-12 py-20 sm:py-28 lg:grid-cols-[1.1fr_0.9fr]">
-    <div class="min-w-0">
-      <a
-        href="/mac/palworld-1623730/"
-        class="group mb-7 inline-flex max-w-full items-center gap-2.5 rounded-full border border-accent/30 bg-accent/10 py-2 pl-3 pr-4 text-sm font-medium text-fg transition-colors hover:border-accent/60 hover:bg-accent/15"
-      >
-        <span class="relative flex h-2 w-2 shrink-0" aria-hidden="true">
-          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-2 opacity-50"></span>
-          <span class="relative inline-flex h-2 w-2 rounded-full bg-accent-2"></span>
-        </span>
-        <span class="truncate">
-          <span class="font-semibold">Palworld 1.0 is here</span>
-          <span class="text-muted">&nbsp;&mdash; play the Steam copy you already own, on your Mac</span>
-        </span>
-        <span aria-hidden="true" class="shrink-0 text-accent-2 transition-transform group-hover:translate-x-0.5">&rarr;</span>
-      </a>
-      <h1 class="text-balance text-[2rem] font-semibold leading-[1.1] tracking-tight sm:text-6xl sm:leading-[1.04] lg:text-7xl">
-        Game on Mac<br />with a single click.
-      </h1>
-      <p class="mt-6 max-w-xl text-balance text-lg text-muted sm:text-xl">
-        Pixel Port runs Windows games on your Mac. One click downloads the game, configures
-        everything, and launches it. No bottles, no VMs, no partitions, no terminal.
-      </p>
-      <div class="mt-9 flex flex-wrap items-center gap-4">
-        <a
-          href="/download"
-          class="rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
-        >
-          Download for Mac
-        </a>
-        <a
-          href="/games"
-          class="group inline-flex items-center gap-2 rounded-full border border-line bg-surface/40 px-6 py-3.5 font-medium text-fg transition-colors hover:border-accent/40 hover:bg-surface/70"
-        >
-          See what runs
-          <span aria-hidden="true" class="text-accent-2 transition-transform group-hover:translate-x-0.5">&rarr;</span>
-        </a>
-      </div>
-      <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
-        <span class="inline-flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-verified shadow-[0_0_8px_rgba(74,217,145,0.6)]" aria-hidden="true"></span>
-          Free during the beta
-        </span>
-        <span class="text-fg/20" aria-hidden="true">&middot;</span>
-        <span>Apple Silicon</span>
-        <span class="text-fg/20" aria-hidden="true">&middot;</span>
-        <span>macOS 14+</span>
-        <span class="text-fg/20" aria-hidden="true">&middot;</span>
-        <a
-          href="/releases"
-          class="underline decoration-fg/25 underline-offset-4 transition-colors hover:text-fg hover:decoration-fg/60"
-        >
-          Release notes
-        </a>
-      </div>
-    </div>
-
-    <div class="flex min-w-0 justify-center">
-      <HeroVisual />
-    </div>
-  </section>
-
-  <!-- Living proof: what runs, right now -->
-  <div class="wrap">
-    <p class="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.18em] text-muted">
-      <span class="relative flex h-2 w-2" aria-hidden="true">
-        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-verified opacity-50"></span>
-        <span class="relative inline-flex h-2 w-2 rounded-full bg-verified"></span>
-      </span>
-      Running on Mac right now
-    </p>
-  </div>
-  <RunsTicker />
-
-  <!-- Live social proof: real user + launch counts (GET /v1/stats), animated on view -->
-  <StatsBar />
-
-  <!-- The problem: Mac gaming is hard -->
-  <section class="wrap py-16">
-    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-      <div class="min-w-0">
-        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Mac gaming was never this easy.</h2>
-        <p class="mt-4 text-lg text-muted">
-          Playing a Windows game on a Mac has always meant picking your poison. Every option costs
-          you money, hours, battery, or all three. Most people just give up.
-        </p>
-        <p class="mt-4 text-lg text-fg/85">
-          Pixel Port collapses all of it into a single click. The time it takes to get a game running
-          used to be measured in hours. We are driving it toward seconds.
-        </p>
-      </div>
-
-      <OldVsNew />
-    </div>
-  </section>
-
-  <!-- How it works: the infrastructure -->
-  <section class="wrap py-16">
-    <Reveal as="h2" class="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-      One click on the surface. Real engineering underneath.
-    </Reveal>
-    <p class="mt-4 max-w-2xl text-lg text-muted">
-      Three systems do the work so you do not have to.
-    </p>
-
-    <div class="mt-10 grid gap-5 md:grid-cols-3">
-      {
-        pillars.map((p, i) => (
-          <Reveal as="div" delay={i * 90} class="relative overflow-hidden rounded-2xl border border-line bg-surface/50 p-6">
-            <div
-              class="absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl"
-              style={`background: ${i === 1 ? 'rgba(63,214,206,0.18)' : 'rgba(146,104,255,0.18)'}`}
-            />
-            <p class="text-xs font-mono uppercase tracking-[0.18em] text-muted">{p.tag}</p>
-            <h3 class="mt-2 text-xl font-semibold text-fg">{p.name}</h3>
-            <p class="mt-3 text-sm leading-relaxed text-fg/80">{p.body}</p>
-          </Reveal>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- Honest tiers (trust, not the headline) -->
-  <section class="wrap py-16">
-    <Reveal as="h2" class="text-3xl font-semibold tracking-tight sm:text-4xl">We are honest about what works.</Reveal>
-    <p class="mt-3 max-w-2xl text-muted">
-      Every game is graded honestly, so you know exactly what you are getting before you install.
-    </p>
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {
-        [
-          ['Verified', 'A human confirmed it end-to-end on a real Mac.', 'text-verified'],
-          ['Playable', 'Auto-tested or community-confirmed, not yet verified.', 'text-playable'],
-          ['Needs attention', 'Runs with caveats or a known workaround.', 'text-attention'],
-          ['Unsupported', 'A hard blocker, like kernel anti-cheat.', 'text-blocked'],
-        ].map(([t, d, c]) => (
-          <div class="rounded-2xl border border-line bg-surface/50 p-5">
-            <h3 class={`font-semibold ${c}`}>{t}</h3>
-            <p class="mt-1 text-sm text-fg/80">{d}</p>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <!-- Featured games -->
-  <section class="wrap py-16">
-    <div class="flex items-end justify-between">
-      <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Play these on Mac</h2>
-      <a href="/games" class="text-sm font-medium text-accent-2 hover:underline">All games &rarr;</a>
-    </div>
-    <ul class="mt-8 grid gap-4 sm:grid-cols-3">
-      {
-        featured.map((g, i) => (
-          <Reveal as="li" delay={i * 80}>
-            <a
-              href={`/games/${g.slug}`}
-              class="lift group block h-full rounded-2xl border border-line bg-surface/60 p-5 hover:border-accent/40"
-            >
-              <div class="flex items-center justify-between gap-3">
-                <h3 class="text-lg font-semibold text-fg">{g.title}</h3>
-                <span class={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold capitalize ring-1 ${tierClass(g.tier)}`}>
-                  {g.tier}
-                </span>
-              </div>
-              <p class="mt-3 text-sm text-fg/80">{g.summary}</p>
-              <span class="mt-4 inline-block text-sm font-medium text-accent-2 group-hover:underline">
-                How to play on Mac
-              </span>
-            </a>
-          </Reveal>
-        ))
-      }
-    </ul>
-  </section>
-
-  <!-- Download -->
-  <section class="wrap py-20">
-    <div class="overflow-hidden rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center sm:p-14">
-      <h2 class="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-        Your Mac can play more than you think.
-      </h2>
-      <p class="mx-auto mt-4 max-w-xl text-muted">
-        Download Pixel Port, pick a game, click once. That is the whole thing.
-      </p>
-      <a
-        href="/download"
-        class="mt-8 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
-      >
-        Download for Mac
-      </a>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-muted">
-        <span>Free during the beta</span>
-        <span class="text-fg/20" aria-hidden="true">&middot;</span>
-        <span>Apple Silicon, macOS 14+</span>
-        <span class="text-fg/20" aria-hidden="true">&middot;</span>
-        <a
-          href="/releases"
-          class="underline decoration-fg/25 underline-offset-4 transition-colors hover:text-fg hover:decoration-fg/60"
-        >
-          Release notes
-        </a>
-      </div>
-    </div>
-  </section>
+  <PortalHero games={featured} />
+  <ProofRail />
+  <LaunchSequence game={featured[0]} />
+  <TierSpectrum />
 </Base>
+
+<style is:global>
+  .site-footer {
+    margin-top: clamp(4.5rem, 7vw, 6.5rem);
+  }
+</style>
