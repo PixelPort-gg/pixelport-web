@@ -41,6 +41,12 @@ typography:
     fontWeight: 650
     lineHeight: 1.1
     letterSpacing: "-0.025em"
+  brand:
+    fontFamily: "Geologica Variable, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 650
+    lineHeight: 1.2
+    letterSpacing: "-0.03em"
   lead:
     fontFamily: "Geologica Variable, ui-sans-serif, system-ui, sans-serif"
     fontSize: "clamp(1rem, 1.6vw, 1.25rem)"

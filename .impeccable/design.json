@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-28T16:21:00Z",
+  "generatedAt": "2026-07-28T17:26:16Z",
   "title": "Design System: Pixel Port",
   "extensions": {
     "colorMeta": {
@@ -231,6 +231,10 @@
       "subhead": {
         "displayName": "Subhead",
         "purpose": "Compact scene headlines and responsive result titles."
+      },
+      "brand": {
+        "displayName": "Brand",
+        "purpose": "Pixel Port wordmark text in sitewide navigation and compact lockups."
       },
       "lead": {
         "displayName": "Lead",
