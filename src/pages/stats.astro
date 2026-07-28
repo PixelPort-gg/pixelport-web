@@ -13,7 +13,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
 const flagged = (c['needs-attention'] || 0) + (c.unsupported || 0);
 
 const stats = [
-  { label: 'Games graded', value: fmt(grid.length) },
+  { label: 'Catalogue entries', value: fmt(grid.length) },
   { label: 'Verified on a real Mac', value: fmt(c.verified || 0) },
   { label: 'Playable', value: fmt(c.playable || 0) },
   { label: 'Setup', value: 'One click' },
@@ -43,7 +43,7 @@ const tierProfile = [
   <section class="live-heading" aria-labelledby="live-title">
     <div>
       <h2 id="live-title">Live signal</h2>
-      <p>Current community usage, refreshed from Pixel Port’s public stats endpoint.</p>
+      <p>Registered-account and game-play totals from Pixel Port’s public stats endpoint.</p>
     </div>
   </section>
 

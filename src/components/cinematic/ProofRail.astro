@@ -37,22 +37,22 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
     <div class="proof-heading">
       <h2 id="proof-title">Running on Mac right now.</h2>
       <p>
-        Compatibility grades come from actual launch evidence, with a clear result before you
-        install. These are real entries from the Pixel Port catalogue.
+        The catalogue combines verified launches with compatibility estimates based on each game’s
+        engine, graphics path, and known blockers. Every entry shows the evidence behind its result.
       </p>
     </div>
 
     <dl class="stats" aria-label="Pixel Port by the numbers">
       <div>
-        <dt>Games graded</dt>
+        <dt>Catalogue entries</dt>
         <dd>{fmt(catalogue.length)}</dd>
       </div>
       <div>
-        <dt>Mac gamers</dt>
+        <dt>Registered accounts</dt>
         <dd data-stat="users" aria-live="polite">1,000+</dd>
       </div>
       <div>
-        <dt>Games launched</dt>
+        <dt>Games played</dt>
         <dd data-stat="launches" aria-live="polite">3,700+</dd>
       </div>
       <div>
@@ -60,7 +60,9 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
         <dd>One click</dd>
       </div>
     </dl>
-    <p class="stats-status" data-stat-status aria-live="polite">Showing last published totals.</p>
+    <p class="stats-status" data-stat-status aria-live="polite">
+      Account and play totals update from live product telemetry.
+    </p>
 
     <ul class="game-grid" aria-label="Games proven to run on Mac">
       {
@@ -92,7 +94,8 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
     </ul>
 
     <p class="grade-note">
-      {fmt(counts.verified ?? 0)} verified end to end and {fmt(counts.playable ?? 0)} graded playable.
+      {fmt(counts.verified ?? 0)} entries are verified end to end; {fmt(counts.playable ?? 0)} are
+      compatibility estimates marked playable.
       <a href="/games">Browse the full compatibility catalogue</a>
     </p>
   </div>
@@ -136,7 +139,7 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
             updated = true;
           }
         }
-        if (updated && status) status.textContent = 'Updated from live launch data.';
+        if (updated && status) status.textContent = 'Live account and play totals updated.';
       } catch {}
     };
     if (!('IntersectionObserver' in window)) {
