@@ -1,0 +1,438 @@
+---
+import Base from '../layouts/Base.astro';
+
+const coverage = [
+  {
+    publication: 'MacHow2',
+    title: 'Pixel Port Review: The Easiest Way Yet To Play Windows Steam Games on a Mac?',
+    description:
+      'MacHow2 reviews Pixel Port’s low-configuration approach to Windows Steam games on macOS, alongside the compatibility caveats of a product still in beta.',
+    publishedAt: '2026-07-14',
+    displayDate: 'July 14, 2026',
+    href: 'https://machow2.com/pixel-port-mac-review/',
+  },
+];
+
+const pressSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Pixel Port press coverage',
+  description: 'Independent articles and reviews written about Pixel Port.',
+  url: 'https://pixelport.gg/press',
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: coverage.length,
+    itemListElement: coverage.map((article, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Article',
+        headline: article.title,
+        datePublished: article.publishedAt,
+        url: article.href,
+        publisher: {
+          '@type': 'Organization',
+          name: article.publication,
+        },
+      },
+    })),
+  },
+};
+---
+
+<Base
+  title="Press coverage"
+  description="Independent articles, reviews, and coverage written about Pixel Port."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(pressSchema)} />
+
+  <section class="press-hero" aria-labelledby="press-title">
+    <div class="hero-scene" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 id="press-title">Press coverage</h1>
+        <p class="hero-lede">Independent writing about Pixel Port.</p>
+        <p class="hero-description">
+          Pixel Port brings supported Windows Steam games to Apple Silicon Macs with almost no
+          configuration. See what independent journalists and reviewers are saying.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="coverage" aria-labelledby="coverage-title">
+    <h2 id="coverage-title" class="sr-only">Coverage archive</h2>
+    <div class="coverage-columns" aria-hidden="true">
+      <span>Publication</span>
+      <span>Date</span>
+      <span>Article</span>
+      <span></span>
+    </div>
+
+    <ol class="coverage-list">
+      {
+        coverage.map((article) => (
+          <li>
+            <a
+              href={article.href}
+              class="coverage-entry"
+              target="_blank"
+              rel="noopener"
+              aria-label={`Read “${article.title}” at ${article.publication} (opens in a new tab)`}
+            >
+              <strong class="publication">{article.publication}</strong>
+              <time datetime={article.publishedAt}>{article.displayDate}</time>
+              <span class="article-copy">
+                <span class="article-title">{article.title}</span>
+                <span class="article-description">{article.description}</span>
+                <span class="article-source">
+                  Read original at {article.publication} <span aria-hidden="true">↗</span>
+                </span>
+              </span>
+              <span class="entry-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <style>
+    .press-hero {
+      position: relative;
+      isolation: isolate;
+      min-height: clamp(25rem, 36vw, 30rem);
+      overflow: clip;
+      border-bottom: 1px solid var(--color-line);
+      background:
+        radial-gradient(38rem 30rem at 67% 42%, rgba(146, 104, 255, 0.13), transparent 68%),
+        var(--color-base-bottom);
+    }
+
+    .hero-scene {
+      position: absolute;
+      inset: 0 0 0 42%;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, var(--color-base-bottom) 0%, transparent 28%),
+        linear-gradient(180deg, transparent 72%, var(--color-base-bottom)),
+        url('/press/press-portal-landscape.webp') center / cover no-repeat;
+    }
+
+    .hero-scene::after {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--color-base-bottom) 0 7%, transparent 38%),
+        linear-gradient(180deg, color-mix(in srgb, var(--color-base-bottom) 42%, transparent), transparent 42%);
+      content: '';
+    }
+
+    .hero-inner,
+    .coverage {
+      width: min(82rem, calc(100% - 4rem));
+      margin-inline: auto;
+    }
+
+    .hero-inner {
+      display: flex;
+      min-height: clamp(25rem, 36vw, 30rem);
+      align-items: center;
+      padding-block: clamp(4rem, 8vw, 6.5rem);
+    }
+
+    .hero-copy {
+      width: min(38rem, 49%);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--color-fg);
+      font-size: clamp(3.5rem, 5.5vw, 4.5rem);
+      font-weight: 560;
+      letter-spacing: -0.035em;
+      line-height: 0.96;
+      text-wrap: balance;
+    }
+
+    .hero-lede {
+      margin: 1.45rem 0 0;
+      color: var(--color-muted);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.55;
+    }
+
+    .hero-description {
+      max-width: 34rem;
+      margin: 1.55rem 0 0;
+      color: color-mix(in srgb, var(--color-fg) 82%, var(--color-muted));
+      font-size: 1rem;
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .coverage {
+      padding-bottom: 2rem;
+    }
+
+    .coverage-columns,
+    .coverage-entry {
+      display: grid;
+      grid-template-columns: 14rem 10rem minmax(0, 1fr) 2.75rem;
+      gap: 2.5rem;
+    }
+
+    .coverage-columns {
+      align-items: center;
+      min-height: 2.75rem;
+      padding-inline: 0.1rem;
+      border-top: 1px solid var(--color-line);
+      color: color-mix(in srgb, var(--color-muted) 78%, transparent);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .coverage-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .coverage-entry {
+      position: relative;
+      align-items: start;
+      padding-block: 1.25rem;
+      border-block: 1px solid transparent var(--color-line);
+      color: inherit;
+      text-decoration: none;
+      transition: background-color 180ms ease;
+    }
+
+    .coverage-entry::before {
+      position: absolute;
+      inset: 0 calc(50% - 50vw);
+      z-index: -1;
+      background:
+        linear-gradient(90deg, transparent 8%, rgba(146, 104, 255, 0.055) 46%, rgba(63, 214, 206, 0.04) 58%, transparent 92%);
+      content: '';
+      opacity: 0;
+      transition: opacity 180ms ease;
+    }
+
+    .publication,
+    time {
+      padding-top: 0.15rem;
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+
+    .publication {
+      color: var(--color-fg);
+      font-weight: 650;
+    }
+
+    time {
+      color: var(--color-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .article-copy {
+      display: grid;
+      min-width: 0;
+      gap: 0.35rem;
+    }
+
+    .article-title {
+      max-width: 58rem;
+      color: var(--color-fg);
+      font-size: 1rem;
+      font-weight: 620;
+      letter-spacing: -0.012em;
+      line-height: 1.35;
+      transition: color 180ms ease;
+    }
+
+    .article-description {
+      max-width: 52rem;
+      color: var(--color-muted);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      text-wrap: pretty;
+    }
+
+    .article-source {
+      display: none;
+      color: var(--color-accent-2);
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    .entry-arrow {
+      display: grid;
+      width: 2.75rem;
+      height: 2.75rem;
+      place-items: center;
+      border: 1px solid var(--color-line);
+      border-radius: 50%;
+      color: var(--color-muted);
+      transition:
+        border-color 180ms ease,
+        color 180ms ease,
+        transform 180ms var(--ease-cinema);
+    }
+
+    .coverage-entry:hover::before,
+    .coverage-entry:focus-visible::before {
+      opacity: 1;
+    }
+
+    .coverage-entry:hover .article-title,
+    .coverage-entry:focus-visible .article-title {
+      color: var(--color-accent-2);
+    }
+
+    .coverage-entry:hover .entry-arrow,
+    .coverage-entry:focus-visible .entry-arrow {
+      border-color: color-mix(in srgb, var(--color-accent-2) 48%, transparent);
+      color: var(--color-accent-2);
+      transform: translate(0.12rem, -0.12rem);
+    }
+
+    @media (max-width: 48rem) {
+      .press-hero {
+        min-height: auto;
+      }
+
+      .hero-scene {
+        inset: 0;
+        height: auto;
+        background-position: 42% center;
+        opacity: 0.78;
+      }
+
+      .hero-scene::after {
+        background:
+          linear-gradient(
+            180deg,
+            color-mix(in srgb, var(--color-base-bottom) 38%, transparent),
+            color-mix(in srgb, var(--color-base-bottom) 52%, transparent) 58%,
+            var(--color-base-bottom) 100%
+          ),
+          linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--color-base-bottom) 82%, transparent),
+            color-mix(in srgb, var(--color-base-bottom) 42%, transparent) 72%,
+            transparent
+          );
+      }
+
+      .hero-inner {
+        min-height: 34rem;
+        align-items: center;
+        padding-block: 4.5rem;
+      }
+
+      .hero-copy {
+        width: min(100%, 35rem);
+      }
+
+      h1 {
+        max-width: 8ch;
+        font-size: clamp(3.25rem, 16vw, 4.8rem);
+      }
+
+      .hero-lede {
+        margin-top: 1.25rem;
+      }
+
+      .hero-description {
+        max-width: 31rem;
+        margin-top: 1.15rem;
+        font-size: 0.9375rem;
+      }
+
+      .hero-inner,
+      .coverage {
+        width: min(100% - 2rem, 82rem);
+      }
+
+      .coverage-columns {
+        display: none;
+      }
+
+      .coverage-list {
+        border-top: 1px solid var(--color-line);
+      }
+
+      .coverage-entry {
+        grid-template-columns: minmax(0, 1fr) 2.75rem;
+        gap: 1.25rem;
+        padding-block: 1.75rem;
+      }
+
+      .publication,
+      time,
+      .article-copy {
+        grid-column: 1;
+      }
+
+      .publication {
+        padding-top: 0;
+      }
+
+      time {
+        margin-top: -0.9rem;
+        padding-top: 0;
+        font-size: 0.8125rem;
+      }
+
+      .entry-arrow {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+      }
+
+      .article-copy {
+        margin-top: 0.25rem;
+      }
+
+      .article-title {
+        font-size: 1.25rem;
+        line-height: 1.25;
+      }
+
+      .article-description {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+      }
+
+      .article-source {
+        display: inline;
+        margin-top: 0.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .coverage-entry,
+      .coverage-entry::before,
+      .article-title,
+      .entry-arrow {
+        transition: none;
+      }
+
+      .coverage-entry:hover .entry-arrow,
+      .coverage-entry:focus-visible .entry-arrow {
+        transform: none;
+      }
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  </style>
+</Base>
