@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+import heroBackdrop from '../../assets/hero/home-portal-hero.png';
 import PortalFrame from './PortalFrame.astro';
 
 type HeroGame = {
@@ -21,8 +23,23 @@ const header = (appid: number | null) =>
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-layout wrap">
-    <div class="hero-copy">
+  <div class="hero-scene" aria-hidden="true">
+    <Picture
+      src={heroBackdrop}
+      formats={['avif']}
+      fallbackFormat="webp"
+      alt=""
+      layout="full-width"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      class="hero-scene-image"
+    />
+  </div>
+
+  <div class="hero-viewport">
+    <div class="hero-layout wrap">
+      <div class="hero-copy">
       <a href="/mac/palworld-1623730/" class="announcement">
         <span class="live-dot" aria-hidden="true"></span>
         <span class="announcement-copy">
@@ -50,11 +67,11 @@ const header = (appid: number | null) =>
           <span aria-hidden="true">&rarr;</span>
         </a>
       </div>
-    </div>
+      </div>
 
-    <div class="hero-visual">
-      <PortalFrame>
-        <div class="launch-crossing" aria-hidden="true">
+      <div class="hero-visual">
+        <PortalFrame>
+          <div class="launch-crossing" aria-hidden="true">
           {
             lead ? (
               <div class="source-game" aria-hidden="true">
@@ -99,43 +116,46 @@ const header = (appid: number | null) =>
               </span>
             </div>
           </div>
+          </div>
+        </PortalFrame>
+        <div class="visual-footer">
+          <p class="visual-caption">
+            <span class="visual-caption-desktop">A real Windows game goes in. A Mac-ready launch comes out.</span>
+            <span class="visual-caption-mobile">Your Steam game in. A Mac-ready launch out.</span>
+          </p>
+          {
+            lead && (
+              <a href={'/games/' + lead.slug} class="visual-link">
+                {lead.title} compatibility <span aria-hidden="true">&rarr;</span>
+              </a>
+            )
+          }
         </div>
-      </PortalFrame>
-      <div class="visual-footer">
-        <p class="visual-caption">
-          <span class="visual-caption-desktop">A real Windows game goes in. A Mac-ready launch comes out.</span>
-          <span class="visual-caption-mobile">Your Steam game in. A Mac-ready launch out.</span>
-        </p>
-        {
-          lead && (
-            <a href={'/games/' + lead.slug} class="visual-link">
-              {lead.title} compatibility <span aria-hidden="true">&rarr;</span>
-            </a>
-          )
-        }
       </div>
     </div>
-
-    <dl class="trust" aria-label="Download and compatibility details">
-      <div>
-        <dt>Download</dt>
-        <dd>Latest DMG · Apple Silicon</dd>
-      </div>
-      <div>
-        <dt>Runs on</dt>
-        <dd>Apple Silicon (M1+) · macOS 14+</dd>
-      </div>
-      <div>
-        <dt>Your library</dt>
-        <dd>Uses Steam games you own</dd>
-      </div>
-      <div>
-        <dt>Privacy</dt>
-        <dd><a href="/privacy">Anonymous by default</a></dd>
-      </div>
-    </dl>
   </div>
 </section>
+
+<aside class="trust-band" aria-label="Download and compatibility details">
+  <dl class="trust wrap">
+    <div>
+      <dt>Download</dt>
+      <dd>Latest DMG · Apple Silicon</dd>
+    </div>
+    <div>
+      <dt>Runs on</dt>
+      <dd>Apple Silicon (M1+) · macOS 14+</dd>
+    </div>
+    <div>
+      <dt>Your library</dt>
+      <dd>Uses Steam games you own</dd>
+    </div>
+    <div>
+      <dt>Privacy</dt>
+      <dd><a href="/privacy">Anonymous by default</a></dd>
+    </div>
+  </dl>
+</aside>
 
 <script>
   for (const img of document.querySelectorAll<HTMLImageElement>('.source-game img[data-fallback]')) {
@@ -153,46 +173,93 @@ const header = (appid: number | null) =>
 
 <style>
   .hero {
+    --header-height: 4.75rem;
+
     position: relative;
+    isolation: isolate;
     display: grid;
-    min-height: calc(100svh - 4rem);
+    min-height: calc(100svh - var(--header-height));
+    align-items: stretch;
+    background: var(--color-base-bottom);
+  }
+
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-scene :global(picture),
+  .hero-scene :global(img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-scene :global(img) {
+    object-fit: cover;
+    object-position: 50% 52%;
+    opacity: 0.9;
+  }
+
+  .hero-scene::before,
+  .hero-scene::after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    content: '';
+  }
+
+  .hero-scene::before {
+    background:
+      linear-gradient(
+        90deg,
+        rgb(6 4 16 / 0.86) 0%,
+        rgb(6 4 16 / 0.74) 25%,
+        rgb(6 4 16 / 0.52) 43%,
+        rgb(6 4 16 / 0.24) 62%,
+        rgb(6 4 16 / 0.12) 82%,
+        rgb(6 4 16 / 0.34) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgb(6 4 16 / 0.2) 0%,
+        transparent 46%,
+        rgb(6 4 16 / 0.9) 100%
+      );
+  }
+
+  .hero-scene::after {
+    z-index: 2;
+    background:
+      radial-gradient(ellipse at 67% 42%, rgba(146, 104, 255, 0.1), transparent 34%),
+      radial-gradient(ellipse at 84% 48%, rgba(63, 214, 206, 0.055), transparent 32%);
+  }
+
+  .hero-viewport {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    min-height: calc(100svh - var(--header-height));
     align-items: center;
     padding-block: clamp(3.5rem, 7vw, 6.5rem);
   }
 
-  .hero::before {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(ellipse at 74% 34%, rgba(146, 104, 255, 0.1), transparent 43%),
-      radial-gradient(ellipse at 60% 72%, rgba(63, 214, 206, 0.045), transparent 40%);
-    content: '';
-    pointer-events: none;
-  }
-
   .hero-layout {
-    display: grid;
+    display: flex;
     min-width: 0;
-    grid-template-areas:
-      'copy'
-      'visual'
-      'trust';
+    flex-direction: column;
     gap: clamp(2rem, 5vw, 3.25rem);
-    align-items: center;
   }
 
   .hero-copy,
   .hero-visual {
     min-width: 0;
-  }
-
-  .hero-copy {
-    grid-area: copy;
-  }
-
-  .hero-visual {
-    grid-area: visual;
   }
 
   .announcement {
@@ -304,15 +371,17 @@ const header = (appid: number | null) =>
     border-color: rgba(146, 104, 255, 0.52);
   }
 
+  .trust-band {
+    border-block: 1px solid var(--color-line);
+    background: #080614;
+  }
+
   .trust {
     display: grid;
-    grid-area: trust;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 43rem;
-    gap: 0.9rem 1.5rem;
-    margin: 0;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--color-line);
+    gap: 1.5rem 2rem;
+    margin-block: 0;
+    padding-block: 1.5rem;
   }
 
   .trust div {
@@ -326,7 +395,7 @@ const header = (appid: number | null) =>
   }
 
   .trust dd {
-    margin: 0.18rem 0 0;
+    margin: 0.25rem 0 0;
     color: var(--color-fg);
     font-size: 0.875rem;
     line-height: 1.45;
@@ -341,6 +410,7 @@ const header = (appid: number | null) =>
     width: 100%;
     min-height: 420px;
     aspect-ratio: 16 / 11;
+    background-color: rgb(9 7 23 / 0.78);
   }
 
   .launch-crossing {
@@ -658,13 +728,26 @@ const header = (appid: number | null) =>
         view-timeline-axis: block;
       }
 
-      .hero-layout {
+      .hero-scene,
+      .hero-viewport {
+        grid-area: 1 / 1;
+      }
+
+      .hero-scene {
         position: sticky;
         top: 0;
-        box-sizing: border-box;
         height: 100svh;
-        min-height: 100svh;
-        padding-block: clamp(4.25rem, 8vh, 5rem) clamp(1.25rem, 3vh, 2rem);
+        align-self: start;
+      }
+
+      .hero-viewport {
+        position: sticky;
+        top: var(--header-height);
+        box-sizing: border-box;
+        height: calc(100svh - var(--header-height));
+        min-height: 0;
+        align-self: start;
+        padding-block: clamp(3rem, 6vh, 4rem);
       }
 
       .announcement {
@@ -683,12 +766,6 @@ const header = (appid: number | null) =>
 
       .actions {
         margin-top: 1.4rem;
-      }
-
-      .trust {
-        gap: 0.7rem 1.5rem;
-        margin-top: 0;
-        padding-top: 0.95rem;
       }
 
       .source-game {
@@ -745,16 +822,23 @@ const header = (appid: number | null) =>
 
   @media (min-width: 980px) {
     .hero-layout {
-      grid-template-columns: minmax(0, 0.9fr) minmax(500px, 1.1fr);
-      grid-template-areas:
-        'copy visual'
-        'trust visual';
-      column-gap: clamp(3rem, 6vw, 5.5rem);
-      row-gap: 1.25rem;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: clamp(3rem, 6vw, 5.5rem);
+    }
+
+    .hero-copy {
+      flex: 0.9 1 0;
+    }
+
+    .hero-visual {
+      min-width: 31.25rem;
+      flex: 1.1 1 0;
     }
 
     .trust {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(1.5rem, 4vw, 4rem);
     }
   }
 
@@ -774,8 +858,32 @@ const header = (appid: number | null) =>
   }
 
   @media (max-width: 979px) {
-    .hero {
+    .hero,
+    .hero-viewport {
       min-height: auto;
+    }
+
+    .hero-scene :global(img) {
+      object-position: 59% 50%;
+      opacity: 0.8;
+    }
+
+    .hero-scene::before {
+      background:
+        linear-gradient(
+          180deg,
+          rgb(6 4 16 / 0.88) 0%,
+          rgb(6 4 16 / 0.74) 42%,
+          rgb(6 4 16 / 0.54) 64%,
+          rgb(6 4 16 / 0.9) 100%
+        ),
+        linear-gradient(90deg, rgb(6 4 16 / 0.7), rgb(6 4 16 / 0.28));
+    }
+
+    .hero-scene::after {
+      background:
+        radial-gradient(ellipse at 72% 46%, rgba(146, 104, 255, 0.12), transparent 32%),
+        linear-gradient(180deg, transparent 72%, var(--color-base-bottom));
     }
 
     .hero-copy {
@@ -797,8 +905,31 @@ const header = (appid: number | null) =>
   }
 
   @media (max-width: 40rem) {
-    .hero {
+    .hero-viewport {
       padding-block: 4.75rem 3.75rem;
+    }
+
+    .hero-scene :global(img) {
+      object-position: 55% 46%;
+      opacity: 0.86;
+    }
+
+    .hero-scene::before {
+      background:
+        linear-gradient(
+          180deg,
+          rgb(6 4 16 / 0.46) 0%,
+          rgb(6 4 16 / 0.38) 52%,
+          rgb(6 4 16 / 0.52) 72%,
+          var(--color-base-bottom) 100%
+        ),
+        linear-gradient(
+          90deg,
+          rgb(6 4 16 / 0.82) 0%,
+          rgb(6 4 16 / 0.7) 46%,
+          rgb(6 4 16 / 0.26) 78%,
+          rgb(6 4 16 / 0.12) 100%
+        );
     }
 
     .hero-layout {
@@ -860,8 +991,7 @@ const header = (appid: number | null) =>
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0;
       max-width: none;
-      padding-top: 0;
-      border-block: 1px solid var(--color-line);
+      padding-block: 0;
     }
 
     .trust div {
@@ -1017,6 +1147,22 @@ const header = (appid: number | null) =>
     .announcement:focus-visible .announcement-arrow,
     .button:hover {
       transform: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .hero-scene :global(img) {
+      opacity: 0.35;
+    }
+
+    .hero-scene::before {
+      background:
+        linear-gradient(90deg, rgb(6 4 16 / 0.96), rgb(6 4 16 / 0.72)),
+        linear-gradient(180deg, rgb(6 4 16 / 0.66), var(--color-base-bottom));
+    }
+
+    .hero-visual :global(.portal-frame) {
+      background-color: var(--color-ink);
     }
   }
 </style>
