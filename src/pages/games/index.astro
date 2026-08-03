@@ -61,9 +61,28 @@ const headerUrl = (appid: number | null) =>
 
 const seoTitle = 'Mac Game Compatibility Database: Which Windows Games Work on Mac';
 const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. One-click installs through Pixel Port.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: seoTitle,
+  description,
+  url: new URL('/games', Astro.site).toString(),
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: total,
+    itemListElement: initialGames.slice(0, 30).map((g, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: g.title,
+      url: new URL(`/games/${g.slug}`, Astro.site).toString(),
+    })),
+  },
+};
 ---
 
 <Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
   <header class="catalogue-masthead">
     <div class="catalogue-masthead__grid" aria-hidden="true"></div>
     <div class="wrap catalogue-masthead__inner">

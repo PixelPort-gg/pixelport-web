@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page Not Found"
+  description="That page doesn't exist. Browse the Mac game compatibility catalogue or head back to Pixel Port's home page."
+>
+  <section class="wrap notfound">
+    <p class="notfound__code" aria-hidden="true">404</p>
+    <h1>This page didn't make it through the port.</h1>
+    <p class="notfound__lede">
+      The link may be old, or the page may have moved. The catalogue is the best place to start —
+      every game we grade for Apple Silicon lives there.
+    </p>
+    <div class="notfound__actions">
+      <a href="/games" class="notfound__cta">Browse the game catalogue <span aria-hidden="true">→</span></a>
+      <a href="/" class="notfound__quiet">Back to home</a>
+    </div>
+  </section>
+
+  <style>
+    .notfound { display: grid; justify-items: start; padding-block: 7rem 9rem; }
+    .notfound__code {
+      color: var(--color-accent-2);
+      font-size: 0.8rem;
+      font-weight: 750;
+      letter-spacing: 0.35em;
+    }
+    .notfound h1 {
+      max-width: 18ch;
+      margin-top: 1rem;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1;
+      text-wrap: balance;
+    }
+    .notfound__lede { max-width: 38rem; margin-top: 1.4rem; color: var(--color-muted); line-height: 1.7; }
+    .notfound__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem; margin-top: 2.2rem; }
+    .notfound__cta {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      gap: 0.8rem;
+      border-radius: 999px;
+      padding: 0.75rem 1.15rem;
+      color: var(--color-ink);
+      background: linear-gradient(100deg, var(--color-accent), var(--color-accent-2));
+      box-shadow: var(--shadow-glow);
+      font-size: 0.85rem;
+      font-weight: 750;
+    }
+    .notfound__quiet { display: inline-flex; min-height: 2.75rem; align-items: center; color: var(--color-accent-2); font-size: 0.85rem; font-weight: 650; }
+  </style>
+</Base>
