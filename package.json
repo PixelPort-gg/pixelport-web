@@ -12,7 +12,7 @@
     "astro": "astro",
     "refresh:base": "node scripts/refresh-base.mjs",
     "refresh:compat": "node scripts/pull-compat.mjs",
-    "sync": "node scripts/pull-d1.mjs && node scripts/pull-trending.mjs && node scripts/pull-awacy.mjs && node scripts/build-catalogue.mjs && node scripts/announce-verified.mjs"
+    "sync": "node scripts/pull-d1.mjs && node scripts/pull-trending.mjs && node scripts/pull-awacy.mjs && node scripts/pull-compat.mjs && node scripts/build-catalogue.mjs && node scripts/announce-verified.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
