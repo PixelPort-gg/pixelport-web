@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro';
+
+const seoTitle = 'How to Play Windows Games on a Mac (2026): Every Method, Honestly Compared';
+const description =
+  'The complete 2026 guide to playing Windows games on Apple Silicon Macs: one-click tools, Wine wrappers, VMs, and cloud gaming — what works, what broke, and what no tool can fix.';
+
+const canonical = new URL('/how-to-play-windows-games-on-mac', Astro.site).toString();
+
+const faq = [
+  {
+    q: 'Can my Mac actually run Windows games?',
+    a: 'If it has an Apple Silicon chip (M1 or newer), yes — far more than most people assume. Thousands of Windows games run well through modern translation layers that convert DirectX calls to Metal. The main exceptions are games with kernel-level anti-cheat, which no tool can run on macOS.',
+  },
+  {
+    q: 'Do I need a Windows license or Boot Camp?',
+    a: 'No. Boot Camp does not exist on Apple Silicon Macs, and translation-based tools like Pixel Port run the Windows build of a game directly on macOS — no Windows installation, no license, no virtual machine.',
+  },
+  {
+    q: 'Will performance be good enough?',
+    a: 'Usually better than people expect. Translation overhead exists, but Apple Silicon GPUs are strong, and many games run at very playable frame rates on a MacBook Air. Performance varies per game, which is why a per-game compatibility grade beats any blanket promise.',
+  },
+  {
+    q: 'Do I have to buy my games again?',
+    a: 'No. These tools run the Windows Steam games you already own. You sign in to Steam, and your existing library is what gets installed.',
+  },
+  {
+    q: 'What about Intel Macs?',
+    a: 'This guide is for Apple Silicon (M1–M4). Intel Macs are a different story: no Game Porting Toolkit lineage, aging GPU drivers, and fading tool support. On Intel, older Wine wrappers or cloud gaming are the realistic options.',
+  },
+  {
+    q: 'Why do some games refuse to run no matter what?',
+    a: 'Kernel-level anti-cheat (Riot Vanguard, some Easy Anti-Cheat and BattlEye configurations, GameGuard, XIGNCODE3) requires access that macOS does not give any compatibility layer. Only the game publisher can change that. Any tool claiming otherwise is being dishonest.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'How to play Windows games on a Mac in 2026',
+      description,
+      url: canonical,
+      author: { '@type': 'Organization', name: 'Pixel Port', url: 'https://pixelport.gg/' },
+      publisher: { '@id': 'https://pixelport.gg/#org' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+        { '@type': 'ListItem', position: 2, name: 'How to play Windows games on Mac', item: canonical },
+      ],
+    },
+    {
+      '@type': 'HowTo',
+      name: 'Play a Windows Steam game on an Apple Silicon Mac',
+      description: 'The one-click path from a Windows Steam game to a repeatable Mac launch.',
+      totalTime: 'PT10M',
+      step: [
+        {
+          '@type': 'HowToStep',
+          name: 'Check your game',
+          text: 'Look your game up in the Pixel Port compatibility catalogue. Every game carries an honest grade: verified, playable, needs attention, or unsupported with the blocker named.',
+          url: new URL('/games', Astro.site).toString(),
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Install Pixel Port',
+          text: 'Download the free Pixel Port app for macOS 14+ on Apple Silicon. First launch sets up the Prism runtime automatically.',
+          url: new URL('/download', Astro.site).toString(),
+        },
+        {
+          '@type': 'HowToStep',
+          name: 'Install & Play',
+          text: 'Find your game in the catalogue, click Install & Play, and Pixel Port downloads and configures it for your Mac. Launch it from your Library from then on — no bottles, no winetricks, no terminal.',
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+
+const methods = [
+  { name: 'Pixel Port', best: 'Steam games, zero setup', cost: 'Free', effort: 'One click', catch: 'Apple Silicon + macOS 14 only', cls: 'text-fg font-semibold' },
+  { name: 'CrossOver', best: 'Non-Steam launchers, tinkerers', cost: '$74/yr', effort: 'Manual per game', catch: 'You do the configuring', cls: 'text-muted' },
+  { name: 'Whisky', best: 'Nothing anymore', cost: 'Free', effort: 'Manual bottles', catch: 'Discontinued in 2025', cls: 'text-muted' },
+  { name: 'Game Porting Toolkit', best: 'Developers evaluating ports', cost: 'Free', effort: 'Terminal + Homebrew', catch: 'Built for devs, not players', cls: 'text-muted' },
+  { name: 'Parallels (VM)', best: 'Windows apps, light gaming', cost: '$99+/yr + Windows', effort: 'Full Windows install', catch: 'VM overhead, anti-cheat issues', cls: 'text-muted' },
+  { name: 'Cloud gaming', best: 'Anti-cheat-blocked games', cost: 'Subscription', effort: 'None', catch: 'Needs fast internet, latency', cls: 'text-muted' },
+];
+---
+
+<Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="wrap py-16 sm:py-24">
+    <nav class="text-sm text-muted">
+      <a href="/" class="hover:text-fg">Home</a> <span class="px-1">/</span> How to play Windows games on Mac
+    </nav>
+
+    <h1 class="mt-6 max-w-4xl text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+      How to play Windows games on a Mac
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      The honest 2026 guide. Your Apple Silicon Mac can play far more than you think — here is
+      every real method, what each one actually asks of you, and the truth about the games no
+      tool can run.
+    </p>
+
+    <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>The short answer</h2>
+      <p>
+        Windows games don't run on macOS natively because they speak DirectX, and Macs speak
+        Metal. Every method below is some way of bridging that gap. For most people with a Steam
+        library, the answer in 2026 is a translation layer that does the setup automatically:
+        install <a href="/download">Pixel Port</a>, pick a game, click. For everyone else —
+        tinkerers, VM users, people chasing an anti-cheat-blocked game — the full comparison
+        is below, including the options we lose to.
+      </p>
+
+      <h2>First, check your game</h2>
+      <p>
+        Before choosing a tool, find out whether your game runs at all. The
+        <a href="/games">compatibility catalogue</a> grades 11,000+ Windows games for Apple
+        Silicon: <a href="/games/verified">verified</a> means a human ran it end to end on a real
+        Mac; playable means strong evidence it works; unsupported means a hard blocker —
+        <a href="/games/anti-cheat">almost always kernel anti-cheat</a> — and no tool, ours
+        included, can fix that. Checking first turns an evening of trial and error into a
+        ten-second lookup.
+      </p>
+    </div>
+
+    <h2 class="mt-16 text-2xl font-semibold tracking-tight">Every method, compared honestly</h2>
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-line">
+      <table class="w-full min-w-[40rem] text-left text-sm">
+        <thead class="bg-surface/60 text-muted">
+          <tr>
+            <th class="px-5 py-3 font-medium">Method</th>
+            <th class="px-5 py-3 font-medium">Best for</th>
+            <th class="px-5 py-3 font-medium">Cost</th>
+            <th class="px-5 py-3 font-medium">Setup effort</th>
+            <th class="px-5 py-3 font-medium">The catch</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          {
+            methods.map((m) => (
+              <tr class={m.name === 'Pixel Port' ? 'bg-accent/10' : 'bg-surface/30'}>
+                <td class={`px-5 py-4 ${m.cls}`}>{m.name}</td>
+                <td class="px-5 py-4 text-fg/85">{m.best}</td>
+                <td class="px-5 py-4 text-fg/85">{m.cost}</td>
+                <td class="px-5 py-4 text-fg/85">{m.effort}</td>
+                <td class="px-5 py-4 text-fg/85">{m.catch}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>The one-click path, step by step</h2>
+      <ol>
+        <li>
+          <strong>Check your game</strong> in the <a href="/games">catalogue</a> and read its
+          grade. If it's blocked, the page tells you exactly why and what runs instead.
+        </li>
+        <li>
+          <strong>Install Pixel Port</strong> — <a href="/download">free download</a>, Apple
+          Silicon (M1–M4), macOS 14 or later. First launch sets up Prism, our runtime, on its
+          own.
+        </li>
+        <li>
+          <strong>Click Install &amp; Play.</strong> Pixel Port fetches the Windows build of the
+          game you already own, configures it for your specific Mac, and launches it. From then
+          on it's one click from your Library — a repeatable launch, not a science project.
+        </li>
+      </ol>
+      <p>
+        Under the hood: Prism pairs a modern Wine build with DXMT, which translates the game's
+        DirectX calls straight to Metal. The game never notices it left Windows, and there is no
+        bottle for you to maintain. <a href="/docs">The docs</a> explain the whole pipeline.
+      </p>
+
+      <h2>The other methods, and when they make sense</h2>
+      <p>
+        <strong><a href="/free-crossover-alternative">CrossOver</a></strong> is the veteran paid
+        option and still the right choice if you need non-Steam launchers and don't mind
+        configuring things per game. <strong><a href="/whisky-alternative">Whisky</a></strong>,
+        the free wrapper many people used, was discontinued in 2025 and no longer receives
+        compatibility fixes. <strong><a href="/game-porting-toolkit">Apple's Game Porting
+        Toolkit</a></strong> proved this whole approach works, but it is a developer evaluation
+        tool: Homebrew, terminal, per-game wrangling. <strong><a href="/parallels-alternative">
+        Parallels</a></strong> runs real Windows in a VM — great for Excel, expensive and
+        overhead-laden for games. And <strong>cloud gaming</strong> (GeForce NOW and similar)
+        deserves an honest mention: it is the one legitimate way to play kernel-anti-cheat games
+        on a Mac, because the game runs on a Windows PC in a datacenter. You trade latency and a
+        subscription for compatibility we can't offer.
+      </p>
+
+      <h2>What no tool can fix</h2>
+      <p>
+        Games with kernel-level anti-cheat — think Riot Vanguard and certain Easy Anti-Cheat and
+        BattlEye configurations — cannot run on macOS through any compatibility layer. This is a
+        publisher decision, not a performance limit, and we'd rather tell you now than after
+        you've spent an evening on it. The full list of
+        <a href="/games/anti-cheat">blocked games and their exact blockers</a> is public.
+      </p>
+    </div>
+
+    <section class="mt-16">
+      <h2 class="text-2xl font-semibold tracking-tight">Common questions</h2>
+      <dl class="mt-6 grid gap-3">
+        {
+          faq.map(({ q, a }) => (
+            <div class="rounded-2xl border border-line bg-surface/30 p-6">
+              <dt class="font-semibold">{q}</dt>
+              <dd class="mt-2 text-sm leading-relaxed text-fg/75">{a}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Your Mac can play more than you think.</h2>
+      <p class="mx-auto mt-3 max-w-lg text-muted">
+        Free, one click, honest about what runs. See your library the way your Mac sees it.
+      </p>
+      <a
+        href="/download"
+        class="mt-7 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
+      >
+        Download Pixel Port
+      </a>
+    </div>
+  </article>
+</Base>

@@ -11,6 +11,7 @@ Key facts:
 
 ## Core pages
 
+- [How to play Windows games on Mac — complete guide](https://pixelport.gg/how-to-play-windows-games-on-mac): every method honestly compared, step-by-step instructions
 - [Home](https://pixelport.gg/): what Pixel Port is and how it works
 - [Download](https://pixelport.gg/download): free macOS app download
 - [Game compatibility database](https://pixelport.gg/games/): search 11,000+ Windows games by Mac compatibility
