@@ -11,9 +11,24 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+const canonical = new URL(`/blog/${post.id}`, Astro.site).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  url: canonical,
+  mainEntityOfPage: canonical,
+  image: new URL('/og.png', Astro.site).toString(),
+  author: { '@type': 'Organization', name: 'Pixel Port', url: 'https://pixelport.gg/' },
+  publisher: { '@id': 'https://pixelport.gg/#org' },
+};
 ---
 
-<Base title={post.data.title} description={post.data.description}>
+<Base title={post.data.title} description={post.data.description} ogType="article">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
   <header class="relative overflow-hidden border-b border-line">
     <div class="pixel-field absolute inset-0 opacity-30 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true"></div>
     <div class="absolute left-[12%] top-0 h-64 w-64 rounded-full bg-accent/15 blur-3xl" aria-hidden="true"></div>

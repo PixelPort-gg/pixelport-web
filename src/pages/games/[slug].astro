@@ -54,6 +54,39 @@ const description = isBlocked
   : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4) through Pixel Port.`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
+
+// Tier-honest Q&A. Rendered visibly below and mirrored as FAQPage JSON-LD, so
+// the schema never claims anything the page doesn't say.
+const faq: { q: string; a: string }[] = isBlocked
+  ? [
+      {
+        q: `Can you play ${game.title} on Mac?`,
+        a: `No. ${game.summary}`,
+      },
+      {
+        q: `Why is ${game.title} blocked on Mac?`,
+        a: `${game.title} ships ${game.blocker.antiCheat}, which needs system access that a compatibility layer on macOS cannot provide. It is not a graphics or performance limit.`,
+      },
+      {
+        q: `Will ${game.title} ever work on Mac?`,
+        a: game.blocker.status,
+      },
+    ]
+  : [
+      {
+        q: `Does ${game.title} run on Mac?`,
+        a: `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.`,
+      },
+      {
+        q: `Do I need Windows, Boot Camp, or a VM to play ${game.title} on Mac?`,
+        a: `No. Pixel Port runs the Windows build of ${game.title} directly on macOS — no Boot Camp partition, no virtual machine, and no Windows license.`,
+      },
+      {
+        q: `Which Macs can run ${game.title}?`,
+        a: `Any Apple Silicon Mac — M1 through M4, MacBook Air to Mac Studio — on macOS 14 or later.`,
+      },
+    ];
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -61,6 +94,8 @@ const jsonLd = {
       '@type': 'VideoGame',
       name: game.title,
       ...(game.genre ? { genre: game.genre } : {}),
+      ...(cover ? { image: cover } : {}),
+      description: game.summary,
       gamePlatform: 'macOS (Apple Silicon)',
       operatingSystem: 'macOS 14+',
       url: canonical,
@@ -72,11 +107,19 @@ const jsonLd = {
         { '@type': 'ListItem', position: 2, name: game.title, item: canonical },
       ],
     },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faq.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
   ],
 };
 ---
 
-<Base title={seoTitle} description={description}>
+<Base title={seoTitle} description={description} ogImage={fb ?? undefined}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 
   <article>
@@ -88,6 +131,7 @@ const jsonLd = {
             alt=""
             class="game-masthead__landscape"
             aria-hidden="true"
+            fetchpriority="high"
             onerror="this.remove();"
           />
         )
@@ -215,9 +259,48 @@ const jsonLd = {
                   ))}
                 </ol>
               </section>
+
+              <section class="game-section" aria-labelledby="more-games-heading">
+                <h2 id="more-games-heading">More games that run on Mac</h2>
+                <ul class="game-picks">
+                  {picks.map((pick) => (
+                    <li>
+                      <a href={`/games/${pick.slug}`}>
+                        <div class="game-pick__art">
+                          <span>{pick.title}</span>
+                          {coverUrl(pick.appid) && (
+                            <img
+                              src={coverUrl(pick.appid)}
+                              data-fb={coverFallbackUrl(pick.appid)}
+                              alt={`${pick.title} cover art`}
+                              loading="lazy"
+                              decoding="async"
+                              onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+                            />
+                          )}
+                        </div>
+                        <p>{pick.title}</p>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <a href="/games" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
+              </section>
             </>
           )
         }
+
+        <section class="game-section" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Common questions</h2>
+          <dl class="game-faq">
+            {faq.map(({ q, a }) => (
+              <div>
+                <dt>{q}</dt>
+                <dd>{a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
       </div>
 
       <aside class="game-detail-rail" aria-label={`${game.title} compatibility facts`}>
@@ -491,6 +574,11 @@ const jsonLd = {
     .game-picks a:hover img { transform: scale(1.035); }
     .game-picks a:hover > p { color: var(--color-accent-2); }
     .game-text-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.7rem; margin-top: 1.4rem; color: var(--color-accent-2); font-size: 0.82rem; font-weight: 650; }
+
+    .game-faq { display: grid; gap: 0.8rem; margin-top: 1.7rem; }
+    .game-faq > div { border: 1px solid var(--color-line); border-radius: 1rem; padding: 1.2rem 1.3rem; background: rgba(22, 18, 42, 0.4); }
+    .game-faq dt { font-weight: 650; }
+    .game-faq dd { margin-top: 0.6rem; color: rgba(245, 245, 247, 0.74); font-size: 0.92rem; line-height: 1.65; }
 
     .game-detail-rail__inner {
       position: sticky;
