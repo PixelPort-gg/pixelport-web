@@ -48,10 +48,10 @@ const facts: [string, string][] = game._cat
 const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
 const seoTitle = isBlocked
   ? `Can You Play ${game.title} on Mac? The Honest Answer`
-  : `Play ${game.title} on Mac in One Click (Apple Silicon)`;
+  : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
-  : `Play ${game.title} on your Mac in one click. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4) through Pixel Port.`;
+  : `How to play ${game.title} on your Mac, step by step: one click through Pixel Port. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4).`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 
@@ -75,7 +75,11 @@ const faq: { q: string; a: string }[] = isBlocked
   : [
       {
         q: `Does ${game.title} run on Mac?`,
-        a: `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.`,
+        a:
+          `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.` +
+          (game.engine
+            ? ` ${game.title} is built on ${engineLabel(game.engine)}, and Pixel Port's runtime translates its rendering to Metal automatically.`
+            : ''),
       },
       {
         q: `Do I need Windows, Boot Camp, or a VM to play ${game.title} on Mac?`,
@@ -115,6 +119,23 @@ const jsonLd = {
         acceptedAnswer: { '@type': 'Answer', text: a },
       })),
     },
+    // Non-blocked pages render the launch steps visibly; mirror them as HowTo
+    // so "how to play X on mac" queries get the rich-result treatment.
+    ...(!isBlocked && game.steps
+      ? [
+          {
+            '@type': 'HowTo',
+            name: `How to play ${game.title} on Mac`,
+            description: `From the Windows build of ${game.title} to a repeatable launch on Apple Silicon.`,
+            totalTime: 'PT10M',
+            step: game.steps.map((s: { title: string; body: string }) => ({
+              '@type': 'HowToStep',
+              name: s.title,
+              text: s.body,
+            })),
+          },
+        ]
+      : []),
   ],
 };
 ---
