@@ -1,0 +1,141 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { tierMeta, type Tier } from '../../../lib/catalog';
+
+// A crawlable A–Z index of the whole catalogue. The interactive /games grid
+// only ships 60 games in its HTML, so this directory is what gives search
+// engines (and AI crawlers) a plain-link path to every game page.
+interface GridGame {
+  slug: string;
+  title: string;
+  appid: number | null;
+  tier: Tier;
+  p: number;
+}
+
+export function getStaticPaths() {
+  const grid = JSON.parse(
+    readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+  ) as GridGame[];
+  const sorted = [...grid].sort((a, b) => a.title.localeCompare(b.title, 'en'));
+  const pageCount = Math.ceil(sorted.length / 250);
+  return Array.from({ length: pageCount }, (_, i) => ({
+    params: { page: String(i + 1) },
+    props: {
+      games: sorted.slice(i * 250, (i + 1) * 250),
+      page: i + 1,
+      pageCount,
+      total: sorted.length,
+    },
+  }));
+}
+
+const { games, page, pageCount, total } = Astro.props as {
+  games: GridGame[];
+  page: number;
+  pageCount: number;
+  total: number;
+};
+
+const fmt = (n: number) => n.toLocaleString('en-US');
+const first = games[0]?.title ?? '';
+const last = games[games.length - 1]?.title ?? '';
+const seoTitle = `All ${fmt(total)} Games A–Z, Page ${page} of ${pageCount}: Mac Compatibility Index`;
+const description = `Alphabetical index of every Windows game graded for Apple Silicon Macs — page ${page} of ${pageCount} (${first} to ${last}). Every game links to its full Mac compatibility verdict.`;
+---
+
+<Base title={seoTitle} description={description}>
+  <section class="wrap directory">
+    <nav class="text-sm text-muted">
+      <a href="/games" class="hover:text-fg">Games</a> <span class="px-1">/</span> A–Z index
+      <span class="px-1">/</span> Page {page}
+    </nav>
+
+    <h1>Every game, A to Z.</h1>
+    <p class="directory__lede">
+      All {fmt(total)} Windows games in the catalogue, alphabetically, with their current Apple
+      Silicon grade. Page {page} of {pageCount}: <strong>{first}</strong> through{' '}
+      <strong>{last}</strong>.
+    </p>
+
+    <ul class="directory__list">
+      {
+        games.map((g) => (
+          <li>
+            <a href={`/games/${g.slug}`}>
+              <span class="directory__title">{g.title}</span>
+              <span class={`directory__tier ${tierMeta[g.tier].text}`}>{tierMeta[g.tier].label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <nav class="directory__pager" aria-label="Directory pages">
+      {page > 1 && <a href={`/games/all/${page - 1}`}>← Page {page - 1}</a>}
+      <span>Page {page} of {pageCount}</span>
+      {page < pageCount && <a href={`/games/all/${page + 1}`}>Page {page + 1} →</a>}
+    </nav>
+
+    <div class="directory__pages">
+      {Array.from({ length: pageCount }, (_, i) => (
+        i + 1 === page
+          ? <strong>{i + 1}</strong>
+          : <a href={`/games/all/${i + 1}`}>{i + 1}</a>
+      ))}
+    </div>
+  </section>
+
+  <style>
+    .directory { padding-block: 4.5rem 6rem; }
+    .directory h1 {
+      margin-top: 1.25rem;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1;
+    }
+    .directory__lede { max-width: 40rem; margin-top: 1rem; color: var(--color-muted); line-height: 1.65; }
+    .directory__list {
+      display: grid;
+      gap: 0.15rem 2rem;
+      margin-top: 2.5rem;
+      grid-template-columns: 1fr;
+    }
+    .directory__list a {
+      display: flex;
+      min-height: 2.4rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid var(--color-line);
+      padding-block: 0.45rem;
+      color: var(--color-fg);
+      font-size: 0.85rem;
+    }
+    .directory__list a:hover .directory__title { color: var(--color-accent-2); }
+    .directory__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .directory__tier { flex: none; font-size: 0.68rem; font-weight: 650; }
+    .directory__pager {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      font-size: 0.85rem;
+      font-weight: 650;
+    }
+    .directory__pager a { color: var(--color-accent-2); }
+    .directory__pager span { color: var(--color-muted); font-weight: 500; }
+    .directory__pages { display: flex; flex-wrap: wrap; gap: 0.35rem 0.7rem; margin-top: 1.5rem; font-size: 0.75rem; }
+    .directory__pages a { color: var(--color-muted); }
+    .directory__pages a:hover { color: var(--color-accent-2); }
+    .directory__pages strong { color: var(--color-fg); }
+
+    @media (min-width: 48rem) {
+      .directory__list { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</Base>

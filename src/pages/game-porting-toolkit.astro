@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+
+const seoTitle = 'Game Porting Toolkit Without the Terminal: Play Windows Games on Mac in One Click';
+const description =
+  "Apple's Game Porting Toolkit proves Windows games can run great on Apple Silicon — but it was built for developers, not players. Pixel Port gives you the same result with zero terminal commands.";
+
+const canonical = new URL('/game-porting-toolkit', Astro.site).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'Game Porting Toolkit without the terminal',
+      description,
+      url: canonical,
+      author: { '@type': 'Organization', name: 'Pixel Port' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.site).toString() },
+        { '@type': 'ListItem', position: 2, name: 'Game Porting Toolkit', item: canonical },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Is Game Porting Toolkit for players or developers?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: "Developers. Apple built the Game Porting Toolkit so game studios could evaluate porting their Windows games to macOS. Installing it yourself means Xcode command line tools, Homebrew, terminal commands, and manual per-game setup — it was never designed as a consumer product.",
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How do I get Game Porting Toolkit results without using the terminal?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Pixel Port packages the same underlying translation approach into a one-click Mac app: it downloads, configures, and launches Windows games on Apple Silicon automatically, with an honest per-game compatibility grade before you start.',
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="wrap py-16 sm:py-24">
+    <nav class="text-sm text-muted">
+      <a href="/" class="hover:text-fg">Home</a> <span class="px-1">/</span> Game Porting Toolkit
+    </nav>
+
+    <h1 class="mt-6 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+      Game Porting Toolkit, without the terminal
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      When Apple shipped the Game Porting Toolkit, it proved something important: Windows games can
+      run remarkably well on Apple Silicon. Then everyone opened the install guide and found Xcode,
+      Homebrew, and a wall of terminal commands. That is because it was built for game developers —
+      not for you.
+    </p>
+    <div class="mt-8">
+      <a
+        href="/download"
+        class="inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-7 py-3.5 font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
+      >
+        Download Pixel Port
+      </a>
+    </div>
+
+    <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>What the toolkit actually is</h2>
+      <p>
+        The Game Porting Toolkit is Apple's evaluation environment for studios considering a Mac
+        port. It translates Windows DirectX graphics calls to Metal so a developer can see how
+        their game behaves on Apple Silicon. It works — often impressively — but using it yourself
+        means installing developer tooling, compiling dependencies, wrangling Wine prefixes, and
+        repeating the setup dance for every single game. Miss a step and you get a black screen
+        and no explanation.
+      </p>
+
+      <h2>The same idea, made for players</h2>
+      <p>
+        Pixel Port takes the approach the toolkit proved out and does everything the guide asks of
+        you — automatically. Our runtime translates DirectX to Metal, and the Synthesis Engine
+        figures out each game's configuration for your specific Mac. You never see a terminal. You
+        install one app, pick a game from the catalogue, and press play.
+      </p>
+      <p>
+        And where the toolkit leaves you to discover what works by trial and error, our catalogue
+        grades 11,000+ games honestly up front — including <a href="/games/anti-cheat">the ones no
+        tool can run</a> because of kernel anti-cheat. No fabricated green lights.
+      </p>
+    </div>
+
+    <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Skip the setup. Keep the result.</h2>
+      <p class="mx-auto mt-3 max-w-lg text-muted">
+        One free app. One click per game. Built for Apple Silicon.
+      </p>
+      <a
+        href="/download"
+        class="mt-7 inline-block rounded-full bg-linear-to-r from-accent to-accent-2 px-8 py-4 text-lg font-semibold text-white shadow-[var(--shadow-glow)] [text-shadow:0_1px_2px_rgba(10,8,22,0.4)] transition-[transform,filter] hover:brightness-110 active:scale-[0.98]"
+      >
+        Download for Mac
+      </a>
+    </div>
+  </article>
+</Base>

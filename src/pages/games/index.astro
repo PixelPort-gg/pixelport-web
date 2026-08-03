@@ -93,6 +93,11 @@ const jsonLd = {
           verified results; uncertain games keep their caveats; blockers stay visible.
         </p>
         <a href="#catalogue" class="catalogue-enter">Explore the catalogue <span aria-hidden="true">↓</span></a>
+        <p class="catalogue-index-links">
+          Or jump straight to <a href="/games/verified">verified games</a>, the
+          <a href="/games/all/1">full A–Z index</a>, or
+          <a href="/games/anti-cheat">why some games are blocked</a>.
+        </p>
       </div>
 
       <div class="signal-frame" aria-label="Compatibility breakdown">
@@ -452,6 +457,9 @@ const jsonLd = {
       font-size: 0.88rem;
       font-weight: 650;
     }
+
+    .catalogue-index-links { max-width: 30rem; margin-top: 0.9rem; color: var(--color-muted); font-size: 0.78rem; line-height: 1.6; }
+    .catalogue-index-links a { color: var(--color-accent-2); font-weight: 600; }
 
     .catalogue-enter span {
       display: grid;

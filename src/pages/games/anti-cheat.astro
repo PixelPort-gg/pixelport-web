@@ -1,0 +1,165 @@
+---
+import Base from '../../layouts/Base.astro';
+import catalogue from '../../data/catalogue.json';
+import { prettyAC } from '../../lib/catalog';
+
+// Groups every blocked game by the anti-cheat that blocks it. This is the
+// honest answer to the most-asked Mac gaming question, backed by the same
+// data that grades the catalogue.
+const blocked = (catalogue as any[]).filter((e) => e.tier === 'unsupported');
+const groups = new Map<string, any[]>();
+for (const e of blocked) {
+  const key = prettyAC(e.antiCheat) === 'None' ? 'Other kernel-level anti-cheat' : prettyAC(e.antiCheat);
+  if (!groups.has(key)) groups.set(key, []);
+  groups.get(key)!.push(e);
+}
+const sections = [...groups.entries()].sort((a, b) => b[1].length - a[1].length);
+const fmt = (n: number) => n.toLocaleString('en-US');
+
+const seoTitle = 'Anti-Cheat on Mac: Which Windows Games Are Blocked and Why';
+const description = `${fmt(blocked.length)} Windows games cannot run on Apple Silicon Macs because of kernel-level anti-cheat — not graphics, not performance. Here is exactly which anti-cheat systems block Mac play, which games they affect, and who can change it.`;
+
+const canonical = new URL('/games/anti-cheat', Astro.site).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'Anti-cheat on Mac: which games are blocked and why',
+      description,
+      url: canonical,
+      author: { '@type': 'Organization', name: 'Pixel Port' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Why do some Windows games refuse to run on a Mac?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Kernel-level anti-cheat needs to run deep inside Windows itself. macOS does not allow that access to a compatibility layer, so games that require it cannot launch — regardless of how powerful the Mac is. It is a policy blocker, not a performance one.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can any tool work around kernel anti-cheat on macOS?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No — not Pixel Port, not CrossOver, not Whisky, not Parallels in any way the anti-cheat vendor accepts. Only the game publisher can enable Mac play by shipping a macOS-compatible anti-cheat configuration.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Do games with VAC or user-mode Easy Anti-Cheat work on Mac?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Often yes. VAC and user-mode anti-cheat configurations generally do not require kernel access, and many such games are graded playable or verified in the Pixel Port catalogue.',
+          },
+        },
+      ],
+    },
+  ],
+};
+---
+
+<Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <article class="wrap ac-page">
+    <nav class="text-sm text-muted">
+      <a href="/games" class="hover:text-fg">Games</a> <span class="px-1">/</span> Anti-cheat on Mac
+    </nav>
+
+    <h1>The honest reason {fmt(blocked.length)} games won't run on your Mac.</h1>
+    <p class="ac-page__lede">
+      It is not your Mac. It is not the graphics. Every game on this page is blocked by
+      <strong>kernel-level anti-cheat</strong> — software that must run deep inside Windows itself,
+      at a level macOS does not expose to any compatibility layer. No tool can honestly work around
+      it, and anyone who claims otherwise is selling something. Whether these games ever run on Mac
+      is a decision that belongs to each publisher.
+    </p>
+
+    <div class="prose prose-invert mt-10 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
+      <h2>What actually works</h2>
+      <p>
+        The good news: most anti-cheat is not kernel-level. VAC and user-mode Easy Anti-Cheat
+        configurations usually run fine, which is why thousands of multiplayer games are graded
+        playable or <a href="/games/verified">verified</a> in the catalogue. Before writing off a
+        game, <a href="/games">check its actual grade</a> — the answer is often better than you
+        expect.
+      </p>
+    </div>
+
+    {
+      sections.map(([name, games]) => (
+        <section class="ac-group">
+          <h2>{name}</h2>
+          <p class="ac-group__count">{fmt(games.length)} blocked {games.length === 1 ? 'game' : 'games'}</p>
+          <ul>
+            {games.map((g) => (
+              <li>
+                <a href={`/games/${g.slug}`}>{g.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    <div class="ac-page__cta">
+      <h2>Play what actually runs</h2>
+      <p>Thousands of Windows games do work on Apple Silicon — graded honestly, launched in one click.</p>
+      <a href="/games/verified">See verified games <span aria-hidden="true">→</span></a>
+    </div>
+  </article>
+
+  <style>
+    .ac-page { padding-block: 4.5rem 6.5rem; }
+    .ac-page h1 {
+      max-width: 22ch;
+      margin-top: 1.25rem;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 650;
+      letter-spacing: -0.045em;
+      line-height: 1.02;
+      text-wrap: balance;
+    }
+    .ac-page__lede { max-width: 44rem; margin-top: 1.4rem; color: var(--color-muted); font-size: 1.02rem; line-height: 1.7; }
+    .ac-page__lede strong { color: var(--color-blocked, #e0556b); }
+    .ac-group { margin-top: 3.5rem; border-top: 1px solid var(--color-line); padding-top: 2.25rem; }
+    .ac-group h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 650; letter-spacing: -0.03em; }
+    .ac-group__count { margin-top: 0.35rem; color: var(--color-blocked, #e0556b); font-size: 0.78rem; font-weight: 700; }
+    .ac-group ul {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.1rem 2rem;
+      margin-top: 1.25rem;
+    }
+    .ac-group li a {
+      display: block;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-line);
+      padding-block: 0.55rem;
+      color: var(--color-fg);
+      font-size: 0.85rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .ac-group li a:hover { color: var(--color-accent-2); }
+    .ac-page__cta {
+      margin-top: 4rem;
+      border: 1px solid var(--color-line);
+      border-radius: 1.25rem;
+      padding: 2.25rem;
+      background: linear-gradient(140deg, rgba(31, 24, 56, 0.6), rgba(22, 18, 42, 0.3));
+    }
+    .ac-page__cta h2 { font-size: 1.5rem; font-weight: 650; letter-spacing: -0.03em; }
+    .ac-page__cta p { max-width: 34rem; margin-top: 0.6rem; color: var(--color-muted); line-height: 1.6; }
+    .ac-page__cta a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.7rem; margin-top: 0.9rem; color: var(--color-accent-2); font-size: 0.85rem; font-weight: 650; }
+
+    @media (min-width: 48rem) {
+      .ac-group ul { grid-template-columns: 1fr 1fr 1fr; }
+    }
+  </style>
+</Base>

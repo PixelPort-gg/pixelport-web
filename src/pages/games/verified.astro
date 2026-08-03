@@ -1,0 +1,162 @@
+---
+import Base from '../../layouts/Base.astro';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { coverUrl, coverFallbackUrl } from '../../lib/catalog';
+
+interface GridGame {
+  slug: string;
+  title: string;
+  appid: number | null;
+  tier: string;
+  p: number;
+}
+
+const grid = JSON.parse(
+  readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+) as GridGame[];
+const verified = grid
+  .filter((g) => g.tier === 'verified')
+  .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+const fmt = (n: number) => n.toLocaleString('en-US');
+
+const seoTitle = 'Verified Mac Games: Windows Games Confirmed Running on Apple Silicon';
+const description = `${verified.length} Windows games verified end to end on real Apple Silicon Macs through Pixel Port. No community hearsay, no fabricated green lights — a human launched and played every one.`;
+
+const canonical = new URL('/games/verified', Astro.site).toString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: seoTitle,
+  description,
+  url: canonical,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: verified.length,
+    itemListElement: verified.map((g, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: g.title,
+      url: new URL(`/games/${g.slug}`, Astro.site).toString(),
+    })),
+  },
+};
+---
+
+<Base title={seoTitle} description={description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+
+  <section class="wrap verified-hub">
+    <nav class="text-sm text-muted">
+      <a href="/games" class="hover:text-fg">Games</a> <span class="px-1">/</span> Verified
+    </nav>
+
+    <h1>Verified on Mac.<br /><span>No asterisks.</span></h1>
+    <p class="verified-hub__lede">
+      Every game below was launched and played end to end on a real Apple Silicon Mac through
+      Pixel Port. Not "should work". Not "community says so". A human pressed play, and it ran.
+      That is the whole bar — and it is why this list is shorter and more trustworthy than most
+      compatibility lists on the internet.
+    </p>
+
+    <ul class="verified-grid">
+      {
+        verified.map((g) => (
+          <li>
+            <a href={`/games/${g.slug}`}>
+              <div class="verified-grid__art">
+                <span>{g.title}</span>
+                {coverUrl(g.appid) && (
+                  <img
+                    src={coverUrl(g.appid)}
+                    data-fb={coverFallbackUrl(g.appid)}
+                    alt={`${g.title} cover art`}
+                    loading="lazy"
+                    decoding="async"
+                    onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}"
+                  />
+                )}
+              </div>
+              <p>{g.title}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="verified-hub__more">
+      <p>
+        Beyond these {verified.length} hand-verified titles, {fmt(grid.length)} more games carry
+        honest grades — playable, needs attention, or a straight no.
+      </p>
+      <a href="/games" class="verified-hub__cta">Browse the full catalogue <span aria-hidden="true">→</span></a>
+      <a href="/games/all/1" class="verified-hub__quiet">Or see the A–Z index</a>
+    </div>
+  </section>
+
+  <style>
+    .verified-hub { padding-block: 4.5rem 6.5rem; }
+    .verified-hub h1 {
+      margin-top: 1.25rem;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 650;
+      letter-spacing: -0.05em;
+      line-height: 0.98;
+    }
+    .verified-hub h1 span { color: var(--color-verified, #4ade80); }
+    .verified-hub__lede { max-width: 42rem; margin-top: 1.4rem; color: var(--color-muted); font-size: 1.02rem; line-height: 1.7; }
+    .verified-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+    .verified-grid__art {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+      border: 1px solid var(--color-line);
+      border-radius: 0.65rem;
+      background: linear-gradient(150deg, #5c40b0, #228c86);
+    }
+    .verified-grid__art > span {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 0.65rem;
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 650;
+      text-align: center;
+    }
+    .verified-grid__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .verified-grid a > p {
+      overflow: hidden;
+      margin-top: 0.5rem;
+      color: var(--color-fg);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .verified-grid a:hover > p { color: var(--color-accent-2); }
+    .verified-hub__more { margin-top: 3.5rem; border-top: 1px solid var(--color-line); padding-top: 2rem; }
+    .verified-hub__more p { max-width: 38rem; color: var(--color-muted); line-height: 1.65; }
+    .verified-hub__cta {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1.4rem;
+      border-radius: 999px;
+      padding: 0.72rem 1.15rem;
+      color: var(--color-ink);
+      background: linear-gradient(100deg, var(--color-accent), var(--color-accent-2));
+      box-shadow: var(--shadow-glow);
+      font-size: 0.85rem;
+      font-weight: 750;
+    }
+    .verified-hub__quiet { display: inline-flex; min-height: 2.75rem; align-items: center; margin-left: 1.4rem; color: var(--color-accent-2); font-size: 0.83rem; font-weight: 650; }
+  </style>
+</Base>
