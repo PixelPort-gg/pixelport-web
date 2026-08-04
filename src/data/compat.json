@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-03",
+ "fetched_at": "2026-08-04",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -38,7 +38,7 @@
    "appid": 440,
    "slug": "team-fortress-2",
    "name": "Team Fortress 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 76044264
   },
@@ -603,6 +603,14 @@
    "popularity": 3604010
   },
   {
+   "appid": 335300,
+   "slug": "dark-souls-ii-scholar-of-the-first-sin",
+   "name": "DARK SOULS II: Scholar of the First Sin",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3598052
+  },
+  {
    "appid": 233860,
    "slug": "kenshi",
    "name": "Kenshi",
@@ -843,6 +851,14 @@
    "popularity": 1576008
   },
   {
+   "appid": 211420,
+   "slug": "dark-souls-prepare-to-die-edition",
+   "name": "Dark Souls: Prepare to Die Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1571475
+  },
+  {
    "appid": 638970,
    "slug": "yakuza-0",
    "name": "Yakuza 0",
@@ -1033,6 +1049,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1504186
+  },
+  {
+   "appid": 236430,
+   "slug": "dark-souls-ii",
+   "name": "Dark Souls II",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 789201
   },
   {
    "appid": 427410,
