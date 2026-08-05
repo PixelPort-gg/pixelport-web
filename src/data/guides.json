@@ -1,0 +1,112 @@
+{
+  "palworld": {
+    "updated": "2026-08-04",
+    "intro": "Palworld went 1.0 in July 2026 and now has a native Mac version on the App Store. That changes the answer, so here it is honestly: there are three real ways to play Palworld on an Apple Silicon Mac, and the right one depends on whether you already own it.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free (you own the game)", "how": "One click; verified on real Apple Silicon Macs", "verdict": "Best if you already own Palworld on Steam" },
+      { "name": "Native Mac App Store version", "cost": "$29.99, a separate purchase", "how": "Buy again on the App Store; macOS 14+, M1 or newer", "verdict": "Best if you never bought it and want a native build" },
+      { "name": "Xbox Cloud Gaming (Game Pass)", "cost": "Game Pass subscription", "how": "Streams from a Windows PC in a datacenter", "verdict": "Works on any Mac, but needs fast internet and adds latency" }
+    ],
+    "nativeAnswer": "Yes. Palworld shipped a native Mac version on the App Store in 2026 for $29.99, requiring macOS 14+ and Apple Silicon. It is a separate purchase, though: your Steam copy does not unlock it. If you already own Palworld on Steam, Pixel Port plays that copy on your Mac for free."
+  },
+  "cs2": {
+    "updated": "2026-08-04",
+    "intro": "Counter-Strike had a native Mac version for years, then Valve dropped macOS support when CS2 replaced CS:GO. If you want to play CS2 on a Mac today, these are the real options.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; graded playable on Apple Silicon", "verdict": "The direct route for the copy you already have" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Valve ended macOS support with CS2", "verdict": "Not an option, and only Valve can change that" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Latency matters more in CS2 than almost any game; not ideal for competitive play" }
+    ],
+    "nativeAnswer": "No. CS:GO had a native Mac build, but Valve dropped macOS support when Counter-Strike 2 replaced it in 2023. There is no native CS2 for Mac, so playing on Apple Silicon means a translation layer like Pixel Port or streaming from the cloud."
+  },
+  "elden-ring": {
+    "updated": "2026-08-04",
+    "intro": "We would love to tell you Elden Ring runs great on a Mac. It does not, and we grade it unsupported. Here is the honest landscape, including the one legitimate way to play it on your Mac today.",
+    "options": [
+      { "name": "Pixel Port", "cost": "Free", "how": "Blocked", "verdict": "Easy Anti-Cheat blocks the supported online experience on macOS; we will not pretend otherwise" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "FromSoftware has not shipped one", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a Windows PC in a datacenter", "verdict": "The one legitimate way to play the full game on a Mac right now, where a service carries it" }
+    ],
+    "nativeAnswer": "No, and Elden Ring is also graded unsupported in our catalogue: its anti-cheat requires access that macOS does not give any compatibility layer. Workarounds you may see online involve disabling parts of the game and break easily, so we do not grade them as support. Cloud gaming is the honest alternative."
+  },
+  "schedule-i": {
+    "updated": "2026-08-04",
+    "intro": "Schedule I is one of the most-searched 'on Mac' games of the past year, and there is no native Mac build. The good news: it is a Unity game that our runtime handles well, graded playable on Apple Silicon.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; graded playable on Apple Silicon", "verdict": "The practical way to play it on a Mac today" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows-only on Steam", "verdict": "Not an option unless the developer ships one" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Only where a service carries it; check your provider's library" }
+    ],
+    "nativeAnswer": "No. Schedule I is Windows-only on Steam. On an Apple Silicon Mac, Pixel Port runs the Windows build through its runtime, graded playable in our catalogue."
+  },
+  "valheim": {
+    "updated": "2026-08-04",
+    "intro": "Valheim ships Windows and Linux builds, but nothing for macOS. It is also one of the games we are most confident about: verified end to end on real Apple Silicon hardware.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; verified on real Apple Silicon Macs", "verdict": "The way to play the copy you already own" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows and Linux only", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Works, but a verified local run needs no internet headroom" }
+    ],
+    "nativeAnswer": "No. Valheim has Windows and Linux builds but no macOS version. Through Pixel Port, the Windows build is verified on Apple Silicon: a human ran it end to end on a real Mac."
+  },
+  "lethal-company": {
+    "updated": "2026-08-04",
+    "intro": "Lethal Company is Windows-only on Steam, and co-op with friends is the whole point. It is verified on Apple Silicon through Pixel Port, so your Mac does not have to be the reason you miss the session.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; verified on real Apple Silicon Macs", "verdict": "Join the same lobbies as your Windows friends" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows-only on Steam", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Only where carried; voice-chat latency can sting in co-op" }
+    ],
+    "nativeAnswer": "No. Lethal Company is Windows-only. On Apple Silicon it is verified through Pixel Port, running the same Steam build your friends play."
+  },
+  "peak": {
+    "updated": "2026-08-04",
+    "intro": "Peak became a co-op phenomenon with no Mac build in sight. It is verified on Apple Silicon through Pixel Port, launched end to end on real hardware.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; verified on real Apple Silicon Macs", "verdict": "The way to climb with your friends from a Mac" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows-only on Steam", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Only where a service carries it" }
+    ],
+    "nativeAnswer": "No. Peak is Windows-only on Steam. Through Pixel Port it is verified on Apple Silicon, so the Steam copy you own runs on your Mac in one click."
+  },
+  "stardew-valley": {
+    "updated": "2026-08-04",
+    "intro": "Honest answer first: you probably do not need Pixel Port for Stardew Valley. Your Steam purchase already includes a native Mac version. Install that and play.",
+    "options": [
+      { "name": "Native Mac version (included with Steam)", "cost": "Free (included with your purchase)", "how": "Install directly from Steam on your Mac", "verdict": "The best way to play Stardew on a Mac. Use this" },
+      { "name": "Pixel Port", "cost": "Free", "how": "Runs the Windows build; graded playable", "verdict": "Only relevant for edge cases like Windows-only mods" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter", "verdict": "Unnecessary for a game with a great native build" }
+    ],
+    "nativeAnswer": "Yes, and it is included with your Steam purchase: Stardew Valley has an excellent native Mac version. Install it straight from Steam. You only need Pixel Port here for edge cases like running Windows-only mod setups."
+  },
+  "r-e-p-o": {
+    "updated": "2026-08-04",
+    "intro": "R.E.P.O. is Windows-only on Steam, and like most Unity co-op hits, it takes well to translation: our catalogue grades it playable on Apple Silicon.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; graded playable on Apple Silicon", "verdict": "The practical route for Mac players" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows-only on Steam", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Only where a service carries it" }
+    ],
+    "nativeAnswer": "No. R.E.P.O. is Windows-only on Steam. On an Apple Silicon Mac, Pixel Port runs the Windows build, graded playable in our catalogue."
+  },
+  "sons-of-the-forest": {
+    "updated": "2026-08-04",
+    "intro": "Sons of the Forest never shipped a Mac build. It is verified on Apple Silicon through Pixel Port: a real Mac ran it end to end.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; verified on real Apple Silicon Macs", "verdict": "The way to play the copy you already own" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows-only on Steam", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Only where a service carries it" }
+    ],
+    "nativeAnswer": "No. Sons of the Forest is Windows-only on Steam. Through Pixel Port it is verified on Apple Silicon, launched end to end on real hardware."
+  },
+  "phasmophobia": {
+    "updated": "2026-08-04",
+    "intro": "Phasmophobia is Windows-only on Steam with no native Mac version, and it is one of the most-requested co-op games among Mac players. Our catalogue grades it playable on Apple Silicon.",
+    "options": [
+      { "name": "Your Steam copy via Pixel Port", "cost": "Free", "how": "One click; graded playable on Apple Silicon", "verdict": "Hunt with your friends from a Mac" },
+      { "name": "Native Mac version", "cost": "Does not exist", "how": "Windows-only on Steam", "verdict": "Not an option today" },
+      { "name": "Cloud gaming", "cost": "Subscription", "how": "Streams from a datacenter PC", "verdict": "Only where carried; voice chat is central to this game, so latency matters" }
+    ],
+    "nativeAnswer": "No. Phasmophobia is Windows-only on Steam. On Apple Silicon, Pixel Port runs the Windows build, graded playable in our catalogue."
+  }
+}

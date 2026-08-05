@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import games from '../../data/games.resolved.json';
 import catalogue from '../../data/catalogue.json';
+import guides from '../../data/guides.json';
 import { tierMeta, coverUrl, coverFallbackUrl, engineLabel, prettyAC, generate, type Tier } from '../../lib/catalog';
 
 // Seeded recommendations keep the page useful and deterministic. Curated
@@ -55,6 +56,10 @@ const description = isBlocked
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 
+// Authored deep-dive for high-search games: every real way to play this title
+// on a Mac (native port, Pixel Port, cloud), compared honestly.
+const guide = (guides as Record<string, any>)[game.slug];
+
 // Tier-honest Q&A. Rendered visibly below and mirrored as FAQPage JSON-LD, so
 // the schema never claims anything the page doesn't say.
 const faq: { q: string; a: string }[] = isBlocked
@@ -90,6 +95,9 @@ const faq: { q: string; a: string }[] = isBlocked
         a: `Any Apple Silicon Mac — M1 through M4, MacBook Air to Mac Studio — on macOS 14 or later.`,
       },
     ];
+if (guide?.nativeAnswer) {
+  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: guide.nativeAnswer });
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -308,6 +316,38 @@ const jsonLd = {
                 <a href="/games" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
               </section>
             </>
+          )
+        }
+
+        {
+          guide && (
+            <section class="game-section" aria-labelledby="guide-heading">
+              <h2 id="guide-heading">Every way to play {game.title} on a Mac</h2>
+              <p class="game-section__lede">{guide.intro}</p>
+              <div class="game-guide-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Option</th>
+                      <th>Cost</th>
+                      <th>How it works</th>
+                      <th>Honest verdict</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {guide.options.map((o: any) => (
+                      <tr>
+                        <th scope="row">{o.name}</th>
+                        <td>{o.cost}</td>
+                        <td>{o.how}</td>
+                        <td>{o.verdict}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p class="game-guide-updated">Last reviewed {guide.updated}. Grades update as real Macs report back.</p>
+            </section>
           )
         }
 
@@ -595,6 +635,16 @@ const jsonLd = {
     .game-picks a:hover img { transform: scale(1.035); }
     .game-picks a:hover > p { color: var(--color-accent-2); }
     .game-text-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.7rem; margin-top: 1.4rem; color: var(--color-accent-2); font-size: 0.82rem; font-weight: 650; }
+
+    .game-guide-table { margin-top: 1.7rem; overflow-x: auto; border: 1px solid var(--color-line); border-radius: 1rem; }
+    .game-guide-table table { width: 100%; min-width: 34rem; border-collapse: collapse; text-align: left; font-size: 0.85rem; }
+    .game-guide-table thead th { border-bottom: 1px solid var(--color-line); padding: 0.8rem 1rem; color: var(--color-muted); font-size: 0.72rem; font-weight: 600; }
+    .game-guide-table tbody tr { border-bottom: 1px solid var(--color-line); background: rgba(22, 18, 42, 0.3); }
+    .game-guide-table tbody tr:first-child { background: rgba(146, 104, 255, 0.1); }
+    .game-guide-table tbody tr:last-child { border-bottom: 0; }
+    .game-guide-table tbody th { padding: 0.9rem 1rem; font-weight: 650; }
+    .game-guide-table tbody td { padding: 0.9rem 1rem; color: rgba(245, 245, 247, 0.78); line-height: 1.5; }
+    .game-guide-updated { margin-top: 0.9rem; color: var(--color-muted); font-size: 0.72rem; }
 
     .game-faq { display: grid; gap: 0.8rem; margin-top: 1.7rem; }
     .game-faq > div { border: 1px solid var(--color-line); border-radius: 1rem; padding: 1.2rem 1.3rem; background: rgba(22, 18, 42, 0.4); }
