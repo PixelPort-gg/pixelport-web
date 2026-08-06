@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-05",
+ "fetched_at": "2026-08-06",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -518,7 +518,7 @@
    "appid": 1057090,
    "slug": "ori-and-the-will-of-the-wisps",
    "name": "Ori and the Will of the Wisps",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3631989
   },
@@ -526,7 +526,7 @@
    "appid": 8870,
    "slug": "bioshock-infinite",
    "name": "BioShock Infinite",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3631970
   },
@@ -1209,6 +1209,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 357921
+  },
+  {
+   "appid": 2920570,
+   "slug": "dale-dawson-stationery-supplies",
+   "name": "Dale & Dawson Stationery Supplies",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 357128
   },
   {
    "appid": 1857090,
@@ -2046,6 +2054,14 @@
    "appid": 4736550,
    "slug": "orc-incremental-demo",
    "name": "Orc Incremental Demo",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3892270,
+   "slug": "gamble-with-your-friends",
+   "name": "Gamble With Your Friends",
    "tier": "playable",
    "reason": null,
    "popularity": 0
