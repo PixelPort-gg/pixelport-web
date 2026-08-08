@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-07",
+ "fetched_at": "2026-08-08",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1006,7 +1006,7 @@
    "appid": 214510,
    "slug": "lego-the-lord-of-the-rings",
    "name": "Lego The Lord of the Rings",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1512822
   },
@@ -1185,6 +1185,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 756163
+  },
+  {
+   "appid": 1009560,
+   "slug": "the-tenants",
+   "name": "The Tenants",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 755644
   },
   {
    "appid": 1656780,
