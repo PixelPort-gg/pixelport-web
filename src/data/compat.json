@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-08",
+ "fetched_at": "2026-08-09",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -417,6 +417,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 7708770
+  },
+  {
+   "appid": 1426210,
+   "slug": "it-takes-two",
+   "name": "It Takes Two",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7708042
   },
   {
    "appid": 883710,
