@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-09",
+ "fetched_at": "2026-08-10",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -827,6 +827,14 @@
    "popularity": 3527134
   },
   {
+   "appid": 42910,
+   "slug": "magicka",
+   "name": "Magicka",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3526997
+  },
+  {
    "appid": 11020,
    "slug": "trackmania-nations-forever",
    "name": "TrackMania Nations Forever",
@@ -846,7 +854,7 @@
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 1580833
   },
@@ -1169,6 +1177,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 760225
+  },
+  {
+   "appid": 253430,
+   "slug": "castleminer-z",
+   "name": "CastleMiner Z",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 758711
   },
   {
    "appid": 539470,
@@ -1990,7 +2006,7 @@
    "appid": 3527290,
    "slug": "peak",
    "name": "PEAK",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -2079,6 +2095,14 @@
    "slug": "gamble-with-your-friends",
    "name": "Gamble With Your Friends",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2637210,
+   "slug": "flow-of-war",
+   "name": "Flow Of War",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
