@@ -42,7 +42,7 @@ Lethal Company tonight, it's the long way around.
 ## Pixel Port — what we built instead
 
 We rebuilt the thing that actually died with Whisky: a **modern, maintained Mac
-runtime** — Wine 11 with DirectX-to-Metal translation, running on Apple Silicon — and
+runtime** — Wine with DirectX-to-Metal translation, running on Apple Silicon — and
 then added the part every tool above is missing: **the answer before the download.**
 
 Every game in our catalogue carries an honest tier. *Verified* means it ran on a real
