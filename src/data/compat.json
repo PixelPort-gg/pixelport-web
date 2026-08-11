@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-10",
+ "fetched_at": "2026-08-11",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -622,7 +622,7 @@
    "appid": 233860,
    "slug": "kenshi",
    "name": "Kenshi",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3593712
   },
@@ -822,7 +822,7 @@
    "appid": 975370,
    "slug": "dwarf-fortress",
    "name": "Dwarf Fortress",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3527134
   },
