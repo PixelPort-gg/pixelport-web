@@ -26,8 +26,8 @@ Direct3D-to-Metal layer handles this). All three exist as open technology. What
 stopped existing in 2025 — when Whisky was discontinued and the prebuilt runtimes
 went offline — was a maintained, ready-to-use assembly of them.
 
-That's the half we rebuilt. Pixel Port ships a runtime (Wine 11 + DirectX-to-Metal,
-built for Apple Silicon) and wraps it in the thing the old tools never had: per-game
+That's the half we rebuilt. Pixel Port ships a runtime (Wine + DirectX-to-Metal,
+assembled for Apple Silicon) and wraps it in the thing the old tools never had: per-game
 answers. Connect Steam, and your library shows an honest tier for every game — 
 *Verified* (ran on real Apple Silicon hardware, measurements published), *Playable*
 (strong evidence, not yet hand-verified), or *Unsupported* (kernel anti-cheat — will
