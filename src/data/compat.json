@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-11",
+ "fetched_at": "2026-08-12",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -414,7 +414,7 @@
    "appid": 427520,
    "slug": "factorio",
    "name": "Factorio",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7708770
   },
@@ -750,7 +750,7 @@
    "appid": 645630,
    "slug": "car-mechanic-simulator-2018",
    "name": "Car Mechanic Simulator 2018",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3547065
   },
@@ -1094,7 +1094,7 @@
    "appid": 2142790,
    "slug": "fields-of-mistria",
    "name": "Fields of Mistria",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 769544
   },
@@ -2086,7 +2086,7 @@
    "appid": 4736550,
    "slug": "orc-incremental-demo",
    "name": "Orc Incremental Demo",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -2103,6 +2103,14 @@
    "slug": "flow-of-war",
    "name": "Flow Of War",
    "tier": "verified",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2803490,
+   "slug": "atomcraft",
+   "name": "Atomcraft",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
