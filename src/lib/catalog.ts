@@ -64,7 +64,11 @@ export function generate(e: any) {
     const tierWord = e.tier === 'verified' ? 'verified' : e.tier === 'needs-attention' ? 'graded needs attention' : 'graded playable';
     return {
       ...base,
-      summary: `${e.title} already has a native Mac version, and your Steam purchase includes it. Install that from Steam and play — you do not need Pixel Port for this one.`,
+      // Deliberately hedged: Steam advertising a Mac build does not prove the
+      // build still runs. Plenty of pre-2019 Mac ports were never updated past
+      // 32-bit and died at Catalina (Borderlands 2 is our documented case). We
+      // can say what Steam lists; we cannot promise it launches.
+      summary: `Steam lists a native Mac version of ${e.title}, and your Steam purchase includes it — install that first. It needs no compatibility layer at all, which makes it the simplest path by far.`,
       requirements: [`${e.title}, owned on your own Steam account`, 'A Mac — Steam serves the native build automatically'],
       steps: [
         {
@@ -72,8 +76,8 @@ export function generate(e: any) {
           body: `Open Steam on your Mac and install ${e.title} as normal. Steam serves the macOS build automatically. No compatibility layer, and nothing else to set up.`,
         },
         {
-          title: 'Only if you need the Windows build',
-          body: `Some players want the Windows version anyway — Windows-only mods are the usual reason. Pixel Port runs it, ${tierWord} on Apple Silicon. That is the only reason to use us for ${e.title}.`,
+          title: 'If the native build does not run',
+          body: `Some older Mac ports were never updated past 32-bit and stopped working at macOS Catalina. If that turns out to be the case here — or you need the Windows build for Windows-only mods — Pixel Port runs the Windows version, ${tierWord} on Apple Silicon.`,
         },
       ],
     };

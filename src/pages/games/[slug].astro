@@ -71,7 +71,7 @@ const guide = (guides as Record<string, any>)[game.slug];
 // and it knows the specifics (whether the native build is any good, for one).
 const nativeLine =
   guide?.nativeAnswer ??
-  `Your Steam purchase of ${game.title} already includes a native Mac version. Install that from Steam and play — you do not need Pixel Port for this one.`;
+  `Steam lists a native Mac version of ${game.title}, included with your Steam purchase. Install that first — it needs no compatibility layer at all. Pixel Port is only worth it here if that build no longer runs, or you need the Windows version for mods.`;
 
 // Tier-honest Q&A. Rendered visibly below and mirrored as FAQPage JSON-LD, so
 // the schema never claims anything the page doesn't say.
@@ -754,6 +754,7 @@ const jsonLd = {
       .game-tier-badge { font-size: 0.66rem; }
       .game-masthead h1 { margin-top: 0.8rem; font-size: clamp(2rem, 8.3vw, 3rem); }
       .game-summary { font-size: 0.94rem; }
+      .game-native-note { font-size: 0.94rem; padding: 0.8rem 0.9rem; }
       .game-detail-shell { padding-block: 3.5rem 5rem; }
       .game-detail-rail { order: -1; }
       .game-detail-rail__inner { position: static; }

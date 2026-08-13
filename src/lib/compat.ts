@@ -57,12 +57,12 @@ export const nativeCompatMeta = {
 export function nativeVerdict(g: CompatGame): { headline: string; body: string } {
   return {
     headline: `Yes — ${g.name} has a native Mac version.`,
-    body: `You do not need Pixel Port for this one. ${g.name} ships a macOS build, and your Steam purchase includes it — install it straight from Steam on your Mac and play. We would rather tell you that than sell you a compatibility layer you have no use for.`,
+    body: `Start there, not with us: Steam lists a macOS build of ${g.name} and your Steam purchase includes it, so install that first. We would rather tell you that than sell you a compatibility layer you have no use for. If the native build turns out to be an old one that no longer runs on modern macOS, Pixel Port runs the Windows version instead.`,
   };
 }
 
 export function nativeMetaDescription(g: CompatGame): string {
-  return `Yes — ${g.name} has a native Mac version included with your Steam purchase. Install it straight from Steam; you do not need Pixel Port or any compatibility layer for it.`;
+  return `Yes — ${g.name} has a native Mac version included with your Steam purchase, so install that first. You do not need Pixel Port or any compatibility layer for it.`;
 }
 
 export function verdict(g: CompatGame): { headline: string; body: string } {

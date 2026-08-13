@@ -937,6 +937,8 @@
   "appid": 49520,
   "tier": "verified",
   "genre": "FPS",
+  "nativeMacVerdict": "ours-is-better",
+  "nativeMacReason": "Steam still advertises a Mac build, but the Aspyr port was 32-bit and stopped running at macOS Catalina in 2019 — sending players to it would strand them.",
   "summary": "Borderlands 2's Aspyr Mac port was 32-bit and died with macOS Catalina in 2019. It holds a Verified tier in our compatibility database on strong community evidence; we have not captured it on our own Macs yet. If you bought it for Mac back then, that same Steam license works here.",
   "requirements": [
    "Borderlands 2, owned on your own Steam account",

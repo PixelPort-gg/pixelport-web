@@ -41,7 +41,8 @@ const readJSON = (p, fallback) => {
 const ours = new Set();
 for (const g of readJSON(join(root, 'scripts/catalogue-base.json'), [])) if (g.appid != null) ours.add(+g.appid);
 for (const g of readJSON(join(root, 'src/data/games.json'), [])) if (g.appid != null) ours.add(+g.appid);
-for (const g of readJSON(join(root, 'src/data/compat.json'), [])) if (g.appid != null) ours.add(+g.appid);
+// compat.json wraps its rows: { generated, games: [...] }
+for (const g of readJSON(join(root, 'src/data/compat.json'), {}).games ?? []) if (g.appid != null) ours.add(+g.appid);
 
 const universe = readJSON(UNIVERSE, {});
 const native = {};
