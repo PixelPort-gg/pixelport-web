@@ -1,16 +1,22 @@
 ---
 import Base from '../../layouts/Base.astro';
 import snapshot from '../../data/compat.json';
+import nativeMacIds from '../../data/native-mac.json';
 import {
   compatMeta,
+  nativeCompatMeta,
   verdict,
+  nativeVerdict,
   metaDescription,
+  nativeMetaDescription,
   pagePath,
   artChain,
   ogImage,
   ART_ONERROR,
   type CompatGame,
 } from '../../lib/compat';
+
+const NATIVE_MAC = new Set(nativeMacIds as number[]);
 
 export function getStaticPaths() {
   const games = (snapshot as any).games as CompatGame[];
@@ -19,9 +25,11 @@ export function getStaticPaths() {
 
 const { game } = Astro.props as { game: CompatGame };
 const all = (snapshot as any).games as CompatGame[];
-const meta = compatMeta[game.tier];
-const v = verdict(game);
 const isNo = game.tier === 'unsupported';
+// Already ships a macOS build → the honest answer is "use that", not our grade.
+const isNativeMac = !isNo && NATIVE_MAC.has(game.appid);
+const meta = isNativeMac ? nativeCompatMeta : compatMeta[game.tier];
+const v = isNativeMac ? nativeVerdict(game) : verdict(game);
 
 // Verified/playable pages keep their same-tier company. Untested and honest-no
 // pages immediately point to games that are genuinely verified on real Macs.
@@ -39,7 +47,7 @@ const picksHeading =
 const art = artChain(game.appid);
 const landscape = ogImage(game.appid);
 const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
-const description = metaDescription(game);
+const description = isNativeMac ? nativeMetaDescription(game) : metaDescription(game);
 const canonical = new URL(pagePath(game), Astro.site).toString();
 
 const faq = [
@@ -289,6 +297,13 @@ const evidence =
                 <a href="#alternatives" class="compat-rail-cta compat-rail-cta--quiet">See what runs <span aria-hidden="true">→</span></a>
                 <a href="/download" class="compat-rail-secondary">Download Pixel Port</a>
                 <p>Know what runs before you waste an evening. Every no stays visible.</p>
+              </>
+            ) : isNativeMac ? (
+              <>
+                <a href={`https://store.steampowered.com/app/${game.appid}/`} rel="noopener nofollow" class="compat-rail-cta">
+                  Get it on Steam <span aria-hidden="true">→</span>
+                </a>
+                <p>Native Mac build — no compatibility layer needed. Honest compatibility, game by game.</p>
               </>
             ) : (
               <>

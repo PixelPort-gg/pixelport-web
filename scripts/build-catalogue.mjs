@@ -34,6 +34,10 @@ const curated = readJSON('src/data/games.json', []);
 const owners = readJSON('scripts/owners.json', {}); // estimated owners (SteamSpy via D1) — "how many own it"
 const trending = readJSON('scripts/trending.json', {}); // current players (Steam most-played) — "what's hot now"
 const d1Verified = new Set(readJSON('scripts/d1-verified.json', [])); // [appid]
+// Games that ALREADY ship a macOS build. Their page sends the player to that build
+// instead of pitching us — see scripts/pull-native-mac.mjs for why and where from.
+const nativeMacSet = new Set(Object.keys(readJSON('scripts/native-mac.json', {})).map(Number));
+const isNativeMac = (appid) => appid != null && nativeMacSet.has(appid);
 
 const curatedAppids = new Set(curated.map((g) => g.appid).filter((a) => a != null));
 const curatedSlugs = new Set(curated.map((g) => g.slug));
@@ -67,9 +71,10 @@ for (const e of entries) {
   if (e.appid != null && d1Verified.has(e.appid) && tier !== 'unsupported') tier = 'verified';
 
   const p = score(e.appid);
+  const nativeMac = isNativeMac(e.appid);
   // Pages for the popular games (real SEO value) + the distinctive tiers.
   const hasPage = p > 0 || DISTINCTIVE.has(tier);
-  gridExtra.push({ slug, title: e.title, appid: e.appid ?? null, tier, pop: p, p: hasPage ? 1 : 0 });
+  gridExtra.push({ slug, title: e.title, appid: e.appid ?? null, tier, pop: p, p: hasPage ? 1 : 0, ...(nativeMac ? { n: 1 } : {}) });
   if (hasPage) {
     pages.push({
       slug,
@@ -80,6 +85,7 @@ for (const e of entries) {
       d3d: e.d3d ?? null,
       antiCheat: e.antiCheat ?? null,
       graphics: e.graphics ?? null,
+      ...(nativeMac ? { nativeMac: true } : {}),
     });
   }
 }
@@ -105,14 +111,20 @@ for (const [appidStr, info] of Object.entries(awacy)) {
   awacyAdded++;
 }
 
-// Curated games inherit verified from the live server too (rich content unchanged).
-const resolvedCurated = curated.map((g) =>
-  g.appid != null && d1Verified.has(g.appid) && g.tier !== 'unsupported' ? { ...g, tier: 'verified' } : g,
-);
+// Curated games inherit verified from the live server too (rich content unchanged),
+// and pick up the native-Mac flag unless the entry overrides it. The override
+// exists because a native build is not automatically the better one: Subnautica's
+// is Intel-only and abandoned, Portal 2's is a dead 32-bit build, and Palworld's is
+// a separate App Store purchase your Steam copy does not unlock.
+const resolvedCurated = curated.map((g) => {
+  const out = g.appid != null && d1Verified.has(g.appid) && g.tier !== 'unsupported' ? { ...g, tier: 'verified' } : { ...g };
+  if (isNativeMac(g.appid) && g.nativeMacVerdict !== 'ours-is-better') out.nativeMac = true;
+  return out;
+});
 writeFileSync(join(root, 'src/data/games.resolved.json'), JSON.stringify(resolvedCurated));
 
 const grid = [
-  ...resolvedCurated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: score(g.appid), p: 1 })),
+  ...resolvedCurated.map((g) => ({ slug: g.slug, title: g.title, appid: g.appid ?? null, tier: g.tier, pop: score(g.appid), p: 1, ...(g.nativeMac ? { n: 1 } : {}) })),
   ...gridExtra,
 ];
 // Runnable tiers lead the browse grid (by trending), with unsupported demoted to
@@ -125,8 +137,12 @@ grid.sort(
 
 writeFileSync(join(root, 'public/catalogue-grid.json'), JSON.stringify(grid));
 writeFileSync(join(root, 'src/data/catalogue.json'), JSON.stringify(pages));
+// The /mac/ "does it run?" pages need the same flag, and they read a different
+// data file — publish the set into src/data so both templates import it cleanly.
+writeFileSync(join(root, 'src/data/native-mac.json'), JSON.stringify([...nativeMacSet]));
 
 const byTier = grid.reduce((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
 console.log('grid total:', grid.length, byTier);
+console.log('native-Mac (told to use the native build):', grid.filter((g) => g.n).length, 'of', grid.length);
 console.log('detail pages:', pages.length, 'generated +', curated.length, 'curated =', pages.length + curated.length);
 console.log('owners:', Object.keys(owners).length, '| trending:', Object.keys(trending).length, '| d1 verified:', d1Verified.size, '| awacy added:', awacyAdded);

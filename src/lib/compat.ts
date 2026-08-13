@@ -44,22 +44,43 @@ export const compatMeta: Record<
   },
 };
 
+// A game that already ships a macOS build gets a different answer entirely. "Yes,
+// it runs through Pixel Port" is true and useless when Steam will hand the player
+// a native version for free — so we lead with that instead of with ourselves.
+export const nativeCompatMeta = {
+  label: 'Native Mac build',
+  badge: 'text-verified bg-verified/15 ring-verified/35',
+  dot: 'bg-verified',
+  short: 'Runs natively — you do not need us',
+};
+
+export function nativeVerdict(g: CompatGame): { headline: string; body: string } {
+  return {
+    headline: `Yes — ${g.name} has a native Mac version.`,
+    body: `You do not need Pixel Port for this one. ${g.name} ships a macOS build, and your Steam purchase includes it — install it straight from Steam on your Mac and play. We would rather tell you that than sell you a compatibility layer you have no use for.`,
+  };
+}
+
+export function nativeMetaDescription(g: CompatGame): string {
+  return `Yes — ${g.name} has a native Mac version included with your Steam purchase. Install it straight from Steam; you do not need Pixel Port or any compatibility layer for it.`;
+}
+
 export function verdict(g: CompatGame): { headline: string; body: string } {
   switch (g.tier) {
     case 'verified':
       return {
         headline: `Yes — ${g.name} runs on Mac.`,
-        body: `Verified on real Apple Silicon hardware: a real Mac took ${g.name} end to end through Pixel Port's runtime — install, launch, and in-game. No Boot Camp, no Windows license, no setup.`,
+        body: `Verified on real Apple Silicon hardware: a real Mac took ${g.name} end to end through Pixel Port's runtime — install, launch, and in-game. You need to own ${g.name} on Steam, which is where it downloads from. No Boot Camp, no Windows license, no setup.`,
       };
     case 'playable':
       return {
         headline: `Yes — ${g.name} is playable on Mac.`,
-        body: `${g.name} is graded playable on Apple Silicon from community reports and how the game is built. It hasn't been hand-verified on our own Macs yet, so expect an occasional rough edge — and tell us how your run goes.`,
+        body: `${g.name} is graded playable on Apple Silicon from community reports and how the game is built. It hasn't been hand-verified on our own Macs yet, so expect an occasional rough edge — and tell us how your run goes. You need to own ${g.name} on Steam; Pixel Port runs the copy Steam delivers.`,
       };
     case 'untested':
       return {
         headline: `Untested — nobody has confirmed ${g.name} on Mac yet.`,
-        body: `${g.name} is in the Pixel Port catalogue, but no one has confirmed a full run on Apple Silicon so far. We only claim what we've seen. Try it and your result helps grade it for everyone.`,
+        body: `${g.name} is in the Pixel Port catalogue, but no one has confirmed a full run on Apple Silicon so far. We only claim what we've seen. If you own it on Steam, try it — your result helps grade it for everyone.`,
       };
     case 'unsupported':
       return {
@@ -72,9 +93,9 @@ export function verdict(g: CompatGame): { headline: string; body: string } {
 export function metaDescription(g: CompatGame): string {
   switch (g.tier) {
     case 'verified':
-      return `Yes — ${g.name} runs on Apple Silicon Macs, verified end to end on real hardware through Pixel Port's runtime. One-click install, no Boot Camp.`;
+      return `Yes — ${g.name} runs on Apple Silicon Macs, verified end to end on real hardware through Pixel Port's runtime. One-click install of the Steam copy you own, no Boot Camp.`;
     case 'playable':
-      return `Yes — ${g.name} is playable on Apple Silicon Macs through Pixel Port, graded from community and catalogue confidence. One-click install.`;
+      return `Yes — ${g.name} is playable on Apple Silicon Macs through Pixel Port, graded from community and catalogue confidence. One-click install of the Steam copy you own.`;
     case 'untested':
       return `${g.name} is untested on Apple Silicon so far. It's in the Pixel Port catalogue — try it on your Mac and help grade it for everyone.`;
     case 'unsupported':

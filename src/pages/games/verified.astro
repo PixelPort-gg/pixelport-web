@@ -10,14 +10,19 @@ interface GridGame {
   appid: number | null;
   tier: string;
   p: number;
+  n?: number; // 1 = already ships a native Mac build
 }
 
 const grid = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
 ) as GridGame[];
+// This page is a claim, not a browse surface: every title here is offered as proof
+// of what Pixel Port did. A game that already ships a Mac build is not that proof,
+// however well it runs — so it stays in the catalogue but out of the showcase.
 const verified = grid
-  .filter((g) => g.tier === 'verified')
+  .filter((g) => g.tier === 'verified' && !g.n)
   .sort((a, b) => a.title.localeCompare(b.title, 'en'));
+const gradedTotal = grid.filter((g) => !g.n).length;
 const fmt = (n: number) => n.toLocaleString('en-US');
 
 const seoTitle = 'Verified Mac Games: Windows Games Confirmed Running on Apple Silicon';
@@ -86,7 +91,7 @@ const jsonLd = {
 
     <div class="verified-hub__more">
       <p>
-        Beyond these {verified.length} hand-verified titles, {fmt(grid.length)} more games carry
+        Beyond these {verified.length} hand-verified titles, {fmt(gradedTotal)} more games carry
         honest grades — playable, needs attention, or a straight no.
       </p>
       <a href="/games" class="verified-hub__cta">Browse the full catalogue <span aria-hidden="true">→</span></a>

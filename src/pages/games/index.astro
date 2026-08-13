@@ -9,6 +9,7 @@ interface GridGame {
   appid: number | null;
   tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
   p: number;
+  n?: number; // 1 = already ships a native Mac build
 }
 
 const PAGE = 60;
@@ -17,6 +18,11 @@ const grid = JSON.parse(
 ) as GridGame[];
 const initialGames = grid.slice(0, PAGE);
 const total = grid.length;
+// Games that already ship a macOS build stay browsable, searchable and counted in
+// the UI — but they are not ours to CLAIM. Quoting them in "N Windows games we
+// grade" would pad the headline with games nobody needs Pixel Port for.
+const nativeMacCount = grid.filter((g) => g.n).length;
+const gradedTotal = total - nativeMacCount;
 const counts = grid.reduce<Record<string, number>>(
   (m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m),
   {},
@@ -60,7 +66,7 @@ const headerUrl = (appid: number | null) =>
   appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg` : null;
 
 const seoTitle = 'Mac Game Compatibility Database: Which Windows Games Work on Mac';
-const description = `Browse ${fmt(total)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. One-click installs through Pixel Port.`;
+const description = `Browse ${fmt(gradedTotal)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. Pixel Port installs the Steam games you already own in one click.`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -89,7 +95,7 @@ const jsonLd = {
       <div class="catalogue-masthead__copy">
         <h1>Find your next<br /><span>Mac game.</span></h1>
         <p class="catalogue-lede">
-          {fmt(total)} Windows games, each graded with a straight answer. Real launches become
+          {fmt(gradedTotal)} Windows games, each graded with a straight answer. Real launches become
           verified results; uncertain games keep their caveats; blockers stay visible.
         </p>
         <a href="#catalogue" class="catalogue-enter">Explore the catalogue <span aria-hidden="true">↓</span></a>
@@ -200,6 +206,7 @@ const jsonLd = {
                   )
                 }
                 <span class={`catalogue-card__badge ${tier.badge}`}>{tier.label}</span>
+                {game.n === 1 && <span class="catalogue-card__native">Native Mac build</span>}
                 <span class="catalogue-card__edge" aria-hidden="true"></span>
               </div>
               <p>{game.title}</p>
@@ -291,6 +298,7 @@ const jsonLd = {
           <span class="catalogue-card__fallback">${title}</span>
           ${cover ? `<img src="${cover}" data-fb="${fallback}" alt="" loading="lazy" decoding="async" onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}">` : ''}
           <span class="catalogue-card__badge ${tier.cls}">${tier.label}</span>
+          ${game.n === 1 ? '<span class="catalogue-card__native">Native Mac build</span>' : ''}
           <span class="catalogue-card__edge" aria-hidden="true"></span>
         </div>
         <p>${title}</p>`;
@@ -710,6 +718,23 @@ const jsonLd = {
       font-weight: 700;
       line-height: 1;
       box-shadow: 0 0 0 1px currentColor;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Sits bottom-left, opposite the tier badge: this game needs no compatibility
+       layer at all, which outranks whatever tier we graded the Windows build. */
+    .catalogue-card__native {
+      position: absolute;
+      bottom: 0.55rem;
+      left: 0.55rem;
+      border-radius: 999px;
+      padding: 0.24rem 0.48rem;
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgb(245, 245, 247);
+      background: rgba(10, 10, 12, 0.72);
+      box-shadow: 0 0 0 1px rgba(245, 245, 247, 0.35);
       backdrop-filter: blur(10px);
     }
 
