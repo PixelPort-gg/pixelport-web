@@ -1,102 +1,295 @@
 ---
+// The body of this page is a VERBATIM rendering of the approved Pixel Port privacy
+// notice. Do not paraphrase, summarise, or add marketing copy to it.
+//
+// Source of truth : MacGamePort repo, docs/privacy/PRIVACY-NOTICE.md (main)
+// Notice version  : privacy-2026-08 (policy privacy-policy-2.0), effective 2026-08-12
+// SHA-256 digest  : dab62d06cbbb7b34ea72987841b69cb1033826f76ec7ad9981062f59aaec4f3c
+//
+// Any change to the wording below must first be approved in the app repo and pass
+// its digest check (ci/notice-digest.sh); then re-render this page from the updated
+// markdown and update the digest above.
 import Base from '../layouts/Base.astro';
 
 const description =
-  'How Pixel Port handles your data: anonymous-by-default telemetry, minimal account data, scrubbed crash logs, no ad identifiers, no third-party analytics.';
+  'The approved Pixel Port privacy notice, version privacy-2026-08, effective 2026-08-12.';
 ---
 
-<Base title="Privacy Policy" description={description}>
+<Base title="Privacy Notice" description={description}>
   <article class="wrap max-w-3xl py-16 sm:py-20">
+    <!--
+      VERBATIM COPY OF AN APPROVED DOCUMENT — DO NOT EDIT IN THIS REPO.
+      Source: MacGamePort docs/privacy/PRIVACY-NOTICE.md (notice version privacy-2026-08)
+      SHA-256: dab62d06cbbb7b34ea72987841b69cb1033826f76ec7ad9981062f59aaec4f3c
+      Content changes must go through the app repo's approval flow (ci/notice-digest.sh)
+      before they are rendered here.
+    -->
     <nav class="text-sm text-muted">
       <a href="/" class="hover:text-fg">Home</a> <span class="px-1">/</span> Privacy
     </nav>
 
     <h1 class="mt-6 text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-      Privacy Policy
+      Pixel Port privacy notice
     </h1>
-    <p class="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-muted">Last updated July 1, 2026</p>
-    <p class="mt-5 max-w-2xl text-lg text-muted">
-      The short version: Pixel Port learns from anonymous launch data so games get more reliable for
-      everyone, and it works hard to know as little about <em>you</em> as possible. Here is exactly
-      what we collect, why, and what we never do.
-    </p>
 
-    <div class="prose prose-invert mt-12 prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-a:text-accent-2">
-      <h2 id="anonymous-by-default"><a href="#anonymous-by-default" class="text-inherit no-underline hover:underline">Anonymous by default</a></h2>
+    <dl
+      class="mt-6 grid gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-sm sm:grid-cols-[max-content_1fr]"
+    >
+      <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Notice version</dt>
+      <dd><code>privacy-2026-08</code></dd>
+      <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Policy version</dt>
+      <dd><code>privacy-policy-2.0</code></dd>
+      <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Revised</dt>
+      <dd>2026-08-12</dd>
+      <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Effective date</dt>
+      <dd>2026-08-12</dd>
+      <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Contact</dt>
+      <dd><a href="mailto:privacy@pixelport.gg" class="text-accent-2">privacy@pixelport.gg</a></dd>
+    </dl>
+
+    <div
+      class="prose prose-invert mt-10 prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-a:text-accent-2"
+    >
       <p>
-        Gameplay telemetry is keyed to a random node identifier generated on your Mac. It is not your
-        name, your email, or your account. By default, nothing we learn about how games run on your
-        machine is ever joined to who you are.
+        Pixel Port works with analytics turned off. Refusing optional purposes does not remove core
+        catalogue, install, or play functionality. Data needed to complete an action you
+        request—such as signing in, fetching the catalogue, requesting a game, contacting support,
+        or starting a privacy job—is service data and is not reused as analytics.
+      </p>
+
+      <h2 id="starting-positions">
+        <a href="#starting-positions" class="text-inherit no-underline hover:underline"
+          >Starting positions</a
+        >
+      </h2>
+      <p>Two rules apply, and the difference matters.</p>
+      <p>
+        Analytics are consent-first. Compatibility telemetry, rich diagnostics, experience
+        analytics, and commercial research all start off in every version of Pixel Port. Nothing
+        about how you play is collected for a purpose until you turn that purpose on and the server
+        acknowledges that exact choice.
       </p>
       <p>
-        If you sign in, that stays true. Linking your gameplay data to your account only happens if
-        you explicitly turn on the &ldquo;link my data&rdquo; toggle. It is off by default, you can
-        turn it off again at any time, and turning it off deletes the link and re-anonymizes your
-        data.
+        Account personalization is opt-out from Pixel Port 0.4.5. It starts on, and you turn it off
+        on the first-run screen or in Settings. In Pixel Port 0.4.4 and earlier every purpose
+        started off, account personalization included.
+      </p>
+      <div class="overflow-x-auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Purpose</th>
+              <th>Starting position</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Compatibility telemetry</td>
+              <td>Off, every version</td>
+            </tr>
+            <tr>
+              <td>Rich diagnostics</td>
+              <td>Off, every version</td>
+            </tr>
+            <tr>
+              <td>Experience analytics</td>
+              <td>Off, every version</td>
+            </tr>
+            <tr>
+              <td>Commercial research</td>
+              <td>Off, every version</td>
+            </tr>
+            <tr>
+              <td>Account personalization</td>
+              <td>Off in 0.4.4 and earlier; on from 0.4.5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Account personalization connects activity you separately allowed to your signed-in account,
+        so while every analytics purpose is off it has nothing to connect. Updating Pixel Port does
+        not change a decision you already made: a choice recorded on an earlier version is kept as
+        it was recorded.
+      </p>
+      <p>
+        The first-run screen offers "Continue with minimal data", which turns every purpose off,
+        account personalization with them. The other path shows each switch at its shipped position
+        before anything is recorded, so a default-on purpose is seen rather than assumed.
+      </p>
+      <p>
+        Compatibility telemetry is not mandatory for any tier of Pixel Port. It stays a
+        consent-first purpose, not a condition of use.
       </p>
 
-      <h2 id="what-we-collect"><a href="#what-we-collect" class="text-inherit no-underline hover:underline">What we collect</a></h2>
+      <h2 id="optional-purposes">
+        <a href="#optional-purposes" class="text-inherit no-underline hover:underline"
+          >Optional purposes</a
+        >
+      </h2>
+      <p>You can grant or withdraw each purpose independently:</p>
       <ul>
         <li>
-          <strong>Game launch outcomes.</strong> Whether a game worked or failed, and how long it
-          took. This powers the honest compatibility tiers you see in the catalogue.
+          Compatibility telemetry: coarse install, launch, render, outcome, duration, app ID, chip
+          family, macOS major version, runtime major version, and recipe hash.
         </li>
         <li>
-          <strong>App usage events.</strong> Basic events like opening the app, browsing the
-          catalogue, or viewing a game page, so we know which parts of Pixel Port matter.
+          Rich diagnostics: structured failure facts. A panic excerpt, full log, filenames, or
+          support attachment always has a preview and separate confirmation for that upload.
         </li>
         <li>
-          <strong>Crash diagnostics.</strong> When something breaks, the app can upload logs so we
-          can fix it. Logs are scrubbed of usernames and file paths before they leave your Mac, and
-          they are size-capped.
+          Experience analytics: app opens, browse transitions, game views, and install-funnel
+          events. Pixel Port does not collect session replay, keystrokes, or viewed content.
         </li>
         <li>
-          <strong>Coarse hardware class.</strong> Your chip family (say, M1 versus M3) and macOS
-          version, because compatibility genuinely differs between them. Not a device fingerprint.
+          Account personalization: connects activity already permitted under another purpose to your
+          signed in account. Signing in does not change this purpose's setting either way. From
+          Pixel Port 0.4.5 it starts on; turning it off stops the linking at once and starts the
+          unlink, and the purposes you left on continue unlinked.
+        </li>
+        <li>
+          Commercial research: lets eligible opted-in contributions be used in reviewed, thresholded
+          aggregates. It adds no collection fields and does not permit raw or pseudonymous records
+          to leave Pixel Port. The production feature is disabled pending a separate legal and
+          release review.
         </li>
       </ul>
-
-      <h2 id="what-we-collect-if-you-create-an-account"><a href="#what-we-collect-if-you-create-an-account" class="text-inherit no-underline hover:underline">What we collect if you create an account</a></h2>
       <p>
-        You can sign in with Apple or Google. When you do, we store an opaque user id, your display
-        name, the provider name, and an email address (which can be a private relay address) used for
-        login only. That is the whole list.
-      </p>
-      <p>
-        We never sell this information, and we do not use it for marketing without asking you
-        separately first.
+        Optional telemetry is pseudonymous, not anonymous. Pixel Port uses separate random subjects
+        for each primary purpose. Subjects expire after 30 days and rotate after consent-scope
+        changes, linking, unlinking, account changes, sign-out, reset, or deletion. Installation
+        security credentials and account-device identifiers are independently generated and are not
+        analytics identifiers.
       </p>
 
-      <h2 id="what-we-never-collect"><a href="#what-we-never-collect" class="text-inherit no-underline hover:underline">What we never collect</a></h2>
+      <h2 id="recipients-and-processing">
+        <a href="#recipients-and-processing" class="text-inherit no-underline hover:underline"
+          >Recipients and processing</a
+        >
+      </h2>
+      <p>
+        Cloudflare provides the Worker, D1, KV, R2, Access, rate-limiting, and delivery
+        infrastructure. Apple, Google, and Valve/Steam process data when you choose their sign-in,
+        distribution, or game services. GitHub distributes releases. Other processors are not
+        enabled unless the processor inventory, contract, deletion path, retention, manifest, and
+        notice impact are approved first.
+      </p>
+      <p>
+        Operational logs contain route templates, status/reason codes, latency buckets,
+        policy/schema versions, and aggregate job health. They must not contain bodies, query
+        strings, raw IP addresses, subjects, account/provider/device identifiers, contact text,
+        filenames, crash excerpts, credentials, cookies, authorization headers, or exact external
+        URLs. Worker/application error logs expire after 7 days. Short-lived rate-limit material is
+        a keyed digest, not raw IP, and expires after 2 minutes.
+      </p>
+
+      <h2 id="retention">
+        <a href="#retention" class="text-inherit no-underline hover:underline">Retention</a>
+      </h2>
+      <p>
+        Navigation events expire after 30 days; compatibility outcomes and feedback after 90 days;
+        rich diagnostics after 30 days; unfulfilled requests after 180 days; fulfilled requests and
+        personal notices 90 days after fulfillment/dismissal; generated export archives after 24
+        hours; account and device records on account closure; and consent evidence 730 days after
+        withdrawal or closure by default. The complete engineering schedule is in <code
+          >RETENTION.md</code
+        >. Retention can be shortened by an approved change. A legal hold must be named,
+        time-limited, scoped, owned, and reviewed.
+      </p>
+      <p>
+        Eligible raw rows may be rolled into privacy-reviewed daily aggregates before deletion.
+        External cells require at least 100 distinct opted-in contributors, contribution bounding,
+        sparse-cell suppression, no stable contributor key, and a release review. Previously
+        delivered de-identified aggregate releases generally cannot be adjusted per person; raw or
+        pseudonymous downstream copies are prohibited.
+      </p>
+
+      <h2 id="choices-and-rights">
+        <a href="#choices-and-rights" class="text-inherit no-underline hover:underline"
+          >Choices and rights</a
+        >
+      </h2>
+      <p>
+        Withdrawal is effective locally as soon as your choice is saved. Pixel Port then cancels
+        queued work, rotates/deletes the affected local subject, and reconciles with the server. If
+        offline, the UI shows cleanup as pending and does not claim the remote link or data was
+        removed.
+      </p>
+      <p>
+        Every recorded choice carries its origin. A value you set yourself is recorded as "your
+        choice"; a shipped starting position you left alone is recorded as a "Pixel Port default".
+        Settings shows the origin beside each purpose, and your privacy export includes it. A
+        default is therefore never presented to you—or counted by Pixel Port—as something you asked
+        for.
+      </p>
+      <p>
+        The Privacy Center provides local inspection, export, telemetry deletion, account closure,
+        link status, and privacy-job status. Server exports and deletions are authenticated,
+        idempotent jobs that cover current and historical subjects, requests/notices, diagnostics,
+        support, account devices, provider identities, links, object storage, and affected
+        unreleased aggregates. A deletion tombstone is installed before the job is acknowledged so
+        retries cannot resurrect deleted data.
+      </p>
+      <p>
+        Unlinking and deletion are different. Unlink removes the active account bridge and
+        identified derivatives; deletion erases the selected historical data. Sign-out alone does
+        not imply deletion and does not silently disconnect the separately disclosed Steam
+        connector.
+      </p>
+
+      <h2 id="email-and-marketing">
+        <a href="#email-and-marketing" class="text-inherit no-underline hover:underline"
+          >Email and marketing</a
+        >
+      </h2>
+      <p>
+        Pixel Port runs no mailing list and sends no marketing email. There is no email-sending
+        system at all. Signing in with Apple or Google may pass Pixel Port an email address, often a
+        private relay address; it is stored only to identify your account and is not marketing data.
+        If marketing contact is ever added, this notice is revised and re-approved before that
+        ships.
+      </p>
+
+      <h2 id="tracking-and-external-sale">
+        <a href="#tracking-and-external-sale" class="text-inherit no-underline hover:underline"
+          >Tracking and external sale</a
+        >
+      </h2>
+      <p>
+        Pixel Port does not track people across other companies' apps or websites, declares no
+        tracking domains, and sets <code>NSPrivacyTracking</code> to false. It does not sell or
+        license raw, row-level, pseudonymous, linked-account, diagnostic, contact, request, or
+        security-credential data.
+      </p>
+
+      <h2 id="changes">
+        <a href="#changes" class="text-inherit no-underline hover:underline">Changes</a>
+      </h2>
+      <p>
+        A material change to fields, purpose, linkage, recipients, or retention advances the policy
+        major version and returns affected choices to unknown/off. Copy-only clarification may
+        update the notice version without changing a grant. Change history:
+      </p>
       <ul>
-        <li>No advertising identifiers.</li>
-        <li>No third-party analytics SDKs.</li>
-        <li>No contents of your games, saves, or personal files.</li>
-        <li>No tracking of you across other apps or websites.</li>
+        <li>
+          <code>privacy-2026-08</code>: states the starting position of each purpose, including
+          account personalization starting on from Pixel Port 0.4.5; adds the origin ("your choice"
+          or "Pixel Port default") recorded with every decision; states that no email or marketing
+          system exists.
+        </li>
+        <li>
+          <code>privacy-2026-07</code>: v2 purpose choices, rotating purpose subjects, signed
+          ingestion, data-rights jobs, retention, admin controls, processor inventory, and macOS
+          privacy manifest.
+        </li>
       </ul>
-
-      <h2 id="where-your-data-lives"><a href="#where-your-data-lives" class="text-inherit no-underline hover:underline">Where your data lives</a></h2>
       <p>
-        Data is stored on Cloudflare&rsquo;s infrastructure (D1, R2, and KV). Access is limited to
-        what is needed to run and improve the service.
-      </p>
-
-      <h2 id="deleting-your-data"><a href="#deleting-your-data" class="text-inherit no-underline hover:underline">Deleting your data</a></h2>
-      <p>
-        You can request deletion of your account and associated data at any time by contacting
-        support. Anonymous telemetry that was never linked to your account is not traceable back to
-        you, which is by design.
-      </p>
-
-      <h2 id="changes-to-this-policy"><a href="#changes-to-this-policy" class="text-inherit no-underline hover:underline">Changes to this policy</a></h2>
-      <p>
-        If we change how we handle your data, we will update this page and note the date above.
-        Meaningful changes will be called out, not buried.
-      </p>
-
-      <h2 id="contact"><a href="#contact" class="text-inherit no-underline hover:underline">Contact</a></h2>
-      <p>
-        Questions or deletion requests: reach us through the support channel listed on <a href="/">pixelport.gg</a>.
+        The <code>privacy-2026-08</code> revision keeps the policy version at <code
+          >privacy-policy-2.0</code
+        >. It changes no field, purpose, linkage, recipient, or retention period; it describes a
+        shipped starting position and adds two disclosures. Advancing the policy major version would
+        return every choice to unknown and re-ask everyone, and re-asking is how a recorded refusal
+        turns into a fresh grant. A decision you have already made survives this revision unchanged.
       </p>
     </div>
   </article>
