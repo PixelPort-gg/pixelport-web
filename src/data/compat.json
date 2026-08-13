@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-12",
+ "fetched_at": "2026-08-13",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -646,7 +646,7 @@
    "appid": 1366540,
    "slug": "dyson-sphere-program",
    "name": "Dyson Sphere Program",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3583095
   },
@@ -849,6 +849,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3517099
+  },
+  {
+   "appid": 437900,
+   "slug": "party-jousting",
+   "name": "Party Jousting",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3500662
   },
   {
    "appid": 753640,
@@ -2111,6 +2119,14 @@
    "slug": "atomcraft",
    "name": "Atomcraft",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3582440,
+   "slug": "dss-2-war-industry",
+   "name": "DSS 2: War Industry",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
