@@ -28,8 +28,10 @@ export function getStaticPaths() {
 
 const { game } = Astro.props as { game: any };
 const meta = tierMeta[game.tier as Tier];
-const cover = coverUrl(game.appid);
-const fb = coverFallbackUrl(game.appid);
+// Newer Steam apps only serve art under hashed CDN paths; curated entries can
+// pin exact URLs via an `art` override when the appid-derived ones 404.
+const cover = game.art?.cover ?? coverUrl(game.appid);
+const fb = game.art?.header ?? coverFallbackUrl(game.appid);
 const landscape = fb;
 const isBlocked = game.tier === 'unsupported';
 const picks = seededPicks(game);
