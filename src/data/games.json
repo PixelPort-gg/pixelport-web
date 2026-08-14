@@ -218,7 +218,7 @@
   "appid": 1623730,
   "tier": "verified",
   "genre": "Survival",
-  "summary": "Palworld 1.0 is verified on Pixel Port — re-run on real Apple Silicon hardware the day 1.0 shipped (July 10, 2026), on the runtime. It runs the Steam copy you already own, saves included. The official native Mac port is sold separately and doesn't share your Steam saves; Pixel Port runs the copy (and the hours) you already have.",
+  "summary": "Palworld 1.0 is verified on Pixel Port: re-run on real Apple Silicon hardware the day 1.0 shipped (July 10, 2026), on the runtime. It runs the Steam copy you already own, saves included. The official native Mac port is sold separately and doesn't share your Steam saves; Pixel Port runs the copy (and the hours) you already have.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -236,7 +236,7 @@
    },
    {
     "title": "First launch",
-    "body": "UE5 compiles shaders on the first run — expect a slower first session, smooth after. 1.0's World Tree and Sky Islands arrive as an update to the same copy."
+    "body": "UE5 compiles shaders on the first run, so expect a slower first session, smooth after. 1.0's World Tree and Sky Islands arrive as an update to the same copy."
    }
   ],
   "lastTested": "2026-07-10"
@@ -387,7 +387,7 @@
   "appid": 620,
   "tier": "verified",
   "genre": "Puzzle",
-  "summary": "Portal 2 shipped with a Mac port in 2011, but it was 32-bit and stopped launching when macOS Catalina dropped 32-bit support in 2019. Through Pixel Port it runs again on Apple Silicon — tested on our own Macs, peaking around 336 MB of memory. You need to own Portal 2 on Steam; your old license works.",
+  "summary": "Portal 2 shipped with a Mac port in 2011, but it was 32-bit and stopped launching when macOS Catalina dropped 32-bit support in 2019. Through Pixel Port it runs again on Apple Silicon, tested on our own Macs, peaking around 336 MB of memory. You need to own Portal 2 on Steam; your old license works.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -415,7 +415,7 @@
   "appid": 3405340,
   "tier": "verified",
   "genre": "Roguelite",
-  "summary": "Megabonk ships for Windows and Linux only — there is no Mac build. Through Pixel Port it runs on Apple Silicon, tested on our own Macs with a peak of about 1 GB of memory, so base-model machines are fine. You need to own Megabonk on Steam.",
+  "summary": "Megabonk ships for Windows and Linux only. There is no Mac build. Through Pixel Port it runs on Apple Silicon, tested on our own Macs with a peak of about 1 GB of memory, so base-model machines are fine. You need to own Megabonk on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -443,7 +443,7 @@
   "appid": 2218750,
   "tier": "verified",
   "genre": "Roguelite",
-  "summary": "Halls of Torment has no Mac build. Through Pixel Port it runs on Apple Silicon via the Vulkan/MoltenVK path — tested on our own Macs. It is a small download and light to run. You need to own it on Steam.",
+  "summary": "Halls of Torment has no Mac build. Through Pixel Port it runs on Apple Silicon via the Vulkan/MoltenVK path, tested on our own Macs. It is a small download and light to run. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -455,7 +455,7 @@
    },
    {
     "title": "Install & Play",
-    "body": "Find Halls of Torment in the catalogue and click Install & Play — Pixel Port picks the Vulkan path for you."
+    "body": "Find Halls of Torment in the catalogue and click Install & Play. Pixel Port picks the Vulkan path for you."
    }
   ],
   "lastTested": "2026-06-20"
@@ -466,7 +466,7 @@
   "appid": 1180660,
   "tier": "verified",
   "genre": "Adventure",
-  "summary": "Tell Me Why never got a Mac build. Through Pixel Port it runs on Apple Silicon — tested on our own Macs, peaking around 766 MB of memory. You need to own it on Steam.",
+  "summary": "Tell Me Why never got a Mac build. Through Pixel Port it runs on Apple Silicon, tested on our own Macs, peaking around 766 MB of memory. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -483,7 +483,7 @@
    },
    {
     "title": "Play",
-    "body": "Launch from your Library and play through as normal — it is a single-player story game with no anti-cheat in the way."
+    "body": "Launch from your Library and play through as normal. It is a single-player story game with no anti-cheat in the way."
    }
   ],
   "lastTested": "2026-06-20"
@@ -494,7 +494,7 @@
   "appid": 229810,
   "tier": "verified",
   "genre": "Action",
-  "summary": "A Fistful of Gun has no Mac build. Through Pixel Port it runs on Apple Silicon — tested on our own Macs, peaking around 295 MB of memory. Tiny download, instant fun. You need to own it on Steam.",
+  "summary": "A Fistful of Gun has no Mac build. Through Pixel Port it runs on Apple Silicon, tested on our own Macs, peaking around 295 MB of memory. Tiny download, instant fun. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -517,7 +517,7 @@
   "appid": 1812290,
   "tier": "verified",
   "genre": "RPG",
-  "summary": "The Elder Scrolls: Arena is a DOS-era classic reborn on Steam, and it has no Mac build. Through Pixel Port it runs on Apple Silicon — tested on our own Macs, peaking around 201 MB of memory. You need to own it on Steam.",
+  "summary": "The Elder Scrolls: Arena is a DOS-era classic reborn on Steam, and it has no Mac build. Through Pixel Port it runs on Apple Silicon, tested on our own Macs, peaking around 201 MB of memory. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -529,7 +529,7 @@
    },
    {
     "title": "Install & Play",
-    "body": "Find The Elder Scrolls: Arena in the catalogue and click Install & Play — the DOS-era launch path is handled for you."
+    "body": "Find The Elder Scrolls: Arena in the catalogue and click Install & Play. The DOS-era launch path is handled for you."
    }
   ],
   "lastTested": "2026-06-20"
@@ -540,7 +540,7 @@
   "appid": 1966720,
   "tier": "verified",
   "genre": "Co-op horror",
-  "summary": "Lethal Company has no Mac build, which is rough when your friends play every night. It holds a Verified tier in our compatibility database on strong community evidence — 40 to 90 fps reports on Apple Silicon, co-op included — though we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Lethal Company has no Mac build, which is rough when your friends play every night. It holds a Verified tier in our compatibility database on strong community evidence (40 to 90 fps reports on Apple Silicon, co-op included), though we have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -556,7 +556,7 @@
    },
    {
     "title": "Join your crew",
-    "body": "There is no anti-cheat in the way, so online lobbies work. If something breaks, tell us — failure reports fix the recipe for the next player."
+    "body": "There is no anti-cheat in the way, so online lobbies work. If something breaks, tell us: failure reports fix the recipe for the next player."
    }
   ]
  },
@@ -566,7 +566,7 @@
   "appid": 814380,
   "tier": "verified",
   "genre": "Action",
-  "summary": "Sekiro has no Mac build. It is single-player with no kernel anti-cheat, and it holds a Verified tier in our compatibility database on strong community evidence — we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Sekiro has no Mac build. It is single-player with no kernel anti-cheat, and it holds a Verified tier in our compatibility database on strong community evidence. We have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -593,7 +593,7 @@
   "appid": 1326470,
   "tier": "verified",
   "genre": "Survival",
-  "summary": "Sons of the Forest has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence — including 1440p/60 reports on an M3 with FSR — though we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Sons of the Forest has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence (including 1440p/60 reports on an M3 with FSR), though we have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -610,7 +610,7 @@
    },
    {
     "title": "Play",
-    "body": "FSR helps a lot at higher resolutions. Co-op works — report back either way, it improves the recipe."
+    "body": "FSR helps a lot at higher resolutions. Co-op works. Report back either way, it improves the recipe."
    }
   ]
  },
@@ -620,7 +620,7 @@
   "appid": 264710,
   "tier": "verified",
   "genre": "Survival",
-  "summary": "Subnautica's native Mac build is Intel-only and long abandoned — on Apple Silicon the translated Windows version is the better game, with community reports around 80 fps. It holds a Verified tier in our compatibility database on that evidence; we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Subnautica's native Mac build is Intel-only and long abandoned. On Apple Silicon the translated Windows version is the better game, with community reports around 80 fps. It holds a Verified tier in our compatibility database on that evidence; we have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -647,7 +647,7 @@
   "appid": 632360,
   "tier": "verified",
   "genre": "Roguelite",
-  "summary": "Risk of Rain 2 has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence — we have not captured it on our own Macs yet. Small download, and co-op has no anti-cheat in the way. You need to own it on Steam.",
+  "summary": "Risk of Rain 2 has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence. We have not captured it on our own Macs yet. Small download, and co-op has no anti-cheat in the way. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -686,7 +686,7 @@
    },
    {
     "title": "Play",
-    "body": "Gameplay is the strong part; if a cutscene stutters or blacks out, that is the known Media Foundation gap — skipping it works."
+    "body": "Gameplay is the strong part; if a cutscene stutters or blacks out, that is the known Media Foundation gap. Skipping it works."
    }
   ]
  },
@@ -696,7 +696,7 @@
   "appid": 524220,
   "tier": "verified",
   "genre": "Action RPG",
-  "summary": "NieR: Automata has no Mac build. It is one of the milestone titles for the Direct3D-to-Metal path and holds a Verified tier in our compatibility database on strong community evidence — we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "NieR: Automata has no Mac build. It is one of the milestone titles for the Direct3D-to-Metal path and holds a Verified tier in our compatibility database on strong community evidence. We have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -723,7 +723,7 @@
   "appid": 570940,
   "tier": "verified",
   "genre": "Action RPG",
-  "summary": "Dark Souls: Remastered has no Mac build. Its anti-cheat is server-side rather than kernel-level, which is why it works where many multiplayer games cannot. It holds a Verified tier in our compatibility database on strong community evidence — we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Dark Souls: Remastered has no Mac build. Its anti-cheat is server-side rather than kernel-level, which is why it works where many multiplayer games cannot. It holds a Verified tier in our compatibility database on strong community evidence. We have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -750,7 +750,7 @@
   "appid": 1057090,
   "tier": "verified",
   "genre": "Platformer",
-  "summary": "Ori and the Will of the Wisps has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence — including 60 fps at 1080p on a base M1 Air — though we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Ori and the Will of the Wisps has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence (including 60 fps at 1080p on a base M1 Air), though we have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -773,7 +773,7 @@
   "appid": 387290,
   "tier": "verified",
   "genre": "Platformer",
-  "summary": "Ori and the Blind Forest never got a Mac build. It holds a Verified tier in our compatibility database on strong community evidence — we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Ori and the Blind Forest never got a Mac build. It holds a Verified tier in our compatibility database on strong community evidence. We have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -796,7 +796,7 @@
   "appid": 1366540,
   "tier": "verified",
   "genre": "Factory",
-  "summary": "Dyson Sphere Program has no Mac build. It holds a Verified tier in our compatibility database on repeated community success reports — we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Dyson Sphere Program has no Mac build. It holds a Verified tier in our compatibility database on repeated community success reports. We have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
@@ -822,7 +822,7 @@
   "appid": 753640,
   "tier": "verified",
   "genre": "Adventure",
-  "summary": "Outer Wilds has no Mac build, and its community famously recruits new players who then discover their MacBook can't run it. It holds a Verified tier in our compatibility database on strong community evidence — 60 to 120 fps reports on an M1 Pro — though we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Outer Wilds has no Mac build, and its community famously recruits new players who then discover their MacBook can't run it. It holds a Verified tier in our compatibility database on strong community evidence (60 to 120 fps reports on an M1 Pro), though we have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -849,7 +849,7 @@
   "appid": 2138710,
   "tier": "verified",
   "genre": "Action",
-  "summary": "Sifu has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence — 70 to 100 fps reports on an M1 Pro, with some shader stutter in early runs — though we have not captured it on our own Macs yet. You need to own it on Steam.",
+  "summary": "Sifu has no Mac build. It holds a Verified tier in our compatibility database on strong community evidence (70 to 100 fps reports on an M1 Pro, with some shader stutter in early runs), though we have not captured it on our own Macs yet. You need to own it on Steam.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -876,7 +876,7 @@
   "appid": 220,
   "tier": "verified",
   "genre": "FPS",
-  "summary": "Half-Life 2's Mac port was 32-bit and stopped launching when macOS Catalina dropped 32-bit support in 2019 — the same fate as Portal 2. It holds a Verified tier in our compatibility database on strong community evidence; we have not captured it on our own Macs yet. Your old Steam license still works.",
+  "summary": "Half-Life 2's Mac port was 32-bit and stopped launching when macOS Catalina dropped 32-bit support in 2019, the same fate as Portal 2. It holds a Verified tier in our compatibility database on strong community evidence; we have not captured it on our own Macs yet. Your old Steam license still works.",
   "requirements": [
    "Apple Silicon (M1 or newer)",
    "macOS 14+",
@@ -946,7 +946,7 @@
    },
    {
     "title": "Play",
-    "body": "Launch it from your Library. There are no flags to set and no Steam client to keep open — it starts straight into the game and saves your progress normally."
+    "body": "Launch it from your Library. There are no flags to set and no Steam client to keep open: it starts straight into the game and saves your progress normally."
    }
   ],
   "lastTested": "2026-08-10"
@@ -961,7 +961,7 @@
    "cover": "/art/dss-2-war-industry-cover.jpg",
    "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3582440/76bb70f626a3efba1167e6277d3413b490801f84/header.jpg"
   },
-  "summary": "DSS 2: War Industry is verified on Apple Silicon through Pixel Port with nothing to configure. We tested the full game on a real Mac with keys supplied by the developer, and it runs cleanly on its OpenGL path — no flags, no tweaks. The upcoming 64-player multiplayer update is not yet tested; a retest is scheduled for when it ships.",
+  "summary": "DSS 2: War Industry is verified on Apple Silicon through Pixel Port with nothing to configure. We tested the full game on a real Mac with keys supplied by the developer, and it runs cleanly on its OpenGL path: no flags, no tweaks. The upcoming 64-player multiplayer update is not yet tested; a retest is scheduled for when it ships.",
   "requirements": [
    "DSS 2: War Industry, owned on your own Steam account (there is also a free demo)",
    "Apple Silicon (M1 or newer)",
@@ -989,9 +989,9 @@
   "appid": 437900,
   "tier": "playable",
   "genre": "Party",
-  "summary": "Party Jousting is a free one-button party game for 2 to 16 players on one keyboard or controller. We have played it on a real Mac through Pixel Port. The current Windows build ships without the .NET runtime it expects, so first launch can need one extra fix on our side — the developer is preparing an updated build that removes the issue entirely, and the tier moves to verified once that lands.",
+  "summary": "Party Jousting is a free one-button party game for 2 to 16 players on one keyboard or controller. We have played it on a real Mac through Pixel Port. The current Windows build ships without the .NET runtime it expects, so first launch can need one extra fix on our side. The developer is preparing an updated build that removes the issue entirely, and the tier moves to verified once that lands.",
   "requirements": [
-   "A Steam account — Party Jousting is free",
+   "A Steam account (Party Jousting is free)",
    "Apple Silicon (M1 or newer)",
    "macOS 14+"
   ],

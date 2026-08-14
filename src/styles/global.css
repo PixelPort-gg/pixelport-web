@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Deep Amethyst — the Pixel Port palette, as Tailwind v4 theme tokens. */
+/* Deep Amethyst: the Pixel Port palette, as Tailwind v4 theme tokens. */
 @theme {
   --color-ink: #0a0816;
   --color-base-top: #0d0a1c;
@@ -87,7 +87,7 @@ main { isolation: isolate; }
 
 ::selection { background: rgba(146, 104, 255, 0.32); }
 
-/* Keyboard focus only — crisp amethyst ring, never on mouse click. */
+/* Keyboard focus only: crisp amethyst ring, never on mouse click. */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;

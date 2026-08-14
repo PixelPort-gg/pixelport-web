@@ -1,11 +1,11 @@
 ---
 /**
- * StatsBar — live registered-account and game-play totals, pulled client-side from the API's
+ * StatsBar: live registered-account and game-play totals, pulled client-side from the API's
  * public /v1/stats endpoint, then count-up animated when scrolled into view.
  *
  * Honesty-brand rule: never fabricated. The SSR fallback ("1,000+" / "3,700+") reads well with no JS
  * and is always TRUE (a floor, never an inflated exact number); the script then fills the exact live
- * values and animates to them — so a returning visitor literally watches the number climb.
+ * values and animates to them, so a returning visitor literally watches the number climb.
  */
 const API = 'https://mgp-api.macgameport.workers.dev/v1/stats';
 ---
@@ -68,7 +68,7 @@ const API = 'https://mgp-api.macgameport.workers.dev/v1/stats';
           const v = map[el.dataset.stat];
           if (typeof v === 'number' && v > 0) countTo(el, v);
         }
-      } catch { /* fallback text stays — never a zero or a blank */ }
+      } catch { /* fallback text stays: never a zero or a blank */ }
     }
 
     // Only animate once the band scrolls into view (so the count-up is actually seen).

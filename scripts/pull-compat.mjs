@@ -89,6 +89,20 @@ function publicReason(r) {
   return /[.!?]$/.test(joined) ? joined : `${joined}.`;
 }
 
+// Site style rule: no em dashes anywhere in rendered copy. API reasons arrive
+// with them, so normalize deterministically: the first " — " becomes ": ",
+// later ones become ", ", and any unspaced "—" becomes "-".
+function deDash(s) {
+  let first = true;
+  return s
+    .replace(/\s+—\s+/g, () => {
+      const sep = first ? ': ' : ', ';
+      first = false;
+      return sep;
+    })
+    .replace(/—/g, '-');
+}
+
 async function main() {
   const featured = await getJson('/v1/featured');
   const unlocked = featured.unlocked ?? [];
@@ -116,7 +130,7 @@ async function main() {
       }
       reason = null; // unlocked game with junk metadata — keep it, on its real tier
     }
-    if (reason) reason = publicReason(reason);
+    if (reason) reason = deDash(publicReason(reason));
 
     // STRICT WHITELIST — nothing else from the API response is persisted.
     games.push({

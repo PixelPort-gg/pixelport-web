@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/editorial/PageIntro.astro';
 
-// Build-time snapshot from the GitHub dist releases — the same artifacts the app
+// Build-time snapshot from the GitHub dist releases - the same artifacts the app
 // auto-updates from. The site deploys rarely, so this can go stale; a client-side
 // fetch below refreshes the list on every page view, and this snapshot is the
 // graceful fallback when the GitHub API is unreachable or rate-limited.
@@ -24,7 +24,13 @@ const clean = (body: string) =>
     .replace(/\r/g, '')
     .replace(/^#+\s*/gm, '')
     .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\s+\u2014\s+/g, ': ')
+    .replace(/\u2014/g, '-')
     .trim();
+// Site style rule: no em dashes in rendered copy; release titles arrive from
+// GitHub with them ("0.4.0 \u2014 The Redesign" becomes "0.4.0: The Redesign").
+const deDashTitle = (name: string) =>
+  (name || '').replace(/\s+\u2014\s+/g, ': ').replace(/\u2014/g, '-');
 const releaseSignature = releases
   .map((rel) => `${rel.tag_name}:${rel.published_at}:${rel.updated_at}:${(rel.body || '').length}`)
   .join('|');
@@ -65,7 +71,7 @@ const releaseSignature = releases
       {
         releases.length === 0 ? (
           <p class="release-fallback">
-            Could not load the release list right now — the full history lives on <a href="https://github.com/PixelPort-gg/pixelport-dist/releases">GitHub</a>.
+            Could not load the release list right now. The full history lives on <a href="https://github.com/PixelPort-gg/pixelport-dist/releases">GitHub</a>.
           </p>
         ) : (
           <ol class="release-list">
@@ -80,10 +86,10 @@ const releaseSignature = releases
                     <time class="release-date" datetime={rel.published_at}>{fmtDate(rel.published_at)}</time>
                   </div>
                   {rel.name && rel.name !== rel.tag_name && (
-                    <p class="release-name">{rel.name}</p>
+                    <p class="release-name">{deDashTitle(rel.name)}</p>
                   )}
                   {clean(rel.body) && <p class="release-notes">{clean(rel.body)}</p>}
-                  {/* Only the LATEST release is downloadable — older versions are changelog-only
+                  {/* Only the LATEST release is downloadable; older versions are changelog-only
                       (everyone should start on the current build; /download always serves latest). */}
                   {i === 0 && dmg(rel) && (
                     <a href="/download" class="release-download">
@@ -138,7 +144,11 @@ const releaseSignature = releases
           .replace(/\r/g, '')
           .replace(/^#+\s*/gm, '')
           .replace(/\*\*(.*?)\*\*/g, '$1')
+          .replace(/\s+\u2014\s+/g, ': ')
+          .replace(/\u2014/g, '-')
           .trim();
+      const deDashTitle = (name: string) =>
+        (name || '').replace(/\s+\u2014\s+/g, ': ').replace(/\u2014/g, '-');
 
       const el = (tag: string, cls: string, text?: string) => {
         const node = document.createElement(tag);
@@ -165,13 +175,13 @@ const releaseSignature = releases
         content.appendChild(topline);
 
         if (rel.name && rel.name !== rel.tag_name) {
-          content.appendChild(el('p', 'release-name', rel.name));
+          content.appendChild(el('p', 'release-name', deDashTitle(rel.name)));
         }
 
         const notes = clean(rel.body);
         if (notes) content.appendChild(el('p', 'release-notes', notes));
 
-        // Only the latest release is downloadable — older versions render as changelog-only.
+        // Only the latest release is downloadable; older versions render as changelog-only.
         const asset = dmg(rel);
         if (i === 0 && asset) {
           const a = el('a', 'release-download') as HTMLAnchorElement;
@@ -197,7 +207,7 @@ const releaseSignature = releases
       }
 
       // The browser scrolled to any #tag anchor during initial load, but we just
-      // rebuilt the list — re-run the scroll so a deep-linked release still lands.
+      // rebuilt the list; re-run the scroll so a deep-linked release still lands.
       const hash = decodeURIComponent(location.hash.slice(1));
       if (hash && !focusedHref) document.getElementById(hash)?.scrollIntoView();
     }

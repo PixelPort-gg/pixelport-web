@@ -55,7 +55,7 @@
    "slug": "call-of-duty-modern-warfare-ii",
    "name": "Call of Duty: Modern Warfare II",
    "tier": "unsupported",
-   "reason": "Blocked by RICOCHET — anti-cheat does not run on macOS (cannot play).",
+   "reason": "Blocked by RICOCHET: anti-cheat does not run on macOS (cannot play).",
    "popularity": 75419594
   },
   {
@@ -71,7 +71,7 @@
    "slug": "new-world-aeternum",
    "name": "New World: Aeternum",
    "tier": "unsupported",
-   "reason": "EasyAntiCheat not enabled for Mac/Wine by Amazon — reaches menus but EAC blocks all server connections in this online-only MMO.",
+   "reason": "EasyAntiCheat not enabled for Mac/Wine by Amazon: reaches menus but EAC blocks all server connections in this online-only MMO.",
    "popularity": 75196798
   },
   {
@@ -79,7 +79,7 @@
    "slug": "lost-ark",
    "name": "Lost Ark",
    "tier": "unsupported",
-   "reason": "EAC never opted into Wine/Proton by Amazon; easyanticheat_x64.so not packaged — terminates before engine init, game does not launch.",
+   "reason": "EAC never opted into Wine/Proton by Amazon; easyanticheat_x64.so not packaged: terminates before engine init, game does not launch.",
    "popularity": 75143481
   },
   {
@@ -271,7 +271,7 @@
    "slug": "naraka-bladepoint",
    "name": "NARAKA: BLADEPOINT",
    "tier": "unsupported",
-   "reason": "NeacSafe kernel driver (NeacSafe64.sys) cannot load in userspace Wine on macOS — hard technical blocker.",
+   "reason": "NeacSafe kernel driver (NeacSafe64.sys) cannot load in userspace Wine on macOS: hard technical blocker.",
    "popularity": 15225960
   },
   {
@@ -317,7 +317,7 @@
   {
    "appid": 1222670,
    "slug": "the-sims-4",
-   "name": "The Sims™ 4",
+   "name": "The Sims\u2122 4",
    "tier": "playable",
    "reason": null,
    "popularity": 15149064
@@ -335,7 +335,7 @@
    "slug": "battlefield-2042",
    "name": "Battlefield 2042",
    "tier": "unsupported",
-   "reason": "Blocked by EA anticheat — publisher refuses Wine/macOS; running risks a ban.",
+   "reason": "Blocked by EA anticheat: publisher refuses Wine/macOS; running risks a ban.",
    "popularity": 15139186
   },
   {
@@ -471,7 +471,7 @@
    "slug": "ea-sports-fifa-23",
    "name": "EA SPORTS FIFA 23",
    "tier": "unsupported",
-   "reason": "Blocked by EA anticheat — publisher refuses Wine/macOS; running risks a ban.",
+   "reason": "Blocked by EA anticheat: publisher refuses Wine/macOS; running risks a ban.",
    "popularity": 7586192
   },
   {
@@ -495,7 +495,7 @@
    "slug": "ea-sports-fc-25",
    "name": "EA SPORTS FC 25",
    "tier": "unsupported",
-   "reason": "Blocked by EA anticheat — publisher refuses Wine/macOS; running risks a ban.",
+   "reason": "Blocked by EA anticheat: publisher refuses Wine/macOS; running risks a ban.",
    "popularity": 7537253
   },
   {
@@ -845,7 +845,7 @@
   {
    "appid": 212500,
    "slug": "the-lord-of-the-rings-online",
-   "name": "The Lord of the Rings Online™",
+   "name": "The Lord of the Rings Online\u2122",
    "tier": "untested",
    "reason": null,
    "popularity": 3517099
@@ -1853,7 +1853,7 @@
   {
    "appid": 1901490,
    "slug": "wonderful-waking-world",
-   "name": "東方眠世界 ~ Wonderful Waking World",
+   "name": "\u6771\u65b9\u7720\u4e16\u754c ~ Wonderful Waking World",
    "tier": "playable",
    "reason": null,
    "popularity": 0
@@ -1917,7 +1917,7 @@
   {
    "appid": 2732960,
    "slug": "command-conquer-generals-zero-hour",
-   "name": "Command & Conquer™ Generals Zero Hour",
+   "name": "Command & Conquer\u2122 Generals Zero Hour",
    "tier": "playable",
    "reason": null,
    "popularity": 0
