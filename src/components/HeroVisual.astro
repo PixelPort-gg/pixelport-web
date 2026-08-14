@@ -1,10 +1,10 @@
 ---
 /**
- * HeroVisual — the signature "wow" moment for pixelport.gg.
+ * HeroVisual: the signature "wow" moment for pixelport.gg.
  *
  * Renders the Pixel Port pixel-P mark and ASSEMBLES it on load: every pixel
  * cell fades + scales + drifts into place on an organic diagonal sweep, then
- * settles into the crisp gradient P. A restrained living layer follows — a slow
+ * settles into the crisp gradient P. A restrained living layer follows: a slow
  * float and an occasional shimmer sweep. Behind it sits a structured amethyst
  * pixel-field that fades out toward the edges.
  *
@@ -50,7 +50,7 @@ while ((m = cellRe.exec(clipInner))) {
   cells.push({ x, y, d, dx, dy });
 }
 
-// Smooth P outline (from the source mark) — used only for the soft glow bloom.
+// Smooth P outline (from the source mark), used only for the soft glow bloom.
 const pPath =
   'M 356 232 L 600 232 A 182 182 0 0 1 600 596 L 491 596 L 491 812 L 356 812 Z ' +
   'M 491 322 L 560 322 A 96 96 0 0 1 560 514 L 491 514 Z';
@@ -144,7 +144,7 @@ const pPath =
 <script>
   // Progressive enhancement only. The mark already assembles on load via pure
   // CSS. If the visual loads BELOW the fold, hold the assembly until it scrolls
-  // into view — once. No animation loop, no state. Reduced-motion is left
+  // into view, once. No animation loop, no state. Reduced-motion is left
   // entirely to CSS (the static, fully-assembled mark).
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   for (const el of document.querySelectorAll<HTMLElement>('[data-pp-hero]')) {
@@ -176,13 +176,13 @@ const pPath =
     isolation: isolate;
   }
 
-  /* Structured amethyst pixel-field — brand texture, not glow-soup. A faint dot
+  /* Structured amethyst pixel-field: brand texture, not glow-soup. A faint dot
      grid masked to fade out toward the edges. */
   .pp-field {
     position: absolute;
     inset: -30%;
     z-index: -1;
-    /* 21px grid — the same cell pitch as the mark, so the field reads as the
+    /* 21px grid: the same cell pitch as the mark, so the field reads as the
        same pixel material the P is built from. */
     background-image: radial-gradient(rgba(150, 110, 255, 0.62) 1.1px, transparent 1.7px);
     background-size: 21px 21px;

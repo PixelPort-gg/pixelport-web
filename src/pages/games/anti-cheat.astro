@@ -17,7 +17,7 @@ const sections = [...groups.entries()].sort((a, b) => b[1].length - a[1].length)
 const fmt = (n: number) => n.toLocaleString('en-US');
 
 const seoTitle = 'Anti-Cheat on Mac: Which Windows Games Are Blocked and Why';
-const description = `${fmt(blocked.length)} Windows games cannot run on Apple Silicon Macs because of kernel-level anti-cheat — not graphics, not performance. Here is exactly which anti-cheat systems block Mac play, which games they affect, and who can change it.`;
+const description = `${fmt(blocked.length)} Windows games cannot run on Apple Silicon Macs because of kernel-level anti-cheat: not graphics, not performance. Here is exactly which anti-cheat systems block Mac play, which games they affect, and who can change it.`;
 
 const canonical = new URL('/games/anti-cheat', Astro.site).toString();
 const jsonLd = {
@@ -38,7 +38,7 @@ const jsonLd = {
           name: 'Why do some Windows games refuse to run on a Mac?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Kernel-level anti-cheat needs to run deep inside Windows itself. macOS does not allow that access to a compatibility layer, so games that require it cannot launch — regardless of how powerful the Mac is. It is a policy blocker, not a performance one.',
+            text: 'Kernel-level anti-cheat needs to run deep inside Windows itself. macOS does not allow that access to a compatibility layer, so games that require it cannot launch, regardless of how powerful the Mac is. It is a policy blocker, not a performance one.',
           },
         },
         {
@@ -46,7 +46,7 @@ const jsonLd = {
           name: 'Can any tool work around kernel anti-cheat on macOS?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'No — not Pixel Port, not CrossOver, not Whisky, not Parallels in any way the anti-cheat vendor accepts. Only the game publisher can enable Mac play by shipping a macOS-compatible anti-cheat configuration.',
+            text: 'No: not Pixel Port, not CrossOver, not Whisky, not Parallels in any way the anti-cheat vendor accepts. Only the game publisher can enable Mac play by shipping a macOS-compatible anti-cheat configuration.',
           },
         },
         {
@@ -74,7 +74,7 @@ const jsonLd = {
     <h1>The honest reason {fmt(blocked.length)} games won't run on your Mac.</h1>
     <p class="ac-page__lede">
       It is not your Mac. It is not the graphics. Every game on this page is blocked by
-      <strong>kernel-level anti-cheat</strong> — software that must run deep inside Windows itself,
+      <strong>kernel-level anti-cheat</strong>: software that must run deep inside Windows itself,
       at a level macOS does not expose to any compatibility layer. No tool can honestly work around
       it, and anyone who claims otherwise is selling something. Whether these games ever run on Mac
       is a decision that belongs to each publisher.
@@ -86,7 +86,7 @@ const jsonLd = {
         The good news: most anti-cheat is not kernel-level. VAC and user-mode Easy Anti-Cheat
         configurations usually run fine, which is why thousands of multiplayer games are graded
         playable or <a href="/games/verified">verified</a> in the catalogue. Before writing off a
-        game, <a href="/games">check its actual grade</a> — the answer is often better than you
+        game, <a href="/games">check its actual grade</a>. The answer is often better than you
         expect.
       </p>
     </div>
@@ -109,7 +109,7 @@ const jsonLd = {
 
     <div class="ac-page__cta">
       <h2>Play what actually runs</h2>
-      <p>Thousands of Windows games do work on Apple Silicon — graded honestly, launched in one click.</p>
+      <p>Thousands of Windows games do work on Apple Silicon: graded honestly, launched in one click.</p>
       <a href="/games/verified">See verified games <span aria-hidden="true">→</span></a>
     </div>
   </article>

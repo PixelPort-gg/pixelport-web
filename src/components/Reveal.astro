@@ -1,14 +1,14 @@
 ---
 /**
- * Reveal — fade + ~12px rise as the slotted content scrolls into view, once.
+ * Reveal: fade + ~12px rise as the slotted content scrolls into view, once.
  *
  * Premium, restrained: a single IntersectionObserver pass, no looping motion.
  * Reduced-motion or no-JS → content is simply visible (never hidden).
  *
  * Props:
- *   delay — ms before the reveal starts (for staggering siblings)
- *   as    — wrapper tag (default "div")
- *   class — extra classes are merged onto the wrapper
+ *   delay - ms before the reveal starts (for staggering siblings)
+ *   as    - wrapper tag (default "div")
+ *   class - extra classes are merged onto the wrapper
  *
  * Safe to use many times on a page: one shared, guarded observer wires every
  * instance, and the initial-hidden state is only applied once JS confirms

@@ -1,6 +1,6 @@
 ---
 /**
- * RunsTicker — a seamless, infinite marquee of game cover chips.
+ * RunsTicker: a seamless, infinite marquee of game cover chips.
  * Reads as living proof that "these run on Mac."
  *
  * Self-contained: scoped styles + a tiny inline script for the art fallback.
@@ -40,7 +40,7 @@ const header = (appid: number) =>
               <li class="rt-chip">
                 <a class="rt-link" href={`/games/${g.slug}`} tabindex={copy === 1 ? -1 : undefined}>
                   <span class="rt-cover">
-                    {/* Permanent gradient backdrop — the cover never blanks. */}
+                    {/* Permanent gradient backdrop: the cover never blanks. */}
                     <span class="rt-ph">{g.title}</span>
                     <img
                       class="rt-img"
@@ -80,7 +80,7 @@ const header = (appid: number) =>
     /* Vertical breathing room so the hover-rise (and the cover's soft shadow)
        never clip against the marquee's overflow:hidden. */
     padding-block: 12px;
-    /* Premium edge fade — chips dissolve in/out at the rails. */
+    /* Premium edge fade: chips dissolve in/out at the rails. */
     -webkit-mask-image: linear-gradient(
       to right,
       transparent,
@@ -269,7 +269,7 @@ const header = (appid: number) =>
         img.dataset.step = '1';
         img.src = headerSrc;
       } else {
-        // Both Steam assets failed — reveal the permanent gradient + title.
+        // Both Steam assets failed: reveal the permanent gradient + title.
         img.dataset.step = '2';
         img.hidden = true;
       }
