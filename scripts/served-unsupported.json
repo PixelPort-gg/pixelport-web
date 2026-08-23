@@ -1,0 +1,11 @@
+{
+  "_comment": "Appids the SERVER marks blocked (unsupported_reason set) that the bundled-catalogue heuristic still grades playable. Parity audit 2026-08-22. The site must never advertise above the served truth. Refresh alongside pull-compat.mjs; remove entries when the served reason clears.",
+  "blocked": [
+    { "appid": 268420, "reason": "Blocked by anti-cheat" },
+    { "appid": 389430, "reason": "Blocked by X-Trap, PunkBuster, XIGNCODE3" },
+    { "appid": 555570, "reason": "Blocked by Fredaikis Anti-Cheat" },
+    { "appid": 755790, "reason": "Blocked by TenProtect" },
+    { "appid": 1692070, "reason": "Blocked by XIGNCODE3" },
+    { "appid": 45500, "reason": "Blocked by VAC" }
+  ]
+}

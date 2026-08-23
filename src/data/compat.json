@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-12",
+ "fetched_at": "2026-08-23",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -142,8 +142,8 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "unsupported",
-   "reason": "EAC rejects Wine on macOS ('unsupported host machine architecture'); BHVR has not enabled the macOS/Wine EAC backend.",
+   "tier": "playable",
+   "reason": null,
    "popularity": 35630223
   },
   {
@@ -422,7 +422,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7708042
   },
@@ -646,7 +646,7 @@
    "appid": 1366540,
    "slug": "dyson-sphere-program",
    "name": "Dyson Sphere Program",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3583095
   },
@@ -851,6 +851,14 @@
    "popularity": 3517099
   },
   {
+   "appid": 437900,
+   "slug": "party-jousting",
+   "name": "Party Jousting",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3500662
+  },
+  {
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
@@ -1001,6 +1009,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1521613
+  },
+  {
+   "appid": 837470,
+   "slug": "untitled-goose-game",
+   "name": "Untitled Goose Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1521184
   },
   {
    "appid": 996580,
@@ -1409,6 +1425,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 152257
+  },
+  {
+   "appid": 2653940,
+   "slug": "star-trek-resurgence",
+   "name": "Star Trek: Resurgence",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 151826
   },
   {
    "appid": 2097230,
@@ -2110,6 +2134,22 @@
    "appid": 2803490,
    "slug": "atomcraft",
    "name": "Atomcraft",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3582440,
+   "slug": "dss-2-war-industry",
+   "name": "DSS 2: War Industry",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4711740,
+   "slug": "mortal-shell-ii-open-beta",
+   "name": "Mortal Shell II - Open Beta",
    "tier": "playable",
    "reason": null,
    "popularity": 0

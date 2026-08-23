@@ -58,6 +58,13 @@ const seenAppids = new Set(curatedAppids);
 const pages = []; // non-curated games that get a detail page
 const gridExtra = [];
 
+// Server-declared blocked titles override the heuristic grade (parity audit 2026-08-22):
+// a game the API serves with an unsupported_reason must never wear a Playable badge here.
+const servedUnsupported = new Map(
+  JSON.parse(readFileSync(new URL('./served-unsupported.json', import.meta.url), 'utf8'))
+    .blocked.map((b) => [b.appid, b.reason]),
+);
+
 for (const e of entries) {
   const slug = e.id;
   if (!slug || seen.has(slug)) continue;
@@ -66,6 +73,7 @@ for (const e of entries) {
   if (e.appid != null) seenAppids.add(e.appid);
 
   let tier = mapTier(e.tier);
+  if (e.appid != null && servedUnsupported.has(e.appid)) tier = 'unsupported';
   // Sync verified from the live server — but never claim verified for a game the
   // bundled catalogue knows is anti-cheat-blocked.
   if (e.appid != null && d1Verified.has(e.appid) && tier !== 'unsupported') tier = 'verified';
