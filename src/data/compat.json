@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-13",
+ "fetched_at": "2026-08-23",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -142,8 +142,8 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "unsupported",
-   "reason": "EAC rejects Wine on macOS ('unsupported host machine architecture'); BHVR has not enabled the macOS/Wine EAC backend.",
+   "tier": "playable",
+   "reason": null,
    "popularity": 35630223
   },
   {
@@ -317,7 +317,7 @@
   {
    "appid": 1222670,
    "slug": "the-sims-4",
-   "name": "The Sims\u2122 4",
+   "name": "The Sims™ 4",
    "tier": "playable",
    "reason": null,
    "popularity": 15149064
@@ -422,7 +422,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7708042
   },
@@ -845,7 +845,7 @@
   {
    "appid": 212500,
    "slug": "the-lord-of-the-rings-online",
-   "name": "The Lord of the Rings Online\u2122",
+   "name": "The Lord of the Rings Online™",
    "tier": "untested",
    "reason": null,
    "popularity": 3517099
@@ -1009,6 +1009,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1521613
+  },
+  {
+   "appid": 837470,
+   "slug": "untitled-goose-game",
+   "name": "Untitled Goose Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1521184
   },
   {
    "appid": 996580,
@@ -1417,6 +1425,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 152257
+  },
+  {
+   "appid": 2653940,
+   "slug": "star-trek-resurgence",
+   "name": "Star Trek: Resurgence",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 151826
   },
   {
    "appid": 2097230,
@@ -1853,7 +1869,7 @@
   {
    "appid": 1901490,
    "slug": "wonderful-waking-world",
-   "name": "\u6771\u65b9\u7720\u4e16\u754c ~ Wonderful Waking World",
+   "name": "東方眠世界 ~ Wonderful Waking World",
    "tier": "playable",
    "reason": null,
    "popularity": 0
@@ -1917,7 +1933,7 @@
   {
    "appid": 2732960,
    "slug": "command-conquer-generals-zero-hour",
-   "name": "Command & Conquer\u2122 Generals Zero Hour",
+   "name": "Command & Conquer™ Generals Zero Hour",
    "tier": "playable",
    "reason": null,
    "popularity": 0
@@ -2127,6 +2143,14 @@
    "slug": "dss-2-war-industry",
    "name": "DSS 2: War Industry",
    "tier": "verified",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4711740,
+   "slug": "mortal-shell-ii-open-beta",
+   "name": "Mortal Shell II - Open Beta",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },

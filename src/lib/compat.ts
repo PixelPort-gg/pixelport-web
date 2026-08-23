@@ -1,5 +1,5 @@
 // Shared helpers for the /mac/ "does it run?" pages. These pages render
-// exactly four honest verdicts and NOTHING about how the runtime does it:
+// exactly four honest verdicts and NOTHING about how the runtime does it —
 // no engine, graphics-backend, dll, or launch detail ever appears here.
 
 export type CompatTier = 'verified' | 'playable' | 'untested' | 'unsupported';
@@ -21,50 +21,71 @@ export const compatMeta: Record<
     label: 'Verified',
     badge: 'text-verified bg-verified/15 ring-verified/35',
     dot: 'bg-verified',
-    short: 'Runs · verified on real Macs',
+    short: 'Runs — verified on real Macs',
   },
   playable: {
     label: 'Playable',
     // Amber, matching the app's playable tint and the /games catalogue badges.
     badge: 'text-playable bg-playable/15 ring-playable/35',
     dot: 'bg-playable',
-    short: 'Playable · community & template confidence',
+    short: 'Playable — community & template confidence',
   },
   untested: {
     label: 'Untested',
     badge: 'text-muted bg-surface-2/70 ring-line',
     dot: 'bg-muted/60',
-    short: 'Untested · try it and help grade it',
+    short: 'Untested — try it and help grade it',
   },
   unsupported: {
     label: 'Not supported',
     badge: 'text-blocked bg-blocked/15 ring-blocked/35',
     dot: 'bg-blocked',
-    short: 'Does not run · honest no',
+    short: 'Does not run — honest no',
   },
 };
+
+// A game that already ships a macOS build gets a different answer entirely. "Yes,
+// it runs through Pixel Port" is true and useless when Steam will hand the player
+// a native version for free — so we lead with that instead of with ourselves.
+export const nativeCompatMeta = {
+  label: 'Native Mac build',
+  badge: 'text-verified bg-verified/15 ring-verified/35',
+  dot: 'bg-verified',
+  short: 'Runs natively — you do not need us',
+};
+
+export function nativeVerdict(g: CompatGame): { headline: string; body: string } {
+  return {
+    headline: `Yes — ${g.name} has a native Mac version.`,
+    body: `Start there, not with us: Steam lists a macOS build of ${g.name} and your Steam purchase includes it, so install that first. We would rather tell you that than sell you a compatibility layer you have no use for. If the native build turns out to be an old one that no longer runs on modern macOS, Pixel Port runs the Windows version instead.`,
+  };
+}
+
+export function nativeMetaDescription(g: CompatGame): string {
+  return `Yes — ${g.name} has a native Mac version included with your Steam purchase, so install that first. You do not need Pixel Port or any compatibility layer for it.`;
+}
 
 export function verdict(g: CompatGame): { headline: string; body: string } {
   switch (g.tier) {
     case 'verified':
       return {
-        headline: `Yes, ${g.name} runs on Mac.`,
-        body: `Verified on real Apple Silicon hardware: a real Mac took ${g.name} end to end through Pixel Port's runtime (install, launch, and in-game). No Boot Camp, no Windows license, no setup.`,
+        headline: `Yes — ${g.name} runs on Mac.`,
+        body: `Verified on real Apple Silicon hardware: a real Mac took ${g.name} end to end through Pixel Port's runtime — install, launch, and in-game. You need to own ${g.name} on Steam, which is where it downloads from. No Boot Camp, no Windows license, no setup.`,
       };
     case 'playable':
       return {
-        headline: `Yes, ${g.name} is playable on Mac.`,
-        body: `${g.name} is graded playable on Apple Silicon from community reports and how the game is built. It hasn't been hand-verified on our own Macs yet, so expect an occasional rough edge, and tell us how your run goes.`,
+        headline: `Yes — ${g.name} is playable on Mac.`,
+        body: `${g.name} is graded playable on Apple Silicon from community reports and how the game is built. It hasn't been hand-verified on our own Macs yet, so expect an occasional rough edge — and tell us how your run goes. You need to own ${g.name} on Steam; Pixel Port runs the copy Steam delivers.`,
       };
     case 'untested':
       return {
-        headline: `Untested: nobody has confirmed ${g.name} on Mac yet.`,
-        body: `${g.name} is in the Pixel Port catalogue, but no one has confirmed a full run on Apple Silicon so far. We only claim what we've seen. Try it and your result helps grade it for everyone.`,
+        headline: `Untested — nobody has confirmed ${g.name} on Mac yet.`,
+        body: `${g.name} is in the Pixel Port catalogue, but no one has confirmed a full run on Apple Silicon so far. We only claim what we've seen. If you own it on Steam, try it — your result helps grade it for everyone.`,
       };
     case 'unsupported':
       return {
-        headline: `No, ${g.name} doesn't run on Mac right now.`,
-        body: `We're not going to pretend otherwise: ${g.name} is blocked on Apple Silicon, and it's not something Pixel Port (or any compatibility tool) can honestly work around today.`,
+        headline: `No — ${g.name} doesn't run on Mac right now.`,
+        body: `We're not going to pretend otherwise: ${g.name} is blocked on Apple Silicon, and it's not something Pixel Port — or any compatibility tool — can honestly work around today.`,
       };
   }
 }
@@ -72,13 +93,13 @@ export function verdict(g: CompatGame): { headline: string; body: string } {
 export function metaDescription(g: CompatGame): string {
   switch (g.tier) {
     case 'verified':
-      return `Yes, ${g.name} runs on Apple Silicon Macs, verified end to end on real hardware through Pixel Port's runtime. One-click install, no Boot Camp.`;
+      return `Yes — ${g.name} runs on Apple Silicon Macs, verified end to end on real hardware through Pixel Port's runtime. One-click install of the Steam copy you own, no Boot Camp.`;
     case 'playable':
-      return `Yes, ${g.name} is playable on Apple Silicon Macs through Pixel Port, graded from community and catalogue confidence. One-click install.`;
+      return `Yes — ${g.name} is playable on Apple Silicon Macs through Pixel Port, graded from community and catalogue confidence. One-click install of the Steam copy you own.`;
     case 'untested':
-      return `${g.name} is untested on Apple Silicon so far. It's in the Pixel Port catalogue. Try it on your Mac and help grade it for everyone.`;
+      return `${g.name} is untested on Apple Silicon so far. It's in the Pixel Port catalogue — try it on your Mac and help grade it for everyone.`;
     case 'unsupported':
-      return `Honest answer: no. ${g.name} doesn't run on Apple Silicon Macs right now, and we won't pretend otherwise. Here's the real reason, plus verified games that do run.`;
+      return `Honest answer: no — ${g.name} doesn't run on Apple Silicon Macs right now, and we won't pretend otherwise. Here's the real reason, plus verified games that do run.`;
   }
 }
 
@@ -95,7 +116,7 @@ export const artChain = (appid: number) => ({
   ].join('|'),
 });
 
-// Landscape Steam header: reliable CDN, right shape for OpenGraph cards.
+// Landscape Steam header — reliable CDN, right shape for OpenGraph cards.
 export const ogImage = (appid: number) =>
   `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`;
 

@@ -3,18 +3,18 @@ import Base from '../layouts/Base.astro';
 
 const seoTitle = 'How to Play Windows Games on a Mac (2026): Every Method, Honestly Compared';
 const description =
-  'The complete 2026 guide to playing Windows games on Apple Silicon Macs: one-click tools, Wine wrappers, VMs, and cloud gaming. What works, what broke, and what no tool can fix.';
+  'The complete 2026 guide to playing Windows games on Apple Silicon Macs: one-click tools, Wine wrappers, VMs, and cloud gaming — what works, what broke, and what no tool can fix.';
 
 const canonical = new URL('/how-to-play-windows-games-on-mac', Astro.site).toString();
 
 const faq = [
   {
     q: 'Can my Mac actually run Windows games?',
-    a: 'If it has an Apple Silicon chip (M1 or newer), yes: far more than most people assume. Thousands of Windows games run well through modern translation layers that convert DirectX calls to Metal. The main exceptions are games with kernel-level anti-cheat, which no tool can run on macOS.',
+    a: 'If it has an Apple Silicon chip (M1 or newer), yes — far more than most people assume. Thousands of Windows games run well through modern translation layers that convert DirectX calls to Metal. The main exceptions are games with kernel-level anti-cheat, which no tool can run on macOS.',
   },
   {
     q: 'Do I need a Windows license or Boot Camp?',
-    a: 'No. Boot Camp does not exist on Apple Silicon Macs, and translation-based tools like Pixel Port run the Windows build of a game directly on macOS: no Windows installation, no license, no virtual machine.',
+    a: 'No. Boot Camp does not exist on Apple Silicon Macs, and translation-based tools like Pixel Port run the Windows build of a game directly on macOS — no Windows installation, no license, no virtual machine.',
   },
   {
     q: 'Will performance be good enough?',
@@ -73,7 +73,7 @@ const jsonLd = {
         {
           '@type': 'HowToStep',
           name: 'Install & Play',
-          text: 'Find your game in the catalogue, click Install & Play, and Pixel Port downloads and configures it for your Mac. Launch it from your Library from then on: no bottles, no winetricks, no terminal.',
+          text: 'Find your game in the catalogue, click Install & Play, and Pixel Port downloads and configures it for your Mac. Launch it from your Library from then on — no bottles, no winetricks, no terminal.',
         },
       ],
     },
@@ -110,7 +110,7 @@ const methods = [
       How to play Windows games on a Mac
     </h1>
     <p class="mt-5 max-w-2xl text-lg text-muted">
-      The honest 2026 guide. Your Apple Silicon Mac can play far more than you think. Here is
+      The honest 2026 guide. Your Apple Silicon Mac can play far more than you think — here is
       every real method, what each one actually asks of you, and the truth about the games no
       tool can run.
     </p>
@@ -121,8 +121,8 @@ const methods = [
         Windows games don't run on macOS natively because they speak DirectX, and Macs speak
         Metal. Every method below is some way of bridging that gap. For most people with a Steam
         library, the answer in 2026 is a translation layer that does the setup automatically:
-        install <a href="/download">Pixel Port</a>, pick a game, click. For everyone else
-        (tinkerers, VM users, people chasing an anti-cheat-blocked game) the full comparison
+        install <a href="/download">Pixel Port</a>, pick a game, click. For everyone else —
+        tinkerers, VM users, people chasing an anti-cheat-blocked game — the full comparison
         is below, including the options we lose to.
       </p>
 
@@ -131,8 +131,8 @@ const methods = [
         Before choosing a tool, find out whether your game runs at all. The
         <a href="/games">compatibility catalogue</a> grades 11,000+ Windows games for Apple
         Silicon: <a href="/games/verified">verified</a> means a human ran it end to end on a real
-        Mac; playable means strong evidence it works; unsupported means a hard blocker
-        (<a href="/games/anti-cheat">almost always kernel anti-cheat</a>) and no tool, ours
+        Mac; playable means strong evidence it works; unsupported means a hard blocker —
+        <a href="/games/anti-cheat">almost always kernel anti-cheat</a> — and no tool, ours
         included, can fix that. Checking first turns an evening of trial and error into a
         ten-second lookup.
       </p>
@@ -174,14 +174,15 @@ const methods = [
           grade. If it's blocked, the page tells you exactly why and what runs instead.
         </li>
         <li>
-          <strong>Install Pixel Port</strong>: <a href="/download">free download</a>, Apple
+          <strong>Install Pixel Port</strong> — <a href="/download">free download</a>, Apple
           Silicon (M1–M4), macOS 14 or later. First launch sets up Prism, our runtime, on its
           own.
         </li>
         <li>
-          <strong>Click Install &amp; Play.</strong> Pixel Port fetches the Windows build of the
-          game you already own, configures it for your specific Mac, and launches it. From then
-          on it's one click from your Library: a repeatable launch, not a science project.
+          <strong>Click Install &amp; Play.</strong> Steam downloads the Windows build of the game
+          you already own, to your own Steam account, and Pixel Port configures it for your
+          specific Mac and launches it. From then on it's one click from your Library — a
+          repeatable launch, not a science project.
         </li>
       </ol>
       <p>
@@ -199,7 +200,7 @@ const methods = [
         compatibility fixes. <strong><a href="/game-porting-toolkit">Apple's Game Porting
         Toolkit</a></strong> proved this whole approach works, but it is a developer evaluation
         tool: Homebrew, terminal, per-game wrangling. <strong><a href="/parallels-alternative">
-        Parallels</a></strong> runs real Windows in a VM: great for Excel, expensive and
+        Parallels</a></strong> runs real Windows in a VM — great for Excel, expensive and
         overhead-laden for games. And <strong>cloud gaming</strong> (GeForce NOW and similar)
         deserves an honest mention: it is the one legitimate way to play kernel-anti-cheat games
         on a Mac, because the game runs on a Windows PC in a datacenter. You trade latency and a
@@ -208,8 +209,8 @@ const methods = [
 
       <h2>What no tool can fix</h2>
       <p>
-        Games with kernel-level anti-cheat (think Riot Vanguard and certain Easy Anti-Cheat and
-        BattlEye configurations) cannot run on macOS through any compatibility layer. This is a
+        Games with kernel-level anti-cheat — think Riot Vanguard and certain Easy Anti-Cheat and
+        BattlEye configurations — cannot run on macOS through any compatibility layer. This is a
         publisher decision, not a performance limit, and we'd rather tell you now than after
         you've spent an evening on it. The full list of
         <a href="/games/anti-cheat">blocked games and their exact blockers</a> is public.

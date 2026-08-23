@@ -2,7 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { tierMeta, type Tier } from '../../../lib/catalog';
+import { tierMeta, nativeMacMeta, type Tier } from '../../../lib/catalog';
 
 // A crawlable A–Z index of the whole catalogue. The interactive /games grid
 // only ships 60 games in its HTML, so this directory is what gives search
@@ -13,6 +13,7 @@ interface GridGame {
   appid: number | null;
   tier: Tier;
   p: number;
+  n?: number; // 1 = already ships a native Mac build
 }
 
 export function getStaticPaths() {
@@ -66,7 +67,9 @@ const description = `Alphabetical index of every Windows game graded for Apple S
           <li>
             <a href={`/games/${g.slug}`}>
               <span class="directory__title">{g.title}</span>
-              <span class={`directory__tier ${tierMeta[g.tier].text}`}>{tierMeta[g.tier].label}</span>
+              <span class={`directory__tier ${g.n ? nativeMacMeta.text : tierMeta[g.tier].text}`}>
+                {g.n ? nativeMacMeta.label : tierMeta[g.tier].label}
+              </span>
             </a>
           </li>
         ))
