@@ -7,9 +7,9 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
-  /** Absolute URL for og:image; defaults to the rendered brand card (PNG — scrapers ignore SVG). */
+  /** Absolute URL for og:image; defaults to the rendered brand card (PNG; scrapers ignore SVG). */
   ogImage?: string;
-  /** og:type — pass 'article' on blog posts. */
+  /** og:type - pass 'article' on blog posts. */
   ogType?: 'website' | 'article';
   /** Extra <head> content (e.g. JSON-LD) passed via the "head" slot. */
 }
@@ -49,7 +49,7 @@ const socialImage = ogImage ?? new URL('/og.png', Astro.site).toString();
     <meta name="application-name" content="Pixel Port" />
     <meta name="apple-mobile-web-app-title" content="Pixel Port" />
     <!-- Brand-entity structured data: tells Google "Pixel Port" is a named app/organization at this
-         domain — the entity signal that drives brand-term ranking + sitelinks for a new domain. -->
+         domain, the entity signal that drives brand-term ranking + sitelinks for a new domain. -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [
@@ -88,15 +88,15 @@ const socialImage = ogImage ?? new URL('/og.png', Astro.site).toString();
     <Footer />
     <script>
       // Referral attribution. Runs on EVERY page (this layout wraps the whole
-      // site), so a ?ref=<token> is captured wherever a posted link lands —
-      // compat pages, homepage, or /download. No cookies, no identifiers — just
+      // site), so a ?ref=<token> is captured wherever a posted link lands:
+      // compat pages, homepage, or /download. No cookies, no identifiers, just
       // the ref token. Must never affect the download UX.
       //
       // Two beacons make a funnel: a 'land' beacon fires the moment a ?ref=
       // arrives (so a visitor attributes even if they never download), and a
       // 'download' beacon still fires on the download CTA click. Both POST the
       // same 202 contract; `event` is extra and currently IGNORED by the server
-      // (server only reads {ref, path}) — it's forward-compatible for when an
+      // (server only reads {ref, path}); it's forward-compatible for when an
       // `event` column is added to web_refs. Ref policy is LATEST-WINS so a
       // fresh campaign click updates attribution.
       const WEBREF = 'https://mgp-api.macgameport.workers.dev/v1/webref';
@@ -128,7 +128,7 @@ const socialImage = ogImage ?? new URL('/og.png', Astro.site).toString();
           if (ref !== prev) beacon(ref, 'land');
         }
       } catch {}
-      // 2) Download CTA click — attribute the conversion with the stored ref.
+      // 2) Download CTA click: attribute the conversion with the stored ref.
       document.addEventListener('click', (e) => {
         const a = (e.target as Element | null)?.closest?.('a[href^="/download"]');
         if (!a) return;

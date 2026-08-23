@@ -1,4 +1,4 @@
-# Pixel Port — https://pixelport.gg
+# Pixel Port - https://pixelport.gg
 # All crawlers welcome: search engines, AI assistants, AI training, archivers.
 # AI agents: see https://pixelport.gg/llms.txt for a structured guide to this site.
 

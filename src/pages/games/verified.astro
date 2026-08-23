@@ -10,23 +10,18 @@ interface GridGame {
   appid: number | null;
   tier: string;
   p: number;
-  n?: number; // 1 = already ships a native Mac build
 }
 
 const grid = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
 ) as GridGame[];
-// This page is a claim, not a browse surface: every title here is offered as proof
-// of what Pixel Port did. A game that already ships a Mac build is not that proof,
-// however well it runs — so it stays in the catalogue but out of the showcase.
 const verified = grid
-  .filter((g) => g.tier === 'verified' && !g.n)
+  .filter((g) => g.tier === 'verified')
   .sort((a, b) => a.title.localeCompare(b.title, 'en'));
-const gradedTotal = grid.filter((g) => !g.n).length;
 const fmt = (n: number) => n.toLocaleString('en-US');
 
 const seoTitle = 'Verified Mac Games: Windows Games Confirmed Running on Apple Silicon';
-const description = `${verified.length} Windows games verified end to end on real Apple Silicon Macs through Pixel Port. No community hearsay, no fabricated green lights — a human launched and played every one.`;
+const description = `${verified.length} Windows games verified end to end on real Apple Silicon Macs through Pixel Port. No community hearsay, no fabricated green lights: a human launched and played every one.`;
 
 const canonical = new URL('/games/verified', Astro.site).toString();
 const jsonLd = {
@@ -60,7 +55,7 @@ const jsonLd = {
     <p class="verified-hub__lede">
       Every game below was launched and played end to end on a real Apple Silicon Mac through
       Pixel Port. Not "should work". Not "community says so". A human pressed play, and it ran.
-      That is the whole bar — and it is why this list is shorter and more trustworthy than most
+      That is the whole bar, and it is why this list is shorter and more trustworthy than most
       compatibility lists on the internet.
     </p>
 
@@ -91,8 +86,8 @@ const jsonLd = {
 
     <div class="verified-hub__more">
       <p>
-        Beyond these {verified.length} hand-verified titles, {fmt(gradedTotal)} more games carry
-        honest grades — playable, needs attention, or a straight no.
+        Beyond these {verified.length} hand-verified titles, {fmt(grid.length)} more games carry
+        honest grades: playable, needs attention, or a straight no.
       </p>
       <a href="/games" class="verified-hub__cta">Browse the full catalogue <span aria-hidden="true">→</span></a>
       <a href="/games/all/1" class="verified-hub__quiet">Or see the A–Z index</a>

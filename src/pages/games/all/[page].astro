@@ -44,7 +44,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
 const first = games[0]?.title ?? '';
 const last = games[games.length - 1]?.title ?? '';
 const seoTitle = `All ${fmt(total)} Games A–Z, Page ${page} of ${pageCount}: Mac Compatibility Index`;
-const description = `Alphabetical index of every Windows game graded for Apple Silicon Macs — page ${page} of ${pageCount} (${first} to ${last}). Every game links to its full Mac compatibility verdict.`;
+const description = `Alphabetical index of every Windows game graded for Apple Silicon Macs, page ${page} of ${pageCount} (${first} to ${last}). Every game links to its full Mac compatibility verdict.`;
 ---
 
 <Base title={seoTitle} description={description}>

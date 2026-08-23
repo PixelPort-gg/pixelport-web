@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import games from '../../data/games.resolved.json';
 import catalogue from '../../data/catalogue.json';
 import guides from '../../data/guides.json';
-import { tierMeta, nativeMacMeta, coverUrl, coverFallbackUrl, engineLabel, prettyAC, generate, type Tier } from '../../lib/catalog';
+import { tierMeta, coverUrl, coverFallbackUrl, engineLabel, prettyAC, generate, type Tier } from '../../lib/catalog';
 
 // Seeded recommendations keep the page useful and deterministic. Curated
 // alternatives on authored blocker pages take precedence when they exist.
@@ -28,13 +28,12 @@ export function getStaticPaths() {
 
 const { game } = Astro.props as { game: any };
 const meta = tierMeta[game.tier as Tier];
-const cover = coverUrl(game.appid);
-const fb = coverFallbackUrl(game.appid);
+// Newer Steam apps only serve art under hashed CDN paths; curated entries can
+// pin exact URLs via an `art` override when the appid-derived ones 404.
+const cover = game.art?.cover ?? coverUrl(game.appid);
+const fb = game.art?.header ?? coverFallbackUrl(game.appid);
 const landscape = fb;
 const isBlocked = game.tier === 'unsupported';
-// Already ships a macOS build. The page stays — this is what people search for —
-// but it has to lead with "use the native version", not with our download button.
-const isNativeMac = !isBlocked && !!game.nativeMac;
 const picks = seededPicks(game);
 
 // Quick facts adapt to the source: authored pages surface genre/test date;
@@ -52,26 +51,16 @@ const facts: [string, string][] = game._cat
 const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
 const seoTitle = isBlocked
   ? `Can You Play ${game.title} on Mac? The Honest Answer`
-  : isNativeMac
-    ? `How to Play ${game.title} on Mac (It Has a Native Mac Version)`
-    : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
+  : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
-  : isNativeMac
-    ? `${game.title} already has a native Mac version included with your Steam purchase — install it straight from Steam. You do not need Pixel Port or any compatibility layer.`
-    : `How to play ${game.title} on your Mac, step by step: one click through Pixel Port. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4).`;
+  : `How to play ${game.title} on your Mac, step by step: one click through Pixel Port. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4).`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 
 // Authored deep-dive for high-search games: every real way to play this title
 // on a Mac (native port, Pixel Port, cloud), compared honestly.
 const guide = (guides as Record<string, any>)[game.slug];
-
-// A hand-written guide answer beats the generated line — it is already reviewed
-// and it knows the specifics (whether the native build is any good, for one).
-const nativeLine =
-  guide?.nativeAnswer ??
-  `Steam lists a native Mac version of ${game.title}, included with your Steam purchase. Install that first — it needs no compatibility layer at all. Pixel Port is only worth it here if that build no longer runs, or you need the Windows version for mods.`;
 
 // Tier-honest Q&A. Rendered visibly below and mirrored as FAQPage JSON-LD, so
 // the schema never claims anything the page doesn't say.
@@ -93,34 +82,23 @@ const faq: { q: string; a: string }[] = isBlocked
   : [
       {
         q: `Does ${game.title} run on Mac?`,
-        a: isNativeMac
-          ? // No tier talk here: the grade describes the Windows build, and quoting
-            // it against a game with its own Mac version just muddies the answer.
-            `${nativeLine} If you specifically want the Windows build — for Windows-only mods, say — Pixel Port runs it, graded ${meta.label.toLowerCase()} on Apple Silicon.`
-          : `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.` +
-            (game.engine
-              ? ` ${game.title} is built on ${engineLabel(game.engine)}, and Pixel Port's runtime translates its rendering to Metal automatically.`
-              : ''),
-      },
-      {
-        q: `Do I need to own ${game.title} on Steam?`,
-        a: `Yes. Pixel Port does not sell, host, or distribute games. ${game.title} downloads through Steam, to your own Steam account, exactly as it would on a PC — you need to own it there first. Pixel Port is the compatibility layer that runs the Windows build Steam delivers.`,
+        a:
+          `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.` +
+          (game.engine
+            ? ` ${game.title} is built on ${engineLabel(game.engine)}, and Pixel Port's runtime translates its rendering to Metal automatically.`
+            : ''),
       },
       {
         q: `Do I need Windows, Boot Camp, or a VM to play ${game.title} on Mac?`,
-        a: isNativeMac
-          ? `No. ${game.title} has a native Mac version, so nothing needs translating at all — install it from Steam and play.`
-          : `No. Pixel Port runs the Windows build of ${game.title} directly on macOS — no Boot Camp partition, no virtual machine, and no Windows license.`,
+        a: `No. Pixel Port runs the Windows build of ${game.title} directly on macOS: no Boot Camp partition, no virtual machine, and no Windows license.`,
       },
       {
         q: `Which Macs can run ${game.title}?`,
-        a: `Any Apple Silicon Mac — M1 through M4, MacBook Air to Mac Studio — on macOS 14 or later.`,
+        a: `Any Apple Silicon Mac (M1 through M4, MacBook Air to Mac Studio) on macOS 14 or later.`,
       },
     ];
-// Ask the native question outright whenever the answer is yes — not only for the
-// handful of games that happen to have a hand-written guide.
-if (guide?.nativeAnswer || (isNativeMac && !isBlocked)) {
-  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: guide?.nativeAnswer ?? nativeLine });
+if (guide?.nativeAnswer) {
+  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: guide.nativeAnswer });
 }
 
 const jsonLd = {
@@ -214,26 +192,16 @@ const jsonLd = {
         </div>
 
         <div class="game-masthead__copy">
-          <span class={`game-tier-badge ${isNativeMac ? nativeMacMeta.badge : meta.badge}`}>
+          <span class={`game-tier-badge ${meta.badge}`}>
             <span aria-hidden="true"></span>
-            {isNativeMac ? nativeMacMeta.label : `${meta.label}${!isBlocked ? ' on Mac' : ''}`}
+            {meta.label}{!isBlocked ? ' on Mac' : ''}
           </span>
           <h1>{h1}</h1>
-          {isNativeMac && <p class="game-native-note">{nativeLine}</p>}
           <p class="game-summary">{game.summary}</p>
-          {
-            isNativeMac && game.appid ? (
-              <a href={`https://store.steampowered.com/app/${game.appid}/`} rel="noopener nofollow" class="game-primary-cta">
-                Get the Mac version on Steam
-                <span aria-hidden="true">→</span>
-              </a>
-            ) : (
-              <a href={isBlocked ? '#alternatives' : '/download'} class:list={['game-primary-cta', { 'game-primary-cta--blocked': isBlocked }]}>
-                {isBlocked ? 'See games that run' : `Download & play ${game.title}`}
-                <span aria-hidden="true">→</span>
-              </a>
-            )
-          }
+          <a href={isBlocked ? '#alternatives' : '/download'} class:list={['game-primary-cta', { 'game-primary-cta--blocked': isBlocked }]}>
+            {isBlocked ? 'See games that run' : `Download & play ${game.title}`}
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </header>
@@ -309,17 +277,7 @@ const jsonLd = {
               </section>
 
               <section class="game-section" aria-labelledby="steps-heading">
-                {/* Generated native pages lead with the native build in their own
-                    steps. Curated ones keep hand-written Pixel Port steps, so the
-                    heading has to say those are the Windows-build path — otherwise
-                    it reads as though the native version needs us. */}
-                <h2 id="steps-heading">
-                  {isNativeMac
-                    ? game._cat
-                      ? `How to play ${game.title} on your Mac`
-                      : `If you want the Windows build of ${game.title} instead`
-                    : 'From Windows game to Mac launch'}
-                </h2>
+                <h2 id="steps-heading">From Windows game to Mac launch</h2>
                 <ol class="launch-steps">
                   {game.steps.map((step: { title: string; body: string }, index: number) => (
                     <li>
@@ -442,15 +400,10 @@ const jsonLd = {
                 <a href="/download" class="game-rail-secondary">Download Pixel Port</a>
                 <p>Check compatibility before installing. No fabricated green lights.</p>
               </>
-            ) : isNativeMac ? (
-              <>
-                <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that needs us <span aria-hidden="true">→</span></a>
-                <p>This one already runs natively on your Mac. We would rather say so than sell you a download.</p>
-              </>
             ) : (
               <>
                 <a href="/download" class="game-rail-cta">Download &amp; play <span aria-hidden="true">→</span></a>
-                <p>Runs the copy you own on Steam. No Boot Camp, Windows license, or terminal setup.</p>
+                <p>No Boot Camp, Windows license, or terminal setup.</p>
               </>
             )
           }
@@ -607,14 +560,6 @@ const jsonLd = {
     }
 
     .game-summary { max-width: 43rem; margin-top: 1.25rem; color: rgba(245, 245, 247, 0.72); font-size: 1.05rem; line-height: 1.68; }
-    /* The "you already have a Mac version" answer. Reads before the summary and
-       carries more weight than it, because for these games it IS the answer. */
-    .game-native-note {
-      max-width: 43rem; margin-top: 1.25rem; padding: 0.95rem 1.1rem;
-      border-radius: 0.7rem; border: 1px solid rgba(63, 214, 206, 0.28);
-      background: rgba(63, 214, 206, 0.08); color: rgba(245, 245, 247, 0.92);
-      font-size: 1.05rem; line-height: 1.6;
-    }
 
     .game-primary-cta,
     .game-rail-cta {
@@ -754,7 +699,6 @@ const jsonLd = {
       .game-tier-badge { font-size: 0.66rem; }
       .game-masthead h1 { margin-top: 0.8rem; font-size: clamp(2rem, 8.3vw, 3rem); }
       .game-summary { font-size: 0.94rem; }
-      .game-native-note { font-size: 0.94rem; padding: 0.8rem 0.9rem; }
       .game-detail-shell { padding-block: 3.5rem 5rem; }
       .game-detail-rail { order: -1; }
       .game-detail-rail__inner { position: static; }

@@ -13,19 +13,19 @@ const groups = order
 
 const sections: Record<CompatTier, { title: string; blurb: string }> = {
   verified: {
-    title: 'Verified — runs on real Macs',
+    title: 'Verified · runs on real Macs',
     blurb: 'A real Apple Silicon Mac ran each of these end to end through Pixel Port. No asterisks.',
   },
   playable: {
-    title: 'Playable — community & template confidence',
+    title: 'Playable · community & template confidence',
     blurb: 'Graded playable from community reports and how each game is built; not yet hand-verified by us.',
   },
   untested: {
-    title: 'Untested — try it and help',
+    title: 'Untested · try it and help',
     blurb: 'In the catalogue, but nobody has confirmed a full run yet. Your attempt grades it for everyone.',
   },
   unsupported: {
-    title: 'Not supported — the honest no',
+    title: 'Not supported · the honest no',
     blurb: 'Blocked on Mac (almost always kernel anti-cheat), and no tool can honestly work around it.',
   },
 };
@@ -77,7 +77,7 @@ const description = `${fmt(all.length)} Windows games with a straight answer for
       Showing all {fmt(all.length)} compatibility results.
     </p>
     <p id="none" hidden class="mt-6 text-sm text-muted">
-      No matches here yet — the full catalogue is searchable on the <a href="/games" class="text-accent-2 hover:underline">games page</a>.
+      No matches here yet. The full catalogue is searchable on the <a href="/games" class="text-accent-2 hover:underline">games page</a>.
     </p>
 
     {

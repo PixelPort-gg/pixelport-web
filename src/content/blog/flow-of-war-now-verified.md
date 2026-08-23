@@ -10,7 +10,7 @@ It is a strategy game that mixes base building with wave defense. Your workers g
 
 ## What we tested
 
-A real Mac ran it. We played roughly 25 minutes on an M1 Pro: it launched straight away, rendered cleanly, held a smooth framerate, and saved progress properly across a restart. There was nothing to configure — no launch flags, no compatibility toggles, no workarounds.
+A real Mac ran it. We played roughly 25 minutes on an M1 Pro: it launched straight away, rendered cleanly, held a smooth framerate, and saved progress properly across a restart. There was nothing to configure: no launch flags, no compatibility toggles, no workarounds.
 
 Two details make this one unusually clean. The game needs no Steam client running in the background, and it ships no DRM, so it starts directly into the game.
 

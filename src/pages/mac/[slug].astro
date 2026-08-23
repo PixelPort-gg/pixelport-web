@@ -42,7 +42,7 @@ const picksHeading =
     ? 'Also verified on Mac'
     : game.tier === 'playable'
       ? 'Also playable on Mac'
-      : 'These run on Mac — verified';
+      : 'These run on Mac · verified';
 
 const art = artChain(game.appid);
 const landscape = ogImage(game.appid);
@@ -57,7 +57,7 @@ const faq = [
   },
   {
     q: 'Do I need Boot Camp or a Windows license?',
-    a: 'No. Pixel Port runs Windows games directly on macOS — no Boot Camp, no virtual machine, no Windows license. Download it, pick a game, and press play.',
+    a: 'No. Pixel Port runs Windows games directly on macOS: no Boot Camp, no virtual machine, no Windows license. Download it, pick a game, and press play.',
   },
 ];
 const jsonLd = {
@@ -205,7 +205,7 @@ const evidence =
                     body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
                   },
                   {
-                    title: game.tier === 'untested' ? 'Play — and help grade it' : 'Play',
+                    title: game.tier === 'untested' ? 'Play, and help grade it' : 'Play',
                     body:
                       game.tier === 'untested'
                         ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
