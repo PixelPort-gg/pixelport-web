@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import snapshot from '../../data/compat.json';
 import nativeMacIds from '../../data/native-mac.json';
+import enabledAppids from '../../../scripts/enabled.json';
 import {
   compatMeta,
   nativeCompatMeta,
@@ -17,6 +18,8 @@ import {
 } from '../../lib/compat';
 
 const NATIVE_MAC = new Set(nativeMacIds as number[]);
+const ENABLED = new Set(enabledAppids as number[]);
+const DISCORD_URL = 'https://discord.gg/2eQah8DjK6';
 
 export function getStaticPaths() {
   const games = (snapshot as any).games as CompatGame[];
@@ -28,8 +31,41 @@ const all = (snapshot as any).games as CompatGame[];
 const isNo = game.tier === 'unsupported';
 // Already ships a macOS build → the honest answer is "use that", not our grade.
 const isNativeMac = !isNo && NATIVE_MAC.has(game.appid);
+const isPlayableButNotEnabled = game.tier === 'playable' && !isNativeMac && !ENABLED.has(game.appid);
 const meta = isNativeMac ? nativeCompatMeta : compatMeta[game.tier];
 const v = isNativeMac ? nativeVerdict(game) : verdict(game);
+const launchSteps = isPlayableButNotEnabled
+  ? [
+      {
+        title: 'Install Pixel Port',
+        body: 'Download Pixel Port. It sets up everything a Windows game needs on first launch.',
+      },
+      {
+        title: `Request ${game.name}`,
+        body: `Find ${game.name} in the app and request it. During the beta, our small team enables games manually for each user.`,
+      },
+      {
+        title: 'Or ask us on Discord',
+        body: `Join the Pixel Port Discord and tell us you want to play ${game.name}. That is usually the fastest way to get it enabled.`,
+      },
+    ]
+  : [
+      {
+        title: 'Install Pixel Port',
+        body: 'Download Pixel Port. It sets up everything a Windows game needs on first launch.',
+      },
+      {
+        title: `Add ${game.name}`,
+        body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
+      },
+      {
+        title: game.tier === 'untested' ? 'Play, and help grade it' : 'Play',
+        body:
+          game.tier === 'untested'
+            ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
+            : 'Launch it from your Library. No bottles, no terminal, no tinkering.',
+      },
+    ];
 
 // Verified/playable pages keep their same-tier company. Untested and honest-no
 // pages immediately point to games that are genuinely verified on real Macs.
@@ -47,17 +83,28 @@ const picksHeading =
 const art = artChain(game.appid);
 const landscape = ogImage(game.appid);
 const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
-const description = isNativeMac ? nativeMetaDescription(game) : metaDescription(game);
+const description = isNativeMac
+  ? nativeMetaDescription(game)
+  : isPlayableButNotEnabled
+    ? `${game.name} is graded playable on Apple Silicon, but it is not enabled in the Pixel Port beta yet. Request it in the app or join our Discord to get access.`
+    : metaDescription(game);
 const canonical = new URL(pagePath(game), Astro.site).toString();
 
 const faq = [
   {
     q: `Does ${game.name} work on Apple Silicon (M1–M4) Macs?`,
-    a: v.body + (isNo && game.reason ? ` The blocker: ${game.reason}` : ''),
+    a:
+      v.body +
+      (isNo && game.reason ? ` The blocker: ${game.reason}` : '') +
+      (isPlayableButNotEnabled
+        ? ` It is not enabled in the beta yet, so request it in the app or join the Pixel Port Discord before trying to install it.`
+        : ''),
   },
   {
     q: 'Do I need Boot Camp or a Windows license?',
-    a: 'No. Pixel Port runs Windows games directly on macOS: no Boot Camp, no virtual machine, no Windows license. Download it, pick a game, and press play.',
+    a: isPlayableButNotEnabled
+      ? `No. Pixel Port runs Windows games directly on macOS. ${game.name} still needs to be enabled for your beta account before you can install it.`
+      : 'No. Pixel Port runs Windows games directly on macOS: no Boot Camp, no virtual machine, no Windows license. Download it, pick a game, and press play.',
   },
 ];
 const jsonLd = {
@@ -149,8 +196,20 @@ const evidence =
             'text-verified': game.tier === 'verified',
           }]}>{v.headline}</p>
           <p class="compat-summary">{v.body}</p>
-          <a href={isNo ? '#alternatives' : '/download'} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
-            {isNo ? 'See verified alternatives' : game.tier === 'untested' ? 'Try it on your Mac' : `Download & play ${game.name}`}
+          {
+            isPlayableButNotEnabled && (
+              <div class="compat-beta-note">
+                <strong>Playable grade, beta access pending.</strong>
+                <p>
+                  This game should run, but it is not enabled in Pixel Port yet. We are a small team
+                  and enable beta games manually. <a href="/download">Request it in the app</a>, or
+                  join our Discord and we will enable it for you.
+                </p>
+              </div>
+            )
+          }
+          <a href={isNo ? '#alternatives' : isPlayableButNotEnabled ? DISCORD_URL : '/download'} rel={isPlayableButNotEnabled ? 'noopener' : undefined} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
+            {isNo ? 'See verified alternatives' : isPlayableButNotEnabled ? `Get ${game.name} enabled on Discord` : game.tier === 'untested' ? 'Try it on your Mac' : `Download & play ${game.name}`}
             <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -195,23 +254,7 @@ const evidence =
                 {game.tier === 'untested' ? `Try ${game.name} on your Mac` : `Play ${game.name} on your Mac`}
               </h2>
               <ol class="compat-launch-steps">
-                {[
-                  {
-                    title: 'Install Pixel Port',
-                    body: 'Download Pixel Port. It sets up everything a Windows game needs on first launch.',
-                  },
-                  {
-                    title: `Add ${game.name}`,
-                    body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
-                  },
-                  {
-                    title: game.tier === 'untested' ? 'Play, and help grade it' : 'Play',
-                    body:
-                      game.tier === 'untested'
-                        ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
-                        : 'Launch it from your Library. No bottles, no terminal, no tinkering.',
-                  },
-                ].map((step, index) => (
+                {launchSteps.map((step, index) => (
                   <li>
                     <div class="compat-step__number"><span>{String(index + 1).padStart(2, '0')}</span></div>
                     <div>
@@ -304,6 +347,14 @@ const evidence =
                   Get it on Steam <span aria-hidden="true">→</span>
                 </a>
                 <p>Native Mac build — no compatibility layer needed. Honest compatibility, game by game.</p>
+              </>
+            ) : isPlayableButNotEnabled ? (
+              <>
+                <a href={DISCORD_URL} rel="noopener" class="compat-rail-cta">
+                  Get it enabled on Discord <span aria-hidden="true">→</span>
+                </a>
+                <a href="/download" class="compat-rail-secondary">Request it in the app</a>
+                <p>Playable is the compatibility grade. This game still needs beta access enabled.</p>
               </>
             ) : (
               <>
@@ -408,6 +459,21 @@ const evidence =
     .compat-masthead h1 { max-width: 15ch; margin-top: 1rem; font-size: clamp(2.7rem, 6vw, 5.25rem); font-weight: 650; letter-spacing: -0.058em; line-height: 0.95; text-wrap: balance; }
     .compat-headline { margin-top: 1.15rem; font-size: clamp(1.05rem, 2vw, 1.35rem); font-weight: 700; }
     .compat-summary { max-width: 45rem; margin-top: 0.65rem; color: rgba(245, 245, 247, 0.72); font-size: 1rem; line-height: 1.65; }
+
+    .compat-beta-note {
+      max-width: 43rem;
+      margin-top: 1.25rem;
+      border: 1px solid rgba(240, 180, 62, 0.36);
+      border-radius: 0.75rem;
+      padding: 0.95rem 1.1rem;
+      color: rgba(245, 245, 247, 0.92);
+      background: rgba(240, 180, 62, 0.09);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    .compat-beta-note strong { color: var(--color-playable); }
+    .compat-beta-note p { margin-top: 0.3rem; }
+    .compat-beta-note a { color: var(--color-accent-2); font-weight: 650; text-decoration: underline; text-underline-offset: 0.18em; }
 
     .compat-primary-cta,
     .compat-rail-cta { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; gap: 0.8rem; border-radius: 999px; color: var(--color-ink); background: linear-gradient(100deg, var(--color-accent), var(--color-accent-2)); box-shadow: var(--shadow-glow); font-weight: 750; }

@@ -3,7 +3,10 @@ import Base from '../../layouts/Base.astro';
 import games from '../../data/games.resolved.json';
 import catalogue from '../../data/catalogue.json';
 import guides from '../../data/guides.json';
+import enabledAppids from '../../../scripts/enabled.json';
 import { tierMeta, nativeMacMeta, coverUrl, coverFallbackUrl, engineLabel, prettyAC, generate, type Tier } from '../../lib/catalog';
+
+const ENABLED = new Set(enabledAppids as number[]);
 
 // Seeded recommendations keep the page useful and deterministic. Curated
 // alternatives on authored blocker pages take precedence when they exist.
@@ -35,7 +38,25 @@ const isBlocked = game.tier === 'unsupported';
 // Already ships a macOS build. The page stays — this is what people search for —
 // but it has to lead with "use the native version", not with our download button.
 const isNativeMac = !isBlocked && !!game.nativeMac;
+const isPlayableButNotEnabled = game.tier === 'playable' && !isNativeMac && !ENABLED.has(game.appid);
+const discordUrl = 'https://discord.gg/2eQah8DjK6';
 const picks = seededPicks(game);
+const launchSteps = isPlayableButNotEnabled
+  ? [
+      {
+        title: 'Install Pixel Port',
+        body: 'Download Pixel Port and let it set up the runtime on first launch.',
+      },
+      {
+        title: `Request ${game.title}`,
+        body: `Find ${game.title} in the app and request it. During the beta, our small team enables games manually for each user.`,
+      },
+      {
+        title: 'Or ask us on Discord',
+        body: `Join the Pixel Port Discord and tell us you want to play ${game.title}. That is usually the fastest way to get it enabled.`,
+      },
+    ]
+  : game.steps;
 
 // Quick facts adapt to the source: authored pages surface genre/test date;
 // generated catalogue pages surface the compatibility profile we actually know.
@@ -54,12 +75,16 @@ const seoTitle = isBlocked
   ? `Can You Play ${game.title} on Mac? The Honest Answer`
   : isNativeMac
     ? `How to Play ${game.title} on Mac (It Has a Native Mac Version)`
-    : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
+    : isPlayableButNotEnabled
+      ? `${game.title} on Mac: Playable, Beta Access Required`
+      : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
   : isNativeMac
     ? `${game.title} already has a native Mac version included with your Steam purchase — install it straight from Steam. You do not need Pixel Port or any compatibility layer.`
-    : `How to play ${game.title} on your Mac, step by step: one click through Pixel Port. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4).`;
+    : isPlayableButNotEnabled
+      ? `${game.title} is graded playable on Apple Silicon, but it is not enabled in the Pixel Port beta yet. Request it in the app or join our Discord to get access.`
+      : `How to play ${game.title} on your Mac, step by step: one click through Pixel Port. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4).`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 
@@ -100,6 +125,9 @@ const faq: { q: string; a: string }[] = isBlocked
           : `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.` +
             (game.engine
               ? ` ${game.title} is built on ${engineLabel(game.engine)}, and Pixel Port's runtime translates its rendering to Metal automatically.`
+              : '') +
+            (isPlayableButNotEnabled
+              ? ` It is not enabled in the beta yet, so request it in the app or join the Pixel Port Discord before trying to install it.`
               : ''),
       },
       {
@@ -153,14 +181,14 @@ const jsonLd = {
     },
     // Non-blocked pages render the launch steps visibly; mirror them as HowTo
     // so "how to play X on mac" queries get the rich-result treatment.
-    ...(!isBlocked && game.steps
+    ...(!isBlocked && launchSteps
       ? [
           {
             '@type': 'HowTo',
             name: `How to play ${game.title} on Mac`,
             description: `From the Windows build of ${game.title} to a repeatable launch on Apple Silicon.`,
             totalTime: 'PT10M',
-            step: game.steps.map((s: { title: string; body: string }) => ({
+            step: launchSteps.map((s: { title: string; body: string }) => ({
               '@type': 'HowToStep',
               name: s.title,
               text: s.body,
@@ -222,9 +250,26 @@ const jsonLd = {
           {isNativeMac && <p class="game-native-note">{nativeLine}</p>}
           <p class="game-summary">{game.summary}</p>
           {
+            isPlayableButNotEnabled && (
+              <div class="game-beta-note">
+                <strong>Playable grade, beta access pending.</strong>
+                <p>
+                  This game should run, but it is not enabled in Pixel Port yet. We are a small team
+                  and enable beta games manually. <a href="/download">Request it in the app</a>, or
+                  join our Discord and we will enable it for you.
+                </p>
+              </div>
+            )
+          }
+          {
             isNativeMac && game.appid ? (
               <a href={`https://store.steampowered.com/app/${game.appid}/`} rel="noopener nofollow" class="game-primary-cta">
                 Get the Mac version on Steam
+                <span aria-hidden="true">→</span>
+              </a>
+            ) : isPlayableButNotEnabled ? (
+              <a href={discordUrl} rel="noopener" class="game-primary-cta">
+                Get {game.title} enabled on Discord
                 <span aria-hidden="true">→</span>
               </a>
             ) : (
@@ -321,7 +366,7 @@ const jsonLd = {
                     : 'From Windows game to Mac launch'}
                 </h2>
                 <ol class="launch-steps">
-                  {game.steps.map((step: { title: string; body: string }, index: number) => (
+                  {launchSteps.map((step: { title: string; body: string }, index: number) => (
                     <li>
                       <div class="launch-step__number"><span>{String(index + 1).padStart(2, '0')}</span></div>
                       <div>
@@ -446,6 +491,12 @@ const jsonLd = {
               <>
                 <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that needs us <span aria-hidden="true">→</span></a>
                 <p>This one already runs natively on your Mac. We would rather say so than sell you a download.</p>
+              </>
+            ) : isPlayableButNotEnabled ? (
+              <>
+                <a href={discordUrl} rel="noopener" class="game-rail-cta">Get it enabled on Discord <span aria-hidden="true">→</span></a>
+                <a href="/download" class="game-rail-secondary">Request it in the app</a>
+                <p>Playable is the compatibility grade. This game still needs beta access enabled.</p>
               </>
             ) : (
               <>
@@ -615,6 +666,21 @@ const jsonLd = {
       background: rgba(63, 214, 206, 0.08); color: rgba(245, 245, 247, 0.92);
       font-size: 1.05rem; line-height: 1.6;
     }
+
+    .game-beta-note {
+      max-width: 43rem;
+      margin-top: 1.25rem;
+      border: 1px solid rgba(240, 180, 62, 0.36);
+      border-radius: 0.75rem;
+      padding: 0.95rem 1.1rem;
+      color: rgba(245, 245, 247, 0.92);
+      background: rgba(240, 180, 62, 0.09);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    .game-beta-note strong { color: var(--color-playable); }
+    .game-beta-note p { margin-top: 0.3rem; }
+    .game-beta-note a { color: var(--color-accent-2); font-weight: 650; text-decoration: underline; text-underline-offset: 0.18em; }
 
     .game-primary-cta,
     .game-rail-cta {

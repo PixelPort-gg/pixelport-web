@@ -13,6 +13,7 @@ interface GridGame {
   appid: number | null;
   tier: Tier;
   p: number;
+  e?: number; // 1 = currently enabled in the manual beta
   n?: number; // 1 = already ships a native Mac build
 }
 
@@ -68,7 +69,11 @@ const description = `Alphabetical index of every Windows game graded for Apple S
             <a href={`/games/${g.slug}`}>
               <span class="directory__title">{g.title}</span>
               <span class={`directory__tier ${g.n ? nativeMacMeta.text : tierMeta[g.tier].text}`}>
-                {g.n ? nativeMacMeta.label : tierMeta[g.tier].label}
+                {g.n
+                  ? nativeMacMeta.label
+                  : g.tier === 'playable' && g.e !== 1
+                    ? 'Playable · Needs beta enablement'
+                    : tierMeta[g.tier].label}
               </span>
             </a>
           </li>
