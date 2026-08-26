@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-23",
+ "fetched_at": "2026-08-26",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -310,7 +310,7 @@
    "appid": 400,
    "slug": "portal",
    "name": "Portal",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15175024
   },
@@ -435,6 +435,14 @@
    "popularity": 7667647
   },
   {
+   "appid": 12210,
+   "slug": "grand-theft-auto-iv",
+   "name": "Grand Theft Auto IV",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7644493
+  },
+  {
    "appid": 601150,
    "slug": "devil-may-cry-5",
    "name": "Devil May Cry 5",
@@ -462,7 +470,7 @@
    "appid": 221380,
    "slug": "age-of-empires-ii-hd-edition",
    "name": "Age of Empires II: HD Edition",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7597083
   },
@@ -577,6 +585,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3619152
+  },
+  {
+   "appid": 361420,
+   "slug": "astroneer",
+   "name": "Astroneer",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3618817
   },
   {
    "appid": 323190,
@@ -771,6 +787,14 @@
    "popularity": 3541131
   },
   {
+   "appid": 22370,
+   "slug": "fallout-3",
+   "name": "Fallout 3",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3541078
+  },
+  {
    "appid": 3070070,
    "slug": "tcg-card-shop-simulator",
    "name": "TCG Card Shop Simulator",
@@ -838,7 +862,7 @@
    "appid": 11020,
    "slug": "trackmania-nations-forever",
    "name": "TrackMania Nations Forever",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3521244
   },
@@ -897,6 +921,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1565599
+  },
+  {
+   "appid": 21690,
+   "slug": "resident-evil-5",
+   "name": "Resident Evil 5",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1542807
   },
   {
    "appid": 312520,
@@ -1251,6 +1283,14 @@
    "popularity": 358474
   },
   {
+   "appid": 536270,
+   "slug": "ancestors-the-humankind-odyssey",
+   "name": "Ancestors: The Humankind Odyssey",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 358006
+  },
+  {
    "appid": 360740,
    "slug": "downwell",
    "name": "Downwell",
@@ -1547,6 +1587,14 @@
    "popularity": 76162
   },
   {
+   "appid": 792710,
+   "slug": "levelhead",
+   "name": "Levelhead",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 75954
+  },
+  {
    "appid": 1721170,
    "slug": "what-lies-in-the-multiverse",
    "name": "What Lies in the Multiverse",
@@ -1593,6 +1641,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 75115
+  },
+  {
+   "appid": 2552450,
+   "slug": "kingdom-hearts-iii",
+   "name": "Kingdom Hearts III",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 36420
   },
   {
    "appid": 2737300,
@@ -1681,6 +1737,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 10501
+  },
+  {
+   "appid": 2552440,
+   "slug": "kingdom-hearts-hd-2-8-final-chapter-prologue",
+   "name": "Kingdom Hearts HD 2.8 Final Chapter Prologue",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10357
   },
   {
    "appid": 1668190,
@@ -2150,6 +2214,14 @@
    "appid": 4711740,
    "slug": "mortal-shell-ii-open-beta",
    "name": "Mortal Shell II - Open Beta",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4001890,
+   "slug": "how-to-fish",
+   "name": "How to Fish",
    "tier": "playable",
    "reason": null,
    "popularity": 0
