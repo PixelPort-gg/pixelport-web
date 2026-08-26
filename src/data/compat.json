@@ -395,6 +395,14 @@
    "popularity": 7804449
   },
   {
+   "appid": 72850,
+   "slug": "the-elder-scrolls-v-skyrim",
+   "name": "The Elder Scrolls V: Skyrim",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7800915
+  },
+  {
    "appid": 632360,
    "slug": "risk-of-rain-2",
    "name": "Risk of Rain 2",
@@ -649,6 +657,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3591745
+  },
+  {
+   "appid": 613100,
+   "slug": "house-flipper",
+   "name": "House Flipper",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3589596
   },
   {
    "appid": 1142710,
@@ -1275,6 +1291,14 @@
    "popularity": 754287
   },
   {
+   "appid": 1190970,
+   "slug": "house-flipper-2",
+   "name": "House Flipper 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 361633
+  },
+  {
    "appid": 2132850,
    "slug": "rabbit-and-steel",
    "name": "Rabbit and Steel",
@@ -1577,6 +1601,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 76861
+  },
+  {
+   "appid": 1401730,
+   "slug": "crashlands-2",
+   "name": "Crashlands 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 76374
   },
   {
    "appid": 3463050,
