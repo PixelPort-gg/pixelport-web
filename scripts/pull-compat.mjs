@@ -4,6 +4,8 @@
 // field whitelist: appid, name, tier, reason, popularity. Recipe fields
 // (engine/d3d/graphics/hashes/launch details) are never copied — the /mac/
 // pages must stay tier-and-verdict only.
+// Also snapshots /v1/featured's unlocked appids to scripts/enabled.json so the
+// site can distinguish compatibility confidence from beta availability.
 //
 // Run manually with `npm run refresh:compat`, review the diff, and commit it.
 // Builds always render from the committed snapshot so they stay reproducible.
@@ -153,6 +155,10 @@ async function main() {
   };
   const file = join(dirname(fileURLToPath(import.meta.url)), '../src/data/compat.json');
   writeFileSync(file, JSON.stringify(out, null, 1) + '\n');
+  writeFileSync(
+    join(dirname(fileURLToPath(import.meta.url)), 'enabled.json'),
+    JSON.stringify([...new Set(unlocked)].sort((a, b) => a - b)) + '\n',
+  );
   const counts = games.reduce((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
   console.log(`Wrote ${games.length} games to src/data/compat.json`, counts);
 }

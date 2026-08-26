@@ -1,10 +1,14 @@
 ---
 import Base from '../../layouts/Base.astro';
 import snapshot from '../../data/compat.json';
+import enabledAppids from '../../../scripts/enabled.json';
+import nativeMacIds from '../../data/native-mac.json';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { compatMeta, pagePath, artChain, ART_ONERROR, type CompatGame, type CompatTier } from '../../lib/compat';
 
+const ENABLED = new Set(enabledAppids as number[]);
+const NATIVE_MAC = new Set(nativeMacIds as number[]);
 const all = (snapshot as any).games as CompatGame[];
 const order: CompatTier[] = ['verified', 'playable', 'untested', 'unsupported'];
 const groups = order
@@ -118,6 +122,11 @@ const description = `${fmt(all.length)} Windows games with a straight answer for
                       >
                         {meta.label}
                       </span>
+                      {tier === 'playable' && !ENABLED.has(g.appid) && !NATIVE_MAC.has(g.appid) && (
+                        <span class="absolute bottom-2 left-2 rounded-full bg-base-top/90 px-2 py-1 text-[11px] font-semibold text-fg ring-1 ring-playable/50 backdrop-blur-md">
+                          Needs beta enablement
+                        </span>
+                      )}
                     </div>
                     <p class="mt-2 truncate text-sm font-medium text-fg group-hover:text-accent-2">{g.name}</p>
                   </a>
