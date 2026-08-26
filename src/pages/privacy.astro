@@ -3,8 +3,8 @@
 // notice. Do not paraphrase, summarise, or add marketing copy to it.
 //
 // Source of truth : MacGamePort repo, docs/privacy/PRIVACY-NOTICE.md (main)
-// Notice version  : privacy-2026-08 (policy privacy-policy-2.0), effective 2026-08-12
-// SHA-256 digest  : dab62d06cbbb7b34ea72987841b69cb1033826f76ec7ad9981062f59aaec4f3c
+// Notice version  : privacy-2026-08-26 (policy privacy-policy-3.0), effective 2026-08-26
+// SHA-256 digest  : 8f95319a3468cf53a150397edf923ede486ba2ed694ad2d3d0a203a587ab3275
 //
 // Any change to the wording below must first be approved in the app repo and pass
 // its digest check (ci/notice-digest.sh); then re-render this page from the updated
@@ -12,15 +12,15 @@
 import Base from '../layouts/Base.astro';
 
 const description =
-  'The approved Pixel Port privacy notice, version privacy-2026-08, effective 2026-08-12.';
+  'The approved Pixel Port privacy notice, version privacy-2026-08-26, effective 2026-08-26.';
 ---
 
 <Base title="Privacy Notice" description={description}>
   <article class="wrap max-w-3xl py-16 sm:py-20">
     <!--
       VERBATIM COPY OF AN APPROVED DOCUMENT — DO NOT EDIT IN THIS REPO.
-      Source: MacGamePort docs/privacy/PRIVACY-NOTICE.md (notice version privacy-2026-08)
-      SHA-256: dab62d06cbbb7b34ea72987841b69cb1033826f76ec7ad9981062f59aaec4f3c
+      Source: MacGamePort docs/privacy/PRIVACY-NOTICE.md (notice version privacy-2026-08-26)
+      SHA-256: 8f95319a3468cf53a150397edf923ede486ba2ed694ad2d3d0a203a587ab3275
       Content changes must go through the app repo's approval flow (ci/notice-digest.sh)
       before they are rendered here.
     -->
@@ -36,13 +36,13 @@ const description =
       class="mt-6 grid gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-sm sm:grid-cols-[max-content_1fr]"
     >
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Notice version</dt>
-      <dd><code>privacy-2026-08</code></dd>
+      <dd><code>privacy-2026-08-26</code></dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Policy version</dt>
-      <dd><code>privacy-policy-2.0</code></dd>
+      <dd><code>privacy-policy-3.0</code></dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Revised</dt>
-      <dd>2026-08-12</dd>
+      <dd>2026-08-26</dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Effective date</dt>
-      <dd>2026-08-12</dd>
+      <dd>2026-08-26</dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Contact</dt>
       <dd><a href="mailto:privacy@pixelport.gg" class="text-accent-2">privacy@pixelport.gg</a></dd>
     </dl>
@@ -51,10 +51,21 @@ const description =
       class="prose prose-invert mt-10 prose-headings:scroll-mt-24 prose-headings:tracking-tight prose-a:text-accent-2"
     >
       <p>
-        Pixel Port works with analytics turned off. Refusing optional purposes does not remove core
-        catalogue, install, or play functionality. Data needed to complete an action you
-        request—such as signing in, fetching the catalogue, requesting a game, contacting support,
-        or starting a privacy job—is service data and is not reused as analytics.
+        Pixel Port uses optional telemetry to improve compatibility, diagnose failures, and make the
+        app better for everyone. Compatibility telemetry, structured rich diagnostics, experience
+        analytics, account personalization, and commercial research are all shown on when you review
+        these settings. You can change every switch before continuing or later in Settings.
+      </p>
+      <p>
+        <strong>Marketing emails</strong> is a separate, account-scoped choice. That choice is not
+        one of the five telemetry purposes, starts off and unselected, and is granted only when you
+        affirmatively select it in the privacy review or account settings.
+      </p>
+      <p>
+        Turning optional purposes off does not remove core catalogue, install, or play
+        functionality. Data needed to complete an action you request—such as signing in, fetching
+        the catalogue, requesting a game, contacting support, or starting a privacy job—is service
+        data and is not reused as analytics.
       </p>
 
       <h2 id="starting-positions">
@@ -62,18 +73,7 @@ const description =
           >Starting positions</a
         >
       </h2>
-      <p>Two rules apply, and the difference matters.</p>
-      <p>
-        Analytics are consent-first. Compatibility telemetry, rich diagnostics, experience
-        analytics, and commercial research all start off in every version of Pixel Port. Nothing
-        about how you play is collected for a purpose until you turn that purpose on and the server
-        acknowledges that exact choice.
-      </p>
-      <p>
-        Account personalization is opt-out from Pixel Port 0.4.5. It starts on, and you turn it off
-        on the first-run screen or in Settings. In Pixel Port 0.4.4 and earlier every purpose
-        started off, account personalization included.
-      </p>
+      <p>The current review presents these starting positions:</p>
       <div class="overflow-x-auto">
         <table>
           <thead>
@@ -85,41 +85,50 @@ const description =
           <tbody>
             <tr>
               <td>Compatibility telemetry</td>
-              <td>Off, every version</td>
+              <td>On</td>
             </tr>
             <tr>
               <td>Rich diagnostics</td>
-              <td>Off, every version</td>
+              <td>On; current diagnostic facts stay local, and excerpts/files require confirmation</td>
             </tr>
             <tr>
               <td>Experience analytics</td>
-              <td>Off, every version</td>
-            </tr>
-            <tr>
-              <td>Commercial research</td>
-              <td>Off, every version</td>
+              <td>On</td>
             </tr>
             <tr>
               <td>Account personalization</td>
-              <td>Off in 0.4.4 and earlier; on from 0.4.5</td>
+              <td>On</td>
+            </tr>
+            <tr>
+              <td>Commercial research</td>
+              <td>On; server processing and output remain disabled pending separate review</td>
             </tr>
           </tbody>
         </table>
       </div>
       <p>
-        Account personalization connects activity you separately allowed to your signed-in account,
-        so while every analytics purpose is off it has nothing to connect. Updating Pixel Port does
-        not change a decision you already made: a choice recorded on an earlier version is kept as
-        it was recorded.
+        Every first-time user, and every existing user who reviewed an earlier revision, sees this
+        review once. The switches are a draft until you press Continue. For an existing user, an
+        earlier stored choice remains stored and is the authoritative saved choice while the review
+        is open; the draft does not silently rewrite it. Pixel Port pauses optional network
+        transport and signed-in account restoration until the review is completed. A first-time user
+        likewise sends no optional telemetry before continuing. After Continue, optional transport
+        starts only after the server acknowledges the exact choices, policy version, notice version,
+        and notice digest.
       </p>
       <p>
-        The first-run screen offers "Continue with minimal data", which turns every purpose off,
-        account personalization with them. The other path shows each switch at its shipped position
-        before anything is recorded, so a default-on purpose is seen rather than assumed.
+        If you continue without changing a new starting position, Pixel Port records that value as a
+        "Pixel Port default". If you change a switch, it records the resulting value as "your
+        choice". The displayed defaults never convert an earlier refusal into a grant merely because
+        the app was updated; they become the new recorded choices only when you continue through the
+        review.
       </p>
       <p>
-        Compatibility telemetry is not mandatory for any tier of Pixel Port. It stays a
-        consent-first purpose, not a condition of use.
+        Compatibility telemetry is not mandatory for any tier of Pixel Port. If it is off when you
+        press Continue, Pixel Port shows a confirmation warning before saving. Core functionality and
+        the ability to contact support remain available, but Pixel Port may not have enough telemetry
+        to diagnose a bug or crash, so support and fixes may have less context or take longer. The
+        warning is not shown when compatibility telemetry is on.
       </p>
 
       <h2 id="optional-purposes">
@@ -134,8 +143,11 @@ const description =
           family, macOS major version, runtime major version, and recipe hash.
         </li>
         <li>
-          Rich diagnostics: structured failure facts. A panic excerpt, full log, filenames, or
-          support attachment always has a preview and separate confirmation for that upload.
+          Rich diagnostics: structured failure facts. The current client has no automatic
+          rich-diagnostics transport, so those facts stay local. A panic excerpt, full log,
+          filenames, or support attachment also stays local unless you preview it and separately
+          confirm that upload. Turning this setting on does not automatically upload diagnostic
+          facts, excerpts, or files.
         </li>
         <li>
           Experience analytics: app opens, browse transitions, game views, and install-funnel
@@ -143,15 +155,16 @@ const description =
         </li>
         <li>
           Account personalization: connects activity already permitted under another purpose to your
-          signed in account. Signing in does not change this purpose's setting either way. From
-          Pixel Port 0.4.5 it starts on; turning it off stops the linking at once and starts the
-          unlink, and the purposes you left on continue unlinked.
+          signed in account. Signing in does not change this purpose's setting either way. Turning
+          it off stops the linking at once and starts the unlink, and the purposes you left on
+          continue unlinked.
         </li>
         <li>
-          Commercial research: lets eligible opted-in contributions be used in reviewed, thresholded
-          aggregates. It adds no collection fields and does not permit raw or pseudonymous records
-          to leave Pixel Port. The production feature is disabled pending a separate legal and
-          release review.
+          Commercial research: lets eligible contributions already covered by your other purpose
+          choices be used in reviewed, thresholded aggregates. It adds no collection fields and does
+          not permit raw or pseudonymous records to leave Pixel Port. This setting starts on, but
+          recording it does not activate commercial processing or output. The server-side feature
+          stays disabled pending a separate legal, privacy, and release review.
         </li>
       </ul>
       <p>
@@ -191,17 +204,18 @@ const description =
         rich diagnostics after 30 days; unfulfilled requests after 180 days; fulfilled requests and
         personal notices 90 days after fulfillment/dismissal; generated export archives after 24
         hours; account and device records on account closure; and consent evidence 730 days after
-        withdrawal or closure by default. The complete engineering schedule is in <code
-          >RETENTION.md</code
-        >. Retention can be shortened by an approved change. A legal hold must be named,
-        time-limited, scoped, owned, and reviewed.
+        withdrawal or closure by default. An account email remains an identity record for the life
+        of the account. An email-marketing preference remains while the account is open, and its
+        consent evidence expires 730 days after withdrawal or account closure by default. The
+        complete engineering schedule is in <code>RETENTION.md</code>. Retention can be shortened by
+        an approved change. A legal hold must be named, time-limited, scoped, owned, and reviewed.
       </p>
       <p>
         Eligible raw rows may be rolled into privacy-reviewed daily aggregates before deletion.
-        External cells require at least 100 distinct opted-in contributors, contribution bounding,
-        sparse-cell suppression, no stable contributor key, and a release review. Previously
-        delivered de-identified aggregate releases generally cannot be adjusted per person; raw or
-        pseudonymous downstream copies are prohibited.
+        External cells require at least 100 distinct commercially eligible contributors,
+        contribution bounding, sparse-cell suppression, no stable contributor key, and a release
+        review. Previously delivered de-identified aggregate releases generally cannot be adjusted
+        per person; raw or pseudonymous downstream copies are prohibited.
       </p>
 
       <h2 id="choices-and-rights">
@@ -219,8 +233,15 @@ const description =
         Every recorded choice carries its origin. A value you set yourself is recorded as "your
         choice"; a shipped starting position you left alone is recorded as a "Pixel Port default".
         Settings shows the origin beside each purpose, and your privacy export includes it. A
-        default is therefore never presented to you—or counted by Pixel Port—as something you asked
-        for.
+        default is therefore never presented to you—or counted by Pixel Port—as a switch you
+        affirmatively changed yourself.
+      </p>
+      <p>
+        The one-time review marker is stored separately from the purpose choices. Until that marker
+        records that you continued through this notice, prior saved choices remain intact but
+        optional transport and signed-in account restoration stay paused. Completing the review
+        records the displayed choices under this notice. An untouched starting position has default
+        provenance; a changed position has user provenance.
       </p>
       <p>
         The Privacy Center provides local inspection, export, telemetry deletion, account closure,
@@ -243,11 +264,36 @@ const description =
         >
       </h2>
       <p>
-        Pixel Port runs no mailing list and sends no marketing email. There is no email-sending
-        system at all. Signing in with Apple or Google may pass Pixel Port an email address, often a
-        private relay address; it is stored only to identify your account and is not marketing data.
-        If marketing contact is ever added, this notice is revised and re-approved before that
-        ships.
+        Pixel Port offers a separate account preference called <strong>Marketing emails</strong>. It
+        starts off and unselected. Leaving it unselected is a refusal, not a Pixel Port default
+        grant. Pixel Port may use an email address for marketing only after you affirmatively select
+        this preference in the privacy review or account settings. A selection made before sign-in
+        remains pending and may be granted only after authenticated account reconciliation. This
+        choice has no effect on the five telemetry purposes, core features, transactional account or
+        security messages, or support replies.
+      </p>
+      <p>
+        Signing in with Apple or Google may pass Pixel Port an email address, often a private relay
+        address. Pixel Port stores it as account identity data. An explicit email-marketing grant
+        permits Pixel Port to reuse that address for product updates, game compatibility news, and
+        special offers. It does not permit Pixel Port to connect the address to telemetry subjects,
+        sell it, share it for another company's advertising, or infer permission from sign-in or any
+        telemetry choice.
+      </p>
+      <p>
+        You can withdraw in account settings. Withdrawal stops future marketing sends after the
+        request is processed and does not affect your account. Account closure removes the active
+        preference. Pixel Port keeps consent and withdrawal receipts for the period described above
+        so it can enforce the choice and answer consent questions. Before any sender is activated,
+        every marketing message must provide a working unsubscribe control backed by an enforced
+        suppression path.
+      </p>
+      <p>
+        At this notice's effective date, no marketing email delivery provider or mailing system is
+        enabled. Pixel Port may record the account preference, but does not send marketing email in
+        this release. A delivery system cannot be activated until its processor, security,
+        unsubscribe/suppression, retention, export, deletion, account-closure, and notice impacts
+        pass separate privacy, legal, and release review.
       </p>
 
       <h2 id="tracking-and-external-sale">
@@ -259,7 +305,8 @@ const description =
         Pixel Port does not track people across other companies' apps or websites, declares no
         tracking domains, and sets <code>NSPrivacyTracking</code> to false. It does not sell or
         license raw, row-level, pseudonymous, linked-account, diagnostic, contact, request, or
-        security-credential data.
+        security-credential data. Marketing email, if later enabled, may not contain open pixels or
+        cross-site/cross-app tracking under this notice.
       </p>
 
       <h2 id="changes">
@@ -267,10 +314,23 @@ const description =
       </h2>
       <p>
         A material change to fields, purpose, linkage, recipients, or retention advances the policy
-        major version and returns affected choices to unknown/off. Copy-only clarification may
-        update the notice version without changing a grant. Change history:
+        major version and requires affected choices to be reviewed under fail-closed transport. A
+        notice revision that changes how choices are presented may keep the policy version while
+        requiring an explicit one-time review marker. A notice change never silently overwrites a
+        stored choice. Change history:
       </p>
       <ul>
+        <li>
+          <code>privacy-2026-08-26</code>: presents compatibility telemetry, structured rich
+          diagnostics, experience analytics, account personalization, and commercial research on;
+          keeps server-side commercial processing/output disabled pending separate review; requires
+          every first-time and existing user to complete the review once; pauses optional transport
+          and signed-in account restoration until Continue; explains choice provenance and the
+          compatibility support tradeoff; confirms that excerpts, logs, filenames, and attachments
+          are never automatic; and introduces a separate, account-scoped
+          <code>email_marketing</code> preference that starts unselected and requires an affirmative
+          choice. Marketing delivery remains disabled pending its own review.
+        </li>
         <li>
           <code>privacy-2026-08</code>: states the starting position of each purpose, including
           account personalization starting on from Pixel Port 0.4.5; adds the origin ("your choice"
@@ -284,12 +344,14 @@ const description =
         </li>
       </ul>
       <p>
-        The <code>privacy-2026-08</code> revision keeps the policy version at <code
-          >privacy-policy-2.0</code
-        >. It changes no field, purpose, linkage, recipient, or retention period; it describes a
-        shipped starting position and adds two disclosures. Advancing the policy major version would
-        return every choice to unknown and re-ask everyone, and re-asking is how a recorded refusal
-        turns into a fresh grant. A decision you have already made survives this revision unchanged.
+        The <code>privacy-2026-08-26</code> revision advances the policy version to <code
+          >privacy-policy-3.0</code
+        > because it adds the identified, account-scoped <code>email_marketing</code> purpose and
+        permits reuse of an account email only after a separate affirmative choice. It also
+        deliberately requires one review of the five telemetry starting positions. Previous
+        telemetry choices remain stored and authoritative while that review is open, and optional
+        transport stays paused until you continue. Email marketing remains off unless you separately
+        select it.
       </p>
     </div>
   </article>
