@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-25",
+ "fetched_at": "2026-08-26",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1283,6 +1283,14 @@
    "popularity": 358474
   },
   {
+   "appid": 536270,
+   "slug": "ancestors-the-humankind-odyssey",
+   "name": "Ancestors: The Humankind Odyssey",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 358006
+  },
+  {
    "appid": 360740,
    "slug": "downwell",
    "name": "Downwell",
@@ -1577,6 +1585,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 76162
+  },
+  {
+   "appid": 792710,
+   "slug": "levelhead",
+   "name": "Levelhead",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 75954
   },
   {
    "appid": 1721170,
@@ -2198,6 +2214,14 @@
    "appid": 4711740,
    "slug": "mortal-shell-ii-open-beta",
    "name": "Mortal Shell II - Open Beta",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4001890,
+   "slug": "how-to-fish",
+   "name": "How to Fish",
    "tier": "playable",
    "reason": null,
    "popularity": 0
