@@ -1283,6 +1283,14 @@
    "popularity": 755644
   },
   {
+   "appid": 442120,
+   "slug": "pinball-fx3",
+   "name": "Pinball FX3",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 754553
+  },
+  {
    "appid": 1656780,
    "slug": "heros-hour",
    "name": "Hero's Hour",
@@ -1665,6 +1673,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 75287
+  },
+  {
+   "appid": 286660,
+   "slug": "avoid-sensory-overload",
+   "name": "Avoid - Sensory Overload",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 75186
   },
   {
    "appid": 979310,
@@ -2270,6 +2286,14 @@
    "appid": 2328760,
    "slug": "pinball-fx",
    "name": "Pinball FX",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2215200,
+   "slug": "lego-batman-legacy-of-the-dark-knight",
+   "name": "LEGO® Batman™: Legacy of the Dark Knight",
    "tier": "untested",
    "reason": null,
    "popularity": 0
