@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-26",
+ "fetched_at": "2026-08-27",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -750,8 +750,8 @@
    "appid": 201270,
    "slug": "total-war-shogun-2",
    "name": "Total War: SHOGUN 2",
-   "tier": "verified",
-   "reason": null,
+   "tier": "unsupported",
+   "reason": "Not a standalone game (dlc) - belongs to its base game.",
    "popularity": 3558839
   },
   {
@@ -1878,16 +1878,16 @@
    "appid": 1667090,
    "slug": "woodrow-the-old-piano",
    "name": "Woodrow the Old Piano",
-   "tier": "playable",
-   "reason": null,
+   "tier": "unsupported",
+   "reason": "Not a game - Steam software (tool/application).",
    "popularity": 10003
   },
   {
    "appid": 352000,
    "slug": "resident-evil-5",
    "name": "Resident Evil 5",
-   "tier": "untested",
-   "reason": null,
+   "tier": "unsupported",
+   "reason": "Not a standalone game (dlc) - belongs to its base game.",
    "popularity": 0
   },
   {
@@ -2255,6 +2255,22 @@
    "slug": "how-to-fish",
    "name": "How to Fish",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2337640,
+   "slug": "pinball-fx-midnight",
+   "name": "Pinball FX Midnight",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2328760,
+   "slug": "pinball-fx",
+   "name": "Pinball FX",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
