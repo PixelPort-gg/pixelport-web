@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-27",
+ "fetched_at": "2026-08-28",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -883,6 +883,14 @@
    "popularity": 3521244
   },
   {
+   "appid": 630,
+   "slug": "alien-swarm",
+   "name": "Alien Swarm",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3520179
+  },
+  {
    "appid": 212500,
    "slug": "the-lord-of-the-rings-online",
    "name": "The Lord of the Rings Online™",
@@ -1249,6 +1257,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 758711
+  },
+  {
+   "appid": 1003590,
+   "slug": "tetris-effect-connected",
+   "name": "Tetris Effect: Connected",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 757528
   },
   {
    "appid": 539470,
@@ -2295,6 +2311,14 @@
    "slug": "lego-batman-legacy-of-the-dark-knight",
    "name": "LEGO® Batman™: Legacy of the Dark Knight",
    "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 1422450,
+   "slug": "deadlock",
+   "name": "Deadlock",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
