@@ -5,7 +5,7 @@ const seoTitle = 'How to Play Windows Games on a Mac (2026): Every Method, Hones
 const description =
   'The complete 2026 guide to playing Windows games on Apple Silicon Macs: one-click tools, Wine wrappers, VMs, and cloud gaming — what works, what broke, and what no tool can fix.';
 
-const canonical = new URL('/how-to-play-windows-games-on-mac', Astro.site).toString();
+const canonical = new URL('/how-to-play-windows-games-on-mac/', Astro.site).toString();
 
 const faq = [
   {
@@ -62,7 +62,7 @@ const jsonLd = {
           '@type': 'HowToStep',
           name: 'Check your game',
           text: 'Look your game up in the Pixel Port compatibility catalogue. Every game carries an honest grade: verified, playable, needs attention, or unsupported with the blocker named.',
-          url: new URL('/games', Astro.site).toString(),
+          url: new URL('/games/', Astro.site).toString(),
         },
         {
           '@type': 'HowToStep',
@@ -129,10 +129,10 @@ const methods = [
       <h2>First, check your game</h2>
       <p>
         Before choosing a tool, find out whether your game runs at all. The
-        <a href="/games">compatibility catalogue</a> grades 11,000+ Windows games for Apple
-        Silicon: <a href="/games/verified">verified</a> means a human ran it end to end on a real
+        <a href="/games/">compatibility catalogue</a> grades 11,000+ Windows games for Apple
+        Silicon: <a href="/games/verified/">verified</a> means a human ran it end to end on a real
         Mac; playable means strong evidence it works; unsupported means a hard blocker —
-        <a href="/games/anti-cheat">almost always kernel anti-cheat</a> — and no tool, ours
+        <a href="/games/anti-cheat/">almost always kernel anti-cheat</a> — and no tool, ours
         included, can fix that. Checking first turns an evening of trial and error into a
         ten-second lookup.
       </p>
@@ -170,7 +170,7 @@ const methods = [
       <h2>The one-click path, step by step</h2>
       <ol>
         <li>
-          <strong>Check your game</strong> in the <a href="/games">catalogue</a> and read its
+          <strong>Check your game</strong> in the <a href="/games/">catalogue</a> and read its
           grade. If it's blocked, the page tells you exactly why and what runs instead.
         </li>
         <li>
@@ -188,18 +188,18 @@ const methods = [
       <p>
         Under the hood: Prism pairs a modern Wine build with DXMT, which translates the game's
         DirectX calls straight to Metal. The game never notices it left Windows, and there is no
-        bottle for you to maintain. <a href="/docs">The docs</a> explain the whole pipeline.
+        bottle for you to maintain. <a href="/docs/">The docs</a> explain the whole pipeline.
       </p>
 
       <h2>The other methods, and when they make sense</h2>
       <p>
-        <strong><a href="/free-crossover-alternative">CrossOver</a></strong> is the veteran paid
+        <strong><a href="/free-crossover-alternative/">CrossOver</a></strong> is the veteran paid
         option and still the right choice if you need non-Steam launchers and don't mind
-        configuring things per game. <strong><a href="/whisky-alternative">Whisky</a></strong>,
+        configuring things per game. <strong><a href="/whisky-alternative/">Whisky</a></strong>,
         the free wrapper many people used, was discontinued in 2025 and no longer receives
-        compatibility fixes. <strong><a href="/game-porting-toolkit">Apple's Game Porting
+        compatibility fixes. <strong><a href="/game-porting-toolkit/">Apple's Game Porting
         Toolkit</a></strong> proved this whole approach works, but it is a developer evaluation
-        tool: Homebrew, terminal, per-game wrangling. <strong><a href="/parallels-alternative">
+        tool: Homebrew, terminal, per-game wrangling. <strong><a href="/parallels-alternative/">
         Parallels</a></strong> runs real Windows in a VM — great for Excel, expensive and
         overhead-laden for games. And <strong>cloud gaming</strong> (GeForce NOW and similar)
         deserves an honest mention: it is the one legitimate way to play kernel-anti-cheat games
@@ -213,7 +213,7 @@ const methods = [
         BattlEye configurations — cannot run on macOS through any compatibility layer. This is a
         publisher decision, not a performance limit, and we'd rather tell you now than after
         you've spent an evening on it. The full list of
-        <a href="/games/anti-cheat">blocked games and their exact blockers</a> is public.
+        <a href="/games/anti-cheat/">blocked games and their exact blockers</a> is public.
       </p>
     </div>
 

@@ -10,4 +10,4 @@ Verified is the highest grade in our honest compatibility map, and it is earned 
 
 Every game on Pixel Port carries a tier so you always know what to expect before you install: verified (a Mac ran it end to end), playable (graded but not yet hand-verified), needs attention (runs with caveats), and unsupported (a hard blocker like kernel anti-cheat). Peak just moved to the top of that list.
 
-Want to play it? See [how to play Peak on Mac](/games/peak), or [download Pixel Port](/download) and try it in one click.
+Want to play it? See [how to play Peak on Mac](/games/peak/), or [download Pixel Port](/download) and try it in one click.

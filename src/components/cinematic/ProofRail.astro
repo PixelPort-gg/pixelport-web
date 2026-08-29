@@ -68,7 +68,7 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
       {
         runs.map((game, index) => (
           <li class:list={{ 'game-item': true, 'game-item--handoff': index === 0 }}>
-            <a href={'/games/' + game.slug} class="game-card">
+            <a href={'/games/' + game.slug + '/'} class="game-card">
               <span class="cover">
                 <span class="cover-fallback">{game.title}</span>
                 <img
@@ -96,7 +96,7 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
     <p class="grade-note">
       {fmt(counts.verified ?? 0)} entries are verified end to end; {fmt(counts.playable ?? 0)} are
       compatibility estimates marked playable.
-      <a href="/games">Browse the full compatibility catalogue</a>
+      <a href="/games/">Browse the full compatibility catalogue</a>
     </p>
   </div>
 </section>

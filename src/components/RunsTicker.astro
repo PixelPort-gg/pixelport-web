@@ -38,7 +38,7 @@ const header = (appid: number) =>
           <ul class="rt-row" aria-hidden={copy === 1 ? 'true' : undefined}>
             {runs.map((g) => (
               <li class="rt-chip">
-                <a class="rt-link" href={`/games/${g.slug}`} tabindex={copy === 1 ? -1 : undefined}>
+                <a class="rt-link" href={`/games/${g.slug}/`} tabindex={copy === 1 ? -1 : undefined}>
                   <span class="rt-cover">
                     {/* Permanent gradient backdrop: the cover never blanks. */}
                     <span class="rt-ph">{g.title}</span>

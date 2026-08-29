@@ -49,7 +49,7 @@ const stages = [
         <span class="selected-label">From your Steam library</span>
         {
           game ? (
-            <a href={'/games/' + game.slug} class="selected-link">
+            <a href={'/games/' + game.slug + '/'} class="selected-link">
               <span class="selected-art">
                 <span class="art-fallback">{title}</span>
                 {cover && (
@@ -111,7 +111,7 @@ const stages = [
           confidence shown to the next Mac gamer. No ad identifiers or third-party analytics.
         </p>
       </div>
-      <a href="/stats">See launch data <span aria-hidden="true">&rarr;</span></a>
+      <a href="/stats/">See launch data <span aria-hidden="true">&rarr;</span></a>
     </aside>
   </div>
 </section>
