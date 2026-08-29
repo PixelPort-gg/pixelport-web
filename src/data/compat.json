@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-28",
+ "fetched_at": "2026-08-29",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1099,6 +1099,14 @@
    "popularity": 1512822
   },
   {
+   "appid": 339340,
+   "slug": "resident-evil-zero-hd-remaster",
+   "name": "Resident Evil Zero HD Remaster",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1511048
+  },
+  {
    "appid": 1285670,
    "slug": "post-void",
    "name": "Post Void",
@@ -1417,6 +1425,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 352467
+  },
+  {
+   "appid": 22340,
+   "slug": "call-of-cthulhu-dark-corners-of-the-earth",
+   "name": "Call of Cthulhu: Dark Corners of the Earth",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 352147
   },
   {
    "appid": 1929870,
@@ -2319,6 +2335,22 @@
    "slug": "deadlock",
    "name": "Deadlock",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3352690,
+   "slug": "dead-take",
+   "name": "Dead Take",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2201320,
+   "slug": "date-everything",
+   "name": "Date Everything!",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
