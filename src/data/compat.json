@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-29",
+ "fetched_at": "2026-08-30",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -177,6 +177,22 @@
    "tier": "untested",
    "reason": null,
    "popularity": 35289966
+  },
+  {
+   "appid": 238960,
+   "slug": "path-of-exile",
+   "name": "Path of Exile",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35209822
+  },
+  {
+   "appid": 2694490,
+   "slug": "path-of-exile-2",
+   "name": "Path of Exile 2",
+   "tier": "unsupported",
+   "reason": "Needs GPU features (geometry/tessellation shaders) that the macOS graphics stack cannot provide yet. Both of the game's renderers (DirectX 12 and Vulkan) require them to detect a graphics card, which ",
+   "popularity": 35118511
   },
   {
    "appid": 739630,
@@ -1321,6 +1337,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 754287
+  },
+  {
+   "appid": 1239690,
+   "slug": "retrowave",
+   "name": "Retrowave",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 364516
   },
   {
    "appid": 1190970,
