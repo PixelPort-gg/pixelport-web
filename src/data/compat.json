@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-30",
+ "fetched_at": "2026-08-31",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -190,8 +190,8 @@
    "appid": 2694490,
    "slug": "path-of-exile-2",
    "name": "Path of Exile 2",
-   "tier": "unsupported",
-   "reason": "Needs GPU features (geometry/tessellation shaders) that the macOS graphics stack cannot provide yet. Both of the game's renderers (DirectX 12 and Vulkan) require them to detect a graphics card, which ",
+   "tier": "playable",
+   "reason": null,
    "popularity": 35118511
   },
   {
@@ -553,6 +553,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3650524
+  },
+  {
+   "appid": 433340,
+   "slug": "slime-rancher",
+   "name": "Slime Rancher",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3635271
   },
   {
    "appid": 1057090,
@@ -1009,6 +1017,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1534357
+  },
+  {
+   "appid": 1657630,
+   "slug": "slime-rancher-2",
+   "name": "Slime Rancher 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1531703
   },
   {
    "appid": 704850,
@@ -1811,6 +1827,14 @@
    "popularity": 35159
   },
   {
+   "appid": 896890,
+   "slug": "vr-paradise",
+   "name": "VR Paradise",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35138
+  },
+  {
    "appid": 1172950,
    "slug": "yandere-escape",
    "name": "Yandere Escape",
@@ -2375,6 +2399,14 @@
    "slug": "date-everything",
    "name": "Date Everything!",
    "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 1449850,
+   "slug": "yu-gi-oh-master-duel",
+   "name": "Yu-Gi-Oh! Master Duel",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
