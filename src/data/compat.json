@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-08-31",
+ "fetched_at": "2026-09-01",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -819,6 +819,14 @@
    "popularity": 3544632
   },
   {
+   "appid": 108710,
+   "slug": "alan-wake",
+   "name": "Alan Wake",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3544449
+  },
+  {
    "appid": 200710,
    "slug": "torchlight-ii",
    "name": "Torchlight II",
@@ -1075,6 +1083,14 @@
    "popularity": 1525879
   },
   {
+   "appid": 304240,
+   "slug": "resident-evil-hd-remaster",
+   "name": "Resident Evil HD Remaster",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1524613
+  },
+  {
    "appid": 213610,
    "slug": "sonic-adventure-2",
    "name": "Sonic Adventure 2",
@@ -1161,6 +1177,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1508798
+  },
+  {
+   "appid": 202750,
+   "slug": "alan-wakes-american-nightmare",
+   "name": "Alan Wake's American Nightmare",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1506527
   },
   {
    "appid": 41500,
@@ -1451,6 +1475,14 @@
    "popularity": 353762
   },
   {
+   "appid": 666150,
+   "slug": "prehistoric-kingdom",
+   "name": "Prehistoric Kingdom",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 353476
+  },
+  {
    "appid": 1608640,
    "slug": "otxo",
    "name": "OTXO",
@@ -1705,6 +1737,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 75954
+  },
+  {
+   "appid": 1569200,
+   "slug": "brewmaster-beer-brewing-simulator",
+   "name": "Brewmaster: Beer Brewing Simulator",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 75834
   },
   {
    "appid": 1721170,
@@ -2407,6 +2447,14 @@
    "slug": "yu-gi-oh-master-duel",
    "name": "Yu-Gi-Oh! Master Duel",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 254760,
+   "slug": "empire-earth-gold-edition",
+   "name": "Empire Earth: Gold Edition",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
