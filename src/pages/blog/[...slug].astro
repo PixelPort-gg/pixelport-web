@@ -12,7 +12,7 @@ const { Content } = await render(post);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
-const canonical = new URL(`/blog/${post.id}`, Astro.site).toString();
+const canonical = new URL(`/blog/${post.id}/`, Astro.site).toString();
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -33,7 +33,7 @@ const jsonLd = {
     <div class="pixel-field absolute inset-0 opacity-30 [mask-image:linear-gradient(to_bottom,#000,transparent)]" aria-hidden="true"></div>
     <div class="absolute left-[12%] top-0 h-64 w-64 rounded-full bg-accent/15 blur-3xl" aria-hidden="true"></div>
     <div class="wrap relative py-16 sm:py-24">
-      <a href="/blog" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-fg">
+      <a href="/blog/" class="inline-flex min-h-11 items-center gap-2 text-sm text-muted transition-colors hover:text-fg">
         <span aria-hidden="true">&larr;</span> All updates
       </a>
       <time class="mt-12 block text-sm text-muted" datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time>

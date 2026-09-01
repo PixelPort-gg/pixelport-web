@@ -26,4 +26,4 @@ If you play it on a Mac, tell us how it goes. Jack is reading.
 
 Every game on Pixel Port carries a tier so you know what to expect before you install: verified (a Mac ran it end to end), playable (graded but not yet hand-verified), needs attention (runs with caveats), and unsupported (a hard blocker such as kernel anti-cheat). Flow Of War just moved to the top of that list.
 
-Want to play it? See [how to play Flow Of War on Mac](/games/flow-of-war), or [download Pixel Port](/download) and try it in one click.
+Want to play it? See [how to play Flow Of War on Mac](/games/flow-of-war/), or [download Pixel Port](/download) and try it in one click.

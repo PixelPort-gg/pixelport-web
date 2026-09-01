@@ -70,23 +70,31 @@ const facts: [string, string][] = game._cat
       Boolean,
     ) as [string, string][]);
 
-const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
+const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `Does ${game.title} run on Mac?`;
 const seoTitle = isBlocked
   ? `Can You Play ${game.title} on Mac? The Honest Answer`
   : isNativeMac
-    ? `How to Play ${game.title} on Mac (It Has a Native Mac Version)`
+    ? `Does ${game.title} Run on Mac? Yes, It Has a Native Version`
     : isPlayableButNotEnabled
-      ? `${game.title} on Mac: Playable, Beta Access Required`
-      : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
+      ? `Does ${game.title} Run on Mac? Yes, Playable (Beta)`
+      : game.tier === 'needs-attention'
+        ? `Does ${game.title} Run on Mac? Partly (Needs Attention)`
+        : game.tier === 'verified'
+          ? `Does ${game.title} Run on Mac? Yes, Verified on Apple Silicon`
+          : `Does ${game.title} Run on Mac? Yes (Apple Silicon Guide)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
   : isNativeMac
-    ? `${game.title} already has a native Mac version included with your Steam purchase — install it straight from Steam. You do not need Pixel Port or any compatibility layer.`
+    ? `Yes. ${game.title} has a native Mac version included with your Steam purchase. Install it straight from Steam: no compatibility layer needed.`
     : isPlayableButNotEnabled
-      ? `${game.title} is graded playable on Apple Silicon, but it is not enabled in the Pixel Port beta yet. Request it in the app or join our Discord to get access.`
-      : `How to play ${game.title} on your Mac, step by step: one click through Pixel Port. No Windows, no Boot Camp, no setup. Runs on Apple Silicon (M1 to M4).`;
+      ? `Yes. ${game.title} is graded playable on Apple Silicon and sits behind the Pixel Port beta gate. Request it in the app or on Discord to get it enabled.`
+      : game.tier === 'needs-attention'
+        ? `${game.title} runs on Apple Silicon Macs with known issues. See its current grade, what works, and how to launch it through Pixel Port.`
+        : game.tier === 'verified'
+          ? `Yes. ${game.title} is verified on Apple Silicon: confirmed end to end on a real Mac. Launch the Steam copy you own through Pixel Port in one click. No Windows, no setup.`
+          : `Yes. ${game.title} is graded playable on Apple Silicon Macs. Launch the Steam copy you own through Pixel Port in one click. No Windows, no Boot Camp, no setup.`;
 
-const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
+const canonical = new URL(`/games/${game.slug}/`, Astro.site).toString();
 
 // Authored deep-dive for high-search games: every real way to play this title
 // on a Mac (native port, Pixel Port, cloud), compared honestly.
@@ -167,7 +175,7 @@ const jsonLd = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Games', item: new URL('/games', Astro.site).toString() },
+        { '@type': 'ListItem', position: 1, name: 'Games', item: new URL('/games/', Astro.site).toString() },
         { '@type': 'ListItem', position: 2, name: game.title, item: canonical },
       ],
     },
@@ -221,7 +229,7 @@ const jsonLd = {
       <div class="game-masthead__pixels" aria-hidden="true"></div>
 
       <div class="wrap game-masthead__inner">
-        <a href="/games" class="game-back-link"><span aria-hidden="true">←</span> All games</a>
+        <a href="/games/" class="game-back-link"><span aria-hidden="true">←</span> All games</a>
 
         <div class="game-cover-stage">
           <div class="game-cover">
@@ -320,7 +328,7 @@ const jsonLd = {
                 <ul class="game-picks">
                   {picks.map((pick) => (
                     <li>
-                      <a href={`/games/${pick.slug}`}>
+                      <a href={`/games/${pick.slug}/`}>
                         <div class="game-pick__art">
                           <span>{pick.title}</span>
                           {coverUrl(pick.appid) && (
@@ -339,7 +347,7 @@ const jsonLd = {
                     </li>
                   ))}
                 </ul>
-                <a href="/games" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
+                <a href="/games/" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
               </section>
             </>
           ) : (
@@ -383,7 +391,7 @@ const jsonLd = {
                 <ul class="game-picks">
                   {picks.map((pick) => (
                     <li>
-                      <a href={`/games/${pick.slug}`}>
+                      <a href={`/games/${pick.slug}/`}>
                         <div class="game-pick__art">
                           <span>{pick.title}</span>
                           {coverUrl(pick.appid) && (
@@ -402,7 +410,7 @@ const jsonLd = {
                     </li>
                   ))}
                 </ul>
-                <a href="/games" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
+                <a href="/games/" class="game-text-link">Browse every compatibility grade <span aria-hidden="true">→</span></a>
               </section>
             </>
           )
@@ -483,13 +491,13 @@ const jsonLd = {
           {
             isBlocked ? (
               <>
-                <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that runs <span aria-hidden="true">→</span></a>
+                <a href="/games/" class="game-rail-cta game-rail-cta--quiet">Find a game that runs <span aria-hidden="true">→</span></a>
                 <a href="/download" class="game-rail-secondary">Download Pixel Port</a>
                 <p>Check compatibility before installing. No fabricated green lights.</p>
               </>
             ) : isNativeMac ? (
               <>
-                <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that needs us <span aria-hidden="true">→</span></a>
+                <a href="/games/" class="game-rail-cta game-rail-cta--quiet">Find a game that needs us <span aria-hidden="true">→</span></a>
                 <p>This one already runs natively on your Mac. We would rather say so than sell you a download.</p>
               </>
             ) : isPlayableButNotEnabled ? (
