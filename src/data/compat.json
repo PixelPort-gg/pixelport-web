@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-01",
+ "fetched_at": "2026-09-02",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1201,6 +1201,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1504186
+  },
+  {
+   "appid": 376210,
+   "slug": "the-isle",
+   "name": "The Isle",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 827185
   },
   {
    "appid": 236430,
