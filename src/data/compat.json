@@ -46,7 +46,7 @@
    "appid": 550,
    "slug": "left-4-dead-2",
    "name": "Left 4 Dead 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 75940221
   },
@@ -515,6 +515,14 @@
    "popularity": 7616432
   },
   {
+   "appid": 223470,
+   "slug": "postal-2",
+   "name": "POSTAL 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7612414
+  },
+  {
    "appid": 286690,
    "slug": "metro-2033-redux",
    "name": "Metro 2033 Redux",
@@ -585,6 +593,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3650524
+  },
+  {
+   "appid": 379430,
+   "slug": "kingdom-come-deliverance",
+   "name": "Kingdom Come: Deliverance",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3636446
   },
   {
    "appid": 433340,
@@ -705,6 +721,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3598052
+  },
+  {
+   "appid": 1771300,
+   "slug": "kingdom-come-deliverance-ii",
+   "name": "Kingdom Come: Deliverance II",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3596279
   },
   {
    "appid": 233860,
@@ -987,6 +1011,14 @@
    "popularity": 3517099
   },
   {
+   "appid": 232770,
+   "slug": "postal-2013",
+   "name": "Postal (2013)",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3510023
+  },
+  {
    "appid": 437900,
    "slug": "party-jousting",
    "name": "Party Jousting",
@@ -1033,6 +1065,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1565599
+  },
+  {
+   "appid": 1384160,
+   "slug": "guilty-gear-strive",
+   "name": "Guilty Gear Strive",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1552377
   },
   {
    "appid": 21690,
