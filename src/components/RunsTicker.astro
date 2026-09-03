@@ -24,9 +24,10 @@ const runs = grid
 // Pace the loop so art has time to read, never frantic.
 const duration = Math.max(60, runs.length * 3.4);
 
-const cover = (appid: number) =>
-  `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg`;
+// Mirror-first art chain (see ProofRail): mirror → Steam library art → Steam header.
+const cover = (appid: number) => `https://mgp-api.macgameport.workers.dev/art/${appid}.jpg`;
 const header = (appid: number) =>
+  `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg|` +
   `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`;
 ---
 
@@ -259,18 +260,17 @@ const header = (appid: number) =>
 </style>
 
 <script>
-  // Art fallback chain: library_600x900 → header.jpg → gradient placeholder.
+  // Art fallback chain: mirror → library_600x900 → header.jpg → gradient placeholder.
   // The gradient backdrop is always present, so a chip can never blank.
   function bindFallback(img: HTMLImageElement) {
     img.addEventListener('error', () => {
-      const step = img.dataset.step ?? '0';
-      const headerSrc = img.dataset.header;
-      if (step === '0' && headerSrc) {
-        img.dataset.step = '1';
-        img.src = headerSrc;
+      const chain = (img.dataset.header || '').split('|').filter(Boolean);
+      const next = chain.shift();
+      if (next) {
+        img.dataset.header = chain.join('|');
+        img.src = next;
       } else {
-        // Both Steam assets failed: reveal the permanent gradient + title.
-        img.dataset.step = '2';
+        // Every source failed: reveal the permanent gradient + title.
         img.hidden = true;
       }
     });

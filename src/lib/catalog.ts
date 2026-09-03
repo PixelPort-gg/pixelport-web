@@ -102,10 +102,12 @@ export function generate(e: any) {
   };
 }
 
-// Steam's portrait library art (2:3), matching the app's cover treatment.
+// Portrait cover (2:3), matching the app's cover treatment: Pixel Port's mirror first (it serves
+// games whose Steam art only exists under the newer hashed paths, where the legacy URL 404s), then
+// Steam's legacy library art as the single fallback these consumers walk.
 export function coverUrl(appid: number | null): string | null {
-  return appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg` : null;
+  return appid ? `https://mgp-api.macgameport.workers.dev/art/${appid}.jpg` : null;
 }
 export function coverFallbackUrl(appid: number | null): string | null {
-  return appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg` : null;
+  return appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg` : null;
 }

@@ -61,10 +61,12 @@ const filters = [
   { key: 'unsupported', label: 'Unsupported', count: counts.unsupported || 0 },
 ];
 
+// Mirror-first (see lib/catalog.ts coverUrl): the mirror serves games whose Steam art only
+// exists under the newer hashed paths; Steam's legacy library art is the single fallback.
 const coverUrl = (appid: number | null) =>
-  appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg` : null;
+  appid ? `https://mgp-api.macgameport.workers.dev/art/${appid}.jpg` : null;
 const headerUrl = (appid: number | null) =>
-  appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg` : null;
+  appid ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg` : null;
 
 const seoTitle = 'Mac Game Compatibility Database: Which Windows Games Work on Mac';
 const description = `Browse ${fmt(gradedTotal)} Windows games graded for Apple Silicon Macs, each with an honest compatibility tier. Pixel Port installs the Steam games you already own in one click.`;
@@ -294,10 +296,10 @@ const jsonLd = {
       const tier = TIER[game.tier] || TIER.playable;
       const title = esc(game.title);
       const cover = game.appid
-        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${Number(game.appid)}/library_600x900.jpg`
+        ? `https://mgp-api.macgameport.workers.dev/art/${Number(game.appid)}.jpg`
         : '';
       const fallback = game.appid
-        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${Number(game.appid)}/header.jpg`
+        ? `https://cdn.cloudflare.steamstatic.com/steam/apps/${Number(game.appid)}/library_600x900.jpg`
         : '';
       const inner = `
         <div class="catalogue-card__art">

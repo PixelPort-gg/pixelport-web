@@ -19,11 +19,11 @@ interface Props {
 const { game, placement } = Astro.props;
 const title = game?.title ?? 'Your game';
 const partnerLabel = placement?.label?.trim() || 'Partner';
-const cover = game?.appid
-  ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/library_600x900.jpg'
-  : null;
+// Mirror-first art chain (see ProofRail): mirror → Steam library art → Steam header.
+const cover = game?.appid ? 'https://mgp-api.macgameport.workers.dev/art/' + game.appid + '.jpg' : null;
 const fallback = game?.appid
-  ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/header.jpg'
+  ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/library_600x900.jpg|' +
+    'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/header.jpg'
   : null;
 const stages = [
   {
@@ -133,9 +133,10 @@ const stages = [
 <script>
   for (const img of document.querySelectorAll<HTMLImageElement>('.selected-art img[data-fallback]')) {
     img.addEventListener('error', () => {
-      const next = img.dataset.fallback;
+      const chain = (img.dataset.fallback || '').split('|').filter(Boolean);
+      const next = chain.shift();
       if (next) {
-        img.dataset.fallback = '';
+        img.dataset.fallback = chain.join('|');
         img.src = next;
       } else {
         img.remove();
