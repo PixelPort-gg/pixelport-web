@@ -1,26 +1,96 @@
 ---
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import Base from '../layouts/Base.astro';
 import PortalHero from '../components/cinematic/PortalHero.astro';
 import ProofRail from '../components/cinematic/ProofRail.astro';
 import LaunchSequence from '../components/cinematic/LaunchSequence.astro';
 import TierSpectrum from '../components/cinematic/TierSpectrum.astro';
 import games from '../data/games.resolved.json';
+import placementsFile from '../data/placements.json';
+
+type Game = (typeof games)[number];
+type GridGame = {
+  slug: string;
+  title: string;
+  appid: number | null;
+  tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
+  p?: number;
+};
+type Placement = { id: string; appid: number; surface: string; slot: number; label?: string };
+type PlacementTag = { id: string; surface: string; label: string };
 
 // Palworld stays the lead while the 1.0 launch window is current. The supporting
 // titles are hand-verified catalogue entries, not invented campaign examples.
 const preferred = [1623730, 945360, 881100];
 const featured = preferred
   .map((appid) => games.find((game) => game.appid === appid))
-  .filter((game): game is (typeof games)[number] => Boolean(game));
+  .filter((game): game is Game => Boolean(game));
+
+// Partner placements (src/data/placements.json, refreshed by pull-compat). A
+// placement only renders when its appid resolves to a game that already has a
+// compatibility page; anything else is dropped. With no live placements the
+// page falls back to the editorial picks above.
+const rawPlacements: unknown = (placementsFile as { placements?: unknown }).placements;
+const placements: Placement[] = (Array.isArray(rawPlacements) ? rawPlacements : []).filter(
+  (p): p is Placement =>
+    Boolean(p) &&
+    typeof p.id === 'string' &&
+    p.id.length > 0 &&
+    typeof p.appid === 'number' &&
+    typeof p.surface === 'string',
+);
+const forSurface = (surface: string) =>
+  placements
+    .filter((p) => p.surface === surface)
+    .sort((a, b) => (a.slot ?? 0) - (b.slot ?? 0));
+const tag = (p: Placement): PlacementTag => ({
+  id: p.id,
+  surface: p.surface,
+  label: typeof p.label === 'string' && p.label.trim() ? p.label.trim() : 'Partner',
+});
+
+// Hero and launch slots resolve against the curated pages.
+const resolveCurated = (surface: string) => {
+  for (const p of forSurface(surface)) {
+    const game = games.find((g) => g.appid === p.appid);
+    if (game) return { game, placement: tag(p) };
+  }
+  return null;
+};
+const heroPick = resolveCurated('site_home_hero');
+const launchPick = resolveCurated('site_home_launch');
+
+const heroGames = heroPick
+  ? [heroPick.game, ...featured.filter((g) => g.appid !== heroPick.game.appid)]
+  : featured;
+const launchGame = launchPick?.game ?? featured[0];
+
+// Proof grid slots resolve against the browse grid, the same source ProofRail
+// draws its own cards from. Only runnable tiers with a detail page qualify.
+const grid = JSON.parse(
+  readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
+) as GridGame[];
+const proofPicks = forSurface('site_home_proof')
+  .map((p) => ({
+    placement: tag(p),
+    game: grid.find(
+      (g) =>
+        g.appid === p.appid &&
+        g.p === 1 &&
+        (g.tier === 'verified' || g.tier === 'playable'),
+    ),
+  }))
+  .filter((pick): pick is { placement: PlacementTag; game: GridGame } => Boolean(pick.game));
 ---
 
 <Base
   title="Play Windows Games on Mac in One Click"
   description="Pixel Port downloads, configures, and launches Windows games on your Mac automatically. No Wine setup, no bottles, no VM. Built for Apple Silicon."
 >
-  <PortalHero games={featured} />
-  <ProofRail />
-  <LaunchSequence game={featured[0]} />
+  <PortalHero games={heroGames} placement={heroPick?.placement} />
+  <ProofRail placements={proofPicks} />
+  <LaunchSequence game={launchGame} placement={launchPick?.placement} />
   <TierSpectrum />
 </Base>
 

@@ -9,16 +9,32 @@ type ProofGame = {
   tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
 };
 
+// Partner placements: already resolved by the page against the browse grid, in
+// slot order. They lead the grid; the editorial picks fill the remaining slots.
+type PlacementTag = { id: string; surface: string; label: string };
+type ProofPlacement = { placement: PlacementTag; game: ProofGame };
+
+interface Props {
+  placements?: ProofPlacement[];
+}
+
+const { placements = [] } = Astro.props;
+
 const catalogue = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
 ) as ProofGame[];
 const eligible = catalogue.filter(
   (game) => (game.tier === 'verified' || game.tier === 'playable') && typeof game.appid === 'number',
 );
+const placedAppids = new Set(placements.map((pick) => pick.game.appid));
+const placedGames = placements.map((pick) => pick.game);
 const palworld = eligible.find((game) => game.appid === 1623730);
-const runs = [palworld, ...eligible.filter((game) => game.appid !== 1623730)]
+const runs = [...placedGames, palworld, ...eligible.filter((game) => game.appid !== 1623730)]
   .filter((game): game is ProofGame => Boolean(game))
+  .filter((game, index) => index < placedGames.length || !placedAppids.has(game.appid))
   .slice(0, 4);
+const placementFor = (game: ProofGame) =>
+  placements.find((pick) => pick.game.appid === game.appid)?.placement;
 const counts = catalogue.reduce<Record<string, number>>((result, game) => {
   result[game.tier] = (result[game.tier] ?? 0) + 1;
   return result;
@@ -66,9 +82,17 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
 
     <ul class="game-grid" aria-label="Games proven to run on Mac">
       {
-        runs.map((game, index) => (
+        runs.map((game, index) => {
+          const placement = placementFor(game);
+          return (
           <li class:list={{ 'game-item': true, 'game-item--handoff': index === 0 }}>
-            <a href={'/games/' + game.slug} class="game-card">
+            <a
+              href={'/games/' + game.slug}
+              class="game-card"
+              rel={placement ? 'sponsored' : undefined}
+              data-placement={placement?.id}
+              data-surface={placement?.surface}
+            >
               <span class="cover">
                 <span class="cover-fallback">{game.title}</span>
                 <img
@@ -84,12 +108,16 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
                   <span aria-hidden="true">{game.tier === 'verified' ? '✓' : '◐'}</span>
                   {tierLabel(game.tier)}
                 </span>
+                {placement && (
+                  <span class="partner-chip">{placement.label?.trim() || 'Partner'}</span>
+                )}
               </span>
               <strong>{game.title}</strong>
               <span class="game-link">View compatibility <span aria-hidden="true">&rarr;</span></span>
             </a>
           </li>
-        ))
+          );
+        })
       }
     </ul>
 
@@ -317,6 +345,30 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
 
   .tier--playable {
     color: var(--color-playable);
+  }
+
+  /* Partner chip: same pill language as the tier badge, neutral colour so a
+     paid slot never borrows the verified or playable colours. */
+  .partner-chip {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: #090717;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .cover .partner-chip {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.6rem;
   }
 
   .game-card > strong {

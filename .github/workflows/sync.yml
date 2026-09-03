@@ -44,7 +44,7 @@ jobs:
           git config user.email "bot@pixelport.gg"
           git add scripts/d1-verified.json scripts/owners.json scripts/announced-verified.json \
                   public/catalogue-grid.json src/data/catalogue.json src/data/compat.json \
-                  src/data/games.resolved.json \
+                  src/data/games.resolved.json src/data/placements.json \
                   src/content/blog
           git commit -m "chore: sync compat map + announce verified [skip ci]" || echo "nothing to commit"
           git push

@@ -10,12 +10,19 @@ type HeroGame = {
   tier: string;
 };
 
+// A partner placement marks the lead game as paid: the compatibility link
+// carries data-placement / data-surface for the anonymous beacon, rel=sponsored,
+// and a visible Partner chip.
+type PlacementTag = { id: string; surface: string; label: string };
+
 interface Props {
   games: HeroGame[];
+  placement?: PlacementTag;
 }
 
-const { games } = Astro.props;
+const { games, placement } = Astro.props;
 const lead = games[0];
+const partnerLabel = placement?.label?.trim() || 'Partner';
 const cover = (appid: number | null) =>
   appid ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + appid + '/library_600x900.jpg' : null;
 const header = (appid: number | null) =>
@@ -125,8 +132,17 @@ const header = (appid: number | null) =>
           </p>
           {
             lead && (
-              <a href={'/games/' + lead.slug} class="visual-link">
-                {lead.title} compatibility <span aria-hidden="true">&rarr;</span>
+              <a
+                href={'/games/' + lead.slug}
+                class="visual-link"
+                rel={placement ? 'sponsored' : undefined}
+                data-placement={placement?.id}
+                data-surface={placement?.surface}
+              >
+                {placement && <span class="partner-chip">{partnerLabel}</span>}
+                <span class="visual-link-text">
+                  {lead.title} compatibility <span aria-hidden="true">&rarr;</span>
+                </span>
               </a>
             )
           }
@@ -596,10 +612,35 @@ const header = (appid: number | null) =>
   }
 
   .visual-link {
+    display: inline-flex;
     flex: 0 0 auto;
+    gap: 0.5rem;
+    align-items: center;
     color: var(--color-accent-2);
     font-size: 0.75rem;
     text-underline-offset: 3px;
+    white-space: nowrap;
+  }
+
+  .visual-link .partner-chip {
+    text-decoration: none;
+  }
+
+  /* Partner chip: same pill language as the tier badge, neutral colour so a
+     paid slot never borrows the verified or playable colours. */
+  .partner-chip {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: #090717;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
     white-space: nowrap;
   }
 

@@ -1,0 +1,110 @@
+{
+ "fetched_at": "2026-09-03",
+ "placements": [
+  {
+   "id": "trending-how-to-fish-2026-09",
+   "appid": 4001890,
+   "surface": "site_home_hero",
+   "slot": 0,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-how-many-dudes-2026-09",
+   "appid": 3934270,
+   "surface": "site_home_hero",
+   "slot": 1,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-counter-strike-2-2026-09",
+   "appid": 730,
+   "surface": "site_home_hero",
+   "slot": 2,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-peak-2026-09",
+   "appid": 3527290,
+   "surface": "site_home_hero",
+   "slot": 3,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-grim-dawn-2026-09",
+   "appid": 219990,
+   "surface": "site_home_hero",
+   "slot": 4,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-how-to-fish-2026-09",
+   "appid": 4001890,
+   "surface": "site_home_launch",
+   "slot": 0,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-how-many-dudes-2026-09",
+   "appid": 3934270,
+   "surface": "site_home_launch",
+   "slot": 1,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-counter-strike-2-2026-09",
+   "appid": 730,
+   "surface": "site_home_launch",
+   "slot": 2,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-peak-2026-09",
+   "appid": 3527290,
+   "surface": "site_home_launch",
+   "slot": 3,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-grim-dawn-2026-09",
+   "appid": 219990,
+   "surface": "site_home_launch",
+   "slot": 4,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-how-to-fish-2026-09",
+   "appid": 4001890,
+   "surface": "site_home_proof",
+   "slot": 0,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-how-many-dudes-2026-09",
+   "appid": 3934270,
+   "surface": "site_home_proof",
+   "slot": 1,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-counter-strike-2-2026-09",
+   "appid": 730,
+   "surface": "site_home_proof",
+   "slot": 2,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-peak-2026-09",
+   "appid": 3527290,
+   "surface": "site_home_proof",
+   "slot": 3,
+   "label": "Trending"
+  },
+  {
+   "id": "trending-grim-dawn-2026-09",
+   "appid": 219990,
+   "surface": "site_home_proof",
+   "slot": 4,
+   "label": "Trending"
+  }
+ ]
+}

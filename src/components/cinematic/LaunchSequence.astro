@@ -6,12 +6,19 @@ type LaunchGame = {
   tier: string;
 };
 
+// A partner placement marks the selected game as paid: the card link carries
+// data-placement / data-surface for the anonymous beacon, rel=sponsored, and a
+// visible Partner chip on the art.
+type PlacementTag = { id: string; surface: string; label: string };
+
 interface Props {
   game?: LaunchGame;
+  placement?: PlacementTag;
 }
 
-const { game } = Astro.props;
+const { game, placement } = Astro.props;
 const title = game?.title ?? 'Your game';
+const partnerLabel = placement?.label?.trim() || 'Partner';
 const cover = game?.appid
   ? 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/library_600x900.jpg'
   : null;
@@ -49,7 +56,13 @@ const stages = [
         <span class="selected-label">From your Steam library</span>
         {
           game ? (
-            <a href={'/games/' + game.slug} class="selected-link">
+            <a
+              href={'/games/' + game.slug}
+              class="selected-link"
+              rel={placement ? 'sponsored' : undefined}
+              data-placement={placement?.id}
+              data-surface={placement?.surface}
+            >
               <span class="selected-art">
                 <span class="art-fallback">{title}</span>
                 {cover && (
@@ -63,6 +76,7 @@ const stages = [
                     decoding="async"
                   />
                 )}
+                {placement && <span class="partner-chip">{partnerLabel}</span>}
               </span>
               <strong>{title}</strong>
               <span>View compatibility <span aria-hidden="true">&rarr;</span></span>
@@ -237,6 +251,30 @@ const stages = [
     place-items: center;
     padding: 0.75rem;
     font-weight: 700;
+  }
+
+  /* Partner chip: same pill language as the tier badge, neutral colour so a
+     paid slot never borrows the verified or playable colours. */
+  .partner-chip {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: #090717;
+    color: var(--color-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .selected-art .partner-chip {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
   }
 
   .selected-link > strong {

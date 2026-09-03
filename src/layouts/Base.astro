@@ -163,5 +163,77 @@ const socialImage = ogImage ?? new URL('/og.png', Astro.site).toString();
         beacon(ref, 'download');
       });
     </script>
+    <script>
+      // Placement beacon: anonymous impression and click counts for partner
+      // slots. An impression fires once per card per page load, after the card
+      // has been at least half visible for a full second. A click fires when a
+      // partner link is followed. No identifiers, no storage, and nothing here
+      // touches navigation or the download flow.
+      const PLACEMENT_BEACON = 'https://mgp-api.macgameport.workers.dev/v1/placements/beacon';
+      (() => {
+        try {
+          if (navigator.webdriver === true) return;
+          if ((document as Document & { prerendering?: boolean }).prerendering) return;
+          const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-placement]'));
+          if (!cards.length) return;
+          const send = (el: HTMLElement, kind: 'impression' | 'click') => {
+            const placement_id = el.dataset.placement;
+            const surface = el.dataset.surface;
+            if (!placement_id || !surface) return;
+            try {
+              fetch(PLACEMENT_BEACON, {
+                method: 'POST',
+                mode: 'no-cors',
+                keepalive: true,
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ placement_id, surface, kind, path: location.pathname }),
+              }).catch(() => {});
+            } catch {}
+          };
+          document.addEventListener('click', (e) => {
+            try {
+              const a = (e.target as Element | null)?.closest?.('a[data-placement]');
+              if (a) send(a as HTMLElement, 'click');
+            } catch {}
+          });
+          if (!('IntersectionObserver' in window)) return;
+          const seen = new Set<Element>();
+          const timers = new Map<Element, number>();
+          const observer = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                const el = entry.target as HTMLElement;
+                if (seen.has(el)) continue;
+                const visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+                if (visible) {
+                  if (timers.has(el)) continue;
+                  timers.set(
+                    el,
+                    window.setTimeout(() => {
+                      timers.delete(el);
+                      if (seen.has(el)) return;
+                      // A background tab can still receive intersection entries; a card
+                      // nobody could see is not an impression.
+                      if (document.visibilityState !== 'visible') return;
+                      seen.add(el);
+                      observer.unobserve(el);
+                      send(el, 'impression');
+                    }, 1000),
+                  );
+                } else {
+                  const timer = timers.get(el);
+                  if (timer !== undefined) {
+                    clearTimeout(timer);
+                    timers.delete(el);
+                  }
+                }
+              }
+            },
+            { threshold: 0.5 },
+          );
+          for (const el of cards) observer.observe(el);
+        } catch {}
+      })();
+    </script>
   </body>
 </html>

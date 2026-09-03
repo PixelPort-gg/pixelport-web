@@ -5,7 +5,8 @@
 // (engine/d3d/graphics/hashes/launch details) are never copied — the /mac/
 // pages must stay tier-and-verdict only.
 // Also snapshots /v1/featured's unlocked appids to scripts/enabled.json so the
-// site can distinguish compatibility confidence from beta availability.
+// site can distinguish compatibility confidence from beta availability, and
+// /v1/featured's site placements (paid partner slots) to src/data/placements.json.
 //
 // Run manually with `npm run refresh:compat`, review the diff, and commit it.
 // Builds always render from the committed snapshot so they stay reproducible.
@@ -108,6 +109,27 @@ function deDash(s) {
 async function main() {
   const featured = await getJson('/v1/featured');
   const unlocked = featured.unlocked ?? [];
+  // Partner placements ride along on /v1/featured as {id, appid, surface, slot,
+  // label}. Only the site_* surfaces are persisted (the app has its own), and
+  // the key may be absent on older servers, so it defaults to an empty list.
+  const placements = (Array.isArray(featured.placements) ? featured.placements : [])
+    .filter(
+      (p) =>
+        p &&
+        typeof p.id === 'string' &&
+        p.id &&
+        Number.isInteger(p.appid) &&
+        typeof p.surface === 'string' &&
+        p.surface.startsWith('site_'),
+    )
+    .map((p) => ({
+      id: p.id,
+      appid: p.appid,
+      surface: p.surface,
+      slot: Number.isInteger(p.slot) ? p.slot : 0,
+      label: typeof p.label === 'string' && p.label.trim() ? deDash(p.label.trim()) : 'Partner',
+    }))
+    .sort((a, b) => a.surface.localeCompare(b.surface) || a.slot - b.slot);
   const appids = [...new Set([...unlocked, ...BLOCKER_APPIDS])];
   console.log(`Fetching ${appids.length} games (${unlocked.length} unlocked + curated blockers)…`);
 
@@ -159,8 +181,13 @@ async function main() {
     join(dirname(fileURLToPath(import.meta.url)), 'enabled.json'),
     JSON.stringify([...new Set(unlocked)].sort((a, b) => a - b)) + '\n',
   );
+  writeFileSync(
+    join(dirname(fileURLToPath(import.meta.url)), '../src/data/placements.json'),
+    JSON.stringify({ fetched_at: out.fetched_at, placements }, null, 1) + '\n',
+  );
   const counts = games.reduce((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
   console.log(`Wrote ${games.length} games to src/data/compat.json`, counts);
+  console.log(`Wrote ${placements.length} site placements to src/data/placements.json`);
 }
 
 main().catch((e) => {
