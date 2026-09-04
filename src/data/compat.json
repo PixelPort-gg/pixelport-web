@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-03",
+ "fetched_at": "2026-09-04",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -518,7 +518,7 @@
    "appid": 223470,
    "slug": "postal-2",
    "name": "POSTAL 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7612414
   },
@@ -1070,7 +1070,7 @@
    "appid": 1384160,
    "slug": "guilty-gear-strive",
    "name": "Guilty Gear Strive",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1552377
   },
@@ -1347,6 +1347,14 @@
    "popularity": 789201
   },
   {
+   "appid": 824270,
+   "slug": "kovaaks-fps-aim-trainer",
+   "name": "KovaaK's FPS Aim Trainer",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 782776
+  },
+  {
    "appid": 427410,
    "slug": "abiotic-factor",
    "name": "Abiotic Factor",
@@ -1390,7 +1398,7 @@
    "appid": 521890,
    "slug": "hello-neighbor",
    "name": "Hello Neighbor",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 766402
   },
@@ -1465,6 +1473,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 760225
+  },
+  {
+   "appid": 371970,
+   "slug": "barony",
+   "name": "Barony",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 759725
   },
   {
    "appid": 40300,
@@ -1563,6 +1579,14 @@
    "popularity": 361633
   },
   {
+   "appid": 589870,
+   "slug": "learn-to-fly-3",
+   "name": "Learn to Fly 3",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 359843
+  },
+  {
    "appid": 2132850,
    "slug": "rabbit-and-steel",
    "name": "Rabbit and Steel",
@@ -1630,7 +1654,7 @@
    "appid": 1369670,
    "slug": "motor-town-behind-the-wheel",
    "name": "Motor Town: Behind The Wheel",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 355915
   },
