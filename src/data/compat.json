@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-04",
+ "fetched_at": "2026-09-05",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -174,7 +174,7 @@
    "appid": 990080,
    "slug": "hogwarts-legacy",
    "name": "Hogwarts Legacy",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35289966
   },
@@ -1350,7 +1350,7 @@
    "appid": 824270,
    "slug": "kovaaks-fps-aim-trainer",
    "name": "KovaaK's FPS Aim Trainer",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 782776
   },
