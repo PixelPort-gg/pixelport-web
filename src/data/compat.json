@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-05",
+ "fetched_at": "2026-09-06",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -326,7 +326,7 @@
    "appid": 3241660,
    "slug": "r-e-p-o",
    "name": "R.E.P.O.",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15179154
   },
@@ -1006,7 +1006,7 @@
    "appid": 212500,
    "slug": "the-lord-of-the-rings-online",
    "name": "The Lord of the Rings Online™",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3517099
   },
