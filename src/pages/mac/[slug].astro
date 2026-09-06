@@ -1,6 +1,8 @@
 ---
 import Base from '../../layouts/Base.astro';
 import snapshot from '../../data/compat.json';
+import guideGames from '../../data/games.resolved.json';
+import catalogue from '../../data/catalogue.json';
 import nativeMacIds from '../../data/native-mac.json';
 import enabledAppids from '../../../scripts/enabled.json';
 import {
@@ -88,7 +90,13 @@ const description = isNativeMac
   : isPlayableButNotEnabled
     ? `${game.name} is graded playable on Apple Silicon, but it is not enabled in the Pixel Port beta yet. Request it in the app or join our Discord to get access.`
     : metaDescription(game);
-const canonical = new URL(pagePath(game), Astro.site).toString();
+// Same appid ⇒ same game. When a /games/<slug>/ guide exists it is the richer
+// page (steps, FAQ, alternatives), so this verdict page canonicalises to it
+// instead of competing with it for "<game> on Mac" queries. The sitemap drops
+// these duplicates too (astro.config.mjs).
+const guideSlug = [...guideGames, ...catalogue].find((g) => g.appid === game.appid)?.slug;
+const guideUrl = guideSlug ? new URL(`/games/${guideSlug}/`, Astro.site).toString() : null;
+const canonical = guideUrl ?? new URL(pagePath(game), Astro.site).toString();
 
 const faq = [
   {
@@ -151,7 +159,7 @@ const evidence =
         : 'Known blocker';
 ---
 
-<Base title={title} description={description} ogImage={ogImage(game.appid)}>
+<Base title={title} description={description} ogImage={ogImage(game.appid)} canonical={canonical}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
 
   <article>
@@ -159,6 +167,8 @@ const evidence =
       <img
         src={landscape}
         alt=""
+        width="460"
+        height="215"
         class="compat-masthead__landscape"
         aria-hidden="true"
         onerror="this.remove();"
@@ -176,6 +186,8 @@ const evidence =
               src={art.src}
               data-fb={art.fallbacks}
               alt={`${game.name} cover art`}
+              width="600"
+              height="900"
               decoding="async"
               onerror={ART_ONERROR}
             />
@@ -196,6 +208,15 @@ const evidence =
             'text-verified': game.tier === 'verified',
           }]}>{v.headline}</p>
           <p class="compat-summary">{v.body}</p>
+          {
+            guideUrl && (
+              <p class="compat-summary">
+                <a href={guideUrl} class="text-accent-2 hover:underline">
+                  Full guide: how to play {game.name} on Mac <span aria-hidden="true">→</span>
+                </a>
+              </p>
+            )
+          }
           {
             isPlayableButNotEnabled && (
               <div class="compat-beta-note">

@@ -2,6 +2,7 @@
 title: "Age of Empires II: HD Edition is now verified on Mac"
 description: "Age of Empires II: HD Edition is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-24
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/221380/header.jpg"
 ---
 
 Age of Empires II: HD Edition just reached our top compatibility tier: **verified**.
@@ -10,4 +11,4 @@ Verified is the highest grade in our honest compatibility map, and it is earned 
 
 Every game on Pixel Port carries a tier so you always know what to expect before you install: verified (a Mac ran it end to end), playable (graded but not yet hand-verified), needs attention (runs with caveats), and unsupported (a hard blocker like kernel anti-cheat). Age of Empires II: HD Edition just moved to the top of that list.
 
-Want to play it? See [how to play Age of Empires II: HD Edition on Mac](/games/age-of-empires-ii-hd-edition), or [download Pixel Port](/download) and try it in one click.
+Want to play it? See [how to play Age of Empires II: HD Edition on Mac](/games/age-of-empires-ii-hd-edition/), or [download Pixel Port](/download) and try it in one click.

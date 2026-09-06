@@ -1,11 +1,11 @@
 ---
 const path = Astro.url.pathname;
 const nav = [
-  { href: '/games', label: 'Games' },
-  { href: '/docs', label: 'Docs' },
-  { href: '/stats', label: 'Stats' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/press', label: 'Press' },
+  { href: '/games/', label: 'Games' },
+  { href: '/docs/', label: 'Docs' },
+  { href: '/stats/', label: 'Stats' },
+  { href: '/blog/', label: 'Blog' },
+  { href: '/press/', label: 'Press' },
 ];
 const isActive = (href: string) => path === href || path.startsWith(href + '/');
 const currentState = (href: string) =>

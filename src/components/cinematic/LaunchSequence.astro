@@ -57,7 +57,7 @@ const stages = [
         {
           game ? (
             <a
-              href={'/games/' + game.slug}
+              href={'/games/' + game.slug + '/'}
               class="selected-link"
               rel={placement ? 'sponsored' : undefined}
               data-placement={placement?.id}
@@ -125,7 +125,7 @@ const stages = [
           confidence shown to the next Mac gamer. No ad identifiers or third-party analytics.
         </p>
       </div>
-      <a href="/stats">See launch data <span aria-hidden="true">&rarr;</span></a>
+      <a href="/stats/">See launch data <span aria-hidden="true">&rarr;</span></a>
     </aside>
   </div>
 </section>

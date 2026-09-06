@@ -7,6 +7,10 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
+    /** Set when a post is materially revised; feeds dateModified and the sitemap. */
+    updated: z.coerce.date().optional(),
+    /** Absolute URL for the social card; falls back to the brand card. */
+    image: z.string().url().optional(),
     draft: z.boolean().default(false),
   }),
 });

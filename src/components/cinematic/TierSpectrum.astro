@@ -57,7 +57,7 @@ const tiers = [
         {
           tiers.map((tier) => (
             <li>
-              <a href={'/games?tier=' + tier.key} class={'tier-row tier-row--' + tier.key}>
+              <a href={'/games/?tier=' + tier.key} class={'tier-row tier-row--' + tier.key}>
                 <span class="tier-icon" aria-hidden="true">{tier.icon}</span>
                 <span class="tier-copy">
                   <strong>{tier.label}</strong>
@@ -74,7 +74,7 @@ const tiers = [
       </ul>
       <p class="coverage-note">
         Grades come from real launches and trusted compatibility reports.
-        <a href="/docs/how-it-works">Read how grading works</a>
+        <a href="/docs/how-it-works/">Read how grading works</a>
       </p>
     </div>
   </div>

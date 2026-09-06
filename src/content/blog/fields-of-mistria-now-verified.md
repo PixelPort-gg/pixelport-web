@@ -2,6 +2,7 @@
 title: "Fields of Mistria is now verified on Mac"
 description: "Fields of Mistria is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-12
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/2142790/header.jpg"
 ---
 
 Fields of Mistria just reached our top compatibility tier: **verified**.

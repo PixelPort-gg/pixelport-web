@@ -2,6 +2,7 @@
 title: "How Many Dudes? Demo is now verified on Mac"
 description: "How Many Dudes? Demo is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-11
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/4248000/header.jpg"
 ---
 
 How Many Dudes? Demo just reached our top compatibility tier: **verified**.

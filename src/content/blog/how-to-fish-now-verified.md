@@ -2,6 +2,7 @@
 title: "How to Fish is now verified on Mac"
 description: "How to Fish is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-09-03
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/4001890/header.jpg"
 ---
 
 How to Fish just reached our top compatibility tier: **verified**.

@@ -51,7 +51,7 @@ const description = `Alphabetical index of every Windows game graded for Apple S
 <Base title={seoTitle} description={description}>
   <section class="wrap directory">
     <nav class="text-sm text-muted">
-      <a href="/games" class="hover:text-fg">Games</a> <span class="px-1">/</span> A–Z index
+      <a href="/games/" class="hover:text-fg">Games</a> <span class="px-1">/</span> A–Z index
       <span class="px-1">/</span> Page {page}
     </nav>
 
@@ -64,34 +64,45 @@ const description = `Alphabetical index of every Windows game graded for Apple S
 
     <ul class="directory__list">
       {
-        games.map((g) => (
-          <li>
-            <a href={`/games/${g.slug}`}>
-              <span class="directory__title">{g.title}</span>
-              <span class={`directory__tier ${g.n ? nativeMacMeta.text : tierMeta[g.tier].text}`}>
-                {g.n
-                  ? nativeMacMeta.label
-                  : g.tier === 'playable' && g.e !== 1
-                    ? 'Playable · Needs beta enablement'
-                    : tierMeta[g.tier].label}
-              </span>
-            </a>
-          </li>
-        ))
+        games.map((g) => {
+          const label = g.n
+            ? nativeMacMeta.label
+            : g.tier === 'playable' && g.e !== 1
+              ? 'Playable · Needs beta enablement'
+              : tierMeta[g.tier].label;
+          const tierClass = `directory__tier ${g.n ? nativeMacMeta.text : tierMeta[g.tier].text}`;
+          // Only entries flagged p=1 get a /games/ page (scripts/build-catalogue.mjs);
+          // the rest are listed unlinked rather than as thousands of 404 links.
+          return (
+            <li>
+              {g.p === 1 ? (
+                <a href={`/games/${g.slug}/`}>
+                  <span class="directory__title">{g.title}</span>
+                  <span class={tierClass}>{label}</span>
+                </a>
+              ) : (
+                <span class="directory__entry">
+                  <span class="directory__title">{g.title}</span>
+                  <span class={tierClass}>{label}</span>
+                </span>
+              )}
+            </li>
+          );
+        })
       }
     </ul>
 
     <nav class="directory__pager" aria-label="Directory pages">
-      {page > 1 && <a href={`/games/all/${page - 1}`}>← Page {page - 1}</a>}
+      {page > 1 && <a href={`/games/all/${page - 1}/`}>← Page {page - 1}</a>}
       <span>Page {page} of {pageCount}</span>
-      {page < pageCount && <a href={`/games/all/${page + 1}`}>Page {page + 1} →</a>}
+      {page < pageCount && <a href={`/games/all/${page + 1}/`}>Page {page + 1} →</a>}
     </nav>
 
     <div class="directory__pages">
       {Array.from({ length: pageCount }, (_, i) => (
         i + 1 === page
           ? <strong>{i + 1}</strong>
-          : <a href={`/games/all/${i + 1}`}>{i + 1}</a>
+          : <a href={`/games/all/${i + 1}/`}>{i + 1}</a>
       ))}
     </div>
   </section>
@@ -112,7 +123,8 @@ const description = `Alphabetical index of every Windows game graded for Apple S
       margin-top: 2.5rem;
       grid-template-columns: 1fr;
     }
-    .directory__list a {
+    .directory__list a,
+    .directory__entry {
       display: flex;
       min-height: 2.4rem;
       align-items: center;
@@ -124,6 +136,7 @@ const description = `Alphabetical index of every Windows game graded for Apple S
       font-size: 0.85rem;
     }
     .directory__list a:hover .directory__title { color: var(--color-accent-2); }
+    .directory__entry { color: var(--color-muted); }
     .directory__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .directory__tier { flex: none; font-size: 0.68rem; font-weight: 650; }
     .directory__pager {

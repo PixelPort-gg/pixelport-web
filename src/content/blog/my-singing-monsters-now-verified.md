@@ -2,6 +2,7 @@
 title: "My Singing Monsters is now verified on Mac"
 description: "My Singing Monsters is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-11
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/1419170/header.jpg"
 ---
 
 My Singing Monsters just reached our top compatibility tier: **verified**.

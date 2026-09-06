@@ -76,7 +76,7 @@ const jsonLd = {
   '@type': 'CollectionPage',
   name: seoTitle,
   description,
-  url: new URL('/games', Astro.site).toString(),
+  url: new URL('/games/', Astro.site).toString(),
   mainEntity: {
     '@type': 'ItemList',
     numberOfItems: total,
@@ -84,7 +84,7 @@ const jsonLd = {
       '@type': 'ListItem',
       position: i + 1,
       name: g.title,
-      url: new URL(`/games/${g.slug}`, Astro.site).toString(),
+      url: new URL(`/games/${g.slug}/`, Astro.site).toString(),
     })),
   },
 };
@@ -103,9 +103,9 @@ const jsonLd = {
         </p>
         <a href="#catalogue" class="catalogue-enter">Explore the catalogue <span aria-hidden="true">↓</span></a>
         <p class="catalogue-index-links">
-          Or jump straight to <a href="/games/verified">verified games</a>, the
-          <a href="/games/all/1">full A–Z index</a>, or
-          <a href="/games/anti-cheat">why some games are blocked</a>.
+          Or jump straight to <a href="/games/verified/">verified games</a>, the
+          <a href="/games/all/1/">full A–Z index</a>, or
+          <a href="/games/anti-cheat/">why some games are blocked</a>.
         </p>
       </div>
 
@@ -224,7 +224,7 @@ const jsonLd = {
           return (
             <li class="catalogue-card" data-tier={game.tier} data-title={game.title.toLowerCase()}>
               {game.p ? (
-                <a href={`/games/${game.slug}`} aria-label={`${game.title}: ${tier.label}`}>{card}</a>
+                <a href={`/games/${game.slug}/`} aria-label={`${game.title}: ${tier.label}`}>{card}</a>
               ) : (
                 <div aria-label={`${game.title}: ${tier.label}`}>{card}</div>
               )}
@@ -312,7 +312,7 @@ const jsonLd = {
         </div>
         <p>${title}</p>`;
       return game.p
-        ? `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><a href="/games/${encodeURIComponent(game.slug)}" aria-label="${title}: ${tier.label}">${inner}</a></li>`
+        ? `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><a href="/games/${encodeURIComponent(game.slug)}/" aria-label="${title}: ${tier.label}">${inner}</a></li>`
         : `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><div aria-label="${title}: ${tier.label}">${inner}</div></li>`;
     }
 

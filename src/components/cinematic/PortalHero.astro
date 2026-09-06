@@ -72,7 +72,7 @@ const header = (appid: number | null) =>
           <span class="button-label-desktop">Download latest .dmg</span>
           <span class="button-label-mobile">Download for Mac</span>
         </a>
-        <a href="/games" class="button button--secondary" aria-label="Browse compatible games">
+        <a href="/games/" class="button button--secondary" aria-label="Browse compatible games">
           <span class="button-label-desktop">See what runs</span>
           <span class="button-label-mobile">Browse games</span>
           <span aria-hidden="true">&rarr;</span>
@@ -137,7 +137,7 @@ const header = (appid: number | null) =>
           {
             lead && (
               <a
-                href={'/games/' + lead.slug}
+                href={'/games/' + lead.slug + '/'}
                 class="visual-link"
                 rel={placement ? 'sponsored' : undefined}
                 data-placement={placement?.id}
@@ -172,7 +172,7 @@ const header = (appid: number | null) =>
     </div>
     <div>
       <dt>Privacy</dt>
-      <dd><a href="/privacy">Analytics off by default</a></dd>
+      <dd><a href="/privacy/">Analytics off by default</a></dd>
     </div>
   </dl>
 </aside>

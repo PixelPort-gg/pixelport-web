@@ -2,6 +2,7 @@
 title: "Palworld 1.0 lands July 10: here's the honest state of playing it on a Mac"
 description: "Palworld leaves Early Access on July 10, 2026. What that means for Mac players, what works today through Pixel Port, and what we'll verify the day 1.0 drops."
 date: 2026-07-08
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/1623730/header.jpg"
 ---
 
 Palworld leaves Early Access on **July 10, 2026** (announced at Summer Game Fest): the

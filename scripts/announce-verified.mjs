@@ -66,8 +66,12 @@ const meta = new Map();
 for (const g of compat) {
   if (g.appid) meta.set(g.appid, { title: g.name, postSlug: g.slug, href: `/mac/${g.slug}-${g.appid}/` });
 }
-for (const g of base) if (g.appid) meta.set(g.appid, { title: g.title, postSlug: g.id, href: `/games/${g.id}` });
-for (const g of curated) if (g.appid) meta.set(g.appid, { title: g.title, postSlug: g.slug, href: `/games/${g.slug}` });
+for (const g of base) if (g.appid) meta.set(g.appid, { title: g.title, postSlug: g.id, href: `/games/${g.id}/` });
+for (const g of curated) if (g.appid) meta.set(g.appid, { title: g.title, postSlug: g.slug, href: `/games/${g.slug}/` });
+
+// Landscape Steam header for the post's social card: the right shape for
+// link previews, and it is the game people clicked for, not the brand card.
+const socialImage = (appid) => `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/header.jpg`;
 
 const current = d1Verified.filter((a) => meta.has(a)); // only linkable games
 const unlinkable = d1Verified.filter((a) => !meta.has(a));
@@ -112,6 +116,7 @@ for (const appid of fresh) {
 title: "${q(title)} is now verified on Mac"
 description: "${q(title)} is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: ${date}
+image: "${socialImage(appid)}"
 ---
 
 ${title} just reached our top compatibility tier: **verified**.

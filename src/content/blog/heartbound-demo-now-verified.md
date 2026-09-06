@@ -2,6 +2,7 @@
 title: "Heartbound Demo is now verified on Mac"
 description: "Heartbound Demo is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-11
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/631890/header.jpg"
 ---
 
 Heartbound Demo just reached our top compatibility tier: **verified**.

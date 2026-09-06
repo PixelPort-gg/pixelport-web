@@ -2,6 +2,7 @@
 title: "Levelhead is now verified on Mac"
 description: "Levelhead is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-26
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/792710/header.jpg"
 ---
 
 Levelhead just reached our top compatibility tier: **verified**.

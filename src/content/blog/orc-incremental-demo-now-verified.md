@@ -2,6 +2,7 @@
 title: "Orc Incremental Demo is now verified on Mac"
 description: "Orc Incremental Demo is verified to run on Apple Silicon through Pixel Port. Here is what that means."
 date: 2026-08-12
+image: "https://cdn.cloudflare.steamstatic.com/steam/apps/4736550/header.jpg"
 ---
 
 Orc Incremental Demo just reached our top compatibility tier: **verified**.
