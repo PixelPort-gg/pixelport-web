@@ -16,7 +16,7 @@ falls short.
 
 ## CrossOver: you still do the work
 
-CrossOver is the commercial face of Wine, and it's good software with a real
+[CrossOver](/free-crossover-alternative/) is the commercial face of Wine, and it's good software with a real
 compatibility team behind it. It still hands you the hard part: you create "bottles,"
 pick Windows versions, toggle
 D3DMetal vs DXMT vs DXVK, and debug the black screen yourself when a setting is wrong.
@@ -33,7 +33,7 @@ evening finding out.
 
 ## Game Porting Toolkit: for developers, not players
 
-Apple's GPTK (now in its fourth major version) is genuinely impressive translation
+[Apple's GPTK](/game-porting-toolkit/) (now in its fourth major version) is genuinely impressive translation
 technology, but it ships as a developer tool: Homebrew, Terminal, no game library, no
 per-game configuration. The projects that wrapped it nicely have mostly stalled or
 gone commercial. If you're a developer evaluating a port, use it. If you want to play
@@ -47,7 +47,7 @@ then added the part every tool above is missing: **the answer before the downloa
 
 Every game in our catalogue carries an honest tier. *Verified* means it ran on a real
 Apple Silicon Mac, ours or the network's, and we publish what we measured.
-*Unsupported* means it will never work (kernel anti-cheat, mostly) and we say so
+*Unsupported* means it will never work ([kernel anti-cheat](/games/anti-cheat/), mostly) and we say so
 instead of taking the download. One click: connect Steam, press Install & Play, and
 the setup (runtime, graphics backend, launch flags) is composed for that specific
 game. No bottles. No settings to guess.
@@ -64,3 +64,5 @@ catalogue that improves from real launches. Your games remain your Steam copies 
 way.
 
 [See what runs on your Mac →](/mac/)
+
+Want the side-by-side version? [Whisky alternatives compared](/whisky-alternative/), or the full guide to [every way to play Windows games on a Mac](/how-to-play-windows-games-on-mac/).

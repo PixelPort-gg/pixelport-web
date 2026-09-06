@@ -29,15 +29,15 @@ went offline, was a maintained, ready-to-use assembly of them.
 That's the half we rebuilt. Pixel Port ships a runtime (Wine + DirectX-to-Metal,
 assembled for Apple Silicon) and wraps it in the thing the old tools never had: per-game
 answers. Connect Steam, and your library shows an honest tier for every game:
-*Verified* (ran on real Apple Silicon hardware, measurements published), *Playable*
-(strong evidence, not yet hand-verified), or *Unsupported* (kernel anti-cheat, which will
+[*Verified*](/games/verified/) (ran on real Apple Silicon hardware, measurements published), *Playable*
+(strong evidence, not yet hand-verified), or *Unsupported* ([kernel anti-cheat](/games/anti-cheat/), which will
 not work in any translation tool, whatever anyone claims, and we'd rather tell you
 than waste your evening). One click installs and launches the games that work.
 
 ## What this looks like in practice
 
-Portal 2's Mac port died with Catalina in 2019; it runs again, using about 340 MB of
-memory. A brand-new Unreal Engine 5.6 multiplayer game, MECCHA CHAMELEON, joined a
+[Portal 2](/games/portal-2/)'s Mac port died with Catalina in 2019; it runs again, using about 340 MB of
+memory. A brand-new Unreal Engine 5.6 multiplayer game, [MECCHA CHAMELEON](/games/meccha-chameleon/), joined a
 live server and played a full match on the same stack. Neither needed a bottle,
 a graphics-backend menu, or a Terminal command.
 
@@ -46,4 +46,4 @@ Apple Silicon only (M1+, macOS 14+). You need to own your games: it runs the Ste
 copy you already own; it doesn't sell, bundle, or pirate games.
 
 Your Steam client is native now. Here's the other half:
-[check which of your games run →](/mac/)
+[check which of your games run →](/mac/), or read [every way to play Windows games on a Mac](/how-to-play-windows-games-on-mac/).

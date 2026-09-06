@@ -7,8 +7,8 @@ order: 1
 ## The problem
 
 Apple Silicon Macs are fast, but games are built for Windows and DirectX, not macOS
-and Metal. Bridging that gap has always meant manual, fragile setup: compatibility
-layers, hand-built Wine bottles, virtual machines, partitions. It
+and Metal. Bridging that gap has always meant manual, fragile setup: [compatibility layers](/free-crossover-alternative/), hand-built Wine bottles,
+[virtual machines](/parallels-alternative/), partitions. It
 works sometimes, if you are willing to spend an evening on it.
 
 Pixel Port does that work for you, automatically, and proves the result.
@@ -38,7 +38,12 @@ launches on real hardware, not a guess.
 
 We grade every game honestly:
 
-- **Verified**: a human confirmed it end to end on a real Mac.
+- [**Verified**](/games/verified/): a human confirmed it end to end on a real Mac.
 - **Playable**: auto-tested or community-confirmed, not yet human-verified.
 - **Needs attention**: runs with caveats or a known workaround.
-- **Unsupported**: a hard blocker, such as kernel-level anti-cheat.
+- **Unsupported**: a hard blocker, such as [kernel-level anti-cheat](/games/anti-cheat/).
+
+Browse the [full catalogue](/games/) to see how a specific game is graded, or read
+[every way to play Windows games on a Mac](/how-to-play-windows-games-on-mac/) for how
+Pixel Port compares with CrossOver, Parallels, and Apple's toolkit. What changed in each
+version is in the [release notes](/releases/).

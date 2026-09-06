@@ -36,7 +36,7 @@ menu bar (Steam, then Quit Steam), then press Play again.
 
 ## The install fails, but I own the game on Steam
 
-A few games hit an error in our one-click installer. Megabonk is the one we know
+A few games hit an error in our one-click installer. [Megabonk](/games/megabonk/) is the one we know
 about. The workaround: click Open Steam inside Pixel Port, sign in, and install
 the game from the Library in that Steam window. Once it finishes there, Play
 works normally. A proper in-app fix is in progress.
@@ -56,7 +56,7 @@ cutscene.
 
 ## Skyrim Special Edition: music plays, but nobody speaks
 
-A known issue with Skyrim's voice audio. Update the app to 0.4.6 or newer, then
+A known issue with [Skyrim Special Edition](/games/skyrim-se/)'s voice audio. Update the app to 0.4.6 or newer, then
 press Play. The app repairs the install at launch, and you do not need to
 reinstall the game. The first launch after the update downloads an extra audio
 component (about 100 MB), so give it a few minutes. If dialogue is still silent
@@ -93,6 +93,7 @@ again. A fix for the false alarm is planned.
 
 ## Still stuck?
 
-Join our [Discord](https://discord.gg/2eQah8DjK6) and tell us what happened.
+First check the game's [compatibility grade](/games/): an unsupported game will not launch
+no matter what, and its page says why. Then join our [Discord](https://discord.gg/2eQah8DjK6) and tell us what happened.
 Your Mac model, the game, and what you saw on screen is usually enough for us
 to help.

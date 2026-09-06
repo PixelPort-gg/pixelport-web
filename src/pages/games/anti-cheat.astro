@@ -1,15 +1,47 @@
 ---
 import Base from '../../layouts/Base.astro';
 import catalogue from '../../data/catalogue.json';
+import curated from '../../data/games.resolved.json';
 import { prettyAC } from '../../lib/catalog';
 
 // Groups every blocked game by the anti-cheat that blocks it. This is the
 // honest answer to the most-asked Mac gaming question, backed by the same
 // data that grades the catalogue.
-const blocked = (catalogue as any[]).filter((e) => e.tier === 'unsupported');
+//
+// The raw field is not normalised ("Easy Anti-Cheat", "eac-kernel", "battleye",
+// "BattlEye", "Valve Anti-Cheat" / "VAC" …), so group by family: the first
+// well-known system named in the value decides the section.
+const FAMILIES: [RegExp, string][] = [
+  [/easy anti-cheat|\beac\b/i, 'Easy Anti-Cheat'],
+  [/battleye/i, 'BattlEye'],
+  [/vanguard/i, 'Riot Vanguard'],
+  [/xigncode/i, 'XIGNCODE3'],
+  [/gameguard/i, 'nProtect GameGuard'],
+  [/valve anti-cheat|\bvac\b/i, 'VAC'],
+  [/anti-cheat expert|\bace\b/i, 'Anti-Cheat Expert'],
+  [/ea anticheat|javelin/i, 'EA Javelin anticheat'],
+  [/ricochet/i, 'RICOCHET'],
+  [/x-trap/i, 'X-Trap'],
+  [/hackshield/i, 'AhnLab HackShield'],
+  [/punkbuster/i, 'PunkBuster'],
+  [/denuvo/i, 'Denuvo Anti-Cheat'],
+];
+const family = (raw: string | null) => {
+  if (!raw || /^(none|other|other-kernel)$/i.test(raw)) return 'Other kernel-level anti-cheat';
+  return FAMILIES.find(([re]) => re.test(raw))?.[1] ?? prettyAC(raw);
+};
+
+// The five hand-written blocker pages (Valorant, Fortnite, Apex …) live in the
+// curated set, not the catalogue, and used to be missing from this list.
+const blocked = [
+  ...(catalogue as any[]).filter((e) => e.tier === 'unsupported'),
+  ...(curated as any[])
+    .filter((g) => g.tier === 'unsupported' && !(catalogue as any[]).some((e) => e.slug === g.slug))
+    .map((g) => ({ slug: g.slug, title: g.title, appid: g.appid, tier: g.tier, antiCheat: g.blocker?.antiCheat ?? null })),
+];
 const groups = new Map<string, any[]>();
 for (const e of blocked) {
-  const key = prettyAC(e.antiCheat) === 'None' ? 'Other kernel-level anti-cheat' : prettyAC(e.antiCheat);
+  const key = family(e.antiCheat);
   if (!groups.has(key)) groups.set(key, []);
   groups.get(key)!.push(e);
 }
@@ -71,9 +103,9 @@ const jsonLd = {
       <a href="/games/" class="hover:text-fg">Games</a> <span class="px-1">/</span> Anti-cheat on Mac
     </nav>
 
-    <h1>The honest reason {fmt(blocked.length)} games won't run on your Mac.</h1>
+    <h1>Anti-cheat on Mac: the honest reason {fmt(blocked.length)} games won't run.</h1>
     <p class="ac-page__lede">
-      It is not your Mac. It is not the graphics. Every game on this page is blocked by
+      It is not your Mac. It is not the graphics. Every game on this page is blocked by{' '}
       <strong>kernel-level anti-cheat</strong>: software that must run deep inside Windows itself,
       at a level macOS does not expose to any compatibility layer. No tool can honestly work around
       it, and anyone who claims otherwise is selling something. Whether these games ever run on Mac

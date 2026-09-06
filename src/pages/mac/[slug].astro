@@ -18,6 +18,7 @@ import {
   ART_ONERROR,
   type CompatGame,
 } from '../../lib/compat';
+import { verdictNeighbours } from '../../lib/az';
 
 const NATIVE_MAC = new Set(nativeMacIds as number[]);
 const ENABLED = new Set(enabledAppids as number[]);
@@ -84,7 +85,12 @@ const picksHeading =
 
 const art = artChain(game.appid);
 const landscape = ogImage(game.appid);
-const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
+const year = new Date().getFullYear();
+// Exact query first; the year only when the whole title (plus the layout's
+// 13-char " · Pixel Port" suffix) still fits a 60-char snippet.
+const titleBase = `Does ${game.name} Run on Mac?`;
+const title = titleBase.length + 13 + ` (${year})`.length <= 60 ? `${titleBase} (${year})` : titleBase;
+const neighbours = verdictNeighbours(`${game.slug}-${game.appid}`);
 const description = isNativeMac
   ? nativeMetaDescription(game)
   : isPlayableButNotEnabled
@@ -243,6 +249,10 @@ const evidence =
           isNo ? (
             <section class="compat-section compat-section--first" aria-labelledby="reason-heading">
               <h2 id="reason-heading">Why it doesn’t run</h2>
+              <p class="compat-section__lede">
+                Kernel-level anti-cheat cannot run through any compatibility layer on macOS.{' '}
+                <a href="/games/anti-cheat/">See every game it blocks, and who can change it.</a>
+              </p>
               {game.reason ? (
                 <div class="compat-blocker-panel">
                   <span aria-hidden="true"></span>
@@ -285,6 +295,10 @@ const evidence =
                   </li>
                 ))}
               </ol>
+              <p class="compat-section__note">
+                Prefer CrossOver, Parallels, or cloud streaming? See{' '}
+                <a href="/how-to-play-windows-games-on-mac/">every way to play Windows games on a Mac</a>, compared honestly.
+              </p>
             </section>
           )
         }
@@ -322,6 +336,15 @@ const evidence =
               })
             }
           </ul>
+          <p class="compat-neighbours">
+            Nearby in the A–Z list:{' '}
+            {neighbours.map((n, i) => (
+              <>
+                <a href={n.href}>{n.title}</a>
+                {i < neighbours.length - 1 ? ' · ' : ''}
+              </>
+            ))}
+          </p>
           <a href="/mac/" class="compat-text-link">Browse all straight answers <span aria-hidden="true">→</span></a>
         </section>
       </div>
@@ -538,6 +561,9 @@ const evidence =
     .compat-picks a > p { overflow: hidden; margin-top: 0.55rem; color: var(--color-fg); font-size: 0.72rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
     .compat-picks a:hover img { transform: scale(1.035); }
     .compat-picks a:hover > p { color: var(--color-accent-2); }
+    .compat-section__note { margin-top: 1.4rem; color: var(--color-muted); font-size: 0.88rem; line-height: 1.6; }
+    .compat-section__note a, .compat-neighbours a, .compat-section__lede a { color: var(--color-accent-2); }
+    .compat-neighbours { margin-top: 1.1rem; color: var(--color-muted); font-size: 0.82rem; line-height: 1.7; }
     .compat-text-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 0.7rem; margin-top: 1.35rem; color: var(--color-accent-2); font-size: 0.82rem; font-weight: 650; }
 
     .compat-detail-rail__inner { position: sticky; top: 5.5rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.1rem; padding: 1.25rem; background: linear-gradient(145deg, rgba(31, 24, 56, 0.76), rgba(13, 10, 28, 0.82)); box-shadow: 0 1.8rem 4rem -3rem rgba(146, 104, 255, 0.6), inset 0 1px rgba(255, 255, 255, 0.05); backdrop-filter: blur(16px); }

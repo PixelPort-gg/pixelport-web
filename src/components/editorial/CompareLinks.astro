@@ -1,0 +1,24 @@
+---
+// Cross-links between the comparison pages and the method guide. Each of these
+// pages used to receive exactly one in-content link (from the guide) and link
+// to none of the others.
+const links = [
+  { href: '/how-to-play-windows-games-on-mac/', label: 'Every way to play Windows games on a Mac' },
+  { href: '/whisky-alternative/', label: 'Whisky alternative' },
+  { href: '/free-crossover-alternative/', label: 'Free CrossOver alternative' },
+  { href: '/parallels-alternative/', label: 'Parallels alternative for gaming' },
+  { href: '/game-porting-toolkit/', label: 'Game Porting Toolkit without the terminal' },
+  { href: '/games/anti-cheat/', label: 'Anti-cheat on Mac' },
+  { href: '/games/verified/', label: 'Games verified on Mac' },
+];
+const here = Astro.url.pathname.replace(/\/?$/, '/');
+---
+
+<nav class="mt-12 border-t border-line pt-6 text-sm" aria-label="Related comparisons">
+  <p class="text-muted">Also compare</p>
+  <ul class="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+    {links.filter((l) => l.href !== here).map((l) => (
+      <li><a href={l.href} class="text-accent-2 hover:underline">{l.label}</a></li>
+    ))}
+  </ul>
+</nav>
