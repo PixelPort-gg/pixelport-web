@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-06",
+ "fetched_at": "2026-09-07",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -638,7 +638,7 @@
    "appid": 397540,
    "slug": "borderlands-3",
    "name": "Borderlands 3",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3625248
   },
@@ -1038,7 +1038,7 @@
    "appid": 1113000,
    "slug": "persona-4-golden",
    "name": "Persona 4 Golden",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1576008
   },
@@ -1158,7 +1158,7 @@
    "appid": 460790,
    "slug": "bayonetta",
    "name": "Bayonetta",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1526797
   },
@@ -1574,7 +1574,7 @@
    "appid": 1190970,
    "slug": "house-flipper-2",
    "name": "House Flipper 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 361633
   },
