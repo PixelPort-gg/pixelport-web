@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-07",
+ "fetched_at": "2026-09-08",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -478,7 +478,7 @@
    "appid": 883710,
    "slug": "resident-evil-2-remake",
    "name": "Resident Evil 2 Remake",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7667647
   },
@@ -1254,7 +1254,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1515005
   },
