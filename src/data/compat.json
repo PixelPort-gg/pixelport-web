@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-08",
+ "fetched_at": "2026-09-09",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -806,7 +806,7 @@
    "appid": 2709570,
    "slug": "supermarket-together",
    "name": "Supermarket Together",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3563994
   },
@@ -942,7 +942,7 @@
    "appid": 2551020,
    "slug": "one-armed-robber",
    "name": "One-armed robber",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3535393
   },
