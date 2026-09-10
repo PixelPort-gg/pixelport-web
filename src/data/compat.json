@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-09",
+ "fetched_at": "2026-09-10",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -126,7 +126,7 @@
    "appid": 292030,
    "slug": "the-witcher-3-wild-hunt",
    "name": "The Witcher 3: Wild Hunt",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35802993
   },
@@ -145,6 +145,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 35630223
+  },
+  {
+   "appid": 242760,
+   "slug": "the-forest",
+   "name": "The Forest",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 35599805
   },
   {
    "appid": 1085660,
@@ -201,6 +209,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 15736611
+  },
+  {
+   "appid": 1174180,
+   "slug": "red-dead-redemption-2",
+   "name": "Red Dead Redemption 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 15676667
   },
   {
    "appid": 322330,
@@ -350,7 +366,7 @@
    "appid": 70,
    "slug": "half-life",
    "name": "Half-Life",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15143086
   },
@@ -521,6 +537,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7612414
+  },
+  {
+   "appid": 1604030,
+   "slug": "v-rising",
+   "name": "V Rising",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7606197
   },
   {
    "appid": 286690,
@@ -747,6 +771,14 @@
    "popularity": 3591745
   },
   {
+   "appid": 287700,
+   "slug": "metal-gear-solid-v-the-phantom-pain",
+   "name": "METAL GEAR SOLID V: The Phantom Pain",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3591675
+  },
+  {
    "appid": 613100,
    "slug": "house-flipper",
    "name": "House Flipper",
@@ -939,6 +971,14 @@
    "popularity": 3536530
   },
   {
+   "appid": 601510,
+   "slug": "yu-gi-oh-duel-links",
+   "name": "Yu-Gi-Oh! Duel Links",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3536345
+  },
+  {
    "appid": 2551020,
    "slug": "one-armed-robber",
    "name": "One-armed robber",
@@ -1073,6 +1113,22 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1552377
+  },
+  {
+   "appid": 1328670,
+   "slug": "mass-effect-legendary-edition",
+   "name": "Mass Effect Legendary Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1551295
+  },
+  {
+   "appid": 480490,
+   "slug": "prey",
+   "name": "Prey",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1546381
   },
   {
    "appid": 21690,
@@ -1243,6 +1299,14 @@
    "popularity": 1519266
   },
   {
+   "appid": 332950,
+   "slug": "dark-deception",
+   "name": "Dark Deception",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1518879
+  },
+  {
    "appid": 2680010,
    "slug": "the-first-berserker-khazan",
    "name": "The First Berserker: Khazan",
@@ -1257,6 +1321,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1515005
+  },
+  {
+   "appid": 670290,
+   "slug": "real-pool-3d-poolians",
+   "name": "Real Pool 3D - Poolians",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1513042
   },
   {
    "appid": 214510,
@@ -1281,6 +1353,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1510588
+  },
+  {
+   "appid": 410320,
+   "slug": "earth-defense-force-4-1-the-shadow-of-new-despair",
+   "name": "EARTH DEFENSE FORCE 4.1: The Shadow of New Despair",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1509554
   },
   {
    "appid": 34270,
@@ -1395,6 +1475,14 @@
    "popularity": 769536
   },
   {
+   "appid": 1158160,
+   "slug": "coral-island",
+   "name": "Coral Island",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 769184
+  },
+  {
    "appid": 521890,
    "slug": "hello-neighbor",
    "name": "Hello Neighbor",
@@ -1419,6 +1507,14 @@
    "popularity": 763512
   },
   {
+   "appid": 921570,
+   "slug": "octopath-traveler",
+   "name": "Octopath Traveler",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 763070
+  },
+  {
    "appid": 743450,
    "slug": "monster-prom",
    "name": "Monster Prom",
@@ -1433,6 +1529,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 762746
+  },
+  {
+   "appid": 2103140,
+   "slug": "magicraft",
+   "name": "Magicraft",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 762485
   },
   {
    "appid": 528230,
@@ -1497,6 +1601,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 758711
+  },
+  {
+   "appid": 427100,
+   "slug": "fernbus-simulator",
+   "name": "Fernbus Simulator",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 758322
   },
   {
    "appid": 1003590,
@@ -1569,6 +1681,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 364516
+  },
+  {
+   "appid": 1971650,
+   "slug": "octopath-traveler-ii",
+   "name": "Octopath Traveler II",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 362882
   },
   {
    "appid": 1190970,
@@ -1995,6 +2115,14 @@
    "popularity": 78366
   },
   {
+   "appid": 3314070,
+   "slug": "the-sims-2-legacy-collection",
+   "name": "The Sims 2 Legacy Collection",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 76891
+  },
+  {
    "appid": 2394650,
    "slug": "crypt-custodian",
    "name": "Crypt Custodian",
@@ -2209,6 +2337,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 35058
+  },
+  {
+   "appid": 2395760,
+   "slug": "magiccraft",
+   "name": "MagicCraft",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35052
   },
   {
    "appid": 1631500,
@@ -2781,7 +2917,7 @@
   {
    "appid": 254760,
    "slug": "empire-earth-gold-edition",
-   "name": "Empire Earth: Gold Edition",
+   "name": "Empire Earth Gold Edition",
    "tier": "untested",
    "reason": null,
    "popularity": 0
@@ -2886,6 +3022,22 @@
    "appid": 2870340,
    "slug": "decktamer",
    "name": "Decktamer",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3014320,
+   "slug": "octopath-traveler-0",
+   "name": "OCTOPATH TRAVELER 0",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3373500,
+   "slug": "scavland",
+   "name": "Scavland",
    "tier": "playable",
    "reason": null,
    "popularity": 0
