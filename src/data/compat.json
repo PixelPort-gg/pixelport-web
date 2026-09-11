@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-10",
+ "fetched_at": "2026-09-11",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -94,7 +94,7 @@
    "appid": 4000,
    "slug": "garrys-mod",
    "name": "Garry's Mod",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 36122546
   },
@@ -542,7 +542,7 @@
    "appid": 1604030,
    "slug": "v-rising",
    "name": "V Rising",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7606197
   },
@@ -774,7 +774,7 @@
    "appid": 287700,
    "slug": "metal-gear-solid-v-the-phantom-pain",
    "name": "METAL GEAR SOLID V: The Phantom Pain",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3591675
   },
@@ -966,7 +966,7 @@
    "appid": 42700,
    "slug": "call-of-duty-black-ops",
    "name": "Call of Duty: Black Ops",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3536530
   },
@@ -1126,7 +1126,7 @@
    "appid": 480490,
    "slug": "prey",
    "name": "Prey",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1546381
   },
@@ -1182,7 +1182,7 @@
    "appid": 1657630,
    "slug": "slime-rancher-2",
    "name": "Slime Rancher 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1531703
   },
@@ -1238,7 +1238,7 @@
    "appid": 1509960,
    "slug": "pico-park",
    "name": "Pico Park",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1525879
   },
@@ -1358,7 +1358,7 @@
    "appid": 410320,
    "slug": "earth-defense-force-4-1-the-shadow-of-new-despair",
    "name": "EARTH DEFENSE FORCE 4.1: The Shadow of New Despair",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1509554
   },
@@ -1510,7 +1510,7 @@
    "appid": 921570,
    "slug": "octopath-traveler",
    "name": "Octopath Traveler",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 763070
   },
