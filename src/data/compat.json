@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-11",
+ "fetched_at": "2026-09-12",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -230,7 +230,7 @@
    "appid": 1966720,
    "slug": "lethal-company",
    "name": "Lethal Company",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15473422
   },
