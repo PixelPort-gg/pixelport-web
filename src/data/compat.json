@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-12",
+ "fetched_at": "2026-09-13",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -766,7 +766,7 @@
    "appid": 2835570,
    "slug": "buckshot-roulette",
    "name": "Buckshot Roulette",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3591745
   },
@@ -1094,7 +1094,7 @@
    "appid": 638970,
    "slug": "yakuza-0",
    "name": "Yakuza 0",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1570292
   },
@@ -1326,7 +1326,7 @@
    "appid": 670290,
    "slug": "real-pool-3d-poolians",
    "name": "Real Pool 3D - Poolians",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1513042
   },
@@ -2118,7 +2118,7 @@
    "appid": 3314070,
    "slug": "the-sims-2-legacy-collection",
    "name": "The Sims 2 Legacy Collection",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 76891
   },
