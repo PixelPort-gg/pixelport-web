@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-13",
+ "fetched_at": "2026-09-14",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -870,7 +870,7 @@
    "appid": 17390,
    "slug": "spore",
    "name": "Spore",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3561124
   },
@@ -931,6 +931,14 @@
    "popularity": 3544449
   },
   {
+   "appid": 760160,
+   "slug": "vampire-the-masquerade-bloodhunt",
+   "name": "Vampire: The Masquerade - Bloodhunt",
+   "tier": "unsupported",
+   "reason": "Blocked by Easy Anti-Cheat, Anti-Cheat Expert: publisher refuses Wine/macOS; running risks a ban.",
+   "popularity": 3543433
+  },
+  {
    "appid": 200710,
    "slug": "torchlight-ii",
    "name": "Torchlight II",
@@ -958,7 +966,7 @@
    "appid": 312530,
    "slug": "duck-game",
    "name": "Duck Game",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3537172
   },
@@ -1331,6 +1339,14 @@
    "popularity": 1513042
   },
   {
+   "appid": 611790,
+   "slug": "house-party",
+   "name": "House Party",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1512922
+  },
+  {
    "appid": 214510,
    "slug": "lego-the-lord-of-the-rings",
    "name": "Lego The Lord of the Rings",
@@ -1505,6 +1521,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 763512
+  },
+  {
+   "appid": 2600,
+   "slug": "vampire-the-masquerade-bloodlines",
+   "name": "Vampire: The Masquerade - Bloodlines",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 763141
   },
   {
    "appid": 921570,
@@ -2814,7 +2838,7 @@
    "appid": 3892270,
    "slug": "gamble-with-your-friends",
    "name": "Gamble With Your Friends",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
