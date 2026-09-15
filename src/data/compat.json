@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-14",
+ "fetched_at": "2026-09-15",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -523,6 +523,14 @@
    "popularity": 7640260
   },
   {
+   "appid": 244210,
+   "slug": "assetto-corsa",
+   "name": "Assetto Corsa",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7640238
+  },
+  {
    "appid": 236850,
    "slug": "europa-universalis-iv",
    "name": "Europa Universalis IV",
@@ -998,7 +1006,7 @@
    "appid": 266840,
    "slug": "age-of-mythology-extended-edition",
    "name": "Age of Mythology: Extended Edition",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3532895
   },
@@ -1187,6 +1195,14 @@
    "popularity": 1534357
   },
   {
+   "appid": 1462040,
+   "slug": "final-fantasy-vii-remake-intergrade",
+   "name": "Final Fantasy VII Remake Intergrade",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1533079
+  },
+  {
    "appid": 1657630,
    "slug": "slime-rancher-2",
    "name": "Slime Rancher 2",
@@ -1342,7 +1358,7 @@
    "appid": 611790,
    "slug": "house-party",
    "name": "House Party",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1512922
   },
@@ -1505,6 +1521,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 766402
+  },
+  {
+   "appid": 2909400,
+   "slug": "final-fantasy-vii-rebirth",
+   "name": "FINAL FANTASY VII REBIRTH",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 765548
   },
   {
    "appid": 71250,
@@ -1710,7 +1734,7 @@
    "appid": 1971650,
    "slug": "octopath-traveler-ii",
    "name": "Octopath Traveler II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 362882
   },
@@ -2025,6 +2049,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 152230
+  },
+  {
+   "appid": 3059520,
+   "slug": "f1-25",
+   "name": "F1 25",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 151853
   },
   {
    "appid": 2653940,
@@ -2934,7 +2966,7 @@
    "appid": 1449850,
    "slug": "yu-gi-oh-master-duel",
    "name": "Yu-Gi-Oh! Master Duel",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
