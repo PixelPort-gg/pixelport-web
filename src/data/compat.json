@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-16",
+ "fetched_at": "2026-09-17",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -630,7 +630,7 @@
    "appid": 379430,
    "slug": "kingdom-come-deliverance",
    "name": "Kingdom Come: Deliverance",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3636446
   },
@@ -2174,7 +2174,7 @@
    "appid": 3243190,
    "slug": "psychopomp-gold",
    "name": "Psychopomp Gold",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 78366
   },
