@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-17",
+ "fetched_at": "2026-09-18",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1603,6 +1603,14 @@
    "popularity": 761971
   },
   {
+   "appid": 1147690,
+   "slug": "ngu-idle",
+   "name": "NGU IDLE",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 761564
+  },
+  {
    "appid": 1180660,
    "slug": "tell-me-why",
    "name": "Tell Me Why",
@@ -1686,7 +1694,7 @@
    "appid": 799960,
    "slug": "wizard101",
    "name": "Wizard101",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 756721
   },
@@ -2062,7 +2070,7 @@
    "appid": 3059520,
    "slug": "f1-25",
    "name": "F1 25",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 151853
   },
@@ -3103,6 +3111,14 @@
    "slug": "scavland",
    "name": "Scavland",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2413950,
+   "slug": "final-sentence",
+   "name": "Final Sentence",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
