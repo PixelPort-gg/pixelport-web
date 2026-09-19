@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-18",
+ "fetched_at": "2026-09-19",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1158,7 +1158,7 @@
    "appid": 21690,
    "slug": "resident-evil-5",
    "name": "Resident Evil 5",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1542807
   },
@@ -3118,7 +3118,7 @@
    "appid": 2413950,
    "slug": "final-sentence",
    "name": "Final Sentence",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
