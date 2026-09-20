@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-19",
+ "fetched_at": "2026-09-20",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -131,6 +131,14 @@
    "popularity": 35802993
   },
   {
+   "appid": 1086940,
+   "slug": "baldurs-gate-3",
+   "name": "Baldur's Gate 3",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35736688
+  },
+  {
    "appid": 945360,
    "slug": "among-us",
    "name": "Among Us",
@@ -230,9 +238,17 @@
    "appid": 1966720,
    "slug": "lethal-company",
    "name": "Lethal Company",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 15473422
+  },
+  {
+   "appid": 892970,
+   "slug": "valheim",
+   "name": "Valheim",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 15471451
   },
   {
    "appid": 221100,
@@ -281,6 +297,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 15256362
+  },
+  {
+   "appid": 10,
+   "slug": "counter-strike",
+   "name": "Counter-Strike",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 15243818
   },
   {
    "appid": 220,
@@ -419,6 +443,22 @@
    "popularity": 7890326
   },
   {
+   "appid": 250900,
+   "slug": "the-binding-of-isaac-rebirth",
+   "name": "The Binding of Isaac: Rebirth",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7834165
+  },
+  {
+   "appid": 548430,
+   "slug": "deep-rock-galactic",
+   "name": "Deep Rock Galactic",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7833587
+  },
+  {
    "appid": 284160,
    "slug": "beamng-drive",
    "name": "BeamNG.drive",
@@ -491,6 +531,14 @@
    "popularity": 7708042
   },
   {
+   "appid": 268910,
+   "slug": "cuphead",
+   "name": "Cuphead",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7679894
+  },
+  {
    "appid": 883710,
    "slug": "resident-evil-2-remake",
    "name": "Resident Evil 2 Remake",
@@ -526,7 +574,7 @@
    "appid": 244210,
    "slug": "assetto-corsa",
    "name": "Assetto Corsa",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7640238
   },
@@ -545,6 +593,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7612414
+  },
+  {
+   "appid": 1677740,
+   "slug": "stumble-guys",
+   "name": "Stumble Guys",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7608841
   },
   {
    "appid": 1604030,
@@ -593,6 +649,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 7574951
+  },
+  {
+   "appid": 3240220,
+   "slug": "grand-theft-auto-v-enhanced",
+   "name": "Grand Theft Auto V Enhanced",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7538595
   },
   {
    "appid": 2669320,
@@ -819,6 +883,14 @@
    "popularity": 3580427
   },
   {
+   "appid": 20920,
+   "slug": "the-witcher-2-assassins-of-kings",
+   "name": "The Witcher 2: Assassins of Kings",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3577950
+  },
+  {
    "appid": 12120,
    "slug": "grand-theft-auto-san-andreas",
    "name": "Grand Theft Auto: San Andreas",
@@ -833,6 +905,22 @@
    "tier": "verified",
    "reason": null,
    "popularity": 3574759
+  },
+  {
+   "appid": 20900,
+   "slug": "the-witcher",
+   "name": "The Witcher",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3573569
+  },
+  {
+   "appid": 1466860,
+   "slug": "age-of-empires-iv-anniversary-edition",
+   "name": "Age of Empires IV: Anniversary Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3569559
   },
   {
    "appid": 728880,
@@ -883,6 +971,14 @@
    "popularity": 3561124
   },
   {
+   "appid": 1145350,
+   "slug": "hades-ii",
+   "name": "Hades II",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 3560844
+  },
+  {
    "appid": 201270,
    "slug": "total-war-shogun-2",
    "name": "Total War: SHOGUN 2",
@@ -913,6 +1009,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3548180
+  },
+  {
+   "appid": 307780,
+   "slug": "mortal-kombat-x",
+   "name": "Mortal Kombat X",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3548077
   },
   {
    "appid": 645630,
@@ -971,6 +1075,14 @@
    "popularity": 3538392
   },
   {
+   "appid": 242920,
+   "slug": "banished",
+   "name": "Banished",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3538173
+  },
+  {
    "appid": 312530,
    "slug": "duck-game",
    "name": "Duck Game",
@@ -1003,6 +1115,14 @@
    "popularity": 3535393
   },
   {
+   "appid": 261640,
+   "slug": "borderlands-the-pre-sequel",
+   "name": "Borderlands: The Pre-Sequel",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3533577
+  },
+  {
    "appid": 266840,
    "slug": "age-of-mythology-extended-edition",
    "name": "Age of Mythology: Extended Edition",
@@ -1025,6 +1145,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3530730
+  },
+  {
+   "appid": 8980,
+   "slug": "borderlands-game-of-the-year",
+   "name": "Borderlands Game of the Year",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3528944
   },
   {
    "appid": 975370,
@@ -1206,7 +1334,7 @@
    "appid": 1462040,
    "slug": "final-fantasy-vii-remake-intergrade",
    "name": "Final Fantasy VII Remake Intergrade",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1533079
   },
@@ -1291,6 +1419,14 @@
    "popularity": 1524613
   },
   {
+   "appid": 1284410,
+   "slug": "gwent-the-witcher-card-game",
+   "name": "Gwent: The Witcher Card Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1524044
+  },
+  {
    "appid": 213610,
    "slug": "sonic-adventure-2",
    "name": "Sonic Adventure 2",
@@ -1321,6 +1457,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1521184
+  },
+  {
+   "appid": 729040,
+   "slug": "borderlands-game-of-the-year-enhanced",
+   "name": "Borderlands: Game of the Year Enhanced",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1520262
   },
   {
    "appid": 996580,
@@ -1547,6 +1691,14 @@
    "popularity": 765415
   },
   {
+   "appid": 973760,
+   "slug": "thronebreaker-the-witcher-tales",
+   "name": "Thronebreaker: The Witcher Tales",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 764782
+  },
+  {
    "appid": 1390350,
    "slug": "webbed",
    "name": "Webbed",
@@ -1643,6 +1795,14 @@
    "popularity": 760225
   },
   {
+   "appid": 1715130,
+   "slug": "crysis-remastered",
+   "name": "Crysis Remastered",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 759972
+  },
+  {
    "appid": 371970,
    "slug": "barony",
    "name": "Barony",
@@ -1699,12 +1859,28 @@
    "popularity": 756721
   },
   {
+   "appid": 24720,
+   "slug": "spore",
+   "name": "Spore",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 756439
+  },
+  {
    "appid": 2135150,
    "slug": "elin",
    "name": "Elin",
    "tier": "untested",
    "reason": null,
    "popularity": 756163
+  },
+  {
+   "appid": 1110910,
+   "slug": "mortal-shell",
+   "name": "Mortal Shell",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 755956
   },
   {
    "appid": 1009560,
@@ -2139,6 +2315,14 @@
    "popularity": 151205
   },
   {
+   "appid": 303800,
+   "slug": "the-witcher-adventure-game",
+   "name": "The Witcher Adventure Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 151029
+  },
+  {
    "appid": 2248430,
    "slug": "touhou-artificial-dream-in-arcadia",
    "name": "Touhou Artificial Dream in Arcadia",
@@ -2553,6 +2737,30 @@
    "tier": "unsupported",
    "reason": "Not a game - Steam software (tool/application).",
    "popularity": 10003
+  },
+  {
+   "appid": 1594560,
+   "slug": "chrome-switcher",
+   "name": "Chrome Switcher",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10002
+  },
+  {
+   "appid": 896940,
+   "slug": "switcher",
+   "name": "Switcher",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10001
+  },
+  {
+   "appid": 499450,
+   "slug": "the-witcher-3-wild-hunt-game-of-the-year-edition",
+   "name": "The Witcher 3: Wild Hunt Game of the Year Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10000
   },
   {
    "appid": 352000,
@@ -3119,6 +3327,38 @@
    "slug": "final-sentence",
    "name": "Final Sentence",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3669570,
+   "slug": "alchemy-factory",
+   "name": "Alchemy Factory",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 1285190,
+   "slug": "borderlands-4",
+   "name": "Borderlands 4",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2357570,
+   "slug": "overwatch",
+   "name": "Overwatch®",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 1030300,
+   "slug": "hollow-knight-silksong",
+   "name": "Hollow Knight: Silksong",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
