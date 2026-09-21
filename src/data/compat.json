@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-20",
+ "fetched_at": "2026-09-21",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -894,7 +894,7 @@
    "appid": 12120,
    "slug": "grand-theft-auto-san-andreas",
    "name": "Grand Theft Auto: San Andreas",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3576056
   },
@@ -1014,7 +1014,7 @@
    "appid": 307780,
    "slug": "mortal-kombat-x",
    "name": "Mortal Kombat X",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3548077
   },
@@ -1454,7 +1454,7 @@
    "appid": 837470,
    "slug": "untitled-goose-game",
    "name": "Untitled Goose Game",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1521184
   },
@@ -2115,6 +2115,14 @@
    "popularity": 352147
   },
   {
+   "appid": 33460,
+   "slug": "from-dust",
+   "name": "From Dust",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351917
+  },
+  {
    "appid": 1929870,
    "slug": "nomad-survival",
    "name": "Nomad Survival",
@@ -2155,6 +2163,14 @@
    "popularity": 350978
   },
   {
+   "appid": 2616460,
+   "slug": "dungeon-keeper-2",
+   "name": "Dungeon Keeper 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 350941
+  },
+  {
    "appid": 4704690,
    "slug": "meccha-chameleon",
    "name": "MECCHA CHAMELEON",
@@ -2166,7 +2182,7 @@
    "appid": 1574820,
    "slug": "until-then",
    "name": "Until Then",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 159622
   },
