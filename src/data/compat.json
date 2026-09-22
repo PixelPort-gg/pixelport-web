@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-21",
+ "fetched_at": "2026-09-22",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -238,7 +238,7 @@
    "appid": 1966720,
    "slug": "lethal-company",
    "name": "Lethal Company",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 15473422
   },
@@ -249,6 +249,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 15471451
+  },
+  {
+   "appid": 239140,
+   "slug": "dying-light",
+   "name": "Dying Light",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 15435687
   },
   {
    "appid": 221100,
@@ -822,7 +830,7 @@
    "appid": 1771300,
    "slug": "kingdom-come-deliverance-ii",
    "name": "Kingdom Come: Deliverance II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3596279
   },
@@ -883,6 +891,14 @@
    "popularity": 3580427
   },
   {
+   "appid": 235460,
+   "slug": "metal-gear-rising-revengeance",
+   "name": "Metal Gear Rising: Revengeance",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3579993
+  },
+  {
    "appid": 20920,
    "slug": "the-witcher-2-assassins-of-kings",
    "name": "The Witcher 2: Assassins of Kings",
@@ -921,6 +937,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3569559
+  },
+  {
+   "appid": 447040,
+   "slug": "watch-dogs-2",
+   "name": "Watch Dogs 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3568213
   },
   {
    "appid": 728880,
@@ -1291,6 +1315,14 @@
    "popularity": 1542807
   },
   {
+   "appid": 603850,
+   "slug": "age-of-history-ii",
+   "name": "Age of History II",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1541684
+  },
+  {
    "appid": 312520,
    "slug": "rain-world",
    "name": "Rain World",
@@ -1305,6 +1337,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 1539143
+  },
+  {
+   "appid": 692850,
+   "slug": "bloodstained-ritual-of-the-night",
+   "name": "Bloodstained: Ritual of the Night",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1536999
   },
   {
    "appid": 751780,
@@ -1555,6 +1595,14 @@
    "popularity": 1509533
   },
   {
+   "appid": 217200,
+   "slug": "worms-armageddon",
+   "name": "Worms Armageddon",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1509524
+  },
+  {
    "appid": 375480,
    "slug": "chronicon",
    "name": "Chronicon",
@@ -1643,6 +1691,14 @@
    "popularity": 775297
   },
   {
+   "appid": 493490,
+   "slug": "city-car-driving",
+   "name": "City Car Driving",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 774830
+  },
+  {
    "appid": 2142790,
    "slug": "fields-of-mistria",
    "name": "Fields of Mistria",
@@ -1681,6 +1737,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 765548
+  },
+  {
+   "appid": 1374490,
+   "slug": "runescape-dragonwilds",
+   "name": "RuneScape: Dragonwilds",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 765430
   },
   {
    "appid": 71250,
@@ -2081,6 +2145,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 353164
+  },
+  {
+   "appid": 1815570,
+   "slug": "aces-and-adventures",
+   "name": "Aces and Adventures",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 352807
   },
   {
    "appid": 32460,
@@ -2625,6 +2697,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 35031
+  },
+  {
+   "appid": 1488560,
+   "slug": "football-simulator",
+   "name": "Football Simulator",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10586
   },
   {
    "appid": 1140170,
