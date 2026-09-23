@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-22",
+ "fetched_at": "2026-09-23",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -238,7 +238,7 @@
    "appid": 1966720,
    "slug": "lethal-company",
    "name": "Lethal Company",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 15473422
   },
@@ -710,7 +710,7 @@
    "appid": 433340,
    "slug": "slime-rancher",
    "name": "Slime Rancher",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3635271
   },
@@ -1294,7 +1294,7 @@
    "appid": 1621690,
    "slug": "core-keeper",
    "name": "Core Keeper",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1551042
   },
@@ -1478,7 +1478,7 @@
    "appid": 1599600,
    "slug": "plateup",
    "name": "PlateUp!",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1522204
   },
@@ -1670,7 +1670,7 @@
    "appid": 427410,
    "slug": "abiotic-factor",
    "name": "Abiotic Factor",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 780157
   },
@@ -3430,7 +3430,7 @@
    "appid": 3669570,
    "slug": "alchemy-factory",
    "name": "Alchemy Factory",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
