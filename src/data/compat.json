@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-24",
+ "fetched_at": "2026-09-25",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -139,6 +139,14 @@
    "popularity": 35736688
   },
   {
+   "appid": 1091500,
+   "slug": "cyberpunk-2077",
+   "name": "Cyberpunk 2077",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35713071
+  },
+  {
    "appid": 945360,
    "slug": "among-us",
    "name": "Among Us",
@@ -187,6 +195,14 @@
    "popularity": 35385154
   },
   {
+   "appid": 291550,
+   "slug": "brawlhalla",
+   "name": "Brawlhalla",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 35314809
+  },
+  {
    "appid": 990080,
    "slug": "hogwarts-legacy",
    "name": "Hogwarts Legacy",
@@ -209,6 +225,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 35118511
+  },
+  {
+   "appid": 227300,
+   "slug": "euro-truck-simulator-2",
+   "name": "Euro Truck Simulator 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 15844480
   },
   {
    "appid": 739630,
@@ -443,6 +467,14 @@
    "popularity": 7903641
   },
   {
+   "appid": 322170,
+   "slug": "geometry-dash",
+   "name": "Geometry Dash",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7901026
+  },
+  {
    "appid": 374320,
    "slug": "dark-souls-iii",
    "name": "DARK SOULS III",
@@ -465,6 +497,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 7833587
+  },
+  {
+   "appid": 1172620,
+   "slug": "sea-of-thieves",
+   "name": "Sea of Thieves",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7817074
   },
   {
    "appid": 284160,
@@ -523,6 +563,14 @@
    "popularity": 7718763
   },
   {
+   "appid": 1144200,
+   "slug": "ready-or-not",
+   "name": "Ready or Not",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7710654
+  },
+  {
    "appid": 427520,
    "slug": "factorio",
    "name": "Factorio",
@@ -561,6 +609,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7665867
+  },
+  {
+   "appid": 1593500,
+   "slug": "god-of-war",
+   "name": "God of War",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7651706
   },
   {
    "appid": 12210,
@@ -675,6 +731,14 @@
    "popularity": 7537253
   },
   {
+   "appid": 1222140,
+   "slug": "detroit-become-human",
+   "name": "Detroit: Become Human",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3662047
+  },
+  {
    "appid": 281990,
    "slug": "stellaris",
    "name": "Stellaris",
@@ -755,6 +819,14 @@
    "popularity": 3624220
   },
   {
+   "appid": 208650,
+   "slug": "batman-arkham-knight",
+   "name": "Batman: Arkham Knight",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3624147
+  },
+  {
    "appid": 524220,
    "slug": "nier-automata",
    "name": "NieR: Automata",
@@ -803,6 +875,14 @@
    "popularity": 3614259
   },
   {
+   "appid": 1817070,
+   "slug": "marvels-spider-man-remastered",
+   "name": "Marvel’s Spider-Man Remastered",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3607786
+  },
+  {
    "appid": 387990,
    "slug": "scrap-mechanic",
    "name": "Scrap Mechanic",
@@ -817,6 +897,22 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3604010
+  },
+  {
+   "appid": 220240,
+   "slug": "far-cry-3",
+   "name": "Far Cry 3",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3601914
+  },
+  {
+   "appid": 1687950,
+   "slug": "persona-5-royal",
+   "name": "Persona 5 Royal",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3599657
   },
   {
    "appid": 335300,
@@ -841,6 +937,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 3593712
+  },
+  {
+   "appid": 1943950,
+   "slug": "escape-the-backrooms",
+   "name": "Escape the Backrooms",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3593330
   },
   {
    "appid": 2835570,
@@ -891,6 +995,14 @@
    "popularity": 3580427
   },
   {
+   "appid": 703080,
+   "slug": "planet-zoo",
+   "name": "Planet Zoo",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3580029
+  },
+  {
    "appid": 235460,
    "slug": "metal-gear-rising-revengeance",
    "name": "Metal Gear Rising: Revengeance",
@@ -931,6 +1043,14 @@
    "popularity": 3573569
   },
   {
+   "appid": 35140,
+   "slug": "batman-arkham-asylum-game-of-the-year-edition",
+   "name": "Batman: Arkham Asylum Game of the Year Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3570940
+  },
+  {
    "appid": 1466860,
    "slug": "age-of-empires-iv-anniversary-edition",
    "name": "Age of Empires IV: Anniversary Edition",
@@ -953,6 +1073,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3565992
+  },
+  {
+   "appid": 200260,
+   "slug": "batman-arkham-city",
+   "name": "Batman: Arkham City",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3565947
   },
   {
    "appid": 2709570,
@@ -1009,6 +1137,22 @@
    "tier": "unsupported",
    "reason": "Not a standalone game (dlc) - belongs to its base game.",
    "popularity": 3558839
+  },
+  {
+   "appid": 871720,
+   "slug": "ultimate-custom-night",
+   "name": "Ultimate Custom Night",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3555394
+  },
+  {
+   "appid": 209000,
+   "slug": "batman-arkham-origins",
+   "name": "Batman: Arkham Origins",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3551192
   },
   {
    "appid": 6060,
@@ -1323,6 +1467,14 @@
    "popularity": 1541684
   },
   {
+   "appid": 920210,
+   "slug": "lego-star-wars-the-skywalker-saga",
+   "name": "LEGO Star Wars: The Skywalker Saga",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1540865
+  },
+  {
    "appid": 312520,
    "slug": "rain-world",
    "name": "Rain World",
@@ -1411,6 +1563,14 @@
    "popularity": 1529891
   },
   {
+   "appid": 2322010,
+   "slug": "god-of-war-ragnar-k",
+   "name": "God of War Ragnarök",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1527127
+  },
+  {
    "appid": 460790,
    "slug": "bayonetta",
    "name": "Bayonetta",
@@ -1465,6 +1625,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1524044
+  },
+  {
+   "appid": 32440,
+   "slug": "lego-star-wars-the-complete-saga",
+   "name": "Lego Star Wars: The Complete Saga",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1523000
   },
   {
    "appid": 213610,
@@ -1523,6 +1691,14 @@
    "popularity": 1518879
   },
   {
+   "appid": 297000,
+   "slug": "heroes-of-might-and-magic-iii-hd-edition",
+   "name": "Heroes of Might and Magic III - HD Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1518085
+  },
+  {
    "appid": 2680010,
    "slug": "the-first-berserker-khazan",
    "name": "The First Berserker: Khazan",
@@ -1561,6 +1737,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1512822
+  },
+  {
+   "appid": 17480,
+   "slug": "command-amp-conquer-red-alert-3",
+   "name": "Command &amp; Conquer: Red Alert 3",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1512792
   },
   {
    "appid": 339340,
@@ -1609,6 +1793,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1508798
+  },
+  {
+   "appid": 352400,
+   "slug": "lego-jurassic-world",
+   "name": "Lego Jurassic World",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1508747
   },
   {
    "appid": 21130,
@@ -1742,7 +1934,7 @@
    "appid": 1374490,
    "slug": "runescape-dragonwilds",
    "name": "RuneScape: Dragonwilds",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 765430
   },
@@ -1761,6 +1953,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 764782
+  },
+  {
+   "appid": 498240,
+   "slug": "batman-the-telltale-series",
+   "name": "Batman - The Telltale Series",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 763757
   },
   {
    "appid": 1390350,
@@ -1843,6 +2043,14 @@
    "popularity": 761326
   },
   {
+   "appid": 21000,
+   "slug": "lego-batman-the-videogame",
+   "name": "Lego Batman: The Videogame",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 761083
+  },
+  {
    "appid": 1611600,
    "slug": "warno",
    "name": "WARNO",
@@ -1891,12 +2099,28 @@
    "popularity": 758711
   },
   {
+   "appid": 675260,
+   "slug": "batman-the-enemy-within-the-telltale-series",
+   "name": "Batman: The Enemy Within - The Telltale Series",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 758401
+  },
+  {
    "appid": 427100,
    "slug": "fernbus-simulator",
    "name": "Fernbus Simulator",
    "tier": "untested",
    "reason": null,
    "popularity": 758322
+  },
+  {
+   "appid": 313690,
+   "slug": "lego-batman-3-beyond-gotham",
+   "name": "Lego Batman 3: Beyond Gotham",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 757792
   },
   {
    "appid": 1003590,
@@ -2059,6 +2283,14 @@
    "popularity": 357014
   },
   {
+   "appid": 213330,
+   "slug": "lego-batman-2-dc-super-heroes",
+   "name": "Lego Batman 2: DC Super Heroes",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 356957
+  },
+  {
    "appid": 214730,
    "slug": "space-rangers-hd-a-war-apart",
    "name": "Space Rangers HD: A War Apart",
@@ -2139,6 +2371,14 @@
    "popularity": 353476
   },
   {
+   "appid": 1351080,
+   "slug": "pharaoh-a-new-era",
+   "name": "Pharaoh: A New Era",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 353396
+  },
+  {
    "appid": 1608640,
    "slug": "otxo",
    "name": "OTXO",
@@ -2203,6 +2443,14 @@
    "popularity": 351745
   },
   {
+   "appid": 566050,
+   "slug": "zeus-poseidon",
+   "name": "Zeus + Poseidon",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351691
+  },
+  {
    "appid": 940710,
    "slug": "colt-canyon",
    "name": "Colt Canyon",
@@ -2225,6 +2473,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 351451
+  },
+  {
+   "appid": 267490,
+   "slug": "batman-arkham-origins-blackgate-deluxe-edition",
+   "name": "Batman: Arkham Origins Blackgate Deluxe Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351178
   },
   {
    "appid": 225020,
@@ -2371,6 +2627,14 @@
    "popularity": 151610
   },
   {
+   "appid": 502820,
+   "slug": "batman-arkham-vr",
+   "name": "Batman: Arkham VR",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 151511
+  },
+  {
    "appid": 1022980,
    "slug": "ostranauts",
    "name": "Ostranauts",
@@ -2451,12 +2715,28 @@
    "popularity": 150303
   },
   {
+   "appid": 35010,
+   "slug": "batman-arkham-asylum-game-of-the-year-edition",
+   "name": "Batman: Arkham Asylum Game of the Year Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 96567
+  },
+  {
    "appid": 3243190,
    "slug": "psychopomp-gold",
    "name": "Psychopomp Gold",
    "tier": "playable",
    "reason": null,
    "popularity": 78366
+  },
+  {
+   "appid": 57400,
+   "slug": "batman-arkham-city",
+   "name": "Batman: Arkham City",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 77075
   },
   {
    "appid": 3314070,
@@ -2745,6 +3025,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 10203
+  },
+  {
+   "appid": 3013550,
+   "slug": "yu-gi-oh-early-days-collection",
+   "name": "Yu-Gi-Oh! EARLY DAYS COLLECTION",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10191
   },
   {
    "appid": 1417720,
@@ -3455,6 +3743,38 @@
    "slug": "hollow-knight-silksong",
    "name": "Hollow Knight: Silksong",
    "tier": "verified",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 200240,
+   "slug": "batman-arkham-city",
+   "name": "Batman: Arkham City",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 1962700,
+   "slug": "subnautica-2",
+   "name": "Subnautica 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3949040,
+   "slug": "rv-there-yet",
+   "name": "RV There Yet?",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2642680,
+   "slug": "half-sword-tech-demo",
+   "name": "Half Sword Tech Demo",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
