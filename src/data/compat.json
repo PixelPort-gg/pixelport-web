@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-25",
+ "fetched_at": "2026-09-26",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -262,7 +262,7 @@
    "appid": 1966720,
    "slug": "lethal-company",
    "name": "Lethal Company",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 15473422
   },
@@ -606,7 +606,7 @@
    "appid": 1229490,
    "slug": "ultrakill",
    "name": "ULTRAKILL",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7665867
   },
@@ -1118,7 +1118,7 @@
    "appid": 17390,
    "slug": "spore",
    "name": "Spore",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3561124
   },
@@ -1350,7 +1350,7 @@
    "appid": 630,
    "slug": "alien-swarm",
    "name": "Alien Swarm",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3520179
   },
@@ -1638,7 +1638,7 @@
    "appid": 213610,
    "slug": "sonic-adventure-2",
    "name": "Sonic Adventure 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1522711
   },
