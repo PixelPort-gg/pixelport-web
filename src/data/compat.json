@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-26",
+ "fetched_at": "2026-09-27",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -2110,7 +2110,7 @@
    "appid": 427100,
    "slug": "fernbus-simulator",
    "name": "Fernbus Simulator",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 758322
   },
@@ -3758,7 +3758,7 @@
    "appid": 1962700,
    "slug": "subnautica-2",
    "name": "Subnautica 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
