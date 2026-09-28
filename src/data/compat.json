@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-27",
+ "fetched_at": "2026-09-28",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -38,7 +38,7 @@
    "appid": 440,
    "slug": "team-fortress-2",
    "name": "Team Fortress 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 76044264
   },
@@ -81,6 +81,14 @@
    "tier": "unsupported",
    "reason": "EAC never opted into Wine/Proton by Amazon; easyanticheat_x64.so not packaged: terminates before engine init, game does not launch.",
    "popularity": 75143481
+  },
+  {
+   "appid": 105600,
+   "slug": "terraria",
+   "name": "Terraria",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 36373979
   },
   {
    "appid": 359550,
@@ -131,6 +139,14 @@
    "popularity": 35802993
   },
   {
+   "appid": 553850,
+   "slug": "helldivers-2",
+   "name": "HELLDIVERS 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35775883
+  },
+  {
    "appid": 1086940,
    "slug": "baldurs-gate-3",
    "name": "Baldur's Gate 3",
@@ -169,6 +185,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 35599805
+  },
+  {
+   "appid": 218620,
+   "slug": "payday-2",
+   "name": "Payday 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 35594327
   },
   {
    "appid": 1085660,
@@ -299,6 +323,14 @@
    "popularity": 15326054
   },
   {
+   "appid": 648800,
+   "slug": "raft",
+   "name": "Raft",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 15323198
+  },
+  {
    "appid": 814380,
    "slug": "sekiro-shadows-die-twice",
    "name": "Sekiro: Shadows Die Twice",
@@ -401,6 +433,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 15179154
+  },
+  {
+   "appid": 240,
+   "slug": "counter-strike-source",
+   "name": "Counter-Strike: Source",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 15175426
   },
   {
    "appid": 400,
@@ -558,7 +598,7 @@
    "appid": 22380,
    "slug": "fallout-new-vegas",
    "name": "Fallout: New Vegas",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7718763
   },
@@ -585,6 +625,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7708042
+  },
+  {
+   "appid": 700330,
+   "slug": "scp-secret-laboratory",
+   "name": "SCP: Secret Laboratory",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7695923
   },
   {
    "appid": 268910,
@@ -641,6 +689,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7640238
+  },
+  {
+   "appid": 2881650,
+   "slug": "content-warning",
+   "name": "Content Warning",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7637483
   },
   {
    "appid": 236850,
@@ -702,7 +758,7 @@
    "appid": 1721470,
    "slug": "poppy-playtime",
    "name": "Poppy Playtime",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7584113
   },
@@ -713,6 +769,22 @@
    "tier": "verified",
    "reason": null,
    "popularity": 7574951
+  },
+  {
+   "appid": 223710,
+   "slug": "cry-of-fear",
+   "name": "Cry of Fear",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7565852
+  },
+  {
+   "appid": 766570,
+   "slug": "russian-fishing-4",
+   "name": "Russian Fishing 4",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7539598
   },
   {
    "appid": 3240220,
@@ -729,6 +801,22 @@
    "tier": "unsupported",
    "reason": "Blocked by EA anticheat: publisher refuses Wine/macOS; running risks a ban.",
    "popularity": 7537253
+  },
+  {
+   "appid": 80,
+   "slug": "counter-strike-condition-zero",
+   "name": "Counter-Strike: Condition Zero",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7524271
+  },
+  {
+   "appid": 2630,
+   "slug": "call-of-duty-2",
+   "name": "Call of Duty 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7509804
   },
   {
    "appid": 1222140,
@@ -761,6 +849,22 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3650524
+  },
+  {
+   "appid": 1172380,
+   "slug": "star-wars-jedi-fallen-order",
+   "name": "Star Wars Jedi: Fallen Order",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3640485
+  },
+  {
+   "appid": 3590,
+   "slug": "plants-vs-zombies-goty-edition",
+   "name": "Plants vs. Zombies GOTY Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3636574
   },
   {
    "appid": 379430,
@@ -833,6 +937,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 3622027
+  },
+  {
+   "appid": 362890,
+   "slug": "black-mesa",
+   "name": "Black Mesa",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3621562
   },
   {
    "appid": 220200,
@@ -1019,6 +1131,14 @@
    "popularity": 3577950
   },
   {
+   "appid": 389730,
+   "slug": "tekken-7",
+   "name": "Tekken 7",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3577227
+  },
+  {
    "appid": 12120,
    "slug": "grand-theft-auto-san-andreas",
    "name": "Grand Theft Auto: San Andreas",
@@ -1081,6 +1201,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3565947
+  },
+  {
+   "appid": 588430,
+   "slug": "fallout-shelter",
+   "name": "Fallout Shelter",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3565847
   },
   {
    "appid": 2709570,
@@ -1339,6 +1467,14 @@
    "popularity": 3526997
   },
   {
+   "appid": 238010,
+   "slug": "deus-ex-human-revolution-directors-cut",
+   "name": "Deus Ex: Human Revolution - Director's Cut",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3525909
+  },
+  {
    "appid": 11020,
    "slug": "trackmania-nations-forever",
    "name": "TrackMania Nations Forever",
@@ -1353,6 +1489,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3520179
+  },
+  {
+   "appid": 211500,
+   "slug": "raceroom-racing-experience",
+   "name": "RaceRoom Racing Experience",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3517812
   },
   {
    "appid": 212500,
@@ -1419,6 +1563,22 @@
    "popularity": 1565599
   },
   {
+   "appid": 3146520,
+   "slug": "webfishing",
+   "name": "WEBFISHING",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1564473
+  },
+  {
+   "appid": 1888930,
+   "slug": "the-last-of-us-part-i",
+   "name": "The Last of Us Part I",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1563713
+  },
+  {
    "appid": 1384160,
    "slug": "guilty-gear-strive",
    "name": "Guilty Gear Strive",
@@ -1475,6 +1635,14 @@
    "popularity": 1540865
   },
   {
+   "appid": 2161700,
+   "slug": "persona-3-reload",
+   "name": "Persona 3 Reload",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1540182
+  },
+  {
    "appid": 312520,
    "slug": "rain-world",
    "name": "Rain World",
@@ -1529,6 +1697,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1533079
+  },
+  {
+   "appid": 2344520,
+   "slug": "diablo-iv",
+   "name": "Diablo IV",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1532969
   },
   {
    "appid": 1657630,
@@ -1619,6 +1795,14 @@
    "popularity": 1524613
   },
   {
+   "appid": 47780,
+   "slug": "dead-space-2",
+   "name": "Dead Space 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1524396
+  },
+  {
    "appid": 1284410,
    "slug": "gwent-the-witcher-card-game",
    "name": "Gwent: The Witcher Card Game",
@@ -1697,6 +1881,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1518085
+  },
+  {
+   "appid": 15100,
+   "slug": "assassins-creed",
+   "name": "Assassin's Creed",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1517822
   },
   {
    "appid": 2680010,
@@ -1910,7 +2102,7 @@
    "appid": 1158160,
    "slug": "coral-island",
    "name": "Coral Island",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 769184
   },
@@ -2291,6 +2483,14 @@
    "popularity": 356957
   },
   {
+   "appid": 3920,
+   "slug": "sid-meiers-pirates-2004",
+   "name": "Sid Meier's Pirates! (2004)",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 356520
+  },
+  {
    "appid": 214730,
    "slug": "space-rangers-hd-a-war-apart",
    "name": "Space Rangers HD: A War Apart",
@@ -2321,6 +2521,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 355503
+  },
+  {
+   "appid": 962400,
+   "slug": "granny",
+   "name": "Granny",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 355106
   },
   {
    "appid": 490110,
@@ -3526,7 +3734,7 @@
    "appid": 2337640,
    "slug": "pinball-fx-midnight",
    "name": "Pinball FX Midnight",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -3566,7 +3774,7 @@
    "appid": 2201320,
    "slug": "date-everything",
    "name": "Date Everything!",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -3614,7 +3822,7 @@
    "appid": 3293260,
    "slug": "waterpark-simulator",
    "name": "Waterpark Simulator",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -3775,6 +3983,46 @@
    "slug": "half-sword-tech-demo",
    "name": "Half Sword Tech Demo",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 714010,
+   "slug": "aimlabs",
+   "name": "Aimlabs",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4162040,
+   "slug": "zenless-zone-zero",
+   "name": "Zenless Zone Zero",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3103840,
+   "slug": "tcg-card-shop-simulator-prologue",
+   "name": "TCG Card Shop Simulator: Prologue",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3314790,
+   "slug": "cloverpit",
+   "name": "CloverPit",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3564740,
+   "slug": "where-winds-meet",
+   "name": "Where Winds Meet",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
