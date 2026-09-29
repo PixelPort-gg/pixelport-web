@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-28",
+ "fetched_at": "2026-09-29",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -305,6 +305,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 15435687
+  },
+  {
+   "appid": 108600,
+   "slug": "project-zomboid",
+   "name": "Project Zomboid",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 15355171
   },
   {
    "appid": 221100,
@@ -625,6 +633,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7708042
+  },
+  {
+   "appid": 1551360,
+   "slug": "forza-horizon-5",
+   "name": "Forza Horizon 5",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7699950
   },
   {
    "appid": 700330,
@@ -1118,7 +1134,7 @@
    "appid": 235460,
    "slug": "metal-gear-rising-revengeance",
    "name": "Metal Gear Rising: Revengeance",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3579993
   },
@@ -4022,6 +4038,14 @@
    "appid": 3564740,
    "slug": "where-winds-meet",
    "name": "Where Winds Meet",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2507950,
+   "slug": "delta-force",
+   "name": "Delta Force",
    "tier": "untested",
    "reason": null,
    "popularity": 0
