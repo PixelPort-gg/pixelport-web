@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-29",
+ "fetched_at": "2026-09-30",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1078,7 +1078,7 @@
    "appid": 2835570,
    "slug": "buckshot-roulette",
    "name": "Buckshot Roulette",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 3591745
   },
@@ -1958,7 +1958,7 @@
    "appid": 339340,
    "slug": "resident-evil-zero-hd-remaster",
    "name": "Resident Evil Zero HD Remaster",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1511048
   },
@@ -1990,7 +1990,7 @@
    "appid": 217200,
    "slug": "worms-armageddon",
    "name": "Worms Armageddon",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1509524
   },
@@ -3870,7 +3870,7 @@
    "appid": 3105440,
    "slug": "heroes-of-might-and-magic-olden-era",
    "name": "Heroes of Might and Magic: Olden Era",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
