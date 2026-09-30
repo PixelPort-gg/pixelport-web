@@ -988,5 +988,65 @@
    }
   ],
   "lastTested": "2026-08-10"
+ },
+ {
+  "slug": "dss-2-war-industry",
+  "title": "DSS 2: War Industry",
+  "appid": 3582440,
+  "tier": "verified",
+  "genre": "Grand strategy",
+  "art": {
+   "cover": "/art/dss-2-war-industry-cover.jpg",
+   "header": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3582440/76bb70f626a3efba1167e6277d3413b490801f84/header.jpg"
+  },
+  "summary": "DSS 2: War Industry was verified on Apple Silicon through Pixel Port in our August 12, 2026 test. We tested the full game on a real Mac with keys supplied by the developer, and it ran cleanly on its OpenGL path with nothing to configure. That test did not cover the 64-player multiplayer update.",
+  "requirements": [
+   "DSS 2: War Industry, owned on your own Steam account (there is also a free demo)",
+   "Apple Silicon (M1 or newer)",
+   "macOS 14+"
+  ],
+  "steps": [
+   {
+    "title": "Install Pixel Port",
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
+   },
+   {
+    "title": "Add DSS 2: War Industry",
+    "body": "Find DSS 2: War Industry in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically. Not sure yet? There is also a free demo."
+   },
+   {
+    "title": "Play",
+    "body": "Launch it from your Library. It starts straight into the game and saves your progress normally."
+   }
+  ],
+  "lastTested": "2026-08-12"
+ },
+ {
+  "slug": "party-jousting",
+  "title": "Party Jousting",
+  "appid": 437900,
+  "tier": "playable",
+  "genre": "Party",
+  "summary": "Party Jousting is a free one-button party game for 2 to 16 players on one keyboard or controllers. We played it on a real Mac through Pixel Port on August 12, 2026. The Windows build we tested was missing the .NET runtime it expected and needed an additional fix on our side, so we keep that startup caveat visible alongside its Playable grade.",
+  "requirements": [
+   "A Steam account (Party Jousting is free)",
+   "Apple Silicon (M1 or newer)",
+   "macOS 14+"
+  ],
+  "steps": [
+   {
+    "title": "Install Pixel Port",
+    "body": "Download Pixel Port and let it set up the runtime on first launch."
+   },
+   {
+    "title": "Add Party Jousting",
+    "body": "Find Party Jousting in the catalogue and hit Install & Play. It is free on Steam, so there is nothing to buy first."
+   },
+   {
+    "title": "Grab some friends",
+    "body": "It is a couch game: 2 to 16 players share one keyboard or controllers. One button each is all it takes."
+   }
+  ],
+  "lastTested": "2026-08-12"
  }
 ]
