@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-09-30",
+ "fetched_at": "2026-10-01",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -390,7 +390,7 @@
    "appid": 261550,
    "slug": "mount-blade-ii-bannerlord",
    "name": "Mount & Blade II: Bannerlord",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15232360
   },
@@ -3774,7 +3774,7 @@
    "appid": 1422450,
    "slug": "deadlock",
    "name": "Deadlock",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
