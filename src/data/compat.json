@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-01",
+ "fetched_at": "2026-10-02",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -86,7 +86,7 @@
    "appid": 105600,
    "slug": "terraria",
    "name": "Terraria",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 36373979
   },
@@ -390,7 +390,7 @@
    "appid": 261550,
    "slug": "mount-blade-ii-bannerlord",
    "name": "Mount & Blade II: Bannerlord",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 15232360
   },
@@ -595,12 +595,36 @@
    "popularity": 7800915
   },
   {
+   "appid": 275850,
+   "slug": "no-mans-sky",
+   "name": "No Man's Sky",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7793332
+  },
+  {
    "appid": 632360,
    "slug": "risk-of-rain-2",
    "name": "Risk of Rain 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7793127
+  },
+  {
+   "appid": 1118200,
+   "slug": "people-playground",
+   "name": "People Playground",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7777746
+  },
+  {
+   "appid": 203160,
+   "slug": "tomb-raider-2013",
+   "name": "Tomb Raider (2013)",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7738239
   },
   {
    "appid": 22380,
@@ -657,6 +681,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 7679894
+  },
+  {
+   "appid": 2050650,
+   "slug": "resident-evil-4",
+   "name": "Resident Evil 4",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7677539
   },
   {
    "appid": 883710,
@@ -745,6 +777,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7606197
+  },
+  {
+   "appid": 424840,
+   "slug": "little-nightmares",
+   "name": "Little Nightmares",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7604472
   },
   {
    "appid": 286690,
@@ -1078,7 +1118,7 @@
    "appid": 2835570,
    "slug": "buckshot-roulette",
    "name": "Buckshot Roulette",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3591745
   },
@@ -1283,6 +1323,14 @@
    "popularity": 3558839
   },
   {
+   "appid": 403640,
+   "slug": "dishonored-2",
+   "name": "Dishonored 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3556155
+  },
+  {
    "appid": 871720,
    "slug": "ultimate-custom-night",
    "name": "Ultimate Custom Night",
@@ -1307,12 +1355,28 @@
    "popularity": 3550396
   },
   {
+   "appid": 204100,
+   "slug": "max-payne-3",
+   "name": "Max Payne 3",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3549420
+  },
+  {
    "appid": 319510,
    "slug": "five-nights-at-freddys",
    "name": "Five Nights at Freddy's",
    "tier": "playable",
    "reason": null,
    "popularity": 3548831
+  },
+  {
+   "appid": 33230,
+   "slug": "assassins-creed-ii",
+   "name": "Assassin's Creed II",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3548815
   },
   {
    "appid": 2567870,
@@ -1377,6 +1441,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3541078
+  },
+  {
+   "appid": 949230,
+   "slug": "cities-skylines-ii",
+   "name": "Cities: Skylines II",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3538697
   },
   {
    "appid": 3070070,
@@ -1635,6 +1707,14 @@
    "popularity": 1542807
   },
   {
+   "appid": 1017180,
+   "slug": "the-long-drive",
+   "name": "The Long Drive",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1542761
+  },
+  {
    "appid": 603850,
    "slug": "age-of-history-ii",
    "name": "Age of History II",
@@ -1643,12 +1723,28 @@
    "popularity": 1541684
   },
   {
+   "appid": 933110,
+   "slug": "age-of-empires-iii-definitive-edition",
+   "name": "Age of Empires III: Definitive Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1540941
+  },
+  {
    "appid": 920210,
    "slug": "lego-star-wars-the-skywalker-saga",
    "name": "LEGO Star Wars: The Skywalker Saga",
    "tier": "playable",
    "reason": null,
    "popularity": 1540865
+  },
+  {
+   "appid": 1817190,
+   "slug": "marvels-spider-man-miles-morales",
+   "name": "Marvel’s Spider-Man: Miles Morales",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1540722
   },
   {
    "appid": 2161700,
@@ -1718,7 +1814,7 @@
    "appid": 2344520,
    "slug": "diablo-iv",
    "name": "Diablo IV",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1532969
   },
@@ -1785,6 +1881,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1525998
+  },
+  {
+   "appid": 585420,
+   "slug": "trailmakers",
+   "name": "Trailmakers",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1525941
   },
   {
    "appid": 1509960,
@@ -1867,6 +1971,14 @@
    "popularity": 1521184
   },
   {
+   "appid": 48190,
+   "slug": "assassins-creed-brotherhood",
+   "name": "Assassin's Creed: Brotherhood",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1520484
+  },
+  {
    "appid": 729040,
    "slug": "borderlands-game-of-the-year-enhanced",
    "name": "Borderlands: Game of the Year Enhanced",
@@ -1905,6 +2017,30 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1517822
+  },
+  {
+   "appid": 1476970,
+   "slug": "idleon",
+   "name": "IdleOn",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1517310
+  },
+  {
+   "appid": 257850,
+   "slug": "hyper-light-drifter",
+   "name": "Hyper Light Drifter",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1516617
+  },
+  {
+   "appid": 228200,
+   "slug": "company-of-heroes",
+   "name": "Company of Heroes",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1516025
   },
   {
    "appid": 2680010,
@@ -1953,6 +2089,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1512792
+  },
+  {
+   "appid": 1672970,
+   "slug": "minecraft-dungeons",
+   "name": "Minecraft Dungeons",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1512725
   },
   {
    "appid": 339340,
@@ -2099,6 +2243,14 @@
    "popularity": 774830
   },
   {
+   "appid": 1040200,
+   "slug": "crime-scene-cleaner",
+   "name": "Crime Scene Cleaner",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 771567
+  },
+  {
    "appid": 2142790,
    "slug": "fields-of-mistria",
    "name": "Fields of Mistria",
@@ -2121,6 +2273,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 769184
+  },
+  {
+   "appid": 1761390,
+   "slug": "hatsune-miku-project-diva-mega-mix",
+   "name": "Hatsune Miku: Project DIVA Mega Mix+",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 767905
   },
   {
    "appid": 521890,
@@ -2259,6 +2419,14 @@
    "popularity": 761083
   },
   {
+   "appid": 3480,
+   "slug": "peggle-deluxe",
+   "name": "Peggle Deluxe",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 760634
+  },
+  {
    "appid": 1611600,
    "slug": "warno",
    "name": "WARNO",
@@ -2331,6 +2499,14 @@
    "popularity": 757792
   },
   {
+   "appid": 24790,
+   "slug": "command-amp-conquer-3-tiberium-wars",
+   "name": "Command &amp; Conquer 3: Tiberium Wars",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 757649
+  },
+  {
    "appid": 1003590,
    "slug": "tetris-effect-connected",
    "name": "Tetris Effect: Connected",
@@ -2387,12 +2563,28 @@
    "popularity": 755644
   },
   {
+   "appid": 32360,
+   "slug": "the-secret-of-monkey-island-special-edition",
+   "name": "The Secret of Monkey Island: Special Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 755529
+  },
+  {
    "appid": 442120,
    "slug": "pinball-fx3",
    "name": "Pinball FX3",
    "tier": "untested",
    "reason": null,
    "popularity": 754553
+  },
+  {
+   "appid": 24800,
+   "slug": "command-amp-conquer-red-alert-3-uprising",
+   "name": "Command &amp; Conquer: Red Alert 3 - Uprising",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 754450
   },
   {
    "appid": 1656780,
@@ -2409,6 +2601,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 754237
+  },
+  {
+   "appid": 13600,
+   "slug": "prince-of-persia-the-sands-of-time",
+   "name": "Prince of Persia: The Sands of Time",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 753844
   },
   {
    "appid": 1239690,
@@ -2465,6 +2665,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 357921
+  },
+  {
+   "appid": 292000,
+   "slug": "no-more-room-in-hell-2",
+   "name": "No More Room in Hell 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 357885
   },
   {
    "appid": 2920570,
@@ -2547,6 +2755,14 @@
    "popularity": 355106
   },
   {
+   "appid": 24810,
+   "slug": "command-amp-conquer-3-tiberium-wars",
+   "name": "Command &amp; Conquer 3: Tiberium Wars",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 354778
+  },
+  {
    "appid": 490110,
    "slug": "the-precinct",
    "name": "The Precinct",
@@ -2619,6 +2835,14 @@
    "popularity": 352807
   },
   {
+   "appid": 19980,
+   "slug": "prince-of-persia-2008",
+   "name": "Prince of Persia (2008)",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 352730
+  },
+  {
    "appid": 32460,
    "slug": "monkey-island-2-special-edition-lechucks-revenge",
    "name": "Monkey Island 2 Special Edition: LeChuck's Revenge",
@@ -2673,6 +2897,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 351691
+  },
+  {
+   "appid": 345260,
+   "slug": "medieval-total-war",
+   "name": "Medieval: Total War",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351574
   },
   {
    "appid": 940710,
@@ -2838,7 +3070,7 @@
    "appid": 3431040,
    "slug": "thats-not-my-neighbor",
    "name": "That's Not My Neighbor",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 151746
   },
@@ -4046,6 +4278,14 @@
    "appid": 2507950,
    "slug": "delta-force",
    "name": "Delta Force",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3513350,
+   "slug": "wuthering-waves",
+   "name": "Wuthering Waves",
    "tier": "untested",
    "reason": null,
    "popularity": 0
