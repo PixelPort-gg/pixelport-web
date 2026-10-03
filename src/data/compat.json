@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-02",
+ "fetched_at": "2026-10-03",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1131,6 +1131,14 @@
    "popularity": 3591675
   },
   {
+   "appid": 1643320,
+   "slug": "s-t-a-l-k-e-r-2-heart-of-chornobyl",
+   "name": "S.T.A.L.K.E.R. 2: Heart of Chornobyl",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3591274
+  },
+  {
    "appid": 613100,
    "slug": "house-flipper",
    "name": "House Flipper",
@@ -1342,7 +1350,7 @@
    "appid": 209000,
    "slug": "batman-arkham-origins",
    "name": "Batman: Arkham Origins",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3551192
   },
@@ -1374,7 +1382,7 @@
    "appid": 33230,
    "slug": "assassins-creed-ii",
    "name": "Assassin's Creed II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3548815
   },
@@ -1822,7 +1830,7 @@
    "appid": 1657630,
    "slug": "slime-rancher-2",
    "name": "Slime Rancher 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1531703
   },
@@ -2054,7 +2062,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1515005
   },
