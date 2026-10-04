@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-03",
+ "fetched_at": "2026-10-04",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -422,7 +422,7 @@
    "appid": 3164500,
    "slug": "schedule-i",
    "name": "Schedule I",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15200803
   },
@@ -1438,7 +1438,7 @@
    "appid": 200710,
    "slug": "torchlight-ii",
    "name": "Torchlight II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3541131
   },
@@ -1590,7 +1590,7 @@
    "appid": 211500,
    "slug": "raceroom-racing-experience",
    "name": "RaceRoom Racing Experience",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3517812
   },
@@ -2766,7 +2766,7 @@
    "appid": 24810,
    "slug": "command-amp-conquer-3-tiberium-wars",
    "name": "Command &amp; Conquer 3: Tiberium Wars",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 354778
   },
@@ -2785,6 +2785,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 354299
+  },
+  {
+   "appid": 411370,
+   "slug": "melty-blood-actress-again-current-code",
+   "name": "Melty Blood Actress Again Current Code",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 354248
   },
   {
    "appid": 1304680,
