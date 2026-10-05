@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-04",
+ "fetched_at": "2026-10-05",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -558,7 +558,7 @@
    "appid": 284160,
    "slug": "beamng-drive",
    "name": "BeamNG.drive",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7813873
   },
@@ -982,7 +982,7 @@
    "appid": 208650,
    "slug": "batman-arkham-knight",
    "name": "Batman: Arkham Knight",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3624147
   },
@@ -1065,6 +1065,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3604010
+  },
+  {
+   "appid": 219150,
+   "slug": "hotline-miami",
+   "name": "Hotline Miami",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3603599
   },
   {
    "appid": 220240,
@@ -1249,6 +1257,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3568213
+  },
+  {
+   "appid": 213670,
+   "slug": "south-park-the-stick-of-truth",
+   "name": "South Park: The Stick of Truth",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3566636
   },
   {
    "appid": 728880,
@@ -1587,6 +1603,14 @@
    "popularity": 3520179
   },
   {
+   "appid": 1284210,
+   "slug": "guild-wars-2",
+   "name": "Guild Wars 2®",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3519151
+  },
+  {
    "appid": 211500,
    "slug": "raceroom-racing-experience",
    "name": "RaceRoom Racing Experience",
@@ -1798,7 +1822,7 @@
    "appid": 787480,
    "slug": "phoenix-wright-ace-attorney-trilogy",
    "name": "Phoenix Wright: Ace Attorney Trilogy",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1536370
   },
@@ -1849,6 +1873,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1531223
+  },
+  {
+   "appid": 668580,
+   "slug": "atomic-heart",
+   "name": "Atomic Heart",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1531167
   },
   {
    "appid": 1213210,
@@ -1905,6 +1937,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1525879
+  },
+  {
+   "appid": 460920,
+   "slug": "steep",
+   "name": "Steep",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1525437
   },
   {
    "appid": 249130,
@@ -2177,6 +2217,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1506527
+  },
+  {
+   "appid": 2552430,
+   "slug": "kingdom-hearts-hd-1-5-2-5-remix",
+   "name": "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1506361
   },
   {
    "appid": 41500,
@@ -3211,6 +3259,14 @@
    "popularity": 77075
   },
   {
+   "appid": 2427410,
+   "slug": "s-t-a-l-k-e-r-shadow-of-chornobyl-enhanced-edition",
+   "name": "S.T.A.L.K.E.R.: Shadow of Chornobyl - Enhanced Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 77068
+  },
+  {
    "appid": 3314070,
    "slug": "the-sims-2-legacy-collection",
    "name": "The Sims 2 Legacy Collection",
@@ -3233,6 +3289,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 76374
+  },
+  {
+   "appid": 2674590,
+   "slug": "beltmatic",
+   "name": "Beltmatic",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 76354
   },
   {
    "appid": 3463050,
@@ -3561,6 +3625,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 10031
+  },
+  {
+   "appid": 1698690,
+   "slug": "automation",
+   "name": "Automation",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10029
   },
   {
    "appid": 694990,
@@ -4110,7 +4182,7 @@
    "appid": 3180070,
    "slug": "no-im-not-a-human",
    "name": "No, I'm Not a Human",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -4302,6 +4374,30 @@
    "appid": 3513350,
    "slug": "wuthering-waves",
    "name": "Wuthering Waves",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4197610,
+   "slug": "librarian-tidy-up-the-arcane-library",
+   "name": "Librarian: Tidy Up the Arcane Library!",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2444750,
+   "slug": "shape-of-dreams",
+   "name": "Shape of Dreams",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2592160,
+   "slug": "dispatch-2025",
+   "name": "Dispatch (2025)",
    "tier": "untested",
    "reason": null,
    "popularity": 0
