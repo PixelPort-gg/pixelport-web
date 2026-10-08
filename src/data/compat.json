@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-07",
+ "fetched_at": "2026-10-08",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -230,7 +230,7 @@
    "appid": 990080,
    "slug": "hogwarts-legacy",
    "name": "Hogwarts Legacy",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35289966
   },
@@ -1022,7 +1022,7 @@
    "appid": 570940,
    "slug": "dark-souls-remastered",
    "name": "Dark Souls: Remastered",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3619152
   },
@@ -1963,6 +1963,14 @@
    "popularity": 1525437
   },
   {
+   "appid": 1066780,
+   "slug": "transport-fever-2",
+   "name": "Transport Fever 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1524960
+  },
+  {
    "appid": 249130,
    "slug": "lego-marvel-super-heroes",
    "name": "Lego Marvel Super Heroes",
@@ -2649,6 +2657,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 754553
+  },
+  {
+   "appid": 1243830,
+   "slug": "overcooked-all-you-can-eat",
+   "name": "Overcooked! All You Can Eat",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 754457
   },
   {
    "appid": 24800,
@@ -3427,6 +3443,14 @@
    "popularity": 75108
   },
   {
+   "appid": 1726190,
+   "slug": "no-straight-roads",
+   "name": "No Straight Roads",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 36559
+  },
+  {
    "appid": 2552450,
    "slug": "kingdom-hearts-iii",
    "name": "Kingdom Hearts III",
@@ -3470,7 +3494,7 @@
    "appid": 2014380,
    "slug": "live-a-live",
    "name": "Live A Live",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35588
   },
