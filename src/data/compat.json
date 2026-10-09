@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-08",
+ "fetched_at": "2026-10-09",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1798,7 +1798,7 @@
    "appid": 2161700,
    "slug": "persona-3-reload",
    "name": "Persona 3 Reload",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1540182
   },
@@ -2014,7 +2014,7 @@
    "appid": 213610,
    "slug": "sonic-adventure-2",
    "name": "Sonic Adventure 2",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 1522711
   },
@@ -2718,7 +2718,7 @@
    "appid": 1190970,
    "slug": "house-flipper-2",
    "name": "House Flipper 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 361633
   },
@@ -3446,7 +3446,7 @@
    "appid": 1726190,
    "slug": "no-straight-roads",
    "name": "No Straight Roads",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 36559
   },
@@ -3910,7 +3910,7 @@
    "appid": 2771670,
    "slug": "psychopomp",
    "name": "Psychopomp",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -4214,7 +4214,7 @@
    "appid": 2707930,
    "slug": "palia",
    "name": "Palia",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -4335,6 +4335,14 @@
    "slug": "hollow-knight-silksong",
    "name": "Hollow Knight: Silksong",
    "tier": "verified",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3624140,
+   "slug": "wanderburg",
+   "name": "Wanderburg",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
