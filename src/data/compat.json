@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-09",
+ "fetched_at": "2026-10-10",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -342,7 +342,7 @@
    "appid": 814380,
    "slug": "sekiro-shadows-die-twice",
    "name": "Sekiro: Shadows Die Twice",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15307041
   },
@@ -731,14 +731,6 @@
    "popularity": 7640260
   },
   {
-   "appid": 244210,
-   "slug": "assetto-corsa",
-   "name": "Assetto Corsa",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 7640238
-  },
-  {
    "appid": 2881650,
    "slug": "content-warning",
    "name": "Content Warning",
@@ -822,7 +814,7 @@
    "appid": 241930,
    "slug": "middle-earth-shadow-of-mordor",
    "name": "Middle-earth: Shadow of Mordor",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7583849
   },
@@ -1366,7 +1358,7 @@
    "appid": 871720,
    "slug": "ultimate-custom-night",
    "name": "Ultimate Custom Night",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3555394
   },
@@ -2126,7 +2118,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 1515005
   },
@@ -2270,7 +2262,7 @@
    "appid": 376210,
    "slug": "the-isle",
    "name": "The Isle",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 827185
   },
@@ -4326,7 +4318,7 @@
    "appid": 2357570,
    "slug": "overwatch",
    "name": "Overwatch®",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -4455,6 +4447,14 @@
    "slug": "dispatch-2025",
    "name": "Dispatch (2025)",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3393110,
+   "slug": "aion-2",
+   "name": "AION 2",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
