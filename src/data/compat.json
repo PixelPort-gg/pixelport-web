@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-10",
+ "fetched_at": "2026-10-11",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1198,7 +1198,7 @@
    "appid": 20920,
    "slug": "the-witcher-2-assassins-of-kings",
    "name": "The Witcher 2: Assassins of Kings",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3577950
   },
@@ -1518,7 +1518,7 @@
    "appid": 2551020,
    "slug": "one-armed-robber",
    "name": "One-armed robber",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3535393
   },
@@ -2118,7 +2118,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 1515005
   },
@@ -2862,7 +2862,7 @@
    "appid": 411370,
    "slug": "melty-blood-actress-again-current-code",
    "name": "Melty Blood Actress Again Current Code",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 354248
   },
@@ -3446,7 +3446,7 @@
    "appid": 2552450,
    "slug": "kingdom-hearts-iii",
    "name": "Kingdom Hearts III",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 36420
   },
@@ -4454,7 +4454,7 @@
    "appid": 3393110,
    "slug": "aion-2",
    "name": "AION 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
