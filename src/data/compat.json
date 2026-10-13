@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-12",
+ "fetched_at": "2026-10-13",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -262,7 +262,7 @@
    "appid": 739630,
    "slug": "phasmophobia",
    "name": "Phasmophobia",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15736611
   },
@@ -1651,6 +1651,14 @@
    "popularity": 3500662
   },
   {
+   "appid": 516750,
+   "slug": "my-summer-car",
+   "name": "My Summer Car",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1586445
+  },
+  {
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
@@ -1686,7 +1694,7 @@
    "appid": 2231450,
    "slug": "pizza-tower",
    "name": "Pizza Tower",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1565599
   },
@@ -1934,7 +1942,7 @@
    "appid": 585420,
    "slug": "trailmakers",
    "name": "Trailmakers",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1525941
   },
@@ -2582,7 +2590,7 @@
    "appid": 313690,
    "slug": "lego-batman-3-beyond-gotham",
    "name": "Lego Batman 3: Beyond Gotham",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 757792
   },
@@ -2678,7 +2686,7 @@
    "appid": 24800,
    "slug": "command-amp-conquer-red-alert-3-uprising",
    "name": "Command &amp; Conquer: Red Alert 3 - Uprising",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 754450
   },
@@ -4526,6 +4534,14 @@
    "appid": 4080220,
    "slug": "ea-sports-fc-27",
    "name": "EA SPORTS FC™ 27",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2995920,
+   "slug": "it-takes-two",
+   "name": "It Takes Two",
    "tier": "untested",
    "reason": null,
    "popularity": 0
