@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-15",
+ "fetched_at": "2026-10-16",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -222,7 +222,7 @@
    "appid": 218620,
    "slug": "payday-2",
    "name": "Payday 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35594327
   },
@@ -1678,7 +1678,7 @@
    "appid": 380,
    "slug": "half-life-2-episode-one",
    "name": "Half-Life 2: Episode One",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7530478
   },
@@ -2558,7 +2558,7 @@
    "appid": 221910,
    "slug": "the-stanley-parable",
    "name": "The Stanley Parable",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3541582
   },
@@ -3318,7 +3318,7 @@
    "appid": 460920,
    "slug": "steep",
    "name": "Steep",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1525437
   },
@@ -3358,7 +3358,7 @@
    "appid": 584400,
    "slug": "sonic-mania",
    "name": "Sonic Mania",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1524500
   },
@@ -4118,7 +4118,7 @@
    "appid": 1401590,
    "slug": "disney-dreamlight-valley",
    "name": "Disney Dreamlight Valley",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 769111
   },
@@ -4286,7 +4286,7 @@
    "appid": 2600,
    "slug": "vampire-the-masquerade-bloodlines",
    "name": "Vampire: The Masquerade - Bloodlines",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 763141
   },
@@ -4534,7 +4534,7 @@
    "appid": 24790,
    "slug": "command-amp-conquer-3-tiberium-wars",
    "name": "Command &amp; Conquer 3: Tiberium Wars",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 757649
   },
@@ -7691,14 +7691,6 @@
    "popularity": 0
   },
   {
-   "appid": 3354750,
-   "slug": "skate",
-   "name": "skate.",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 0
-  },
-  {
    "appid": 3405690,
    "slug": "ea-sports-fc-26",
    "name": "EA SPORTS FC™ 26",
@@ -7726,14 +7718,6 @@
    "appid": 4025700,
    "slug": "heartopia",
    "name": "Heartopia",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 0
-  },
-  {
-   "appid": 4126040,
-   "slug": "aniimo",
-   "name": "Aniimo",
    "tier": "playable",
    "reason": null,
    "popularity": 0
@@ -7814,7 +7798,7 @@
    "appid": 3199170,
    "slug": "blood-strike",
    "name": "Blood Strike",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
