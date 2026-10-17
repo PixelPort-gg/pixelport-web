@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-16",
+ "fetched_at": "2026-10-17",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -182,7 +182,7 @@
    "appid": 1091500,
    "slug": "cyberpunk-2077",
    "name": "Cyberpunk 2077",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35713071
   },
@@ -214,7 +214,7 @@
    "appid": 242760,
    "slug": "the-forest",
    "name": "The Forest",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35599805
   },
@@ -886,7 +886,7 @@
    "appid": 632360,
    "slug": "risk-of-rain-2",
    "name": "Risk of Rain 2",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7793127
   },
@@ -2942,7 +2942,7 @@
    "appid": 1384160,
    "slug": "guilty-gear-strive",
    "name": "Guilty Gear Strive",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1552377
   },
@@ -3334,7 +3334,7 @@
    "appid": 249130,
    "slug": "lego-marvel-super-heroes",
    "name": "Lego Marvel Super Heroes",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1524959
   },
@@ -4523,6 +4523,14 @@
    "popularity": 758322
   },
   {
+   "appid": 707030,
+   "slug": "postal-4-no-regerts",
+   "name": "Postal 4: No Regerts",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 758276
+  },
+  {
    "appid": 313690,
    "slug": "lego-batman-3-beyond-gotham",
    "name": "Lego Batman 3: Beyond Gotham",
@@ -4593,6 +4601,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 756439
+  },
+  {
+   "appid": 401680,
+   "slug": "postal-redux",
+   "name": "Postal Redux",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 756216
   },
   {
    "appid": 2135150,
@@ -4841,6 +4857,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 358368
+  },
+  {
+   "appid": 1359980,
+   "slug": "postal-brain-damaged",
+   "name": "Postal: Brain Damaged",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 358109
   },
   {
    "appid": 536270,
@@ -5190,7 +5214,7 @@
    "appid": 1092710,
    "slug": "hello-neighbor-alpha-1",
    "name": "Hello Neighbor Alpha 1",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 353212
   },
@@ -5265,6 +5289,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 352467
+  },
+  {
+   "appid": 10220,
+   "slug": "postal-iii",
+   "name": "Postal III",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 352389
   },
   {
    "appid": 61700,
@@ -5425,6 +5457,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 351090
+  },
+  {
+   "appid": 1089710,
+   "slug": "fruit-postal-service",
+   "name": "Fruit Postal Service",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351014
   },
   {
    "appid": 225020,
@@ -6214,7 +6254,7 @@
    "appid": 2475460,
    "slug": "sos-ops",
    "name": "SOS OPS!",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35835
   },
@@ -6281,6 +6321,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 35361
+  },
+  {
+   "appid": 1641700,
+   "slug": "moving-out-2",
+   "name": "Moving Out 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 35308
   },
   {
    "appid": 2213300,
@@ -7598,7 +7646,7 @@
    "appid": 4197610,
    "slug": "librarian-tidy-up-the-arcane-library",
    "name": "Librarian: Tidy Up the Arcane Library!",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -7718,6 +7766,14 @@
    "appid": 4025700,
    "slug": "heartopia",
    "name": "Heartopia",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4126040,
+   "slug": "aniimo",
+   "name": "Aniimo",
    "tier": "playable",
    "reason": null,
    "popularity": 0
@@ -8216,6 +8272,30 @@
    "name": "Batomon Showdown",
    "tier": "playable",
    "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3839180,
+   "slug": "postal-2-redux",
+   "name": "Postal 2 Redux",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2015160,
+   "slug": "postal-brain-damaged",
+   "name": "Postal: Brain Damaged",
+   "tier": "unsupported",
+   "reason": "Not a standalone game (dlc) - belongs to its base game.",
+   "popularity": 0
+  },
+  {
+   "appid": 3768390,
+   "slug": "postal-brain-damaged",
+   "name": "Postal: Brain Damaged",
+   "tier": "unsupported",
+   "reason": "Not a standalone game (dlc) - belongs to its base game.",
    "popularity": 0
   },
   {
