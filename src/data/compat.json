@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-17",
+ "fetched_at": "2026-10-18",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -430,7 +430,7 @@
    "appid": 108600,
    "slug": "project-zomboid",
    "name": "Project Zomboid",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15355171
   },
@@ -454,7 +454,7 @@
    "appid": 377160,
    "slug": "fallout-4",
    "name": "Fallout 4",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15326054
   },
@@ -550,7 +550,7 @@
    "appid": 526870,
    "slug": "satisfactory",
    "name": "Satisfactory",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15225479
   },
@@ -638,7 +638,7 @@
    "appid": 70,
    "slug": "half-life",
    "name": "Half-Life",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15143086
   },
@@ -886,7 +886,7 @@
    "appid": 632360,
    "slug": "risk-of-rain-2",
    "name": "Risk of Rain 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7793127
   },
@@ -958,7 +958,7 @@
    "appid": 22380,
    "slug": "fallout-new-vegas",
    "name": "Fallout: New Vegas",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7718763
   },
@@ -1822,7 +1822,7 @@
    "appid": 1057090,
    "slug": "ori-and-the-will-of-the-wisps",
    "name": "Ori and the Will of the Wisps",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3631989
   },
@@ -1990,7 +1990,7 @@
    "appid": 387990,
    "slug": "scrap-mechanic",
    "name": "Scrap Mechanic",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3604512
   },
@@ -3566,7 +3566,7 @@
    "appid": 257850,
    "slug": "hyper-light-drifter",
    "name": "Hyper Light Drifter",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1516617
   },
@@ -4526,7 +4526,7 @@
    "appid": 707030,
    "slug": "postal-4-no-regerts",
    "name": "Postal 4: No Regerts",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 758276
   },
@@ -4654,7 +4654,7 @@
    "appid": 40960,
    "slug": "stronghold-2",
    "name": "Stronghold 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 754656
   },
