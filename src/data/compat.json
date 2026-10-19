@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-18",
+ "fetched_at": "2026-10-19",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -214,7 +214,7 @@
    "appid": 242760,
    "slug": "the-forest",
    "name": "The Forest",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 35599805
   },
@@ -782,7 +782,7 @@
    "appid": 620,
    "slug": "portal-2",
    "name": "Portal 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7927835
   },
@@ -958,7 +958,7 @@
    "appid": 22380,
    "slug": "fallout-new-vegas",
    "name": "Fallout: New Vegas",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7718763
   },
@@ -2278,7 +2278,7 @@
    "appid": 728880,
    "slug": "overcooked-2",
    "name": "Overcooked! 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3565992
   },
@@ -2334,7 +2334,7 @@
    "appid": 1304930,
    "slug": "the-outlast-trials",
    "name": "The Outlast Trials",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3562533
   },
@@ -2862,7 +2862,7 @@
    "appid": 516750,
    "slug": "my-summer-car",
    "name": "My Summer Car",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1586445
   },
@@ -3046,7 +3046,7 @@
    "appid": 860510,
    "slug": "little-nightmares-ii",
    "name": "Little Nightmares II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1540494
   },
@@ -3134,7 +3134,7 @@
    "appid": 1210320,
    "slug": "potion-craft",
    "name": "Potion Craft",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1534716
   },
@@ -3278,7 +3278,7 @@
    "appid": 571740,
    "slug": "golf-it",
    "name": "Golf It!",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1526261
   },
@@ -3515,6 +3515,14 @@
    "popularity": 1518412
   },
   {
+   "appid": 10680,
+   "slug": "aliens-vs-predator-2010",
+   "name": "Aliens vs. Predator (2010)",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1518175
+  },
+  {
    "appid": 297000,
    "slug": "heroes-of-might-and-magic-iii-hd-edition",
    "name": "Heroes of Might and Magic III - HD Edition",
@@ -3609,6 +3617,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1515451
+  },
+  {
+   "appid": 201870,
+   "slug": "assassins-creed-revelations",
+   "name": "Assassin's Creed: Revelations",
+   "tier": "unsupported",
+   "reason": "Blocked by PunkBuster: anti-cheat does not run on macOS (cannot play).",
+   "popularity": 1515282
   },
   {
    "appid": 239350,
@@ -3838,7 +3854,7 @@
    "appid": 21130,
    "slug": "lego-harry-potter-years-1-4",
    "name": "Lego Harry Potter: Years 1-4",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1507862
   },
@@ -3862,7 +3878,7 @@
    "appid": 2552430,
    "slug": "kingdom-hearts-hd-1-5-2-5-remix",
    "name": "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1506361
   },
@@ -4110,7 +4126,7 @@
    "appid": 1158160,
    "slug": "coral-island",
    "name": "Coral Island",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 769184
   },
@@ -4270,7 +4286,7 @@
    "appid": 292120,
    "slug": "final-fantasy-xiii",
    "name": "Final Fantasy XIII",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 763454
   },
@@ -4473,6 +4489,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 759193
+  },
+  {
+   "appid": 242550,
+   "slug": "rayman-legends",
+   "name": "Rayman Legends",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 758994
   },
   {
    "appid": 40300,
@@ -4921,6 +4945,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 357272
+  },
+  {
+   "appid": 307960,
+   "slug": "il-2-sturmovik-battle-of-stalingrad",
+   "name": "IL-2 Sturmovik: Battle of Stalingrad",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 357142
   },
   {
    "appid": 2920570,
@@ -5443,6 +5475,14 @@
    "popularity": 351451
   },
   {
+   "appid": 444930,
+   "slug": "zaccaria-pinball",
+   "name": "Zaccaria Pinball",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351345
+  },
+  {
    "appid": 267490,
    "slug": "batman-arkham-origins-blackgate-deluxe-edition",
    "name": "Batman: Arkham Origins Blackgate Deluxe Edition",
@@ -5673,6 +5713,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 152609
+  },
+  {
+   "appid": 331160,
+   "slug": "cars",
+   "name": "Cars",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 152328
   },
   {
    "appid": 567380,
@@ -7582,7 +7630,7 @@
    "appid": 2642680,
    "slug": "half-sword-tech-demo",
    "name": "Half Sword Tech Demo",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -7782,7 +7830,7 @@
    "appid": 1912410,
    "slug": "minecraft-dungeons-ii",
    "name": "Minecraft Dungeons II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -7838,7 +7886,7 @@
    "appid": 2281730,
    "slug": "combat-master",
    "name": "Combat Master",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
