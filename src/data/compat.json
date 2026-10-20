@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-19",
+ "fetched_at": "2026-10-20",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -806,7 +806,7 @@
    "appid": 374320,
    "slug": "dark-souls-iii",
    "name": "DARK SOULS III",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7890326
   },
@@ -1878,7 +1878,7 @@
    "appid": 524220,
    "slug": "nier-automata",
    "name": "NieR: Automata",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3622027
   },
@@ -1966,7 +1966,7 @@
    "appid": 1817070,
    "slug": "marvels-spider-man-remastered",
    "name": "Marvel’s Spider-Man Remastered",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3607786
   },
@@ -2270,7 +2270,7 @@
    "appid": 213670,
    "slug": "south-park-the-stick-of-truth",
    "name": "South Park: The Stick of Truth",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3566636
   },
@@ -4414,7 +4414,7 @@
    "appid": 21000,
    "slug": "lego-batman-the-videogame",
    "name": "Lego Batman: The Videogame",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 761083
   },
@@ -5718,7 +5718,7 @@
    "appid": 331160,
    "slug": "cars",
    "name": "Cars",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 152328
   },
@@ -7630,7 +7630,7 @@
    "appid": 2642680,
    "slug": "half-sword-tech-demo",
    "name": "Half Sword Tech Demo",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
