@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-20",
+ "fetched_at": "2026-10-21",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -782,7 +782,7 @@
    "appid": 620,
    "slug": "portal-2",
    "name": "Portal 2",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7927835
   },
@@ -982,7 +982,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7708042
   },
@@ -3318,7 +3318,7 @@
    "appid": 460920,
    "slug": "steep",
    "name": "Steep",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 1525437
   },
@@ -3630,7 +3630,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 1515005
   },
@@ -4281,6 +4281,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 763512
+  },
+  {
+   "appid": 293760,
+   "slug": "automation-the-car-company-tycoon-game",
+   "name": "Automation - The Car Company Tycoon Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 763506
   },
   {
    "appid": 292120,
@@ -5238,15 +5246,23 @@
    "appid": 1351080,
    "slug": "pharaoh-a-new-era",
    "name": "Pharaoh: A New Era",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 353396
+  },
+  {
+   "appid": 2380050,
+   "slug": "star-trucker",
+   "name": "Star Trucker",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 353373
   },
   {
    "appid": 1092710,
    "slug": "hello-neighbor-alpha-1",
    "name": "Hello Neighbor Alpha 1",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 353212
   },
@@ -5329,6 +5345,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 352389
+  },
+  {
+   "appid": 39540,
+   "slug": "spellforce-the-order-of-dawn",
+   "name": "SpellForce: The Order of Dawn",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 352335
   },
   {
    "appid": 61700,
