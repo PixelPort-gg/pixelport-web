@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-21",
+ "fetched_at": "2026-10-22",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -214,7 +214,7 @@
    "appid": 242760,
    "slug": "the-forest",
    "name": "The Forest",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35599805
   },
@@ -222,7 +222,7 @@
    "appid": 218620,
    "slug": "payday-2",
    "name": "Payday 2",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 35594327
   },
@@ -558,7 +558,7 @@
    "appid": 1326470,
    "slug": "sons-of-the-forest",
    "name": "Sons of the Forest",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15222495
   },
@@ -782,7 +782,7 @@
    "appid": 620,
    "slug": "portal-2",
    "name": "Portal 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7927835
   },
@@ -822,7 +822,7 @@
    "appid": 548430,
    "slug": "deep-rock-galactic",
    "name": "Deep Rock Galactic",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7833587
   },
@@ -830,7 +830,7 @@
    "appid": 1172620,
    "slug": "sea-of-thieves",
    "name": "Sea of Thieves",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7817074
   },
@@ -1150,7 +1150,7 @@
    "appid": 1332010,
    "slug": "stray",
    "name": "Stray",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7652312
   },
@@ -3430,7 +3430,7 @@
    "appid": 19680,
    "slug": "alice-madness-returns",
    "name": "Alice: Madness Returns",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1521729
   },
@@ -3518,7 +3518,7 @@
    "appid": 10680,
    "slug": "aliens-vs-predator-2010",
    "name": "Aliens vs. Predator (2010)",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1518175
   },
@@ -3630,7 +3630,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 1515005
   },
@@ -5350,7 +5350,7 @@
    "appid": 39540,
    "slug": "spellforce-the-order-of-dawn",
    "name": "SpellForce: The Order of Dawn",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 352335
   },
@@ -5990,7 +5990,7 @@
    "appid": 3314070,
    "slug": "the-sims-2-legacy-collection",
    "name": "The Sims 2 Legacy Collection",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 76891
   },
@@ -7166,7 +7166,7 @@
    "appid": 2732960,
    "slug": "command-conquer-generals-zero-hour",
    "name": "Command & Conquer™ Generals Zero Hour",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
