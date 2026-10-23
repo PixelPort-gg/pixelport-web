@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-22",
+ "fetched_at": "2026-10-23",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -222,7 +222,7 @@
    "appid": 218620,
    "slug": "payday-2",
    "name": "Payday 2",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 35594327
   },
@@ -798,7 +798,7 @@
    "appid": 322170,
    "slug": "geometry-dash",
    "name": "Geometry Dash",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7901026
   },
@@ -1550,7 +1550,7 @@
    "appid": 10180,
    "slug": "call-of-duty-modern-warfare-2",
    "name": "Call of Duty: Modern Warfare 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7554145
   },
@@ -2190,7 +2190,7 @@
    "appid": 389730,
    "slug": "tekken-7",
    "name": "Tekken 7",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3577227
   },
@@ -2694,7 +2694,7 @@
    "appid": 12200,
    "slug": "bully-scholarship-edition",
    "name": "Bully: Scholarship Edition",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3530730
   },
@@ -3830,7 +3830,7 @@
    "appid": 352400,
    "slug": "lego-jurassic-world",
    "name": "Lego Jurassic World",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1508747
   },
@@ -4286,7 +4286,7 @@
    "appid": 293760,
    "slug": "automation-the-car-company-tycoon-game",
    "name": "Automation - The Car Company Tycoon Game",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 763506
   },
@@ -4614,7 +4614,7 @@
    "appid": 799960,
    "slug": "wizard101",
    "name": "Wizard101",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 756721
   },
@@ -4681,6 +4681,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 755488
+  },
+  {
+   "appid": 70600,
+   "slug": "worms-ultimate-mayhem",
+   "name": "Worms Ultimate Mayhem",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 755169
   },
   {
    "appid": 40960,
@@ -5006,7 +5014,7 @@
    "appid": 1594320,
    "slug": "captain-of-industry",
    "name": "Captain of Industry",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 356737
   },
@@ -5262,7 +5270,7 @@
    "appid": 1092710,
    "slug": "hello-neighbor-alpha-1",
    "name": "Hello Neighbor Alpha 1",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 353212
   },
@@ -5502,7 +5510,7 @@
    "appid": 444930,
    "slug": "zaccaria-pinball",
    "name": "Zaccaria Pinball",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 351345
   },
@@ -7654,7 +7662,7 @@
    "appid": 2642680,
    "slug": "half-sword-tech-demo",
    "name": "Half Sword Tech Demo",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -8368,6 +8376,14 @@
    "name": "Postal: Brain Damaged",
    "tier": "unsupported",
    "reason": "Not a standalone game (dlc) - belongs to its base game.",
+   "popularity": 0
+  },
+  {
+   "appid": 1880620,
+   "slug": "once-upon-a-katamari",
+   "name": "Once Upon a Katamari",
+   "tier": "untested",
+   "reason": null,
    "popularity": 0
   },
   {
