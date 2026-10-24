@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-23",
+ "fetched_at": "2026-10-24",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -422,7 +422,7 @@
    "appid": 582010,
    "slug": "monster-hunter-world",
    "name": "Monster Hunter: World",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15434239
   },
@@ -2446,7 +2446,7 @@
    "appid": 2622380,
    "slug": "elden-ring-nightreign",
    "name": "ELDEN RING NIGHTREIGN",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3548901
   },
@@ -3062,7 +3062,7 @@
    "appid": 312520,
    "slug": "rain-world",
    "name": "Rain World",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1539787
   },
@@ -3678,7 +3678,7 @@
    "appid": 611790,
    "slug": "house-party",
    "name": "House Party",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1512922
   },
@@ -3798,7 +3798,7 @@
    "appid": 217200,
    "slug": "worms-armageddon",
    "name": "Worms Armageddon",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1509524
   },
@@ -4254,7 +4254,7 @@
    "appid": 973760,
    "slug": "thronebreaker-the-witcher-tales",
    "name": "Thronebreaker: The Witcher Tales",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 764782
   },
@@ -7694,7 +7694,7 @@
    "appid": 3314790,
    "slug": "cloverpit",
    "name": "CloverPit",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -7886,7 +7886,7 @@
    "appid": 3224770,
    "slug": "umamusume-pretty-derby",
    "name": "Umamusume: Pretty Derby",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -8382,7 +8382,7 @@
    "appid": 1880620,
    "slug": "once-upon-a-katamari",
    "name": "Once Upon a Katamari",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
