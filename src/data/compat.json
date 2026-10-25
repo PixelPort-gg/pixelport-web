@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-24",
+ "fetched_at": "2026-10-25",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1534,7 +1534,7 @@
    "appid": 380600,
    "slug": "fishing-planet",
    "name": "Fishing Planet",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7557004
   },
@@ -2190,7 +2190,7 @@
    "appid": 389730,
    "slug": "tekken-7",
    "name": "Tekken 7",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 3577227
   },
@@ -4678,7 +4678,7 @@
    "appid": 8000,
    "slug": "tomb-raider-anniversary",
    "name": "Tomb Raider: Anniversary",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 755488
   },
@@ -6486,7 +6486,7 @@
    "appid": 222860,
    "slug": "left-4-dead-2-dedicated-server",
    "name": "Left 4 Dead 2 Dedicated Server",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35049
   },
@@ -7558,7 +7558,7 @@
    "appid": 2767030,
    "slug": "marvel-rivals",
    "name": "Marvel Rivals",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
