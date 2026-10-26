@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-25",
+ "fetched_at": "2026-10-26",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -910,7 +910,7 @@
    "appid": 391540,
    "slug": "undertale",
    "name": "Undertale",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7764082
   },
@@ -982,7 +982,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 7708042
   },
@@ -1894,7 +1894,7 @@
    "appid": 220200,
    "slug": "kerbal-space-program",
    "name": "Kerbal Space Program",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3621084
   },
@@ -3134,7 +3134,7 @@
    "appid": 1210320,
    "slug": "potion-craft",
    "name": "Potion Craft",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1534716
   },
@@ -3630,7 +3630,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 1515005
   },
@@ -7766,7 +7766,7 @@
    "appid": 2397300,
    "slug": "half-sword",
    "name": "Half Sword",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -7806,7 +7806,7 @@
    "appid": 2139460,
    "slug": "once-human",
    "name": "Once Human",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
