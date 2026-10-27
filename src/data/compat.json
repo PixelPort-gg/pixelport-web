@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-26",
+ "fetched_at": "2026-10-27",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -318,7 +318,7 @@
    "appid": 552990,
    "slug": "world-of-warships",
    "name": "World of Warships",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35112887
   },
@@ -774,7 +774,7 @@
    "appid": 1116170,
    "slug": "cybercorp",
    "name": "CyberCorp",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15000266
   },
@@ -894,7 +894,7 @@
    "appid": 1118200,
    "slug": "people-playground",
    "name": "People Playground",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7777746
   },
@@ -982,7 +982,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7708042
   },
@@ -1294,7 +1294,7 @@
    "appid": 225540,
    "slug": "just-cause-3",
    "name": "Just Cause 3",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7602532
   },
@@ -3182,7 +3182,7 @@
    "appid": 1256670,
    "slug": "library-of-ruina",
    "name": "Library Of Ruina",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1532471
   },
@@ -3630,7 +3630,7 @@
    "appid": 239350,
    "slug": "spelunky",
    "name": "Spelunky",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 1515005
   },
@@ -4670,7 +4670,7 @@
    "appid": 32360,
    "slug": "the-secret-of-monkey-island-special-edition",
    "name": "The Secret of Monkey Island: Special Edition",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 755529
   },
