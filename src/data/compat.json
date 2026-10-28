@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-27",
+ "fetched_at": "2026-10-28",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -622,7 +622,7 @@
    "appid": 400,
    "slug": "portal",
    "name": "Portal",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15175024
   },
@@ -1574,7 +1574,7 @@
    "appid": 1049590,
    "slug": "eternal-return-black-survival",
    "name": "Eternal Return: Black Survival",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7551694
   },
@@ -2862,7 +2862,7 @@
    "appid": 516750,
    "slug": "my-summer-car",
    "name": "My Summer Car",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1586445
   },
@@ -2958,7 +2958,7 @@
    "appid": 1621690,
    "slug": "core-keeper",
    "name": "Core Keeper",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1551042
   },
@@ -2990,7 +2990,7 @@
    "appid": 4500,
    "slug": "s-t-a-l-k-e-r-shadow-of-chernobyl",
    "name": "S.T.A.L.K.E.R.: Shadow of Chernobyl",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1544761
   },
@@ -3078,7 +3078,7 @@
    "appid": 32470,
    "slug": "star-wars-empire-at-war",
    "name": "Star Wars: Empire at War",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1538503
   },
@@ -3569,6 +3569,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1516780
+  },
+  {
+   "appid": 9450,
+   "slug": "warhammer-40-000-dawn-of-war-soulstorm",
+   "name": "Warhammer 40,000: Dawn of War: Soulstorm",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1516764
   },
   {
    "appid": 257850,
@@ -4062,7 +4070,7 @@
    "appid": 493490,
    "slug": "city-car-driving",
    "name": "City Car Driving",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 774830
   },
@@ -4243,6 +4251,14 @@
    "popularity": 765360
   },
   {
+   "appid": 287980,
+   "slug": "mini-metro",
+   "name": "Mini Metro",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 765064
+  },
+  {
    "appid": 1934680,
    "slug": "age-of-mythology-retold",
    "name": "Age of Mythology: Retold",
@@ -4329,6 +4345,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 763052
+  },
+  {
+   "appid": 2114740,
+   "slug": "blasphemous-2",
+   "name": "Blasphemous 2",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 763000
   },
   {
    "appid": 986130,
@@ -4593,6 +4617,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 757406
+  },
+  {
+   "appid": 204030,
+   "slug": "fable-the-lost-chapters",
+   "name": "Fable: The Lost Chapters",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 757152
   },
   {
    "appid": 9050,
@@ -5155,6 +5187,14 @@
    "popularity": 354299
   },
   {
+   "appid": 979120,
+   "slug": "autonauts",
+   "name": "Autonauts",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 354283
+  },
+  {
    "appid": 411370,
    "slug": "melty-blood-actress-again-current-code",
    "name": "Melty Blood Actress Again Current Code",
@@ -5638,7 +5678,7 @@
    "appid": 2495100,
    "slug": "hello-kitty-island-adventure",
    "name": "Hello Kitty Island Adventure",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 155359
   },
@@ -5875,6 +5915,14 @@
    "popularity": 151279
   },
   {
+   "appid": 939520,
+   "slug": "hellgate-london",
+   "name": "Hellgate: London",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 151259
+  },
+  {
    "appid": 1892420,
    "slug": "the-bunny-graveyard",
    "name": "The Bunny Graveyard",
@@ -5918,7 +5966,7 @@
    "appid": 12640,
    "slug": "drakensang-the-dark-eye",
    "name": "Drakensang: The Dark Eye",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 150592
   },
@@ -7630,7 +7678,7 @@
    "appid": 3624140,
    "slug": "wanderburg",
    "name": "Wanderburg",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
@@ -8383,6 +8431,22 @@
    "slug": "once-upon-a-katamari",
    "name": "Once Upon a Katamari",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3606890,
+   "slug": "upload-labs",
+   "name": "Upload Labs",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4412320,
+   "slug": "dumb-ways-to-build",
+   "name": "Dumb Ways to Build",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
