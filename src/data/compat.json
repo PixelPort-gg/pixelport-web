@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-28",
+ "fetched_at": "2026-10-29",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -518,7 +518,7 @@
    "appid": 10,
    "slug": "counter-strike",
    "name": "Counter-Strike",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15243818
   },
@@ -3230,7 +3230,7 @@
    "appid": 2212330,
    "slug": "your-only-move-is-hustle",
    "name": "Your Only Move Is HUSTLE",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1530716
   },
@@ -3574,7 +3574,7 @@
    "appid": 9450,
    "slug": "warhammer-40-000-dawn-of-war-soulstorm",
    "name": "Warhammer 40,000: Dawn of War: Soulstorm",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1516764
   },
@@ -3718,7 +3718,7 @@
    "appid": 1672970,
    "slug": "minecraft-dungeons",
    "name": "Minecraft Dungeons",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1512725
   },
@@ -3822,7 +3822,7 @@
    "appid": 39500,
    "slug": "gothic-3",
    "name": "Gothic 3",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1509244
   },
@@ -4214,7 +4214,7 @@
    "appid": 521890,
    "slug": "hello-neighbor",
    "name": "Hello Neighbor",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 766402
   },
@@ -5190,7 +5190,7 @@
    "appid": 979120,
    "slug": "autonauts",
    "name": "Autonauts",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 354283
   },
@@ -8446,7 +8446,7 @@
    "appid": 4412320,
    "slug": "dumb-ways-to-build",
    "name": "Dumb Ways to Build",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
