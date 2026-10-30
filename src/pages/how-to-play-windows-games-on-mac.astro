@@ -26,7 +26,7 @@ const faq = [
   },
   {
     q: 'What about Intel Macs?',
-    a: 'Pixel Port supports Apple Silicon Macs (M1 or newer) on macOS 14 or later. Intel Macs are not supported. Individual games can require a newer macOS version; optional Apple D3DMetal requires macOS 15 or later and Rosetta 2.',
+    a: 'Pixel Port supports Apple Silicon Macs (M1 or newer) on macOS 14.0 or later. Intel Macs are not supported. Individual games can require a newer macOS version; optional Apple D3DMetal requires macOS 15 or later and Rosetta 2.',
   },
   {
     q: 'Why do some games refuse to run no matter what?',
@@ -66,7 +66,7 @@ const jsonLd = {
         {
           '@type': 'HowToStep',
           name: 'Install Pixel Port',
-          text: 'Download Pixel Port for macOS 14 or later on Apple Silicon, move it to Applications, and follow the app sign-in and runtime setup prompts.',
+          text: 'Download Pixel Port for Apple Silicon (M1 or newer) on macOS 14.0 or later, move it to Applications, and follow the app sign-in and runtime setup prompts.',
           url: new URL('/download', Astro.site).toString(),
         },
         {
@@ -88,7 +88,7 @@ const jsonLd = {
 };
 
 const methods = [
-  { name: 'Pixel Port', best: 'Supported Steam games', cost: 'Free', effort: 'Guided setup, then Play', catch: 'Apple Silicon, macOS 14 or later', cls: 'text-fg font-semibold' },
+  { name: 'Pixel Port', best: 'Supported Steam games', cost: 'Free', effort: 'Guided setup, then Play', catch: 'Apple Silicon (M1+), macOS 14.0+', cls: 'text-fg font-semibold' },
   { name: 'CrossOver', best: 'Non-Steam launchers, tinkerers', cost: '$74/yr', effort: 'Manual per game', catch: 'You do the configuring', cls: 'text-muted' },
   { name: 'Whisky', best: 'Nothing anymore', cost: 'Free', effort: 'Manual bottles', catch: 'Discontinued in 2025', cls: 'text-muted' },
   { name: 'Game Porting Toolkit', best: 'Developers evaluating ports', cost: 'Free', effort: 'Terminal + Homebrew', catch: 'Built for devs, not players', cls: 'text-muted' },
@@ -175,7 +175,7 @@ const methods = [
         </li>
         <li>
           <strong>Install Pixel Port</strong> from the <a href="/download">free download</a> on
-          Apple Silicon (M1 or newer), macOS 14 or later. Move it to Applications and follow
+          Apple Silicon (M1 or newer), macOS 14.0 or later. Move it to Applications and follow
           the sign-in and runtime setup prompts. The <a href="/docs/getting-started/">setup
           guide</a> also covers optional D3DMetal and its separate requirements.
         </li>
