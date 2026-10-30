@@ -4,9 +4,11 @@ description: "Choose Discord Help, Game reports, or Game requests, or send an in
 order: 5
 ---
 
-For help with Pixel Port 0.5.1, use a game's **Report a problem** action or
-join the [Pixel Port Discord](https://discord.gg/2eQah8DjK6). Start with the
-[recovery guide](/docs/known-issues/) if you need help identifying the failed step.
+Use a game's **Report a problem** action to send evidence about a problem in
+Pixel Port 0.5.1. **In-app reports do not receive replies.** For answers, ask
+in the **Help** forum on the [Pixel Port Discord](https://discord.gg/2eQah8DjK6).
+Start with the [recovery guide](/docs/known-issues/) if you need help identifying
+the failed step.
 
 ## Choose a Discord forum
 
@@ -27,8 +29,7 @@ details below so the problem can be understood without guessing your setup.
    menu or help area.
 2. Describe what you did, what you expected, and what happened. Include the
    error text and whether the problem concerns installation, startup, or gameplay.
-3. Add an email or Discord handle if you would like a reply. Contact is optional;
-   signing in to Pixel Port does not supply a reply address for this report.
+3. Contact is optional. You can leave the email or Discord handle field blank.
 4. Choose whether to attach the privacy-scrubbed diagnostic log, then choose
    **Send**.
 

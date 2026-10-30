@@ -63,10 +63,11 @@ and include your exact model when reporting a problem.
 
 ## How do I report a problem or request a game?
 
-Use the game's **Report a problem** action, or choose the relevant forum in
-[Discord](https://discord.gg/2eQah8DjK6): **Help** for a problem, **Game reports**
-for a first-hand gameplay result, and **Game requests** for a game you want to
-try. Include the game and your versions and conditions. See
+Use the game's **Report a problem** action to send evidence. In-app reports
+do not receive replies. For answers, choose **Help** in
+[Discord](https://discord.gg/2eQah8DjK6). Use **Game reports** for a first-hand
+gameplay result, and **Game requests** for a game you want to try. Include the
+game and your versions and conditions. See
 [reporting and support](/docs/support/) for the steps and how to check an
 in-app send succeeded.
 
@@ -78,5 +79,4 @@ not prove gameplay compatibility. A gameplay report describes the conditions
 you tested and does not guarantee a compatibility-label change.
 
 A diagnostic preview, when offered, is a separate choice to send technical
-information. It does not provide a contact for a reply. Use the support form's
-optional contact field if you would like a reply to that message.
+information. Diagnostic uploads also do not receive replies.
