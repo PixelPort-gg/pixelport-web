@@ -14,11 +14,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Among Us",
-    "body": "Find Among Us in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically."
+    "body": "Find Among Us in the catalogue and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port."
    },
    {
     "title": "Play online",
@@ -42,11 +42,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Grab Pixel Port; the runtime installs itself on first run."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Pool Blitz in the catalogue and click Install & Play. Pixel Port handles the setup automatically."
+    "title": "Install the game",
+    "body": "Find Pool Blitz in the catalogue and choose Install for the normal Steam route. Let downloading and preparation finish before starting the game from Pixel Port."
    }
   ],
   "lastTested": "2026-06-23"
@@ -67,11 +67,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Noita",
-    "body": "Search the catalogue for Noita and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically."
+    "body": "Search the catalogue for Noita and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port."
    },
    {
     "title": "Play",
@@ -96,10 +96,10 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Install Pixel Port and let the runtime set up."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
+    "title": "Install the game",
     "body": "Search for Manor Lords, install, and launch. FSR is recommended at 1080p on M1 and M2."
    }
   ],
@@ -120,11 +120,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Grab Pixel Port; the runtime installs itself on first run."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Meccha Chameleon in the catalogue and click Install & Play. Pixel Port handles the setup automatically."
+    "title": "Install the game",
+    "body": "Find Meccha Chameleon in the catalogue and choose Install for the normal Steam route. Let downloading and preparation finish before starting the game from Pixel Port."
    }
   ]
  },
@@ -143,11 +143,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Magic Archery in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Magic Archery in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -166,11 +166,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Dwarf Fortress in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Dwarf Fortress in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -190,11 +190,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find The Lord of the Rings Online in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find The Lord of the Rings Online in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -213,11 +213,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Kenshi in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Kenshi in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -237,11 +237,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Palworld in the catalogue and click Install & Play. It downloads your Steam copy and configures the graphics path automatically."
+    "title": "Install the game",
+    "body": "Find Palworld in the catalogue and choose Install for the normal Steam route. Let downloading and preparation finish before starting your Steam copy from Pixel Port."
    },
    {
     "title": "First launch",
@@ -265,11 +265,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Elin in the catalogue and click Install & Play. The base game runs; heavy mod setups may need a hand for now."
+    "title": "Install the game",
+    "body": "Find Elin in the catalogue and choose Install for the normal Steam route. The base game runs; heavy mod setups may need a hand for now."
    }
   ]
  },
@@ -288,11 +288,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Chained Together in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Chained Together in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -312,11 +312,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Age of Empires II: Definitive Edition in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Age of Empires II: Definitive Edition in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -409,11 +409,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Portal 2",
-    "body": "Find Portal 2 in the catalogue and hit Install & Play. The license you bought years ago still counts."
+    "body": "Find Portal 2 in the catalogue and choose Install for the normal Steam route. The license you bought years ago still counts."
    },
    {
     "title": "Play",
@@ -438,11 +438,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Megabonk",
-    "body": "Search the catalogue for Megabonk and hit Install & Play. The download is small."
+    "body": "Search the catalogue for Megabonk and choose Install for the normal Steam route. The download is small."
    },
    {
     "title": "Play",
@@ -466,11 +466,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Halls of Torment in the catalogue and click Install & Play — Pixel Port picks the Vulkan path for you."
+    "title": "Install the game",
+    "body": "Find Halls of Torment in the catalogue and choose Install for the normal Steam route — Pixel Port picks the Vulkan path for you."
    }
   ],
   "lastTested": "2026-06-20"
@@ -491,11 +491,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Tell Me Why",
-    "body": "Find it in the catalogue and hit Install & Play. It is a large download, so let it finish."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. It is a large download, so let it finish."
    },
    {
     "title": "Play",
@@ -519,11 +519,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find A Fistful of Gun in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find A Fistful of Gun in the catalogue and choose Install for the normal Steam route."
    }
   ],
   "lastTested": "2026-06-20"
@@ -543,11 +543,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find The Elder Scrolls: Arena in the catalogue and click Install & Play — the DOS-era launch path is handled for you."
+    "title": "Install the game",
+    "body": "Find The Elder Scrolls: Arena in the catalogue and choose Install for the normal Steam route — the DOS-era launch path is handled for you."
    }
   ],
   "lastTested": "2026-06-20"
@@ -567,11 +567,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Lethal Company",
-    "body": "Find it in the catalogue and hit Install & Play. The download is small."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. The download is small."
    },
    {
     "title": "Join your crew",
@@ -595,11 +595,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Sekiro",
-    "body": "Find it in the catalogue and hit Install & Play, then let the large download finish."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route, then let the large download finish."
    },
    {
     "title": "Play",
@@ -623,11 +623,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Sons of the Forest",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -653,11 +653,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Subnautica",
-    "body": "Find it in the catalogue and hit Install & Play. Pixel Port runs the Windows build, not the abandoned Intel port."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. Pixel Port runs the Windows build, not the abandoned Intel port."
    },
    {
     "title": "Dive",
@@ -680,11 +680,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Risk of Rain 2 in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Risk of Rain 2 in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -704,11 +704,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Devil May Cry 5",
-    "body": "Find it in the catalogue and hit Install & Play, then let the large download finish."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route, then let the large download finish."
    },
    {
     "title": "Play",
@@ -732,11 +732,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add NieR: Automata",
-    "body": "Find it in the catalogue and hit Install & Play. It is a big download, so start it before dinner."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. It is a big download, so start it before dinner."
    },
    {
     "title": "Play",
@@ -760,11 +760,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Dark Souls: Remastered",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -788,11 +788,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Ori and the Will of the Wisps in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Ori and the Will of the Wisps in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -812,11 +812,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Ori and the Blind Forest in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Ori and the Blind Forest in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -835,11 +835,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Dyson Sphere Program",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Build",
@@ -863,11 +863,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Outer Wilds",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -891,11 +891,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Sifu",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -919,11 +919,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Half-Life 2",
-    "body": "Find it in the catalogue and hit Install & Play. The license you bought years ago counts."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. The license you bought years ago counts."
    },
    {
     "title": "Play",
@@ -949,11 +949,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Borderlands 2",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -976,11 +976,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Flow Of War",
-    "body": "Find Flow Of War in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically."
+    "body": "Find Flow Of War in the catalogue and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port."
    },
    {
     "title": "Play",
@@ -1008,11 +1008,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add DSS 2: War Industry",
-    "body": "Find DSS 2: War Industry in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically. Not sure yet? There is also a free demo."
+    "body": "Find DSS 2: War Industry in the catalogue and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port. Not sure yet? There is also a free demo."
    },
    {
     "title": "Play",
@@ -1036,11 +1036,11 @@
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Party Jousting",
-    "body": "Find Party Jousting in the catalogue and hit Install & Play. It is free on Steam, so there is nothing to buy first."
+    "body": "Find Party Jousting in the catalogue and choose Install for the normal Steam route. It is free on Steam, so there is nothing to buy first."
    },
    {
     "title": "Grab some friends",

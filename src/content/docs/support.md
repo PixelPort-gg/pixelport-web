@@ -30,6 +30,7 @@ details below so the problem can be understood without guessing your setup.
 2. Describe what you did, what you expected, and what happened. Include the
    error text and whether the problem concerns installation, startup, or gameplay.
 3. Contact is optional. You can leave the email or Discord handle field blank.
+   Filling it in does not bring a reply; use Discord **Help** for answers.
 4. Choose whether to attach the privacy-scrubbed diagnostic log, then choose
    **Send**.
 
