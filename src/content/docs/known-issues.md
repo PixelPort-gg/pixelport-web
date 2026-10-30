@@ -1,98 +1,123 @@
 ---
-title: "Known issues and fixes"
-description: "Quick answers for the most common hiccups, and exactly what to do about each one."
-order: 2
+title: "Known issues and recovery"
+description: "Choose recovery steps for the failed game, Steam connection, or runtime without losing saves."
+order: 3
 ---
 
-Most problems on this page have a fix that takes under a minute. Find your
-symptom, follow the steps, and if you are still stuck, come tell us in
-[Discord](https://discord.gg/2eQah8DjK6). Real reports from real players are how
-this page gets shorter.
+These steps cover Pixel Port 0.5.0. Start with the message shown in the app.
+Keep the game name, app and runtime versions, and the exact error for a
+[support report](/docs/support/). There is no single fix for every failed launch.
 
 ## I press Play and nothing happens
 
-Probably nothing is broken. The first launch after a restart does some quiet
-setup before any window appears, and it can take up to two minutes with no
-spinner.
+Press **Play** once and check the app's preparation progress and any Steam
+window. Dependency setup or a game download may still be running. Wait for that
+operation to finish before retrying. Start the game from Pixel Port rather
+than from inside the Steam window.
 
-Press Play once and wait a full two minutes. Try not to press Play again while
-you wait, because rapid retries can trip Steam's connection limit (see the next
-question). If nothing appears after two minutes, restart your Mac, press Play
-once, and wait two minutes again. Still stuck? Send us your logs from the
-support panel in the app, or ask in Discord.
+If the game is stuck, use its **Force stop** action before trying again. If
+that does not clear the problem, save work in any other running games, then
+open your account menu → **Settings → Prism Runtime** and use **Stop all
+Windows software, including Steam**. This closes Pixel Port's Windows Steam
+client and all its running Windows games, not just the affected game.
 
-## Steam is stuck on "connecting"
+If the error mentions missing Windows system files, **Check Windows system
+files** in the same pane inspects them first. Review any offered restoration
+before proceeding. Do not manually delete runtime or Windows setup folders.
 
-If Steam restarted several times in a row (force quits, crashes, rapid Play
-retries), Steam's own servers pause your connection for 20 to 30 minutes. There
-is no way around it. Waiting is the fix. Close the app, leave it alone for half
-an hour, then press Play once and let it connect.
+## Steam is stuck connecting or says it is already running
 
-## It says Steam is already running
+Follow the prompt for the selected route. Legacy Prism uses a separate Windows
+Steam connection and may ask you to close Mac Steam. Native Mac games and
+Apple D3DMetal hosting need Mac Steam instead; do not close it as a universal fix.
 
-Quit the regular Mac Steam app first. Pixel Port runs its own copy of Steam
-behind the scenes, and the two cannot run at the same time. Quit Steam from the
-menu bar (Steam, then Quit Steam), then press Play again.
+Check whether Steam needs you to sign in. If repeated retries or a network
+problem prevent connection, stop retrying and check Steam's message. If your
+network permits it, test another connection to distinguish a network problem
+from an app problem. A fixed waiting period is not a guaranteed remedy.
 
 ## The install fails, but I own the game on Steam
 
-A few games hit an error in our one-click installer. Megabonk is the one we know
-about. The workaround: click Open Steam inside Pixel Port, sign in, and install
-the game from the Library in that Steam window. Once it finishes there, Play
-works normally. A proper in-app fix is in progress.
+Check that Steam is signed in to the account that owns the game and that the
+chosen drive is connected with space for the download. Ownership and game
+compatibility are different checks.
 
-## My Unreal Engine 5 game will not launch on macOS 14 (Sonoma)
+For a Windows Steam copy, inspect the download in Pixel Port's Steam window.
+Let Steam finish before retrying **Play** from Pixel Port. If installation
+still fails, report the error and whether it occurred during downloading,
+verification, or game preparation. Installing through another route is not
+a guaranteed fix.
 
-That block is on purpose. On macOS 14, some Unreal Engine 5 games can crash the
-whole Mac and force a restart. Pixel Port blocks those launches to protect your
-machine. The fix is to update to macOS 15 or newer. The bug lives in macOS 14,
-not in your Mac and not in the game.
+## Runtime setup or repair says a game is running
 
-## Cutscenes are a black screen, but I can hear the audio
+Close the games using that runtime and let them finish before retrying.
+Pixel Port protects runtime files while they are in use. In 0.5.0, some
+setup or recovery checks can also mistake an unrelated process for a game.
+If the warning persists with your games closed, report the operation and exact
+message. Do not delete runtime files or terminate unfamiliar processes to bypass it.
 
-This one is fixed. Update the app to 0.4.7 or newer. The fix applies
-automatically on the next launch, so update, relaunch the game, and replay the
-cutscene.
+## D3DMetal setup does not reach Ready
 
-## Skyrim Special Edition: music plays, but nobody speaks
+Check the [D3DMetal prerequisites and import steps](/docs/getting-started/#optional-apple-d3dmetal-setup).
+Use Apple's **Game Porting Toolkit 3.0** disk image, and let Pixel Port finish
+its engine and graphics checks. Keep runtime files on the Mac.
 
-A known issue with Skyrim's voice audio. Update the app to 0.4.6 or newer, then
-press Play. The app repairs the install at launch, and you do not need to
-reinstall the game. The first launch after the update downloads an extra audio
-component (about 100 MB), so give it a few minutes. If dialogue is still silent
-after one full launch, please tell us. We want to confirm this fix with real
-players.
+Open **Settings → Prism Runtime** and follow the setup or repair action shown
+for D3DMetal. Close games using D3DMetal before replacing or repairing its
+files. If setup fails again, report the failed step and its message. Successful
+setup does not resolve every game's launch or rendering problem.
+
+## My game folder or external drive is unavailable
+
+Reconnect the drive and check the game's selected copy and location in Pixel
+Port. Another installation can use different saves. Avoid starting a replacement
+installation until you have checked the original location.
+
+Before removing a copy or changing its Windows setup, back up relevant saves
+and configuration. Game removal keeps saves by default, but an explicit
+save-deletion choice removes them. A Depot copy is not automatically backed
+up by Steam Cloud.
+
+## A game is blocked on my macOS version
+
+Read the game's warning. Some games have an operating-system restriction
+because launching on an affected macOS version can restart the Mac. Follow
+the stated requirement; do not bypass that block. Updating macOS does not
+guarantee compatibility with every game. D3DMetal separately requires macOS 15
+or later, while the Pixel Port app supports macOS 14 or later.
+
+## Black screens, missing audio, or crashes after the intro
+
+These symptoms can have different causes across games and runtime routes.
+Update Pixel Port, record the selected runtime and graphics backend, and
+report where the failure occurs. Updating does not guarantee a fix for every
+cutscene or audio problem.
+
+**South Park: The Stick of Truth** has an unresolved report of a black screen
+with audio followed by a crash. Windowed mode is not a confirmed remedy. If
+you encounter it, include Steam App ID **213670** and your launch conditions
+in the [report](/docs/support/).
 
 ## My controller is not detected
 
-Controller support arrived in app 0.4.4. Update the app, then relaunch the game
-with the controller already connected. Most Xbox, PlayStation, and generic USB
-or Bluetooth pads work. If yours is still not seen after the update, ask in
-Discord with the game name and the controller model.
+Connect the controller before launching and check whether macOS recognizes it.
+Then start the game from Pixel Port and check its input settings. Recognition
+by macOS alone does not establish support in a particular game or runtime.
+Controller behavior depends on the game, route, controller model, and connection;
+we do not promise support for every Xbox, PlayStation, USB, or Bluetooth pad.
+
+If it fails, report the controller model, USB or Bluetooth connection, game,
+runtime, macOS version, and which inputs fail.
 
 ## Voice chat cannot hear me
 
-App 0.4.4 added microphone access. Update the app, then approve the macOS
-microphone prompt at the next launch. If you dismissed the prompt earlier, open
-System Settings, go to Privacy & Security, then Microphone, and turn on
-PixelPort. Then relaunch the game.
-
-## I am on hotel WiFi or a VPN and Steam will not sign in
-
-Some VPNs, hotel networks, and campus networks block the connections Steam
-needs. Turn the VPN off, or switch to a normal home network, and try again. If
-you must stay on that network, a phone hotspot usually works for the sign-in
-step.
-
-## The app said the launch failed while the game was still downloading
-
-If you press Play during or right after a large install, the app can give up
-too early and report a failure while Steam is still downloading files in the
-background. Let the download reach 100% in the Steam window, then press Play
-again. A fix for the false alarm is planned.
+If macOS requests microphone access for Pixel Port, review that request.
+If access was denied, check **System Settings → Privacy & Security →
+Microphone**, then relaunch the game. Permission alone does not establish
+that voice chat works in every game. Report persistent failures with the
+game, selected audio device, runtime, and macOS version.
 
 ## Still stuck?
 
-Join our [Discord](https://discord.gg/2eQah8DjK6) and tell us what happened.
-Your Mac model, the game, and what you saw on screen is usually enough for us
-to help.
+Use [reporting and support](/docs/support/) for the in-app report, diagnostic
+preview, and Discord help routes. Include what you tried and its result.
