@@ -4,7 +4,7 @@ description: "Choose recovery steps for the failed game, Steam connection, or ru
 order: 3
 ---
 
-These steps cover Pixel Port 0.5.0. Start with the message shown in the app.
+These steps cover Pixel Port 0.5.1. Start with the message shown in the app.
 Keep the game name, app and runtime versions, and the exact error for a
 [support report](/docs/support/). There is no single fix for every failed launch.
 
@@ -51,9 +51,8 @@ a guaranteed fix.
 ## Runtime setup or repair says a game is running
 
 Close the games using that runtime and let them finish before retrying.
-Pixel Port protects runtime files while they are in use. In 0.5.0, some
-setup or recovery checks can also mistake an unrelated process for a game.
-If the warning persists with your games closed, report the operation and exact
+Pixel Port protects runtime files while they are in use. If the warning
+persists with your games closed, report the operation and exact
 message. Do not delete runtime files or terminate unfamiliar processes to bypass it.
 
 ## D3DMetal setup does not reach Ready

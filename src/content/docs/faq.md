@@ -6,7 +6,7 @@ order: 4
 
 ## Which Macs does Pixel Port support?
 
-Pixel Port 0.5.0 supports Apple Silicon Macs, M1 or newer, on macOS 14 or
+Pixel Port 0.5.1 supports Apple Silicon Macs, M1 or newer, on macOS 14 or
 later. Intel Macs are not supported. A game can require a newer macOS version;
 optional Apple D3DMetal requires macOS 15 or later and Rosetta 2.
 See [installation and setup](/docs/getting-started/).
@@ -63,9 +63,20 @@ and include your exact model when reporting a problem.
 
 ## How do I report a problem or request a game?
 
-Use the game's **Report a problem** action or ask in
-[Discord](https://discord.gg/2eQah8DjK6). A diagnostic preview, when offered,
-is a separate choice to send technical information. A game's **Request**
-action records interest; it promises neither support nor a release date.
-See [reporting and support](/docs/support/) for what to include and how to
-check whether a send succeeded.
+Use the game's **Report a problem** action, or choose the relevant forum in
+[Discord](https://discord.gg/2eQah8DjK6): **Help** for a problem, **Game reports**
+for a first-hand gameplay result, and **Game requests** for a game you want to
+try. Include the game and your versions and conditions. See
+[reporting and support](/docs/support/) for the steps and how to check an
+in-app send succeeded.
+
+## Does a report or request guarantee that a game will work?
+
+No. A game's **Request** action records interest without promising support,
+a date, or a personal notification. Unlocking lets you try a game; it does
+not prove gameplay compatibility. A gameplay report describes the conditions
+you tested and does not guarantee a compatibility-label change.
+
+A diagnostic preview, when offered, is a separate choice to send technical
+information. It does not provide a contact for a reply. Use the support form's
+optional contact field if you would like a reply to that message.
