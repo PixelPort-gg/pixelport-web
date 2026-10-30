@@ -63,7 +63,8 @@ and include your exact model when reporting a problem.
 
 ## How do I report a problem or request a game?
 
-Use the game's **Report a problem** action or ask in
+Use the game's **Report a problem** action to send evidence. In-app reports
+do not receive replies; for answers, ask in the **Help** forum on
 [Discord](https://discord.gg/2eQah8DjK6). A diagnostic preview, when offered,
 is a separate choice to send technical information. A game's **Request**
 action records interest; it promises neither support nor a release date.
