@@ -34,36 +34,47 @@ const isNativeMac = !isNo && NATIVE_MAC.has(game.appid);
 const isPlayableButNotEnabled = game.tier === 'playable' && !isNativeMac && !ENABLED.has(game.appid);
 const meta = isNativeMac ? nativeCompatMeta : compatMeta[game.tier];
 const v = isNativeMac ? nativeVerdict(game) : verdict(game);
-const launchSteps = isPlayableButNotEnabled
+const launchSteps = isNativeMac
+  ? [
+      {
+        title: 'Install the Mac version from Steam',
+        body: `Steam lists a Mac build of ${game.name}. Install that version through your own Mac Steam app and check its current macOS requirements.`,
+      },
+      {
+        title: 'Launch the native Mac copy',
+        body: 'Start it from your Mac Steam app. To launch installed native Steam games from Pixel Port, opt in under Settings → Prism Runtime → Labs.',
+      },
+    ]
+  : isPlayableButNotEnabled
   ? [
       {
         title: 'Install Pixel Port',
-        body: 'Download Pixel Port. It sets up everything a Windows game needs on first launch.',
+        body: 'Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts.',
       },
       {
         title: `Request ${game.name}`,
-        body: `Find ${game.name} in the app and request it. During the beta, our small team enables games manually for each user.`,
+        body: `If ${game.name} offers Request this game, use it to record interest. A request promises neither availability nor a date.`,
       },
       {
-        title: 'Or ask us on Discord',
-        body: `Join the Pixel Port Discord and tell us you want to play ${game.name}. That is usually the fastest way to get it enabled.`,
+        title: 'Get help with your request',
+        body: `If you cannot find ${game.name} or a request does not complete, ask in Discord Help with its Steam store link or App ID.`,
       },
     ]
   : [
       {
         title: 'Install Pixel Port',
-        body: 'Download Pixel Port. It sets up everything a Windows game needs on first launch.',
+        body: 'Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts.',
       },
       {
-        title: `Add ${game.name}`,
-        body: `Find ${game.name} in the catalogue and click Install & Play. Pixel Port configures it for your Mac automatically.`,
+        title: `Install ${game.name}`,
+        body: `Sign in to the Steam account that owns ${game.name}. For the normal Steam route, choose Install and let downloading and preparation finish. Follow any warning for your Mac or selected runtime.`,
       },
       {
-        title: game.tier === 'untested' ? 'Play, and help grade it' : 'Play',
+        title: game.tier === 'untested' ? 'Play and report your result' : 'Play',
         body:
           game.tier === 'untested'
-            ? 'Launch it from your Library. However it goes, your result feeds the honest compatibility grade everyone sees.'
-            : 'Launch it from your Library. No bottles, no terminal, no tinkering.',
+            ? 'Start the game from your Library in Pixel Port using the launch action for the selected copy, such as Play via Steam or Launch Game. Report what you actually tested and any remaining issues.'
+            : 'Start the game from your Library in Pixel Port using the launch action for the selected copy, such as Play via Steam or Launch Game. This applies its per-game launch settings.',
       },
     ];
 
@@ -86,7 +97,7 @@ const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
 const description = isNativeMac
   ? nativeMetaDescription(game)
   : isPlayableButNotEnabled
-    ? `${game.name} is graded playable on Apple Silicon, but it is not enabled in the Pixel Port beta yet. Request it in the app or join our Discord to get access.`
+    ? `${game.name} is graded playable on Apple Silicon, but it is not available to install in Pixel Port yet. Request it in the app to record interest, without a guaranteed date.`
     : metaDescription(game);
 const canonical = new URL(pagePath(game), Astro.site).toString();
 
@@ -97,14 +108,14 @@ const faq = [
       v.body +
       (isNo && game.reason ? ` The blocker: ${game.reason}` : '') +
       (isPlayableButNotEnabled
-        ? ` It is not enabled in the beta yet, so request it in the app or join the Pixel Port Discord before trying to install it.`
+        ? ` It is not available to install in the beta yet. Request it in the app to record interest, without a guaranteed date.`
         : ''),
   },
   {
     q: 'Do I need Boot Camp or a Windows license?',
     a: isPlayableButNotEnabled
-      ? `No. Pixel Port runs Windows games directly on macOS. ${game.name} still needs to be enabled for your beta account before you can install it.`
-      : 'No. Pixel Port runs Windows games directly on macOS: no Boot Camp, no virtual machine, no Windows license. Download it, pick a game, and press play.',
+      ? `No. Pixel Port runs Windows games directly on macOS. ${game.name} is not available to install in Pixel Port yet; a request records interest without promising availability or a date.`
+      : 'No. Pixel Port runs Windows games directly on macOS without Boot Camp, a virtual machine, or a Windows license. Follow app and runtime setup, then install and launch from your Library.',
   },
 ];
 const jsonLd = {
@@ -201,15 +212,14 @@ const evidence =
               <div class="compat-beta-note">
                 <strong>Playable grade, beta access pending.</strong>
                 <p>
-                  This game should run, but it is not enabled in Pixel Port yet. We are a small team
-                  and enable beta games manually. <a href="/download">Request it in the app</a>, or
-                  join our Discord and we will enable it for you.
+                  This game is not available to install in Pixel Port yet. <a href="/download">Request it in the app</a> to record interest, or ask about
+                  your request in Discord Help. A request promises neither availability nor a date.
                 </p>
               </div>
             )
           }
           <a href={isNo ? '#alternatives' : isPlayableButNotEnabled ? DISCORD_URL : '/download'} rel={isPlayableButNotEnabled ? 'noopener' : undefined} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
-            {isNo ? 'See verified alternatives' : isPlayableButNotEnabled ? `Get ${game.name} enabled on Discord` : game.tier === 'untested' ? 'Try it on your Mac' : `Download & play ${game.name}`}
+            {isNo ? 'See verified alternatives' : isPlayableButNotEnabled ? `Ask about ${game.name} on Discord` : game.tier === 'untested' ? 'Try it on your Mac' : `Download & play ${game.name}`}
             <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -351,7 +361,7 @@ const evidence =
             ) : isPlayableButNotEnabled ? (
               <>
                 <a href={DISCORD_URL} rel="noopener" class="compat-rail-cta">
-                  Get it enabled on Discord <span aria-hidden="true">→</span>
+                  Ask about this game on Discord <span aria-hidden="true">→</span>
                 </a>
                 <a href="/download" class="compat-rail-secondary">Request it in the app</a>
                 <p>Playable is the compatibility grade. This game still needs beta access enabled.</p>
