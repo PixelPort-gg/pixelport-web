@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-29",
+ "fetched_at": "2026-10-30",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -734,7 +734,7 @@
    "appid": 532210,
    "slug": "life-is-strange-2",
    "name": "Life Is Strange 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15031616
   },
@@ -982,7 +982,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7708042
   },
@@ -2222,7 +2222,7 @@
    "appid": 20900,
    "slug": "the-witcher",
    "name": "The Witcher",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3573569
   },
@@ -2654,7 +2654,7 @@
    "appid": 2551020,
    "slug": "one-armed-robber",
    "name": "One-armed robber",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3535393
   },
@@ -2758,7 +2758,7 @@
    "appid": 11020,
    "slug": "trackmania-nations-forever",
    "name": "TrackMania Nations Forever",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3521244
   },
@@ -5030,7 +5030,7 @@
    "appid": 213330,
    "slug": "lego-batman-2-dc-super-heroes",
    "name": "Lego Batman 2: DC Super Heroes",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 356957
   },
@@ -6038,7 +6038,7 @@
    "appid": 2427410,
    "slug": "s-t-a-l-k-e-r-shadow-of-chornobyl-enhanced-edition",
    "name": "S.T.A.L.K.E.R.: Shadow of Chornobyl - Enhanced Edition",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 77068
   },
