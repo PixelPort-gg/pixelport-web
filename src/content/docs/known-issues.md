@@ -83,7 +83,7 @@ Read the game's warning. Some games have an operating-system restriction
 because launching on an affected macOS version can restart the Mac. Follow
 the stated requirement; do not bypass that block. Updating macOS does not
 guarantee compatibility with every game. D3DMetal separately requires macOS 15
-or later, while the Pixel Port app supports macOS 14 or later.
+or later, while the Pixel Port app supports macOS 14.0 or later.
 
 ## Black screens, missing audio, or crashes after the intro
 

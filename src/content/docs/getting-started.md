@@ -5,7 +5,7 @@ order: 1
 ---
 
 These instructions cover Pixel Port **0.5.1**, the public app release.
-Pixel Port requires an **Apple Silicon Mac (M1 or newer)** with **macOS 14
+Pixel Port requires an **Apple Silicon Mac (M1 or newer)** with **macOS 14.0
 or later**. Individual games can require a newer macOS version. The optional
 Apple D3DMetal route requires **macOS 15 or later and Rosetta 2**.
 

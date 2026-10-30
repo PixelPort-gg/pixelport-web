@@ -6,7 +6,7 @@ order: 4
 
 ## Which Macs does Pixel Port support?
 
-Pixel Port 0.5.1 supports Apple Silicon Macs, M1 or newer, on macOS 14 or
+Pixel Port 0.5.1 supports Apple Silicon Macs, M1 or newer, on macOS 14.0 or
 later. Intel Macs are not supported. A game can require a newer macOS version;
 optional Apple D3DMetal requires macOS 15 or later and Rosetta 2.
 See [installation and setup](/docs/getting-started/).

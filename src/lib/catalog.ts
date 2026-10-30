@@ -41,7 +41,7 @@ export function generate(e: any) {
     // Ownership leads the list on purpose. Pixel Port distributes nothing — Steam
     // delivers the build to the player's own account — and every game page has to
     // say so, not just the hand-written ones.
-    requirements: [`${e.title}, owned on your own Steam account`, 'Apple Silicon (M1 or newer)', 'macOS 14+'],
+    requirements: [`${e.title}, owned on your own Steam account`, 'Apple Silicon (M1 or newer)', 'macOS 14.0+'],
     engine: e.engine, d3d: e.d3d, antiCheat: e.antiCheat, graphics: e.graphics,
     nativeMac: !!e.nativeMac, _cat: true,
   };

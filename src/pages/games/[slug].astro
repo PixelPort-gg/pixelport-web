@@ -85,7 +85,7 @@ const description = isBlocked
     ? `${game.title} already has a native Mac version included with your Steam purchase — install it straight from Steam. You do not need Pixel Port or any compatibility layer.`
     : isPlayableButNotEnabled
       ? `${game.title} is graded playable on Apple Silicon, but it is not available to install in Pixel Port yet. Request it in the app to record interest, without a guaranteed date.`
-      : `Install and play ${game.title} on your Mac with Pixel Port. Follow app and runtime setup, then install and launch from your Library. Apple Silicon, macOS 14 or later; game requirements vary.`;
+      : `Install and play ${game.title} on your Mac with Pixel Port. Follow app and runtime setup, then install and launch from your Library. Apple Silicon (M1 or newer), macOS 14.0 or later; game requirements vary.`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 
@@ -143,7 +143,7 @@ const faq: { q: string; a: string }[] = isBlocked
       },
       {
         q: `Which Macs can run ${game.title}?`,
-        a: `Any Apple Silicon Mac — M1 through M4, MacBook Air to Mac Studio — on macOS 14 or later.`,
+        a: 'Pixel Port requires Apple Silicon (M1 or newer) and macOS 14.0 or later. Check the game\'s own requirements and notes; results vary by Mac, runtime, game version, and mode.',
       },
     ];
 // Ask the native question outright whenever the answer is yes — not only for the
@@ -162,7 +162,7 @@ const jsonLd = {
       ...(cover ? { image: cover } : {}),
       description: game.summary,
       gamePlatform: 'macOS (Apple Silicon)',
-      operatingSystem: 'macOS 14+',
+      operatingSystem: 'macOS 14.0+',
       url: canonical,
     },
     {
@@ -472,11 +472,11 @@ const jsonLd = {
             ))}
             <div>
               <dt>Hardware</dt>
-              <dd>Apple Silicon</dd>
+              <dd>Apple Silicon (M1 or newer)</dd>
             </div>
             <div>
               <dt>System</dt>
-              <dd>macOS 14+</dd>
+              <dd>macOS 14.0+</dd>
             </div>
           </dl>
 
