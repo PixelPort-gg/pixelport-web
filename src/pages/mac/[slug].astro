@@ -103,7 +103,7 @@ const canonical = new URL(pagePath(game), Astro.site).toString();
 
 const faq = [
   {
-    q: `Does ${game.name} work on Apple Silicon (M1–M4) Macs?`,
+    q: `Does ${game.name} work on Apple Silicon (M1 or newer) Macs?`,
     a:
       v.body +
       (isNo && game.reason ? ` The blocker: ${game.reason}` : '') +
