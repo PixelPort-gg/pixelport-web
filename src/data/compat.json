@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-30",
+ "fetched_at": "2026-10-31",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -198,7 +198,7 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35630223
   },
@@ -462,7 +462,7 @@
    "appid": 648800,
    "slug": "raft",
    "name": "Raft",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15323198
   },
@@ -1278,7 +1278,7 @@
    "appid": 424840,
    "slug": "little-nightmares",
    "name": "Little Nightmares",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7604472
   },
@@ -1734,7 +1734,7 @@
    "appid": 2630,
    "slug": "call-of-duty-2",
    "name": "Call of Duty 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7509804
   },
@@ -2118,7 +2118,7 @@
    "appid": 613100,
    "slug": "house-flipper",
    "name": "House Flipper",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3589596
   },
@@ -2662,7 +2662,7 @@
    "appid": 1557740,
    "slug": "rounds",
    "name": "Rounds",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3534893
   },
@@ -3910,7 +3910,7 @@
    "appid": 32500,
    "slug": "star-wars-the-force-unleashed-ii",
    "name": "Star Wars: The Force Unleashed II",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1504692
   },
@@ -5070,7 +5070,7 @@
    "appid": 214730,
    "slug": "space-rangers-hd-a-war-apart",
    "name": "Space Rangers HD: A War Apart",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 356289
   },
@@ -5502,7 +5502,7 @@
    "appid": 345260,
    "slug": "medieval-total-war",
    "name": "Medieval: Total War",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 351574
   },
@@ -7358,7 +7358,7 @@
    "appid": 3934270,
    "slug": "how-many-dudes",
    "name": "How Many Dudes?",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -8398,7 +8398,7 @@
    "appid": 4557380,
    "slug": "batomon-showdown",
    "name": "Batomon Showdown",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
