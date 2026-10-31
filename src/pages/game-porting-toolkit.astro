@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 
 const seoTitle = 'Game Porting Toolkit Without the Terminal: Play Windows Games on Mac in One Click';
 const description =
-  "Apple's Game Porting Toolkit proves Windows games can run great on Apple Silicon, but it was built for developers, not players. Pixel Port gives you the same result with zero terminal commands.";
+  "Set up optional Apple D3DMetal in Pixel Port with your own Game Porting Toolkit 3.0 download. Requirements, import steps, and game-specific limits.";
 
 const canonical = new URL('/game-porting-toolkit', Astro.site).toString();
 const jsonLd = {
@@ -39,7 +39,7 @@ const jsonLd = {
           name: 'How do I get Game Porting Toolkit results without using the terminal?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Pixel Port packages the same underlying translation approach into a one-click Mac app: it downloads, configures, and launches Windows games on Apple Silicon automatically, with an honest per-game compatibility grade before you start.',
+            text: 'Pixel Port offers guided Apple D3DMetal setup on macOS 15 or later with Rosetta 2. It prepares its compatible engine; you download Game Porting Toolkit 3.0 from Apple under Apple\'s terms and import the disk image locally. D3DMetal is experimental, and compatibility varies by game.',
           },
         },
       ],
@@ -85,24 +85,32 @@ const jsonLd = {
         and no explanation.
       </p>
 
-      <h2>The same idea, made for players</h2>
+      <h2>Set up optional D3DMetal in Pixel Port</h2>
       <p>
-        Pixel Port takes the approach the toolkit proved out and does everything the guide asks of
-        you, automatically. Our runtime translates DirectX to Metal, and the Synthesis Engine
-        figures out each game's configuration for your specific Mac. You never see a terminal. You
-        install one app, pick a game from the catalogue, and press play.
+        Pixel Port 0.5.0 requires Apple Silicon (M1 or newer) and macOS 14.0 or later.
+        Its optional Apple D3DMetal setup is under your account menu → Settings → Prism
+        Runtime. On macOS 15 or later with Rosetta 2, Pixel Port prepares
+        its compatible engine. You obtain Game Porting Toolkit 3.0 from Apple under Apple's
+        terms, then import the disk image locally. Apple's download is a separate step.
       </p>
       <p>
-        And where the toolkit leaves you to discover what works by trial and error, our catalogue
-        grades 11,000+ games honestly up front, including <a href="/games/anti-cheat">the ones no
-        tool can run</a> because of kernel anti-cheat. No fabricated green lights.
+        Follow the <a href="/docs/getting-started/#optional-apple-d3dmetal-setup">D3DMetal
+        setup guide</a> for the exact download and import steps. D3DMetal is experimental;
+        a Ready setup does not guarantee a particular game's compatibility. Legacy Prism
+        remains the recommended starting point, and Prism Next remains Upcoming.
+      </p>
+      <p>
+        Before installing, read your game's current label, notes, and requirements in
+        the <a href="/games">catalogue</a>. Results can vary by Mac, runtime, game version,
+        and mode. Some games have an established blocker,
+        including <a href="/games/anti-cheat">kernel-level anti-cheat</a>.
       </p>
     </div>
 
     <div class="mt-16 rounded-3xl border border-accent/25 bg-linear-to-br from-accent/15 to-accent-2/10 p-10 text-center">
-      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Skip the setup. Keep the result.</h2>
+      <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Choose your game. Follow guided setup.</h2>
       <p class="mx-auto mt-3 max-w-lg text-muted">
-        One free app. One click per game. Built for Apple Silicon.
+        Built for Apple Silicon, with setup instructions and game-specific limits.
       </p>
       <a
         href="/download"
