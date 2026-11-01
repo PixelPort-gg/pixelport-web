@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-10-31",
+ "fetched_at": "2026-11-01",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -2187,6 +2187,14 @@
    "popularity": 3577950
   },
   {
+   "appid": 359320,
+   "slug": "elite-dangerous",
+   "name": "Elite Dangerous",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3577388
+  },
+  {
    "appid": 389730,
    "slug": "tekken-7",
    "name": "Tekken 7",
@@ -2225,6 +2233,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3573569
+  },
+  {
+   "appid": 1222700,
+   "slug": "a-way-out",
+   "name": "A Way Out",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3572313
   },
   {
    "appid": 207610,
@@ -3019,6 +3035,14 @@
    "popularity": 1541684
   },
   {
+   "appid": 568220,
+   "slug": "lobotomy-corporation-monster-management-simulation",
+   "name": "Lobotomy Corporation | Monster Management Simulation",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1541213
+  },
+  {
    "appid": 933110,
    "slug": "age-of-empires-iii-definitive-edition",
    "name": "Age of Empires III: Definitive Edition",
@@ -3414,7 +3438,7 @@
    "appid": 625960,
    "slug": "stoneshard",
    "name": "Stoneshard",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1522298
   },
@@ -3462,7 +3486,7 @@
    "appid": 48190,
    "slug": "assassins-creed-brotherhood",
    "name": "Assassin's Creed: Brotherhood",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1520484
   },
@@ -3643,6 +3667,14 @@
    "popularity": 1515005
   },
   {
+   "appid": 1222690,
+   "slug": "dragon-age-inquisition",
+   "name": "Dragon Age: Inquisition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1514780
+  },
+  {
    "appid": 38410,
    "slug": "fallout-2",
    "name": "Fallout 2",
@@ -3657,6 +3689,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1514031
+  },
+  {
+   "appid": 462780,
+   "slug": "darksiders-warmastered-edition",
+   "name": "Darksiders Warmastered Edition",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1513991
   },
   {
    "appid": 6910,
@@ -4811,6 +4851,14 @@
    "popularity": 753844
   },
   {
+   "appid": 1521580,
+   "slug": "perfect-heist-2",
+   "name": "Perfect Heist 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 753706
+  },
+  {
    "appid": 421050,
    "slug": "deponia-doomsday",
    "name": "Deponia Doomsday",
@@ -4939,12 +4987,28 @@
    "popularity": 358109
   },
   {
+   "appid": 1745510,
+   "slug": "lunacid",
+   "name": "Lunacid",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 358037
+  },
+  {
    "appid": 536270,
    "slug": "ancestors-the-humankind-odyssey",
    "name": "Ancestors: The Humankind Odyssey",
    "tier": "untested",
    "reason": null,
    "popularity": 358006
+  },
+  {
+   "appid": 446020,
+   "slug": "jalopy",
+   "name": "Jalopy",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 357925
   },
   {
    "appid": 360740,
@@ -4969,6 +5033,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 357885
+  },
+  {
+   "appid": 1846170,
+   "slug": "iron-lung",
+   "name": "Iron Lung",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 357529
   },
   {
    "appid": 632300,
@@ -5067,6 +5139,14 @@
    "popularity": 356520
   },
   {
+   "appid": 376870,
+   "slug": "minecraft-story-mode-a-telltale-games-series",
+   "name": "Minecraft: Story Mode - A Telltale Games Series",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 356332
+  },
+  {
    "appid": 214730,
    "slug": "space-rangers-hd-a-war-apart",
    "name": "Space Rangers HD: A War Apart",
@@ -5145,6 +5225,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 355106
+  },
+  {
+   "appid": 495140,
+   "slug": "naruto-ultimate-ninja-storm",
+   "name": "NARUTO: Ultimate Ninja STORM",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 354984
   },
   {
    "appid": 207490,
@@ -5449,6 +5537,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 351917
+  },
+  {
+   "appid": 1462810,
+   "slug": "wrc-10-fia-world-rally-championship",
+   "name": "WRC 10 FIA World Rally Championship",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351847
   },
   {
    "appid": 6310,
@@ -5859,6 +5955,14 @@
    "popularity": 151603
   },
   {
+   "appid": 1694600,
+   "slug": "the-house-of-the-dead-remake",
+   "name": "The House of the Dead: Remake",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 151603
+  },
+  {
    "appid": 1970980,
    "slug": "warlord-britannia",
    "name": "Warlord: Britannia",
@@ -5931,6 +6035,14 @@
    "popularity": 151205
   },
   {
+   "appid": 1450900,
+   "slug": "desynced",
+   "name": "Desynced",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 151136
+  },
+  {
    "appid": 303800,
    "slug": "the-witcher-adventure-game",
    "name": "The Witcher Adventure Game",
@@ -5955,6 +6067,14 @@
    "popularity": 150997
   },
   {
+   "appid": 1682060,
+   "slug": "warriors-of-the-nile-2",
+   "name": "Warriors of the Nile 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 150972
+  },
+  {
    "appid": 1249480,
    "slug": "ex-zodiac",
    "name": "Ex-Zodiac",
@@ -5974,7 +6094,7 @@
    "appid": 517810,
    "slug": "caesar-iv",
    "name": "Caesar IV",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 150555
   },
@@ -6137,6 +6257,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 75579
+  },
+  {
+   "appid": 2530980,
+   "slug": "tales-of-graces-f-remastered",
+   "name": "Tales of Graces f Remastered",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 75577
   },
   {
    "appid": 2719940,
@@ -8447,6 +8575,22 @@
    "slug": "dumb-ways-to-build",
    "name": "Dumb Ways to Build",
    "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 3195440,
+   "slug": "welcome-to-elderfield",
+   "name": "Welcome to Elderfield",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4948000,
+   "slug": "moo-who",
+   "name": "Moo Who?",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
