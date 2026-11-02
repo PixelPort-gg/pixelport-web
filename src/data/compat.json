@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-01",
+ "fetched_at": "2026-11-02",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -614,7 +614,7 @@
    "appid": 240,
    "slug": "counter-strike-source",
    "name": "Counter-Strike: Source",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15175426
   },
@@ -982,7 +982,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 7708042
   },
@@ -1270,7 +1270,7 @@
    "appid": 1604030,
    "slug": "v-rising",
    "name": "V Rising",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7606197
   },
@@ -1630,7 +1630,7 @@
    "appid": 3240220,
    "slug": "grand-theft-auto-v-enhanced",
    "name": "Grand Theft Auto V Enhanced",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7538595
   },
@@ -2318,7 +2318,7 @@
    "appid": 588430,
    "slug": "fallout-shelter",
    "name": "Fallout Shelter",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3565847
   },
@@ -2510,7 +2510,7 @@
    "appid": 307780,
    "slug": "mortal-kombat-x",
    "name": "Mortal Kombat X",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3548077
   },
@@ -3166,7 +3166,7 @@
    "appid": 383980,
    "slug": "rivals-of-aether",
    "name": "Rivals of Aether",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1534357
   },
@@ -3238,7 +3238,7 @@
    "appid": 2021910,
    "slug": "fps-chess",
    "name": "FPS Chess",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1531223
   },
@@ -3673,14 +3673,6 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1514780
-  },
-  {
-   "appid": 38410,
-   "slug": "fallout-2",
-   "name": "Fallout 2",
-   "tier": "untested",
-   "reason": null,
-   "popularity": 1514550
   },
   {
    "appid": 1954200,
@@ -4662,7 +4654,7 @@
    "appid": 204030,
    "slug": "fable-the-lost-chapters",
    "name": "Fable: The Lost Chapters",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 757152
   },
