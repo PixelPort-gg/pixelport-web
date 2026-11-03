@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-02",
+ "fetched_at": "2026-11-03",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -982,7 +982,7 @@
    "appid": 1426210,
    "slug": "it-takes-two",
    "name": "It Takes Two",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 7708042
   },
@@ -2886,7 +2886,7 @@
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1580833
   },
@@ -3675,6 +3675,14 @@
    "popularity": 1514780
   },
   {
+   "appid": 38410,
+   "slug": "fallout-2",
+   "name": "Fallout 2",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 1514550
+  },
+  {
    "appid": 1954200,
    "slug": "kena-bridge-of-spirits",
    "name": "Kena: Bridge of Spirits",
@@ -3926,7 +3934,7 @@
    "appid": 41500,
    "slug": "torchlight",
    "name": "Torchlight",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1506319
   },
@@ -4006,7 +4014,7 @@
    "appid": 2124490,
    "slug": "silent-hill-2",
    "name": "SILENT HILL 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 791028
   },
@@ -4158,7 +4166,7 @@
    "appid": 756800,
    "slug": "contraband-police",
    "name": "Contraband Police",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 769433
   },
@@ -4982,7 +4990,7 @@
    "appid": 1745510,
    "slug": "lunacid",
    "name": "Lunacid",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 358037
   },
@@ -7758,7 +7766,7 @@
    "appid": 2413950,
    "slug": "final-sentence",
    "name": "Final Sentence",
-   "tier": "playable",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
@@ -7854,7 +7862,7 @@
    "appid": 3103840,
    "slug": "tcg-card-shop-simulator-prologue",
    "name": "TCG Card Shop Simulator: Prologue",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -7934,7 +7942,7 @@
    "appid": 2397300,
    "slug": "half-sword",
    "name": "Half Sword",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
