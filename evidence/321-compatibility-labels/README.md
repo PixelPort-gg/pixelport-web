@@ -23,13 +23,13 @@ The initial full HTML audit at `d1b854cf` parsed structured data and checked 225
 
 ## Review corrections
 
-Source: `cfdab4a264bf02b35b4817c45e63e49cd2318138`. [Review findings](https://github.com/PixelPort-gg/pixelport-web/pull/16#pullrequestreview-5750045594).
+Source: `eb9dcd0d57562e8a57208cf2502a8f5f60f007ba`. [Review findings](https://github.com/PixelPort-gg/pixelport-web/pull/16#pullrequestreview-5750045594).
 
 Ten new generated-page regressions failed on `d1b854cf` and pass after the corrections. They check the visible and structured native answers for all seven reported Untested guides, the setup FAQs for Battlefield 6 and Modern Warfare II, and both catalogue hubs' labels and counts. Native-platform facts are separate from the contract assessment; Valheim's native Mac listing was also confirmed against [Steam's current system requirements](https://store.steampowered.com/app/892970/Valheim/).
 
 The upstream fixture was verified through GitHub at app revision `b3d0c8b928b031fdea779be442b4d7c4ec5e901c`, blob `50f0d39f34d3a2455b19aad167b959541bf4e46a`. Both unit tests and builds run the offline digest guard. A negative test confirms that even a one-byte edit is rejected.
 
-The updated build passed with 5,557 pages. All 41 unit tests and 24 generated-page tests passed. The 15 corrected game/hub pages passed structured-data parsing and all 581 internal links/anchors. Five corrected routes had no mobile overflow at 390 px or browser runtime errors. No catalogue data or route set changed. The full-audit directory gaps above remain inherited limits.
+The updated build passed with 5,557 pages. All 41 unit tests and 24 generated-page tests passed. The 15 corrected game/hub pages passed structured-data parsing and all 581 internal links/anchors. Literal text-node and browser checks confirm word separators around the hub counts. Five corrected routes had no mobile overflow at 390 px or browser runtime errors. No catalogue data or route set changed. The full-audit directory gaps above remain inherited limits.
 
 Additional captures use the same local Chrome settings as the initial evidence; before is `d1b854cf`, after is the corrected source above.
 
