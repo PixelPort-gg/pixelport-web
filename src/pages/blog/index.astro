@@ -1,9 +1,10 @@
 ---
+import { withCurrentCompatibility } from '../../lib/blog-compatibility';
 import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/editorial/PageIntro.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).map(withCurrentCompatibility).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const fmt = (d: Date) =>

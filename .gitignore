@@ -16,3 +16,6 @@ dist/
 *.log
 .idea/
 .vscode/
+
+# Local verification tooling and dependency cache
+.verification/

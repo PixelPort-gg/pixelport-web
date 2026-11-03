@@ -1,4 +1,5 @@
 ---
+import { withCompatibility, labelOrder, compatibilityMeta } from '../../lib/compatibility.mjs';
 import Base from '../../layouts/Base.astro';
 import snapshot from '../../data/compat.json';
 import enabledAppids from '../../../scripts/enabled.json';
@@ -9,37 +10,17 @@ import { compatMeta, pagePath, artChain, ART_ONERROR, type CompatGame, type Comp
 
 const ENABLED = new Set(enabledAppids as number[]);
 const NATIVE_MAC = new Set(nativeMacIds as number[]);
-const all = (snapshot as any).games as CompatGame[];
-const order: CompatTier[] = ['verified', 'playable', 'untested', 'unsupported'];
-const groups = order
-  .map((tier) => ({ tier, meta: compatMeta[tier], games: all.filter((g) => g.tier === tier) }))
-  .filter((g) => g.games.length > 0);
-
-const sections: Record<CompatTier, { title: string; blurb: string }> = {
-  verified: {
-    title: 'Verified · runs on real Macs',
-    blurb: 'A real Apple Silicon Mac ran each of these end to end through Pixel Port. No asterisks.',
-  },
-  playable: {
-    title: 'Playable · community & template confidence',
-    blurb: 'Graded playable from community reports and how each game is built; not yet hand-verified by us.',
-  },
-  untested: {
-    title: 'Untested · try it and help',
-    blurb: 'In the catalogue, but nobody has confirmed a full run yet. Your attempt grades it for everyone.',
-  },
-  unsupported: {
-    title: 'Not supported · the honest no',
-    blurb: 'Blocked on Mac (almost always kernel anti-cheat), and no tool can honestly work around it.',
-  },
-};
+const all = (snapshot.games as CompatGame[]).map(withCompatibility);
+const order = labelOrder;
+const groups = order.map(tier => ({ tier, meta: compatMeta[tier], games: all.filter(g => g.label === tier) })).filter(g => g.games.length);
+const sections = Object.fromEntries(order.map(key => [key, { title: compatibilityMeta[key].label, blurb: compatibilityMeta[key].description }]));
 
 const fmt = (n: number) => n.toLocaleString('en-US');
 const catalogueCount = (JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
 ) as unknown[]).length;
 const seoTitle = 'Does It Run on Mac? Honest Game Compatibility for Apple Silicon';
-const description = `${fmt(all.length)} Windows games with a straight answer for Apple Silicon Macs: verified, playable, untested, or an honest no. One-click installs through Pixel Port.`;
+const description = `${fmt(all.length)} Windows games with a straight answer for Apple Silicon Macs: PixelPort verified, Player-tested, Issues reported, Untested or Blocked. One-click installs through Pixel Port.`;
 ---
 
 <Base title={seoTitle} description={description}>
@@ -122,7 +103,7 @@ const description = `${fmt(all.length)} Windows games with a straight answer for
                       >
                         {meta.label}
                       </span>
-                      {tier === 'playable' && !ENABLED.has(g.appid) && !NATIVE_MAC.has(g.appid) && (
+                      {tier !== 'blocked' && !ENABLED.has(g.appid) && !NATIVE_MAC.has(g.appid) && (
                         <span class="absolute bottom-2 left-2 rounded-full bg-base-top/90 px-2 py-1 text-[11px] font-semibold text-fg ring-1 ring-playable/50 backdrop-blur-md">
                           Needs beta enablement
                         </span>

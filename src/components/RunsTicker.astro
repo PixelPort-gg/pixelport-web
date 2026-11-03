@@ -7,10 +7,11 @@
  * No new dependencies. Transform-only animation (GPU-friendly).
  * prefers-reduced-motion → a static, horizontally-scrollable row.
  */
+import { compatibilityMeta } from '../lib/compatibility.mjs';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-type Game = { slug: string; title: string; appid: number | null; tier: string; pop?: number };
+type Game = { slug: string; title: string; appid: number | null; label: string; pop?: number };
 
 // Living evidence: the most POPULAR games that actually run, taken from the
 // popularity-sorted catalogue so recognisable names carry the strip.
@@ -18,7 +19,7 @@ const grid = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
 ) as Game[];
 const runs = grid
-  .filter((g) => (g.tier === 'verified' || g.tier === 'playable') && typeof g.appid === 'number')
+  .filter((g) => (g.label === 'pixelport_verified' || g.label === 'player_tested') && typeof g.appid === 'number')
   .slice(0, 40);
 
 // Pace the loop so art has time to read, never frantic.
@@ -42,7 +43,7 @@ const header = (appid: number) =>
                 <a class="rt-link" href={`/games/${g.slug}`} tabindex={copy === 1 ? -1 : undefined}>
                   <span class="rt-cover">
                     {/* Permanent gradient backdrop: the cover never blanks. */}
-                    <span class="rt-ph">{g.title}</span>
+                    <span class="rt-ph">{g.title} · {compatibilityMeta[g.label].label}</span>
                     <img
                       class="rt-img"
                       src={cover(g.appid as number)}
@@ -56,8 +57,8 @@ const header = (appid: number) =>
                     />
                   </span>
                   <span class="rt-meta">
-                    <span class={`rt-dot rt-dot--${g.tier}`} aria-hidden="true" />
-                    <span class="rt-title">{g.title}</span>
+                    <span class={`rt-dot rt-dot--${compatibilityMeta[g.label].tone}`} aria-hidden="true" />
+                    <span class="rt-title">{g.title} · {compatibilityMeta[g.label].label}</span>
                   </span>
                 </a>
               </li>

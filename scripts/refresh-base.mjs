@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const APP = join(process.env.HOME, 'MacGamePort/App/Sources/PortingEngine/Catalogue/catalogue.json');
+const APP = process.argv[2] ?? join(process.env.HOME, 'MacGamePort/App/Sources/PortingEngine/Catalogue/catalogue.json');
 
 const app = JSON.parse(readFileSync(APP, 'utf8'));
 const games = (app.games || app).map((g) => ({
@@ -16,6 +16,10 @@ const games = (app.games || app).map((g) => ({
   title: g.title,
   appid: g.appid ?? null,
   tier: g.tier,
+  verified_by: g.verifiedBy ?? null,
+  unsupported_reason: g.tier === 'unsupported' ? g.evidence ?? null : null,
+  verified_on: g.verifiedOn ?? null,
+  verified_conditions: g.verifiedConditions ?? null,
   engine: g.engine ?? null,
   d3d: g.d3d ?? null,
   antiCheat: g.antiCheat ?? null,

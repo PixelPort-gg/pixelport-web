@@ -45,12 +45,7 @@ We rebuilt the thing that actually died with Whisky: a **modern, maintained Mac
 runtime** (Wine with DirectX-to-Metal translation, running on Apple Silicon) and
 then added the part every tool above is missing: **the answer before the download.**
 
-Every game in our catalogue carries an honest tier. *Verified* means it ran on a real
-Apple Silicon Mac, ours or the network's, and we publish what we measured.
-*Unsupported* means it will never work (kernel anti-cheat, mostly) and we say so
-instead of taking the download. One click: connect Steam, press Install & Play, and
-the setup (runtime, graphics backend, launch flags) is composed for that specific
-game. No bottles. No settings to guess.
+Every game has one of five compatibility labels: **Untested**, **Player-tested**, **PixelPort verified**, **Issues reported** or **Blocked**. Tested labels require accepted gameplay evidence; a block requires an established limitation. Availability and launch reports stay separate. Read each game's current assessment and conditions before trying it.
 
 The honest caveats, because they're the point: Pixel Port is in beta and has rough
 edges. It's Apple Silicon only (M1 or newer, macOS 14+), so no Intel Macs. You need to

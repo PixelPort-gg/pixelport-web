@@ -60,9 +60,17 @@ still be required. Depot copies are not automatically synchronized with Steam Cl
 
 ## Reading compatibility information
 
-The website currently displays **Verified**, **Playable**, **Needs attention**,
-and **Unsupported**. Read the game's caveats alongside its label. A catalogue
-label is not a guarantee for every Mac, game update, runtime, or mode.
+The website uses five compatibility labels:
+
+| Label | Meaning |
+| --- | --- |
+| Untested | No substantiated gameplay claim for this game. |
+| Player-tested | An accepted first-hand report confirms gameplay through PixelPort, with conditions and date. |
+| PixelPort verified | PixelPort's gameplay qualification checks passed on a recorded configuration. |
+| Issues reported | An accepted relevant problem, with the affected configuration or mode. Earlier test history is kept. |
+| Blocked | An established limitation prevents the stated use. |
+
+Availability is separate. An unlocked Untested game is available to try; an unlock, recipe, template match, launch or menu result does not establish gameplay compatibility. Read the game's notes and test conditions. Anti-cheat is named as a cause only when established.
 
 Availability, ownership, installation, runtime readiness, and gameplay results
 are separate. Unlocking a game lets you try it; it does not establish that it

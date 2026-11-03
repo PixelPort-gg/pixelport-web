@@ -1,4 +1,5 @@
 ---
+import { compatibilityMeta, labelOrder } from '../../lib/compatibility.mjs';
 import Base from '../../layouts/Base.astro';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -7,7 +8,7 @@ interface GridGame {
   slug: string;
   title: string;
   appid: number | null;
-  tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
+  label: 'pixelport_verified' | 'player_tested' | 'issues_reported' | 'untested' | 'blocked';
   p: number;
   e?: number; // 1 = currently enabled in the manual beta
   n?: number; // 1 = already ships a native Mac build
@@ -25,40 +26,15 @@ const total = grid.length;
 const nativeMacCount = grid.filter((g) => g.n).length;
 const gradedTotal = total - nativeMacCount;
 const counts = grid.reduce<Record<string, number>>(
-  (m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m),
+  (m, g) => ((m[g.label] = (m[g.label] || 0) + 1), m),
   {},
 );
 const fmt = (n: number) => n.toLocaleString('en-US');
 
-const tierInfo = {
-  verified: {
-    label: 'Verified',
-    badge: 'text-verified bg-verified/15 ring-verified/35',
-    dot: 'bg-verified',
-  },
-  playable: {
-    label: 'Playable',
-    badge: 'text-playable bg-playable/15 ring-playable/35',
-    dot: 'bg-playable',
-  },
-  'needs-attention': {
-    label: 'Needs attention',
-    badge: 'text-attention bg-attention/15 ring-attention/35',
-    dot: 'bg-attention',
-  },
-  unsupported: {
-    label: 'Unsupported',
-    badge: 'text-blocked bg-blocked/15 ring-blocked/35',
-    dot: 'bg-blocked',
-  },
-} as const;
-
+const tierInfo = compatibilityMeta;
 const filters = [
   { key: 'all', label: 'All', count: total },
-  { key: 'verified', label: 'Verified', count: counts.verified || 0 },
-  { key: 'playable', label: 'Playable', count: counts.playable || 0 },
-  { key: 'needs-attention', label: 'Needs attention', count: counts['needs-attention'] || 0 },
-  { key: 'unsupported', label: 'Unsupported', count: counts.unsupported || 0 },
+  ...labelOrder.map(key => ({ key, label: tierInfo[key].label, count: counts[key] || 0 })),
 ];
 
 // Mirror-first (see lib/catalog.ts coverUrl): the mirror serves games whose Steam art only
@@ -98,8 +74,7 @@ const jsonLd = {
       <div class="catalogue-masthead__copy">
         <h1>Find your next<br /><span>Mac game.</span></h1>
         <p class="catalogue-lede">
-          {fmt(gradedTotal)} Windows games, each graded with a straight answer. Real launches become
-          verified results; uncertain games keep their caveats; blockers stay visible.
+          {fmt(gradedTotal)} Windows games, each graded with a straight answer. Gameplay evidence earns tested labels; untested games remain available to try when unlocked; blockers stay visible.
         </p>
         <a href="#catalogue" class="catalogue-enter">Explore the catalogue <span aria-hidden="true">↓</span></a>
         <p class="catalogue-index-links">
@@ -126,7 +101,7 @@ const jsonLd = {
             ))
           }
         </div>
-        <p>Grades update as real Macs report back.</p>
+        <p>Labels follow accepted gameplay evidence.</p>
       </div>
     </div>
   </header>
@@ -137,8 +112,7 @@ const jsonLd = {
         <h2 id="catalogue-title">Every verdict, in the open.</h2>
       </div>
       <p>
-        Verified means a Mac ran the game end to end. Playable is graded but not yet
-        hand-verified. Every other status says exactly what still needs work.
+        PixelPort verified means our gameplay qualification passed. Player-tested means an accepted first-hand gameplay report. Untested makes no gameplay claim; issues and established blockers stay visible.
       </p>
     </div>
 
@@ -189,7 +163,7 @@ const jsonLd = {
     <ul id="grid" class="catalogue-grid">
       {
         initialGames.map((game) => {
-          const tier = tierInfo[game.tier];
+          const tier = tierInfo[game.label];
           const cover = coverUrl(game.appid);
           const fallback = headerUrl(game.appid);
           const card = (
@@ -210,9 +184,10 @@ const jsonLd = {
                 }
                 <span class={`catalogue-card__badge ${tier.badge}`}>{tier.label}</span>
                 {game.n === 1 && <span class="catalogue-card__native">Native Mac build</span>}
+                {game.label === 'untested' && game.e === 1 && game.n !== 1 && <span class="catalogue-card__beta-access">Available to try</span>}
                 {
-                  game.tier === 'playable' && game.e !== 1 && game.n !== 1 && (
-                    <span class="catalogue-card__beta-access">Needs beta enablement</span>
+                  game.label !== 'blocked' && game.e !== 1 && game.n !== 1 && (
+                    <span class="catalogue-card__beta-access">Beta access required</span>
                   )
                 }
                 <span class="catalogue-card__edge" aria-hidden="true"></span>
@@ -222,7 +197,7 @@ const jsonLd = {
           );
 
           return (
-            <li class="catalogue-card" data-tier={game.tier} data-title={game.title.toLowerCase()}>
+            <li class="catalogue-card" data-tier={game.label} data-title={game.title.toLowerCase()}>
               {game.p ? (
                 <a href={`/games/${game.slug}`} aria-label={`${game.title}: ${tier.label}`}>{card}</a>
               ) : (
@@ -250,14 +225,9 @@ const jsonLd = {
     </noscript>
   </section>
 
-  <script is:inline>
+  <script>
+    import { compatibilityMeta as TIER } from '../../lib/compatibility.mjs';
     const PAGE = 60;
-    const TIER = {
-      verified: { label: 'Verified', cls: 'text-verified bg-verified/15 ring-verified/35' },
-      playable: { label: 'Playable', cls: 'text-playable bg-playable/15 ring-playable/35' },
-      'needs-attention': { label: 'Needs attention', cls: 'text-attention bg-attention/15 ring-attention/35' },
-      unsupported: { label: 'Unsupported', cls: 'text-blocked bg-blocked/15 ring-blocked/35' },
-    };
     const grid = document.getElementById('grid');
     const more = document.getElementById('more');
     const count = document.getElementById('count');
@@ -293,7 +263,7 @@ const jsonLd = {
     }
 
     function card(game) {
-      const tier = TIER[game.tier] || TIER.playable;
+      const tier = TIER[game.label] || TIER.untested;
       const title = esc(game.title);
       const cover = game.appid
         ? `https://mgp-api.macgameport.workers.dev/art/${Number(game.appid)}.jpg`
@@ -305,15 +275,16 @@ const jsonLd = {
         <div class="catalogue-card__art">
           <span class="catalogue-card__fallback">${title}</span>
           ${cover ? `<img src="${cover}" data-fb="${fallback}" alt="" loading="lazy" decoding="async" onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.dataset.fb='';}else{this.remove();}">` : ''}
-          <span class="catalogue-card__badge ${tier.cls}">${tier.label}</span>
+          <span class="catalogue-card__badge ${tier.badge}">${tier.label}</span>
           ${game.n === 1 ? '<span class="catalogue-card__native">Native Mac build</span>' : ''}
-          ${game.tier === 'playable' && game.e !== 1 && game.n !== 1 ? '<span class="catalogue-card__beta-access">Needs beta enablement</span>' : ''}
+          ${game.label === 'untested' && game.e === 1 && game.n !== 1 ? '<span class="catalogue-card__beta-access">Available to try</span>' : ''}
+          ${game.label !== 'blocked' && game.e !== 1 && game.n !== 1 ? '<span class="catalogue-card__beta-access">Beta access required</span>' : ''}
           <span class="catalogue-card__edge" aria-hidden="true"></span>
         </div>
         <p>${title}</p>`;
       return game.p
-        ? `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><a href="/games/${encodeURIComponent(game.slug)}" aria-label="${title}: ${tier.label}">${inner}</a></li>`
-        : `<li class="catalogue-card" data-tier="${esc(game.tier)}" data-title="${esc(game.title.toLowerCase())}"><div aria-label="${title}: ${tier.label}">${inner}</div></li>`;
+        ? `<li class="catalogue-card" data-tier="${esc(game.label)}" data-title="${esc(game.title.toLowerCase())}"><a href="/games/${encodeURIComponent(game.slug)}" aria-label="${title}: ${tier.label}">${inner}</a></li>`
+        : `<li class="catalogue-card" data-tier="${esc(game.label)}" data-title="${esc(game.title.toLowerCase())}"><div aria-label="${title}: ${tier.label}">${inner}</div></li>`;
     }
 
     function setCount() {
@@ -335,7 +306,7 @@ const jsonLd = {
     function apply() {
       filtered = all.filter(
         (game) =>
-          (filter === 'all' || game.tier === filter) &&
+          (filter === 'all' || game.label === filter) &&
           (!query || game.title.toLowerCase().includes(query)),
       );
       shown = 0;

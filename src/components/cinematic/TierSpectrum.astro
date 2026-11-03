@@ -1,41 +1,17 @@
 ---
+import { compatibilityMeta, labelOrder } from '../../lib/compatibility.mjs';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const catalogue = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
-) as { tier: string }[];
+) as { label: string }[];
 const counts = catalogue.reduce<Record<string, number>>((result, game) => {
-  result[game.tier] = (result[game.tier] ?? 0) + 1;
+  result[game.label] = (result[game.label] ?? 0) + 1;
   return result;
 }, {});
 const fmt = (value: number) => value.toLocaleString('en-US');
-const tiers = [
-  {
-    key: 'verified',
-    label: 'Verified',
-    icon: '✓',
-    detail: 'Human-confirmed end to end on a real Mac.',
-  },
-  {
-    key: 'playable',
-    label: 'Playable',
-    icon: '◐',
-    detail: 'Auto-tested or community-confirmed; full verification is pending.',
-  },
-  {
-    key: 'needs-attention',
-    label: 'Needs attention',
-    icon: '!',
-    detail: 'Runs with a known caveat or workaround.',
-  },
-  {
-    key: 'unsupported',
-    label: 'Unsupported',
-    icon: '×',
-    detail: 'A hard blocker (often kernel-level anti-cheat) prevents launch.',
-  },
-];
+const tiers = labelOrder.map(key => ({ key, ...compatibilityMeta[key], detail: compatibilityMeta[key].description }));
 ---
 
 <section class="confidence" aria-labelledby="confidence-title">
@@ -57,7 +33,7 @@ const tiers = [
         {
           tiers.map((tier) => (
             <li>
-              <a href={'/games?tier=' + tier.key} class={'tier-row tier-row--' + tier.key}>
+              <a href={'/games?tier=' + tier.key} class={'tier-row tier-row--' + tier.tone}>
                 <span class="tier-icon" aria-hidden="true">{tier.icon}</span>
                 <span class="tier-copy">
                   <strong>{tier.label}</strong>
@@ -73,7 +49,7 @@ const tiers = [
         }
       </ul>
       <p class="coverage-note">
-        Grades come from real launches and trusted compatibility reports.
+        Gameplay claims require accepted evidence. Unlocking a game only makes it available to try.
         <a href="/docs/how-it-works">Read how grading works</a>
       </p>
     </div>
@@ -162,13 +138,15 @@ const tiers = [
     --tier-color: var(--color-playable);
   }
 
-  .tier-row--needs-attention {
+  .tier-row--attention {
     --tier-color: var(--color-attention);
   }
 
-  .tier-row--unsupported {
+  .tier-row--blocked {
     --tier-color: var(--color-blocked);
   }
+
+  .tier-row--muted { --tier-color: var(--color-muted); }
 
   .tier-icon {
     display: grid;

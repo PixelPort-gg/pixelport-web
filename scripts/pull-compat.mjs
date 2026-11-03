@@ -1,7 +1,7 @@
 // pull-compat.mjs — refresh the committed snapshot behind the /mac/ compat pages.
 //
 // Reads ONLY the public mgp-api and writes src/data/compat.json with a strict
-// field whitelist: appid, name, tier, reason, popularity. Recipe fields
+// field whitelist including the raw assessment and its provenance. Recipe fields
 // (engine/d3d/graphics/hashes/launch details) are never copied — the /mac/
 // pages must stay tier-and-verdict only.
 // Also snapshots /v1/featured's unlocked appids to scripts/enabled.json so the
@@ -11,6 +11,7 @@
 // Run manually with `npm run refresh:compat`, review the diff, and commit it.
 // Builds always render from the committed snapshot so they stay reproducible.
 
+import { assessmentFields, publicBlockReason } from '../src/lib/compatibility.mjs';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -21,10 +22,8 @@ const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 const SLEEP_MS = 200; // be polite to the worker
 
-// Curated honest-no set: big-name games people search for that the catalogue
-// flags with an unsupported_reason (almost always kernel anti-cheat). Games
-// whose API record carries no reason are rendered by their real tier instead —
-// we never fabricate a "no" any more than we fabricate a "yes".
+// Preserve the existing search-target set. The raw assessment, including a
+// recorded reason, determines the label; presence in this set proves nothing.
 const BLOCKER_APPIDS = [
   3932890, // Escape from Tarkov (Steam release — trending 2026-07; BattlEye kernel)
   236390, // War Thunder
@@ -63,34 +62,6 @@ const slugify = (name) =>
     .replace(/['’]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '') || 'game';
-
-// Map raw catalogue tiers onto the four honest page tiers. Unknown tiers fall
-// DOWN to untested — a compat claim is never upgraded here.
-function pageTier(raw, reason) {
-  if (reason) return 'unsupported';
-  if (raw === 'verified') return 'verified';
-  if (raw === 'beta' || raw === 'playable') return 'playable';
-  return 'untested'; // candidate / catalogued / anything else
-}
-
-// Import-pipeline records sometimes stuff machine metadata into the reason
-// field. That text is not a human verdict (and leaks catalogue internals), so
-// any game carrying one is dropped from the honest-no set entirely.
-const isMachineReason = (r) =>
-  /archetype|auto-imported|source PCGW/i.test(r) || r.includes('|');
-
-// Reasons are rendered verbatim, except clauses that describe renderer/DX
-// specifics of our runtime — the public page states the anti-cheat verdict
-// only. If trimming would empty the reason, the original is kept untouched.
-function publicReason(r) {
-  const kept = r
-    .split(';')
-    .map((c) => c.trim())
-    .filter((c) => c && !/\b(dx\s?\d+|d3d\d*|directx|renderer)\b/i.test(c));
-  if (!kept.length) return r;
-  const joined = kept.join('; ');
-  return /[.!?]$/.test(joined) ? joined : `${joined}.`;
-}
 
 // Site style rule: no em dashes anywhere in rendered copy. API reasons arrive
 // with them, so normalize deterministically: the first " — " becomes ": ",
@@ -146,23 +117,13 @@ async function main() {
     const g = detail.game;
     if (!g?.name) continue;
 
-    let reason = g.unsupported_reason || null;
-    if (reason && isMachineReason(reason)) {
-      if (BLOCKER_APPIDS.includes(appid)) {
-        console.warn(`  drop ${appid} (${g.name}): machine-generated reason`);
-        continue;
-      }
-      reason = null; // unlocked game with junk metadata — keep it, on its real tier
-    }
-    if (reason) reason = deDash(publicReason(reason));
-
     // STRICT WHITELIST — nothing else from the API response is persisted.
     games.push({
       appid: g.appid,
       slug: slugify(g.name),
       name: g.name,
-      tier: pageTier(g.tier, reason),
-      reason,
+      ...assessmentFields(g),
+      reason: publicBlockReason(g.unsupported_reason),
       popularity: g.popularity ?? 0,
     });
     process.stdout.write('.');

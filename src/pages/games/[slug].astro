@@ -1,4 +1,5 @@
 ---
+import { assessmentSummary, publicBlockReason } from '../../lib/compatibility.mjs';
 import Base from '../../layouts/Base.astro';
 import games from '../../data/games.resolved.json';
 import catalogue from '../../data/catalogue.json';
@@ -10,7 +11,7 @@ const ENABLED = new Set(enabledAppids as number[]);
 
 // Seeded recommendations keep the page useful and deterministic. Curated
 // alternatives on authored blocker pages take precedence when they exist.
-const playablePool = games.filter((g) => (g.tier === 'verified' || g.tier === 'playable') && g.appid);
+const playablePool = games.filter((g) => (g.label === 'pixelport_verified' || g.label === 'player_tested') && g.appid);
 function seededPicks(game: any) {
   const seed = [...game.slug].reduce((sum: number, char: string) => sum + char.charCodeAt(0), 0);
   const seeded = [0, 1, 2, 3, 4].map((index) => playablePool[(seed + index) % playablePool.length]);
@@ -24,25 +25,26 @@ function seededPicks(game: any) {
 
 export function getStaticPaths() {
   return [
-    ...games.map((g) => ({ params: { slug: g.slug }, props: { game: { ...g, _cat: false } } })),
+    ...games.map((g) => ({ params: { slug: g.slug }, props: { game: { ...generate(g), ...g, steps: g.steps ?? generate(g).steps, _cat: false } } })),
     ...catalogue.map((e) => ({ params: { slug: e.slug }, props: { game: generate(e) } })),
   ];
 }
 
-const { game } = Astro.props as { game: any };
-const meta = tierMeta[game.tier as Tier];
+const { game: sourceGame } = Astro.props as { game: any };
+const game = { ...sourceGame, summary: assessmentSummary(sourceGame, sourceGame.title) };
+const meta = tierMeta[game.label as Tier];
 // Some Steam games need pinned artwork URLs instead of the appid-based defaults.
 const cover = game.art?.cover ?? coverUrl(game.appid);
 const fb = game.art?.header ?? coverFallbackUrl(game.appid);
 const landscape = fb;
-const isBlocked = game.tier === 'unsupported';
+const isBlocked = game.label === 'blocked';
 // Already ships a macOS build. The page stays — this is what people search for —
 // but it has to lead with "use the native version", not with our download button.
 const isNativeMac = !isBlocked && !!game.nativeMac;
-const isPlayableButNotEnabled = game.tier === 'playable' && !isNativeMac && !ENABLED.has(game.appid);
+const isUnavailable = !isBlocked && !isNativeMac && !ENABLED.has(game.appid);
 const discordUrl = 'https://discord.gg/2eQah8DjK6';
 const picks = seededPicks(game);
-const launchSteps = isPlayableButNotEnabled
+const launchSteps = isUnavailable
   ? [
       {
         title: 'Install Pixel Port',
@@ -61,31 +63,33 @@ const launchSteps = isPlayableButNotEnabled
 
 // Quick facts adapt to the source: authored pages surface genre/test date;
 // generated catalogue pages surface the compatibility profile we actually know.
-const facts: [string, string][] = game._cat
+const profileFacts: [string, string][] = game._cat
   ? ([
       ['Engine', engineLabel(game.engine)],
       ['Graphics', game.graphics ? String(game.graphics).toUpperCase() : null],
       ['Anti-cheat', prettyAC(game.antiCheat)],
     ].filter(([, value]) => value) as [string, string][])
-  : ([['Genre', game.genre], game.lastTested ? ['Last tested', game.lastTested] : null].filter(
+  : ([['Genre', game.genre]].filter(
       Boolean,
     ) as [string, string][]);
 
-const h1 = isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
-const seoTitle = isBlocked
+const facts: [string, string][] = [...profileFacts, ...(game.verified_on ? [['Evidence date', game.verified_on] as [string, string]] : []), ...(game.verified_conditions ? [['Test conditions', game.verified_conditions] as [string, string]] : [])];
+
+const h1 = game.label === 'untested' ? `Try ${game.title} on Mac` : game.label === 'issues_reported' ? `${game.title} on Mac: Issues reported` : isBlocked ? `Can you play ${game.title} on Mac?` : `How to play ${game.title} on Mac`;
+const seoTitle = game.label === 'untested' && !isNativeMac ? `Try ${game.title} on Mac: Untested` : game.label === 'issues_reported' ? `${game.title} on Mac: Issues reported` : isBlocked
   ? `Can You Play ${game.title} on Mac? The Honest Answer`
   : isNativeMac
     ? `How to Play ${game.title} on Mac (It Has a Native Mac Version)`
-    : isPlayableButNotEnabled
-      ? `${game.title} on Mac: Playable, Beta Access Required`
+    : isUnavailable
+      ? `${game.title} on Mac: ${meta.label}, Beta Access Required`
       : `How to Play ${game.title} on Mac in One Click (Apple Silicon)`;
 const description = isBlocked
   ? `${game.summary} Here is exactly what blocks it and who it is up to.`
   : isNativeMac
     ? `${game.title} already has a native Mac version included with your Steam purchase — install it straight from Steam. You do not need Pixel Port or any compatibility layer.`
-    : isPlayableButNotEnabled
-      ? `${game.title} is graded playable on Apple Silicon, but it is not available to install in Pixel Port yet. Request it in the app to record interest, without a guaranteed date.`
-      : `Install and play ${game.title} on your Mac with Pixel Port. Follow app and runtime setup, then install and launch from your Library. Apple Silicon (M1 or newer), macOS 14.0 or later; game requirements vary.`;
+    : isUnavailable
+      ? `${game.summary} It is not available to install in Pixel Port yet. A request records interest without guaranteeing availability or a date.`
+      : `${game.summary} Follow app and runtime setup. Apple Silicon (M1 or newer), macOS 14.0 or later; game requirements vary.`;
 
 const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 
@@ -93,11 +97,14 @@ const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 // on a Mac (native port, Pixel Port, cloud), compared honestly.
 const guide = (guides as Record<string, any>)[game.slug];
 
-// A hand-written guide answer beats the generated line — it is already reviewed
-// and it knows the specifics (whether the native build is any good, for one).
-const nativeLine =
-  guide?.nativeAnswer ??
-  `Steam lists a native Mac version of ${game.title}, included with your Steam purchase. Install that first — it needs no compatibility layer at all. Pixel Port is only worth it here if that build no longer runs, or you need the Windows version for mods.`;
+// Authored prose contains native-platform facts only. The Windows assessment
+// always comes from the contract, including in visible FAQs and JSON-LD.
+const nativePlatformAnswer = guide?.nativePlatformAnswer ?? (isNativeMac
+  ? `Steam lists a native Mac version of ${game.title}, included with your Steam purchase. Check its current macOS requirements before installing.`
+  : null);
+const assessmentAnswer = game.summary + (isUnavailable
+  ? ` ${game.title} is not available to install in Pixel Port yet. A request records interest without guaranteeing availability or a date.`
+  : '');
 
 // Tier-honest Q&A. Rendered visibly below and mirrored as FAQPage JSON-LD, so
 // the schema never claims anything the page doesn't say.
@@ -109,37 +116,29 @@ const faq: { q: string; a: string }[] = isBlocked
       },
       {
         q: `Why is ${game.title} blocked on Mac?`,
-        a: `${game.title} ships ${game.blocker.antiCheat}, which needs system access that a compatibility layer on macOS cannot provide. It is not a graphics or performance limit.`,
+        a: publicBlockReason(game.unsupported_reason),
       },
       {
         q: `Will ${game.title} ever work on Mac?`,
-        a: game.blocker.status,
+        a: 'A new assessment is needed if the recorded limitation changes.',
       },
     ]
   : [
       {
         q: `Does ${game.title} run on Mac?`,
         a: isNativeMac
-          ? // No tier talk here: the grade describes the Windows build, and quoting
-            // it against a game with its own Mac version just muddies the answer.
-            `${nativeLine} If you specifically want the Windows build — for Windows-only mods, say — Pixel Port runs it, graded ${meta.label.toLowerCase()} on Apple Silicon.`
-          : `${game.summary} Its current grade is ${meta.label.toLowerCase()} for Apple Silicon Macs.` +
-            (game.engine
-              ? ` ${game.title} is built on ${engineLabel(game.engine)}, and Pixel Port's runtime translates its rendering to Metal automatically.`
-              : '') +
-            (isPlayableButNotEnabled
-              ? ` It is not available to install in the beta yet. Request it in the app to record interest, without a guaranteed date.`
-              : ''),
+          ? `${nativePlatformAnswer} For the Windows build through PixelPort: ${assessmentAnswer}`
+          : assessmentAnswer,
       },
       {
         q: `Do I need to own ${game.title} on Steam?`,
-        a: `Yes. Pixel Port does not sell, host, or distribute games. ${game.title} downloads through Steam, to your own Steam account, exactly as it would on a PC — you need to own it there first. Pixel Port is the compatibility layer that runs the Windows build Steam delivers.`,
+        a: `Yes. To try the Steam version of ${game.title}, you need to own it on your own Steam account and use the install route available in the app. Pixel Port does not sell, host, or distribute games. ${assessmentAnswer}`,
       },
       {
         q: `Do I need Windows, Boot Camp, or a VM to play ${game.title} on Mac?`,
         a: isNativeMac
           ? `No. ${game.title} has a native Mac version, so nothing needs translating at all — install it from Steam and play.`
-          : `No. Pixel Port runs the Windows build of ${game.title} directly on macOS — no Boot Camp partition, no virtual machine, and no Windows license.`,
+          : `Pixel Port's runtime does not require a Windows installation, Boot Camp partition, virtual machine, or Windows license. ${assessmentAnswer}`,
       },
       {
         q: `Which Macs can run ${game.title}?`,
@@ -148,8 +147,8 @@ const faq: { q: string; a: string }[] = isBlocked
     ];
 // Ask the native question outright whenever the answer is yes — not only for the
 // handful of games that happen to have a hand-written guide.
-if (guide?.nativeAnswer || (isNativeMac && !isBlocked)) {
-  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: guide?.nativeAnswer ?? nativeLine });
+if (nativePlatformAnswer) {
+  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: `${nativePlatformAnswer} For the Windows build through PixelPort: ${assessmentAnswer}` });
 }
 
 const jsonLd = {
@@ -245,15 +244,16 @@ const jsonLd = {
         <div class="game-masthead__copy">
           <span class={`game-tier-badge ${isNativeMac ? nativeMacMeta.badge : meta.badge}`}>
             <span aria-hidden="true"></span>
-            {isNativeMac ? nativeMacMeta.label : `${meta.label}${!isBlocked ? ' on Mac' : ''}`}
+            {isNativeMac ? nativeMacMeta.label : meta.label}
           </span>
           <h1>{h1}</h1>
-          {isNativeMac && <p class="game-native-note">{nativeLine}</p>}
+          {isNativeMac && <p class="game-native-note">{nativePlatformAnswer}</p>}
           <p class="game-summary">{game.summary}</p>
+          {game.label === 'untested' && ENABLED.has(game.appid) && !isNativeMac && <p class="game-availability">Available to try. An unlock does not confirm gameplay compatibility.</p>}
           {
-            isPlayableButNotEnabled && (
+            isUnavailable && (
               <div class="game-beta-note">
-                <strong>Playable grade, beta access pending.</strong>
+                <strong>Beta access pending.</strong>
                 <p>
                   This game is not available to install in Pixel Port yet. <a href="/download">Request it in the app</a> to record interest, or ask about
                   your request in Discord Help. A request promises neither availability nor a date.
@@ -267,14 +267,14 @@ const jsonLd = {
                 Get the Mac version on Steam
                 <span aria-hidden="true">→</span>
               </a>
-            ) : isPlayableButNotEnabled ? (
+            ) : isUnavailable ? (
               <a href={discordUrl} rel="noopener" class="game-primary-cta">
                 Ask about {game.title} on Discord
                 <span aria-hidden="true">→</span>
               </a>
             ) : (
               <a href={isBlocked ? '#alternatives' : '/download'} class:list={['game-primary-cta', { 'game-primary-cta--blocked': isBlocked }]}>
-                {isBlocked ? 'See games that run' : `Download & play ${game.title}`}
+                {isBlocked ? 'See games that run' : game.label === 'untested' || game.label === 'issues_reported' ? `Try ${game.title} on your Mac` : `Download & play ${game.title}`}
                 <span aria-hidden="true">→</span>
               </a>
             )
@@ -292,11 +292,9 @@ const jsonLd = {
                 <h2 id="blocker-heading">What stops {game.title}</h2>
                 <div class="blocker-panel">
                   <span class="blocker-panel__line" aria-hidden="true"></span>
-                  <p class="blocker-panel__label">{game.blocker.antiCheat}</p>
+                  <p class="blocker-panel__label">{publicBlockReason(game.unsupported_reason)}</p>
                   <p>
-                    Anti-cheat like this needs to run deep in the system, and that access is not
-                    available to a compatibility layer on macOS. This is not a graphics or performance
-                    limit, and it is not something Pixel Port can work around.
+                    This recorded limitation prevents the stated use. Read its scope before choosing an alternative.
                   </p>
                 </div>
               </section>
@@ -306,16 +304,16 @@ const jsonLd = {
                 <div class="decision-panel">
                   <div>
                     <span>Decision owner</span>
-                    <strong>{game.blocker.whoDecides}</strong>
+                    <strong>{'Depends on the recorded limitation'}</strong>
                   </div>
-                  <p>{game.blocker.status}</p>
+                  <p>{publicBlockReason(game.unsupported_reason)}</p>
                 </div>
               </section>
 
               <section id="alternatives" class="game-section" aria-labelledby="alternatives-heading">
                 <h2 id="alternatives-heading">You can play these on Mac</h2>
                 <p class="game-section__lede">
-                  These games have a verified or playable result on Apple Silicon right now.
+                  These games are PixelPort verified or Player-tested on Apple Silicon right now.
                 </p>
                 <ul class="game-picks">
                   {picks.map((pick) => (
@@ -412,7 +410,7 @@ const jsonLd = {
           guide && (
             <section class="game-section" aria-labelledby="guide-heading">
               <h2 id="guide-heading">Every way to play {game.title} on a Mac</h2>
-              <p class="game-section__lede">{guide.intro}</p>
+              <p class="game-section__lede">{game.summary}</p>
               <div class="game-guide-table">
                 <table>
                   <thead>
@@ -428,8 +426,8 @@ const jsonLd = {
                       <tr>
                         <th scope="row">{o.name}</th>
                         <td>{o.cost}</td>
-                        <td>{o.how}</td>
-                        <td>{o.verdict}</td>
+                        <td>{o.name.toLowerCase().includes('pixel') ? 'Install the Steam copy you own, subject to beta access and runtime requirements.' : o.how}</td>
+                        <td>{o.name.toLowerCase().includes('pixel') ? `${meta.label}. ${meta.description}` : o.verdict}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -492,16 +490,16 @@ const jsonLd = {
                 <a href="/games" class="game-rail-cta game-rail-cta--quiet">Find a game that needs us <span aria-hidden="true">→</span></a>
                 <p>This one already runs natively on your Mac. We would rather say so than sell you a download.</p>
               </>
-            ) : isPlayableButNotEnabled ? (
+            ) : isUnavailable ? (
               <>
                 <a href={discordUrl} rel="noopener" class="game-rail-cta">Ask about this game on Discord <span aria-hidden="true">→</span></a>
                 <a href="/download" class="game-rail-secondary">Request it in the app</a>
-                <p>Playable is the compatibility grade. This game still needs beta access enabled.</p>
+                <p>Compatibility and availability are separate. This game still needs beta access enabled.</p>
               </>
             ) : (
               <>
-                <a href="/download" class="game-rail-cta">Download &amp; play <span aria-hidden="true">→</span></a>
-                <p>Runs the copy you own on Steam. No Boot Camp, Windows license, or terminal setup.</p>
+                <a href="/download" class="game-rail-cta">{game.label === 'untested' || game.label === 'issues_reported' ? 'Try it on your Mac' : 'Download & play'} <span aria-hidden="true">→</span></a>
+                <p>Availability lets you try the Steam copy you own. Read the compatibility label and conditions first.</p>
               </>
             )
           }

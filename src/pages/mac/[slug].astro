@@ -1,4 +1,5 @@
 ---
+import { withCompatibility } from '../../lib/compatibility.mjs';
 import Base from '../../layouts/Base.astro';
 import snapshot from '../../data/compat.json';
 import nativeMacIds from '../../data/native-mac.json';
@@ -22,17 +23,17 @@ const ENABLED = new Set(enabledAppids as number[]);
 const DISCORD_URL = 'https://discord.gg/2eQah8DjK6';
 
 export function getStaticPaths() {
-  const games = (snapshot as any).games as CompatGame[];
+  const games = (snapshot.games as CompatGame[]).map(withCompatibility);
   return games.map((g) => ({ params: { slug: `${g.slug}-${g.appid}` }, props: { game: g } }));
 }
 
 const { game } = Astro.props as { game: CompatGame };
-const all = (snapshot as any).games as CompatGame[];
-const isNo = game.tier === 'unsupported';
+const all = (snapshot.games as CompatGame[]).map(withCompatibility);
+const isNo = game.label === 'blocked';
 // Already ships a macOS build → the honest answer is "use that", not our grade.
 const isNativeMac = !isNo && NATIVE_MAC.has(game.appid);
-const isPlayableButNotEnabled = game.tier === 'playable' && !isNativeMac && !ENABLED.has(game.appid);
-const meta = isNativeMac ? nativeCompatMeta : compatMeta[game.tier];
+const isUnavailable = !isNo && !isNativeMac && !ENABLED.has(game.appid);
+const meta = isNativeMac ? nativeCompatMeta : compatMeta[game.label];
 const v = isNativeMac ? nativeVerdict(game) : verdict(game);
 const launchSteps = isNativeMac
   ? [
@@ -45,7 +46,7 @@ const launchSteps = isNativeMac
         body: 'Start it from your Mac Steam app. To launch installed native Steam games from Pixel Port, opt in under Settings → Prism Runtime → Labs.',
       },
     ]
-  : isPlayableButNotEnabled
+  : isUnavailable
   ? [
       {
         title: 'Install Pixel Port',
@@ -70,9 +71,9 @@ const launchSteps = isNativeMac
         body: `Sign in to the Steam account that owns ${game.name}. For the normal Steam route, choose Install and let downloading and preparation finish. Follow any warning for your Mac or selected runtime.`,
       },
       {
-        title: game.tier === 'untested' ? 'Play and report your result' : 'Play',
+        title: (game.label === 'untested' || game.label === 'issues_reported') ? 'Play and report your result' : 'Play',
         body:
-          game.tier === 'untested'
+          game.label === 'untested'
             ? 'Start the game from your Library in Pixel Port using the launch action for the selected copy, such as Play via Steam or Launch Game. Report what you actually tested and any remaining issues.'
             : 'Start the game from your Library in Pixel Port using the launch action for the selected copy, such as Play via Steam or Launch Game. This applies its per-game launch settings.',
       },
@@ -80,24 +81,24 @@ const launchSteps = isNativeMac
 
 // Verified/playable pages keep their same-tier company. Untested and honest-no
 // pages immediately point to games that are genuinely verified on real Macs.
-const linkTier = game.tier === 'verified' || game.tier === 'playable' ? game.tier : 'verified';
-const pool = all.filter((g) => g.tier === linkTier && g.appid !== game.appid);
+const linkTier = game.label === 'pixelport_verified' || game.label === 'player_tested' ? game.label : 'pixelport_verified';
+const pool = all.filter((g) => g.label === linkTier && g.appid !== game.appid);
 const seed = [...game.slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
-const picks = [0, 1, 2, 3].map((index) => pool[(seed + index) % pool.length]);
+const picks = pool.length ? [...new Set([0, 1, 2, 3].map((index) => pool[(seed + index) % pool.length]))] : [];
 const picksHeading =
-  game.tier === 'verified'
-    ? 'Also verified on Mac'
-    : game.tier === 'playable'
-      ? 'Also playable on Mac'
-      : 'These run on Mac · verified';
+  game.label === 'pixelport_verified'
+    ? 'Also PixelPort verified'
+    : game.label === 'player_tested'
+      ? 'Also Player-tested on Mac'
+      : 'PixelPort verified alternatives';
 
 const art = artChain(game.appid);
 const landscape = ogImage(game.appid);
 const title = `Does ${game.name} Run on Mac? (Apple Silicon)`;
 const description = isNativeMac
   ? nativeMetaDescription(game)
-  : isPlayableButNotEnabled
-    ? `${game.name} is graded playable on Apple Silicon, but it is not available to install in Pixel Port yet. Request it in the app to record interest, without a guaranteed date.`
+  : isUnavailable
+    ? `${game.name}: ${meta.label}. It is not available to install in Pixel Port yet. A request records interest without guaranteeing availability or a date.`
     : metaDescription(game);
 const canonical = new URL(pagePath(game), Astro.site).toString();
 
@@ -107,13 +108,13 @@ const faq = [
     a:
       v.body +
       (isNo && game.reason ? ` The blocker: ${game.reason}` : '') +
-      (isPlayableButNotEnabled
+      (isUnavailable
         ? ` It is not available to install in the beta yet. Request it in the app to record interest, without a guaranteed date.`
         : ''),
   },
   {
     q: 'Do I need Boot Camp or a Windows license?',
-    a: isPlayableButNotEnabled
+    a: isUnavailable
       ? `No. Pixel Port runs Windows games directly on macOS. ${game.name} is not available to install in Pixel Port yet; a request records interest without promising availability or a date.`
       : 'No. Pixel Port runs Windows games directly on macOS without Boot Camp, a virtual machine, or a Windows license. Follow app and runtime setup, then install and launch from your Library.',
   },
@@ -152,14 +153,10 @@ const jsonLd = {
   ],
 };
 
-const evidence =
-  game.tier === 'verified'
-    ? 'Real Mac run'
-    : game.tier === 'playable'
-      ? 'Community + template'
-      : game.tier === 'untested'
-        ? 'Awaiting first run'
-        : 'Known blocker';
+const evidence = {
+  pixelport_verified: 'Gameplay qualification', player_tested: 'Accepted gameplay report',
+  issues_reported: 'Accepted relevant problem', untested: 'No substantiated gameplay claim', blocked: 'Established limitation',
+}[game.label];
 ---
 
 <Base title={title} description={description} ogImage={ogImage(game.appid)}>
@@ -202,15 +199,18 @@ const evidence =
           <h1>Does {game.name} run on Mac?</h1>
           <p class:list={['compat-headline', {
             'text-blocked': isNo,
-            'text-fg': game.tier === 'untested',
-            'text-playable': game.tier === 'playable',
-            'text-verified': game.tier === 'verified',
+            'text-fg': game.label === 'untested',
+            'text-playable': game.label === 'player_tested',
+            'text-attention': game.label === 'issues_reported',
+            'text-verified': game.label === 'pixelport_verified',
           }]}>{v.headline}</p>
           <p class="compat-summary">{v.body}</p>
+          {isNativeMac && <p>Windows version: {compatMeta[game.label].label}. {compatMeta[game.label].description}</p>}
+          {game.label === 'untested' && ENABLED.has(game.appid) && !isNativeMac && <p class="compat-availability">Available to try. An unlock does not confirm gameplay compatibility.</p>}
           {
-            isPlayableButNotEnabled && (
+            isUnavailable && (
               <div class="compat-beta-note">
-                <strong>Playable grade, beta access pending.</strong>
+                <strong>Beta access pending.</strong>
                 <p>
                   This game is not available to install in Pixel Port yet. <a href="/download">Request it in the app</a> to record interest, or ask about
                   your request in Discord Help. A request promises neither availability nor a date.
@@ -218,8 +218,8 @@ const evidence =
               </div>
             )
           }
-          <a href={isNo ? '#alternatives' : isPlayableButNotEnabled ? DISCORD_URL : '/download'} rel={isPlayableButNotEnabled ? 'noopener' : undefined} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
-            {isNo ? 'See verified alternatives' : isPlayableButNotEnabled ? `Ask about ${game.name} on Discord` : game.tier === 'untested' ? 'Try it on your Mac' : `Download & play ${game.name}`}
+          <a href={isNo ? '#alternatives' : isUnavailable ? DISCORD_URL : '/download'} rel={isUnavailable ? 'noopener' : undefined} class:list={['compat-primary-cta', { 'compat-primary-cta--blocked': isNo }]}>
+            {isNo ? 'See verified alternatives' : isUnavailable ? `Ask about ${game.name} on Discord` : (game.label === 'untested' || game.label === 'issues_reported') ? 'Try it on your Mac' : `Download & play ${game.name}`}
             <span aria-hidden="true">→</span>
           </a>
         </div>
@@ -261,7 +261,7 @@ const evidence =
           ) : (
             <section class="compat-section compat-section--first" aria-labelledby="steps-heading">
               <h2 id="steps-heading">
-                {game.tier === 'untested' ? `Try ${game.name} on your Mac` : `Play ${game.name} on your Mac`}
+                {(game.label === 'untested' || game.label === 'issues_reported') ? `Try ${game.name} on your Mac` : `Play ${game.name} on your Mac`}
               </h2>
               <ol class="compat-launch-steps">
                 {launchSteps.map((step, index) => (
@@ -281,7 +281,7 @@ const evidence =
         <section id="alternatives" class="compat-section" aria-labelledby="alternatives-heading">
           <h2 id="alternatives-heading">{picksHeading}</h2>
           <p class="compat-section__lede">
-            {isNo || game.tier === 'untested'
+            {linkTier === 'pixelport_verified'
               ? 'Every title below has completed a verified run on real Apple Silicon hardware.'
               : 'Explore more games with the same compatibility grade.'}
           </p>
@@ -291,7 +291,7 @@ const evidence =
                 const pickArt = artChain(pick.appid);
                 return (
                   <li>
-                    <a href={pagePath(pick)} aria-label={`${pick.name}: ${compatMeta[pick.tier].label}`}>
+                    <a href={pagePath(pick)} aria-label={`${pick.name}: ${compatMeta[pick.label].label}`}>
                       <div class="compat-pick__art">
                         <span>{pick.name}</span>
                         <img
@@ -302,7 +302,7 @@ const evidence =
                           decoding="async"
                           onerror={ART_ONERROR}
                         />
-                        <span class={`compat-pick__badge ${compatMeta[pick.tier].badge}`}>{compatMeta[pick.tier].label}</span>
+                        <span class={`compat-pick__badge ${compatMeta[pick.label].badge}`}>{compatMeta[pick.label].label}</span>
                       </div>
                       <p>{pick.name}</p>
                     </a>
@@ -338,6 +338,8 @@ const evidence =
               <dt>Evidence</dt>
               <dd>{evidence}</dd>
             </div>
+            {game.verified_on && <div><dt>Evidence date</dt><dd>{game.verified_on}</dd></div>}
+            {game.verified_conditions && <div><dt>Test conditions</dt><dd>{game.verified_conditions}</dd></div>}
             <div>
               <dt>Setup</dt>
               <dd>No Boot Camp</dd>
@@ -358,18 +360,18 @@ const evidence =
                 </a>
                 <p>Native Mac build — no compatibility layer needed. Honest compatibility, game by game.</p>
               </>
-            ) : isPlayableButNotEnabled ? (
+            ) : isUnavailable ? (
               <>
                 <a href={DISCORD_URL} rel="noopener" class="compat-rail-cta">
                   Ask about this game on Discord <span aria-hidden="true">→</span>
                 </a>
                 <a href="/download" class="compat-rail-secondary">Request it in the app</a>
-                <p>Playable is the compatibility grade. This game still needs beta access enabled.</p>
+                <p>Compatibility and availability are separate. This game still needs beta access enabled.</p>
               </>
             ) : (
               <>
                 <a href="/download" class="compat-rail-cta">
-                  {game.tier === 'untested' ? 'Try it' : 'Download & play'} <span aria-hidden="true">→</span>
+                  {(game.label === 'untested' || game.label === 'issues_reported') ? 'Try it' : 'Download & play'} <span aria-hidden="true">→</span>
                 </a>
                 <p>Honest compatibility, game by game.</p>
               </>

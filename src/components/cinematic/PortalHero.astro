@@ -1,4 +1,5 @@
 ---
+import { compatibilityMeta } from '../../lib/compatibility.mjs';
 import { Picture } from 'astro:assets';
 import heroBackdrop from '../../assets/hero/home-portal-hero.png';
 import PortalFrame from './PortalFrame.astro';
@@ -7,7 +8,7 @@ type HeroGame = {
   appid: number | null;
   slug: string;
   title: string;
-  tier: string;
+  label: string;
 };
 
 // A partner placement marks the lead game as paid: the compatibility link
@@ -118,7 +119,7 @@ const header = (appid: number | null) =>
 
           <div class="ready-panel">
             <div class="ready-panel-content">
-              <span class="ready-status"><span aria-hidden="true">&#10003;</span> Ready on Mac</span>
+              <span class="ready-status"><span aria-hidden="true">&#10003;</span> {lead ? compatibilityMeta[lead.label].label : 'Choose a game'}</span>
               <strong>{lead?.title ?? 'Your game'}</strong>
               <p>Pixel Port prepared the runtime and launch settings.</p>
               <span class="availability-note">

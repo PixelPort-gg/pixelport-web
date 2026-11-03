@@ -7,7 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/build-catalogue.mjs && astro build",
+    "check:contract": "node scripts/check-contract-fixtures.mjs",
+    "test": "npm run check:contract && node --test tests/compatibility.test.mjs",
+    "test:pages": "node --test tests/generated-pages.test.mjs",
+    "build": "npm run check:contract && node scripts/build-catalogue.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "refresh:base": "node scripts/refresh-base.mjs",

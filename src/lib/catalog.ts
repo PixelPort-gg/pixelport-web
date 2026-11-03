@@ -1,21 +1,10 @@
 // Shared catalogue helpers so the games index and game pages stay in sync.
 
-export type Tier = 'verified' | 'playable' | 'needs-attention' | 'unsupported';
-
-// Games that already ship a macOS build. Not a tier — it sits alongside one,
-// because "it runs under Pixel Port" and "you don't need Pixel Port" can both be
-// true at once, and the second is the more useful answer.
+import { compatibilityMeta, compatibilityLabel, assessmentSummary } from './compatibility.mjs';
+export type Tier = 'pixelport_verified' | 'player_tested' | 'issues_reported' | 'untested' | 'blocked';
+export const tierMeta = compatibilityMeta;
 export const nativeMacMeta = {
-  label: 'Native Mac build',
-  text: 'text-verified',
-  badge: 'text-verified bg-verified/15 ring-verified/35',
-};
-
-export const tierMeta: Record<Tier, { label: string; text: string; badge: string }> = {
-  verified: { label: 'Verified', text: 'text-verified', badge: 'text-verified bg-verified/15 ring-verified/35' },
-  playable: { label: 'Playable', text: 'text-playable', badge: 'text-playable bg-playable/15 ring-playable/35' },
-  'needs-attention': { label: 'Needs attention', text: 'text-attention', badge: 'text-attention bg-attention/15 ring-attention/35' },
-  unsupported: { label: 'Unsupported', text: 'text-blocked', badge: 'text-blocked bg-blocked/15 ring-blocked/35' },
+  label: 'Native Mac build', text: 'text-verified', badge: 'text-verified bg-verified/15 ring-verified/35',
 };
 
 const ENGINE: Record<string, string> = {
@@ -34,10 +23,10 @@ const AC: Record<string, string> = {
 export const prettyAC = (ac: string | null) => (!ac ? 'None' : AC[ac] ?? ac);
 
 // Turn a bare catalogue entry into a complete, render-ready game object with
-// honest, tier-appropriate copy generated from its compat facts.
+// contract-based compatibility copy generated from its compat facts.
 export function generate(e: any) {
   const base = {
-    slug: e.slug, title: e.title, appid: e.appid, tier: e.tier, genre: null,
+    slug: e.slug, title: e.title, appid: e.appid, tier: e.tier, label: compatibilityLabel(e), verified_by: e.verified_by, unsupported_reason: e.unsupported_reason, verified_on: e.verified_on, verified_conditions: e.verified_conditions, genre: null,
     // Ownership leads the list on purpose. Pixel Port distributes nothing — Steam
     // delivers the build to the player's own account — and every game page has to
     // say so, not just the hand-written ones.
@@ -45,23 +34,12 @@ export function generate(e: any) {
     engine: e.engine, d3d: e.d3d, antiCheat: e.antiCheat, graphics: e.graphics,
     nativeMac: !!e.nativeMac, _cat: true,
   };
-  if (e.tier === 'unsupported') {
-    const ac = prettyAC(e.antiCheat);
-    return {
-      ...base,
-      summary: `${e.title} does not run on Mac through Pixel Port, and the blocker is its anti-cheat, not its graphics.`,
-      blocker: {
-        antiCheat: ac === 'None' ? 'kernel-level anti-cheat' : ac,
-        whoDecides: 'the publisher',
-        status: `${e.title} ships anti-cheat that does not run on macOS. Whether it ever will is a decision for the publisher to make, not something Pixel Port can work around.`,
-      },
-    };
-  }
+  if (base.label === 'blocked') return { ...base, summary: assessmentSummary(e, e.title) };
   // Already ships a Mac build → the useful answer is "use that", not our pitch.
   // We keep the page (it is what people search for) but it must not open by
   // selling a download nobody here needs.
   if (base.nativeMac) {
-    const tierWord = e.tier === 'verified' ? 'verified' : e.tier === 'needs-attention' ? 'graded needs attention' : 'graded playable';
+    const tierWord = compatibilityMeta[base.label].label;
     return {
       ...base,
       // Deliberately hedged: Steam advertising a Mac build does not prove the
@@ -77,17 +55,12 @@ export function generate(e: any) {
         },
         {
           title: 'If the native build does not run',
-          body: `Some older Mac ports were never updated past 32-bit and stopped working at macOS Catalina. If that turns out to be the case here — or you need the Windows build for Windows-only mods — Pixel Port runs the Windows version, ${tierWord} on Apple Silicon.`,
+          body: `Some older Mac ports were never updated past 32-bit and stopped working at macOS Catalina. If that turns out to be the case here — or you need the Windows build for Windows-only mods — the Windows version has the PixelPort label ${tierWord}. Read its current assessment before trying it.`,
         },
       ],
     };
   }
-  const summary =
-    e.tier === 'verified'
-      ? `${e.title} is verified on Apple Silicon: a real Mac ran it end to end through Pixel Port's runtime.`
-      : e.tier === 'needs-attention'
-        ? `${e.title} runs on Pixel Port's runtime with some caveats, so we have it marked needs attention while we smooth it out.`
-        : `${e.title} is graded playable on Apple Silicon through Pixel Port's runtime.`;
+  const summary = assessmentSummary(e, e.title);
   return {
     ...base,
     summary,
