@@ -1,4 +1,5 @@
 ---
+import { compatibilityMeta, labelOrder } from '../lib/compatibility.mjs';
 import Base from '../layouts/Base.astro';
 import StatsBar from '../components/StatsBar.astro';
 import PageIntro from '../components/editorial/PageIntro.astro';
@@ -7,37 +8,29 @@ import { join } from 'node:path';
 
 const grid = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
-) as { tier: string }[];
-const c = grid.reduce<Record<string, number>>((m, g) => ((m[g.tier] = (m[g.tier] || 0) + 1), m), {});
+) as { label: string }[];
+const c = grid.reduce<Record<string, number>>((m, g) => ((m[g.label] = (m[g.label] || 0) + 1), m), {});
 const fmt = (n: number) => n.toLocaleString('en-US');
-const flagged = (c['needs-attention'] || 0) + (c.unsupported || 0);
+const flagged = (c['issues_reported'] || 0) + (c.blocked || 0);
 
 const stats = [
   { label: 'Catalogue entries', value: fmt(grid.length) },
-  { label: 'Verified on a real Mac', value: fmt(c.verified || 0) },
-  { label: 'Playable', value: fmt(c.playable || 0) },
+  { label: 'PixelPort verified', value: fmt(c.pixelport_verified || 0) },
+  { label: 'Player-tested', value: fmt(c.player_tested || 0) },
   { label: 'Setup', value: 'One click' },
 ];
 
-const tierProfile = [
-  { key: 'verified', label: 'Verified', tone: 'verified' },
-  { key: 'playable', label: 'Playable', tone: 'playable' },
-  { key: 'needs-attention', label: 'Needs attention', tone: 'attention' },
-  { key: 'unsupported', label: 'Unsupported', tone: 'blocked' },
-].map((tier) => {
-  const count = c[tier.key] || 0;
-  return {
-    ...tier,
-    count,
-    percent: grid.length ? (count / grid.length) * 100 : 0,
-  };
+const tierProfile = labelOrder.map(key => {
+  const meta = compatibilityMeta[key];
+  const count = c[key] || 0;
+  return { key, label: meta.label, tone: meta.tone, count, percent: grid.length ? count / grid.length * 100 : 0 };
 });
 ---
 
 <Base title="Porting stats" description="How many Windows games run on Mac through Pixel Port, and how well.">
   <PageIntro
     title="Porting stats"
-    description="A picture of what runs on Mac through Pixel Port. Tiers are graded honestly from real launches and trusted compatibility reports; only an on-device run flips a game to verified."
+    description="A picture of what runs on Mac through Pixel Port. Compatibility labels follow accepted gameplay evidence and established limitations. Unlocks and launch reports make no gameplay claim."
   />
 
   <section class="live-heading" aria-labelledby="live-title">
@@ -291,6 +284,7 @@ const tierProfile = [
     .tone-verified { --tier-color: var(--color-verified); }
     .tone-playable { --tier-color: var(--color-playable); }
     .tone-attention { --tier-color: var(--color-attention); }
+    .tone-muted { --tier-color: var(--color-muted); }
     .tone-blocked { --tier-color: var(--color-blocked); }
 
     .catalogue-note {

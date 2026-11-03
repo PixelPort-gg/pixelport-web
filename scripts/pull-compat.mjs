@@ -11,7 +11,7 @@
 // Run manually with `npm run refresh:compat`, review the diff, and commit it.
 // Builds always render from the committed snapshot so they stay reproducible.
 
-import { assessmentFields } from '../src/lib/compatibility.mjs';
+import { assessmentFields, publicBlockReason } from '../src/lib/compatibility.mjs';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -123,7 +123,7 @@ async function main() {
       slug: slugify(g.name),
       name: g.name,
       ...assessmentFields(g),
-      reason: g.unsupported_reason ?? null,
+      reason: publicBlockReason(g.unsupported_reason),
       popularity: g.popularity ?? 0,
     });
     process.stdout.write('.');

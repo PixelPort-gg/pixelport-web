@@ -1,3 +1,4 @@
+import { withCurrentCompatibility } from '../lib/blog-compatibility';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 
@@ -7,7 +8,7 @@ const escape = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 export async function GET(context: APIContext) {
-  const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  const posts = (await getCollection('blog', ({ data }) => !data.draft)).map(withCurrentCompatibility).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
   const site = context.site!.toString().replace(/\/$/, '');

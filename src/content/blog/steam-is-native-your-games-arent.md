@@ -26,13 +26,7 @@ Direct3D-to-Metal layer handles this). All three exist as open technology. What
 stopped existing in 2025, when Whisky was discontinued and the prebuilt runtimes
 went offline, was a maintained, ready-to-use assembly of them.
 
-That's the half we rebuilt. Pixel Port ships a runtime (Wine + DirectX-to-Metal,
-assembled for Apple Silicon) and wraps it in the thing the old tools never had: per-game
-answers. Connect Steam, and your library shows an honest tier for every game:
-*Verified* (ran on real Apple Silicon hardware, measurements published), *Playable*
-(strong evidence, not yet hand-verified), or *Unsupported* (kernel anti-cheat, which will
-not work in any translation tool, whatever anyone claims, and we'd rather tell you
-than waste your evening). One click installs and launches the games that work.
+PixelPort uses **Untested**, **Player-tested**, **PixelPort verified**, **Issues reported** and **Blocked**. Accepted gameplay evidence earns a tested label; launch and menu results alone do not. Read each game's current page for its conditions and any established limitation. Availability is separate.
 
 ## What this looks like in practice
 

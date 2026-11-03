@@ -21,3 +21,11 @@ npm run preview  # serve the build
 - `/blog`          updates (content collection)
 - `/stats`         porting stats
 - `src/data/games.json`  the game-page source (wire to the live catalogue later)
+
+## Compatibility labels
+
+The website implements [compatibility-labels/1](https://github.com/PixelPort-gg/pixelport-app/blob/b3d0c8b9/server/contracts/compatibility/README.md). `src/lib/compatibility.mjs` resolves `tier`, `verified_by` and `unsupported_reason` into Untested, Player-tested, PixelPort verified, Issues reported or Blocked. Availability remains separate.
+
+`pull-d1.mjs` saves complete assessments to `scripts/catalogue-assessments.json`; `pull-compat.mjs` preserves the same public fields for `/mac` pages. `build-catalogue.mjs` applies the complete assessment to both page families, including explicit nulls that clear old claims or reasons. The committed seed uses the app's bundled catalogue and reviewed migration assessments at `b3d0c8b9`; the next normal sync replaces it with D1. `refresh-base.mjs [path-to-app-catalogue.json]` also preserves the assessment fields. The former verified-only ID list retains old page URLs and never earns a label.
+
+Run `npm test` for every shared provenance and label fixture, plus website regressions. After `npm run build`, run `npm run test:pages` for the five representative labels, availability, structured data, help and historical announcements. Fixtures in `tests/fixtures/compatibility.json` are copied unchanged from app `b3d0c8b9`; update the reader and fixtures together.

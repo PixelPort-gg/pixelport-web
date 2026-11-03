@@ -26,11 +26,17 @@ the game from Pixel Port so its launch configuration is applied.
 
 ## What do the compatibility labels mean for my Mac?
 
-The website displays **Verified**, **Playable**, **Needs attention**, and
-**Unsupported**. Read the game's notes as well as its label. Results depend
-on the Mac, macOS version, game version, runtime, and mode. Being available
-to install or reaching a menu is not proof of playable gameplay.
-See [compatibility information](/docs/how-it-works/#reading-compatibility-information).
+The website uses five compatibility labels:
+
+| Label | Meaning |
+| --- | --- |
+| Untested | No substantiated gameplay claim for this game. |
+| Player-tested | An accepted first-hand report confirms gameplay through PixelPort, with conditions and date. |
+| PixelPort verified | PixelPort's gameplay qualification checks passed on a recorded configuration. |
+| Issues reported | An accepted relevant problem, with the affected configuration or mode. Earlier test history is kept. |
+| Blocked | An established limitation prevents the stated use. |
+
+Availability is separate. An unlocked Untested game is available to try; an unlock, recipe, template match, launch or menu result does not establish gameplay compatibility. Read the game's notes and test conditions. Anti-cheat is named as a cause only when established.
 
 ## Can I launch games from other stores?
 

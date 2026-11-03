@@ -1,4 +1,5 @@
 ---
+import { isTested } from '../lib/compatibility.mjs';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import Base from '../layouts/Base.astro';
@@ -14,18 +15,18 @@ type GridGame = {
   slug: string;
   title: string;
   appid: number | null;
-  tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
+  label: 'pixelport_verified' | 'player_tested' | 'issues_reported' | 'untested' | 'blocked';
   p?: number;
 };
 type Placement = { id: string; appid: number; surface: string; slot: number; label?: string };
 type PlacementTag = { id: string; surface: string; label: string };
 
 // Palworld stays the lead while the 1.0 launch window is current. The supporting
-// titles are hand-verified catalogue entries, not invented campaign examples.
+// titles must still have an accepted gameplay claim.
 const preferred = [1623730, 945360, 881100];
 const featured = preferred
   .map((appid) => games.find((game) => game.appid === appid))
-  .filter((game): game is Game => Boolean(game));
+  .filter((game): game is Game => Boolean(game) && isTested(game));
 
 // Partner placements (src/data/placements.json, refreshed by pull-compat). A
 // placement only renders when its appid resolves to a game that already has a
@@ -54,7 +55,7 @@ const tag = (p: Placement): PlacementTag => ({
 const resolveCurated = (surface: string) => {
   for (const p of forSurface(surface)) {
     const game = games.find((g) => g.appid === p.appid);
-    if (game) return { game, placement: tag(p) };
+    if (game && isTested(game)) return { game, placement: tag(p) };
   }
   return null;
 };
@@ -78,7 +79,7 @@ const proofPicks = forSurface('site_home_proof')
       (g) =>
         g.appid === p.appid &&
         g.p === 1 &&
-        (g.tier === 'verified' || g.tier === 'playable'),
+        (g.label === 'pixelport_verified' || g.label === 'player_tested'),
     ),
   }))
   .filter((pick): pick is { placement: PlacementTag; game: GridGame } => Boolean(pick.game));

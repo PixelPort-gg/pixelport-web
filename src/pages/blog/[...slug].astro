@@ -1,4 +1,5 @@
 ---
+import { withCurrentCompatibility } from '../../lib/blog-compatibility';
 import Base from '../../layouts/Base.astro';
 import { getCollection, render } from 'astro:content';
 
@@ -7,7 +8,8 @@ export async function getStaticPaths() {
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
-const { post } = Astro.props;
+const { post: sourcePost } = Astro.props;
+const post = withCurrentCompatibility(sourcePost);
 const { Content } = await render(post);
 const fmt = (d: Date) =>
   d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -46,7 +48,17 @@ const jsonLd = {
 
   <article class="wrap py-14 lg:py-20">
     <div class="prose prose-invert prose-lg mx-auto max-w-3xl prose-headings:tracking-tight prose-a:text-accent-2 prose-strong:text-fg">
-      <Content />
+      {post.assessment ? (
+        <>
+          <p><strong class={post.assessment.meta.text}>{post.assessment.meta.label}</strong></p>
+          <p>{post.data.description}</p>
+          {post.assessment.verified_on && <p>Evidence date: {post.assessment.verified_on}.</p>}
+          {post.assessment.verified_conditions && <p>Test conditions: {post.assessment.verified_conditions}.</p>}
+          <p>This page was originally an announcement under an earlier compatibility system. It shows the current assessment so an old announcement cannot preserve a withdrawn gameplay claim.</p>
+          <p>Availability is separate. An unlocked Untested game is available to try; unlocks and launch reports do not earn a gameplay claim.</p>
+          <p><a href={post.assessment.href}>Read the current game page</a> or <a href="/docs/faq/#what-do-the-compatibility-labels-mean-for-my-mac">read what the five compatibility labels mean</a>.</p>
+        </>
+      ) : <Content />}
     </div>
   </article>
 </Base>

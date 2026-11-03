@@ -22,7 +22,11 @@ const curated = readJSON('src/data/games.json', []);
 const owners = readJSON('scripts/owners.json', {}); // estimated owners (SteamSpy via D1) — "how many own it"
 const trending = readJSON('scripts/trending.json', {}); // current players (Steam most-played) — "what's hot now"
 const assessments = new Map(readJSON('scripts/catalogue-assessments.json', { games: [] }).games.map(g => [g.appid, assessmentFields(g)]));
-const assess = g => withCompatibility({ ...g, ...assessmentFields(assessments.get(g.appid) ?? g) });
+const legacyReasons = new Map(readJSON('scripts/served-unsupported.json', { blocked: [] }).blocked.map(g => [g.appid, g.reason]));
+const assess = g => {
+  const fallback = { ...g, unsupported_reason: g.unsupported_reason ?? legacyReasons.get(g.appid) ?? null };
+  return withCompatibility({ ...g, ...assessmentFields(assessments.get(g.appid) ?? fallback) });
+};
 const enabled = new Set(readJSON('scripts/enabled.json', [])); // [appid]
 // Games that ALREADY ship a macOS build. Their page sends the player to that build
 // instead of pitching us — see scripts/pull-native-mac.mjs for why and where from.
@@ -63,7 +67,7 @@ for (const e of entries) {
   const nativeMac = isNativeMac(e.appid);
   // Pages for the popular games (real SEO value) + the distinctive tiers.
   // Preserve existing detail routes even when their old claim is withdrawn.
-  const hasPage = p > 0 || DISTINCTIVE.has(label) || legacyPageAppids.has(e.appid) || ['verified', 'needsAttention', 'needs-attention', 'unsupported'].includes(e.tier);
+  const hasPage = p > 0 || DISTINCTIVE.has(label) || legacyPageAppids.has(e.appid) || legacyReasons.has(e.appid) || ['verified', 'needsAttention', 'needs-attention', 'unsupported'].includes(e.tier);
   gridExtra.push({ slug, title: e.title, appid: e.appid ?? null, ...fields, pop: p, p: hasPage ? 1 : 0, ...(enabled.has(e.appid) ? { e: 1 } : {}), ...(nativeMac ? { n: 1 } : {}) });
   if (hasPage) {
     pages.push({

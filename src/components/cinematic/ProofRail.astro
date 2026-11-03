@@ -1,4 +1,5 @@
 ---
+import { compatibilityMeta } from '../../lib/compatibility.mjs';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -6,7 +7,7 @@ type ProofGame = {
   slug: string;
   title: string;
   appid: number | null;
-  tier: 'verified' | 'playable' | 'needs-attention' | 'unsupported';
+  label: 'pixelport_verified' | 'player_tested' | 'issues_reported' | 'untested' | 'blocked';
 };
 
 // Partner placements: already resolved by the page against the browse grid, in
@@ -24,7 +25,7 @@ const catalogue = JSON.parse(
   readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'),
 ) as ProofGame[];
 const eligible = catalogue.filter(
-  (game) => (game.tier === 'verified' || game.tier === 'playable') && typeof game.appid === 'number',
+  (game) => (game.label === 'pixelport_verified' || game.label === 'player_tested') && typeof game.appid === 'number',
 );
 const placedAppids = new Set(placements.map((pick) => pick.game.appid));
 const placedGames = placements.map((pick) => pick.game);
@@ -36,7 +37,7 @@ const runs = [...placedGames, palworld, ...eligible.filter((game) => game.appid 
 const placementFor = (game: ProofGame) =>
   placements.find((pick) => pick.game.appid === game.appid)?.placement;
 const counts = catalogue.reduce<Record<string, number>>((result, game) => {
-  result[game.tier] = (result[game.tier] ?? 0) + 1;
+  result[game.label] = (result[game.label] ?? 0) + 1;
   return result;
 }, {});
 const fmt = (value: number) => value.toLocaleString('en-US');
@@ -48,7 +49,7 @@ const cover = (appid: number) => 'https://mgp-api.macgameport.workers.dev/art/' 
 const fallback = (appid: number) =>
   'https://cdn.cloudflare.steamstatic.com/steam/apps/' + appid + '/library_600x900.jpg|' +
   'https://cdn.cloudflare.steamstatic.com/steam/apps/' + appid + '/header.jpg';
-const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable';
+const tierLabel = (label: string) => compatibilityMeta[label].label;
 ---
 
 <section class="proof" aria-labelledby="proof-title" data-proof>
@@ -56,8 +57,7 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
     <div class="proof-heading">
       <h2 id="proof-title">Running on Mac right now.</h2>
       <p>
-        The catalogue combines verified launches with compatibility estimates based on each game’s
-        engine, graphics path, and known blockers. Every entry shows the evidence behind its result.
+        Gameplay claims follow accepted evidence. Each entry carries its current compatibility label; availability and launch reports stay separate.
       </p>
     </div>
 
@@ -107,9 +107,9 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
                   loading="lazy"
                   decoding="async"
                 />
-                <span class={'tier tier--' + game.tier}>
-                  <span aria-hidden="true">{game.tier === 'verified' ? '✓' : '◐'}</span>
-                  {tierLabel(game.tier)}
+                <span class={'tier tier--' + compatibilityMeta[game.label].tone}>
+                  <span aria-hidden="true">{game.label === 'pixelport_verified' ? '✓' : '◐'}</span>
+                  {tierLabel(game.label)}
                 </span>
                 {placement && (
                   <span class="partner-chip">{placement.label?.trim() || 'Partner'}</span>
@@ -125,8 +125,8 @@ const tierLabel = (tier: string) => tier === 'verified' ? 'Verified' : 'Playable
     </ul>
 
     <p class="grade-note">
-      {fmt(counts.verified ?? 0)} entries are verified end to end; {fmt(counts.playable ?? 0)} are
-      compatibility estimates marked playable.
+      {fmt(counts.pixelport_verified ?? 0)} entries are PixelPort verified; {fmt(counts.player_tested ?? 0)} are
+      Player-tested.
       <a href="/games">Browse the full compatibility catalogue</a>
     </p>
   </div>

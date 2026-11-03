@@ -1,9 +1,10 @@
 ---
+import { compatibilityMeta } from '../../lib/compatibility.mjs';
 type LaunchGame = {
   appid: number | null;
   slug: string;
   title: string;
-  tier: string;
+  label: string;
 };
 
 // A partner placement marks the selected game as paid: the card link carries
@@ -79,7 +80,7 @@ const stages = [
                 {placement && <span class="partner-chip">{partnerLabel}</span>}
               </span>
               <strong>{title}</strong>
-              <span>View compatibility <span aria-hidden="true">&rarr;</span></span>
+              <span>{game ? compatibilityMeta[game.label].label : 'View compatibility'} <span aria-hidden="true">&rarr;</span></span>
             </a>
           ) : (
             <div class="selected-link">

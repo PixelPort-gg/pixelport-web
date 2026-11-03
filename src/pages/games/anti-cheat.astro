@@ -1,4 +1,5 @@
 ---
+import { publicBlockReason } from '../../lib/compatibility.mjs';
 import Base from '../../layouts/Base.astro';
 import catalogue from '../../data/catalogue.json';
 import { prettyAC } from '../../lib/catalog';
@@ -6,10 +7,10 @@ import { prettyAC } from '../../lib/catalog';
 // Groups every blocked game by the anti-cheat that blocks it. This is the
 // honest answer to the most-asked Mac gaming question, backed by the same
 // data that grades the catalogue.
-const blocked = (catalogue as any[]).filter((e) => e.tier === 'unsupported');
+const blocked = (catalogue as any[]).filter((e) => e.label === 'blocked' && /anti.?cheat|battleye|vanguard|eac|vac|gameguard|xigncode/i.test(publicBlockReason(e.unsupported_reason)));
 const groups = new Map<string, any[]>();
 for (const e of blocked) {
-  const key = prettyAC(e.antiCheat) === 'None' ? 'Other kernel-level anti-cheat' : prettyAC(e.antiCheat);
+  const key = prettyAC(e.antiCheat) === 'None' ? 'Recorded anti-cheat limitation' : prettyAC(e.antiCheat);
   if (!groups.has(key)) groups.set(key, []);
   groups.get(key)!.push(e);
 }
@@ -17,7 +18,7 @@ const sections = [...groups.entries()].sort((a, b) => b[1].length - a[1].length)
 const fmt = (n: number) => n.toLocaleString('en-US');
 
 const seoTitle = 'Anti-Cheat on Mac: Which Windows Games Are Blocked and Why';
-const description = `${fmt(blocked.length)} Windows games cannot run on Apple Silicon Macs because of kernel-level anti-cheat: not graphics, not performance. Here is exactly which anti-cheat systems block Mac play, which games they affect, and who can change it.`;
+const description = `${fmt(blocked.length)} Windows games cannot run on Apple Silicon Macs with recorded anti-cheat limitations. Here is exactly which anti-cheat systems block Mac play, which games they affect, and who can change it.`;
 
 const canonical = new URL('/games/anti-cheat', Astro.site).toString();
 const jsonLd = {
@@ -54,7 +55,7 @@ const jsonLd = {
           name: 'Do games with VAC or user-mode Easy Anti-Cheat work on Mac?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Often yes. VAC and user-mode anti-cheat configurations generally do not require kernel access, and many such games are graded playable or verified in the Pixel Port catalogue.',
+            text: 'VAC and user-mode anti-cheat configurations do not establish a block on their own. Check the current label and affected mode in the PixelPort catalogue.',
           },
         },
       ],
@@ -73,11 +74,7 @@ const jsonLd = {
 
     <h1>The honest reason {fmt(blocked.length)} games won't run on your Mac.</h1>
     <p class="ac-page__lede">
-      It is not your Mac. It is not the graphics. Every game on this page is blocked by
-      <strong>kernel-level anti-cheat</strong>: software that must run deep inside Windows itself,
-      at a level macOS does not expose to any compatibility layer. No tool can honestly work around
-      it, and anyone who claims otherwise is selling something. Whether these games ever run on Mac
-      is a decision that belongs to each publisher.
+      It is not your Mac. It is not the graphics. Every game listed here has a recorded anti-cheat limitation. Read the game page for its affected mode and cause. An anti-cheat name alone does not establish that a game is Blocked.
     </p>
 
     <div class="prose prose-invert mt-10 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">

@@ -8,7 +8,7 @@ interface GridGame {
   slug: string;
   title: string;
   appid: number | null;
-  tier: string;
+  label: string;
   p: number;
   n?: number; // 1 = already ships a native Mac build
 }
@@ -20,12 +20,12 @@ const grid = JSON.parse(
 // of what Pixel Port did. A game that already ships a Mac build is not that proof,
 // however well it runs — so it stays in the catalogue but out of the showcase.
 const verified = grid
-  .filter((g) => g.tier === 'verified' && !g.n)
+  .filter((g) => g.label === 'pixelport_verified' && !g.n)
   .sort((a, b) => a.title.localeCompare(b.title, 'en'));
 const gradedTotal = grid.filter((g) => !g.n).length;
 const fmt = (n: number) => n.toLocaleString('en-US');
 
-const seoTitle = 'Verified Mac Games: Windows Games Confirmed Running on Apple Silicon';
+const seoTitle = 'PixelPort Verified Mac Games: Windows Games Confirmed Running on Apple Silicon';
 const description = `${verified.length} Windows games verified end to end on real Apple Silicon Macs through Pixel Port. No community hearsay, no fabricated green lights — a human launched and played every one.`;
 
 const canonical = new URL('/games/verified', Astro.site).toString();
@@ -53,14 +53,14 @@ const jsonLd = {
 
   <section class="wrap verified-hub">
     <nav class="text-sm text-muted">
-      <a href="/games" class="hover:text-fg">Games</a> <span class="px-1">/</span> Verified
+      <a href="/games" class="hover:text-fg">Games</a> <span class="px-1">/</span> PixelPort verified
     </nav>
 
-    <h1>Verified on Mac.<br /><span>No asterisks.</span></h1>
+    <h1>PixelPort verified.<br /><span>No asterisks.</span></h1>
     <p class="verified-hub__lede">
       Every game below was launched and played end to end on a real Apple Silicon Mac through
       Pixel Port. Not "should work". Not "community says so". A human pressed play, and it ran.
-      That is the whole bar — and it is why this list is shorter and more trustworthy than most
+      The recorded configuration is part of that qualification — and it is why this list is shorter and more trustworthy than most
       compatibility lists on the internet.
     </p>
 
