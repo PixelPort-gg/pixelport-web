@@ -81,6 +81,9 @@ test('catalogue hubs use current labels and snapshot counts', () => {
   for (const [key, label] of [['pixelport_verified', 'PixelPort verified'], ['player_tested', 'Player-tested']]) {
     assert.ok(antiCheat.includes(`${grid.filter(g => g.label === key).length} ${label}`));
   }
+  const inlineText = source => source.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ');
+  assert.ok(inlineText(html('games/anti-cheat')).includes(`games and ${grid.filter(g => g.label === 'player_tested').length} Player-tested`), 'rendered count has a word separator');
+  assert.ok(inlineText(html('games/verified')).includes(`includes the ${grid.filter(g => !g.n && g.label === 'pixelport_verified').length} PixelPort verified`), 'rendered inclusion count has a word separator');
   assert.doesNotMatch(antiCheat, /thousands of multiplayer games|graded playable|playable or verified/);
   const verified = text(html('games/verified'));
   assert.ok(verified.includes(`${grid.filter(g => !g.n).length.toLocaleString('en-US')} Windows games`));
