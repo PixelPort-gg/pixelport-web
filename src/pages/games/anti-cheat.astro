@@ -1,5 +1,7 @@
 ---
 import { publicBlockReason } from '../../lib/compatibility.mjs';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import catalogue from '../../data/catalogue.json';
 import { prettyAC } from '../../lib/catalog';
@@ -8,6 +10,9 @@ import { prettyAC } from '../../lib/catalog';
 // honest answer to the most-asked Mac gaming question, backed by the same
 // data that grades the catalogue.
 const blocked = (catalogue as any[]).filter((e) => e.label === 'blocked' && /anti.?cheat|battleye|vanguard|eac|vac|gameguard|xigncode/i.test(publicBlockReason(e.unsupported_reason)));
+const grid = JSON.parse(readFileSync(join(process.cwd(), 'public/catalogue-grid.json'), 'utf8'));
+const verifiedCount = grid.filter(g => g.label === 'pixelport_verified').length;
+const playerTestedCount = grid.filter(g => g.label === 'player_tested').length;
 const groups = new Map<string, any[]>();
 for (const e of blocked) {
   const key = prettyAC(e.antiCheat) === 'None' ? 'Recorded anti-cheat limitation' : prettyAC(e.antiCheat);
@@ -80,11 +85,11 @@ const jsonLd = {
     <div class="prose prose-invert mt-10 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
       <h2>What actually works</h2>
       <p>
-        The good news: most anti-cheat is not kernel-level. VAC and user-mode Easy Anti-Cheat
-        configurations usually run fine, which is why thousands of multiplayer games are graded
-        playable or <a href="/games/verified">verified</a> in the catalogue. Before writing off a
-        game, <a href="/games">check its actual grade</a>. The answer is often better than you
-        expect.
+        An anti-cheat name alone establishes neither gameplay compatibility nor a block.
+        The catalogue currently has {verifiedCount} PixelPort verified games and
+        {playerTestedCount} Player-tested games. Untested games have no substantiated gameplay
+        claim, Issues reported records an accepted relevant problem, and Blocked requires an
+        established limitation. <a href="/games">Read the game's current label and conditions</a>.
       </p>
     </div>
 

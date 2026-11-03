@@ -97,11 +97,14 @@ const canonical = new URL(`/games/${game.slug}`, Astro.site).toString();
 // on a Mac (native port, Pixel Port, cloud), compared honestly.
 const guide = (guides as Record<string, any>)[game.slug];
 
-// A hand-written guide answer beats the generated line — it is already reviewed
-// and it knows the specifics (whether the native build is any good, for one).
-const nativeLine =
-  guide?.nativeAnswer ??
-  `Steam lists a native Mac version of ${game.title}, included with your Steam purchase. Install that first — it needs no compatibility layer at all. Pixel Port is only worth it here if that build no longer runs, or you need the Windows version for mods.`;
+// Authored prose contains native-platform facts only. The Windows assessment
+// always comes from the contract, including in visible FAQs and JSON-LD.
+const nativePlatformAnswer = guide?.nativePlatformAnswer ?? (isNativeMac
+  ? `Steam lists a native Mac version of ${game.title}, included with your Steam purchase. Check its current macOS requirements before installing.`
+  : null);
+const assessmentAnswer = game.summary + (isUnavailable
+  ? ` ${game.title} is not available to install in Pixel Port yet. A request records interest without guaranteeing availability or a date.`
+  : '');
 
 // Tier-honest Q&A. Rendered visibly below and mirrored as FAQPage JSON-LD, so
 // the schema never claims anything the page doesn't say.
@@ -124,26 +127,18 @@ const faq: { q: string; a: string }[] = isBlocked
       {
         q: `Does ${game.title} run on Mac?`,
         a: isNativeMac
-          ? // No tier talk here: the grade describes the Windows build, and quoting
-            // it against a game with its own Mac version just muddies the answer.
-            `${nativeLine} If you specifically want the Windows build — for Windows-only mods, say — its PixelPort label is ${meta.label}. ${meta.description}`
-          : `${game.summary} Its current label is ${meta.label} for Apple Silicon Macs.` +
-            (game.engine
-              ? ` ${game.title} is built on ${engineLabel(game.engine)}, and Pixel Port's runtime translates its rendering to Metal automatically.`
-              : '') +
-            (isUnavailable
-              ? ` It is not available to install in the beta yet. Request it in the app to record interest, without a guaranteed date.`
-              : ''),
+          ? `${nativePlatformAnswer} For the Windows build through PixelPort: ${assessmentAnswer}`
+          : assessmentAnswer,
       },
       {
         q: `Do I need to own ${game.title} on Steam?`,
-        a: `Yes. Pixel Port does not sell, host, or distribute games. ${game.title} downloads through Steam, to your own Steam account, exactly as it would on a PC — you need to own it there first. Pixel Port is the compatibility layer that runs the Windows build Steam delivers.`,
+        a: `Yes. To try the Steam version of ${game.title}, you need to own it on your own Steam account and use the install route available in the app. Pixel Port does not sell, host, or distribute games. ${assessmentAnswer}`,
       },
       {
         q: `Do I need Windows, Boot Camp, or a VM to play ${game.title} on Mac?`,
         a: isNativeMac
           ? `No. ${game.title} has a native Mac version, so nothing needs translating at all — install it from Steam and play.`
-          : `No. Pixel Port runs the Windows build of ${game.title} directly on macOS — no Boot Camp partition, no virtual machine, and no Windows license.`,
+          : `Pixel Port's runtime does not require a Windows installation, Boot Camp partition, virtual machine, or Windows license. ${assessmentAnswer}`,
       },
       {
         q: `Which Macs can run ${game.title}?`,
@@ -152,8 +147,8 @@ const faq: { q: string; a: string }[] = isBlocked
     ];
 // Ask the native question outright whenever the answer is yes — not only for the
 // handful of games that happen to have a hand-written guide.
-if (guide?.nativeAnswer || (isNativeMac && !isBlocked)) {
-  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: guide?.nativeAnswer ?? nativeLine });
+if (nativePlatformAnswer) {
+  faq.splice(1, 0, { q: `Is there a native Mac version of ${game.title}?`, a: `${nativePlatformAnswer} For the Windows build through PixelPort: ${assessmentAnswer}` });
 }
 
 const jsonLd = {
@@ -252,7 +247,7 @@ const jsonLd = {
             {isNativeMac ? nativeMacMeta.label : meta.label}
           </span>
           <h1>{h1}</h1>
-          {isNativeMac && <p class="game-native-note">{nativeLine}</p>}
+          {isNativeMac && <p class="game-native-note">{nativePlatformAnswer}</p>}
           <p class="game-summary">{game.summary}</p>
           {game.label === 'untested' && ENABLED.has(game.appid) && !isNativeMac && <p class="game-availability">Available to try. An unlock does not confirm gameplay compatibility.</p>}
           {

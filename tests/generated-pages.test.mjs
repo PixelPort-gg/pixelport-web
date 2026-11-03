@@ -46,3 +46,44 @@ test('old automated announcement cannot retain a withdrawn claim in its title or
 test('an issue keeps accepted problem evidence on the Mac page', () => {
   assert.ok(text(html('mac/chained-together-2567870')).includes('Accepted relevant problem'));
 });
+
+const faqEntities = source => [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+  .flatMap(m => JSON.parse(m[1])['@graph'] ?? [])
+  .filter(g => g['@type'] === 'FAQPage')
+  .flatMap(g => g.mainEntity);
+const withdrawnClaims = /graded playable|verified through Pixel Port|verified on Apple Silicon|the Windows build is verified|Pixel Port runs the Windows build|a human ran it end to end|verified local run/i;
+for (const slug of ['lethal-company', 'peak', 'sons-of-the-forest', 'valheim', 'schedule-i', 'r-e-p-o', 'phasmophobia']) {
+  test(`native facts do not restore withdrawn claims: ${slug}`, () => {
+    const source = html(`games/${slug}`);
+    const visible = text(source);
+    const answers = faqEntities(source).map(q => q.acceptedAnswer.text).join(' ');
+    assert.ok(visible.includes('Untested'));
+    assert.equal(withdrawnClaims.test(visible), false, 'visible text retains a withdrawn claim');
+    assert.equal(withdrawnClaims.test(answers), false, 'structured answers retain a withdrawn claim');
+    const native = faqEntities(source).find(q => q.name.startsWith('Is there a native Mac version'));
+    assert.ok(native, 'native-platform answer remains present');
+    assert.ok(native.acceptedAnswer.text.includes('Untested'), 'Windows assessment accompanies the separate native facts');
+  });
+}
+for (const slug of ['battlefield-6', 'call-of-duty-modern-warfare-ii-2022']) {
+  test(`Untested unavailable game is not promised to run: ${slug}`, () => {
+    const source = html(`games/${slug}`);
+    assert.doesNotMatch(text(source), /Pixel Port runs the Windows build of|compatibility layer that runs the Windows build/);
+    const setup = faqEntities(source).find(q => q.name.startsWith('Do I need Windows'));
+    assert.ok(setup.acceptedAnswer.text.includes('Untested'));
+    assert.ok(setup.acceptedAnswer.text.includes('not available to install'));
+    assert.doesNotMatch(setup.acceptedAnswer.text, /runs the Windows build/);
+  });
+}
+test('catalogue hubs use current labels and snapshot counts', () => {
+  const grid = JSON.parse(readFileSync(new URL('../public/catalogue-grid.json', import.meta.url)));
+  const antiCheat = text(html('games/anti-cheat'));
+  for (const [key, label] of [['pixelport_verified', 'PixelPort verified'], ['player_tested', 'Player-tested']]) {
+    assert.ok(antiCheat.includes(`${grid.filter(g => g.label === key).length} ${label}`));
+  }
+  assert.doesNotMatch(antiCheat, /thousands of multiplayer games|graded playable|playable or verified/);
+  const verified = text(html('games/verified'));
+  assert.ok(verified.includes(`${grid.filter(g => !g.n).length.toLocaleString('en-US')} Windows games`));
+  for (const label of ['Untested', 'Player-tested', 'PixelPort verified', 'Issues reported', 'Blocked']) assert.ok(verified.includes(label));
+  assert.doesNotMatch(verified, /more games carry|playable, needs attention/);
+});
