@@ -1,10 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { assertFixtureMatchesUpstream } from '../scripts/check-contract-fixtures.mjs';
 import { compatibilityLabel, parseProvenance, assessmentFields, withCompatibility, compatibilityMeta, labelOrder, isTested, publicBlockReason } from '../src/lib/compatibility.mjs';
 
 // Unmodified app contract at b3d0c8b9. The website reads labels, not assessment writes.
-const fixtures = JSON.parse(readFileSync(new URL('./fixtures/compatibility.json', import.meta.url)));
+const fixtureBytes = readFileSync(new URL('./fixtures/compatibility.json', import.meta.url));
+const fixtures = JSON.parse(fixtureBytes);
+test('fixture copy matches the pinned upstream blob and rejects drift', () => {
+  assert.doesNotThrow(() => assertFixtureMatchesUpstream(fixtureBytes));
+  assert.throws(() => assertFixtureMatchesUpstream(Buffer.concat([fixtureBytes, Buffer.from('\n')])), /Compatibility fixtures differ from upstream blob/);
+});
 assert.equal(fixtures.contract, 'compatibility-labels/1');
 for (const c of fixtures.provenance_cases) test(`provenance: ${c.verified_by}`, () => {
   assert.deepEqual(parseProvenance(c.verified_by), { head: c.head, tail: c.tail });
