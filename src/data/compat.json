@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-03",
+ "fetched_at": "2026-11-04",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -462,7 +462,7 @@
    "appid": 648800,
    "slug": "raft",
    "name": "Raft",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 15323198
   },
@@ -686,7 +686,7 @@
    "appid": 386360,
    "slug": "smite",
    "name": "SMITE",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15094368
   },
@@ -2942,7 +2942,7 @@
    "appid": 1888930,
    "slug": "the-last-of-us-part-i",
    "name": "The Last of Us Part I",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1563713
   },
@@ -4462,7 +4462,7 @@
    "appid": 1147690,
    "slug": "ngu-idle",
    "name": "NGU IDLE",
-   "tier": "playable",
+   "tier": "untested",
    "reason": null,
    "popularity": 761564
   },
@@ -4934,7 +4934,7 @@
    "appid": 850190,
    "slug": "goat-simulator-3",
    "name": "Goat Simulator 3",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 360177
   },
@@ -5814,7 +5814,7 @@
    "appid": 2168680,
    "slug": "nuclear-option",
    "name": "Nuclear Option",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 153826
   },
@@ -6462,7 +6462,7 @@
    "appid": 1700270,
    "slug": "lucky-tower-ultimate",
    "name": "Lucky Tower Ultimate",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 36198
   },
@@ -7766,7 +7766,7 @@
    "appid": 2413950,
    "slug": "final-sentence",
    "name": "Final Sentence",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
