@@ -4,6 +4,9 @@ description: "Choose Discord Help, Game reports, or Game requests, or send an in
 order: 5
 ---
 
+<!-- Release gate: Game reports routing and template guidance below remain pending
+app #330. Reconcile them with its accepted question rewrite before publication. -->
+
 Use a game's **Report a problem** action to send evidence about a problem in
 Pixel Port 0.5.1. **In-app reports do not receive replies.** For answers, ask
 in the **Help** forum on the [Pixel Port Discord](https://discord.gg/2eQah8DjK6).
@@ -36,7 +39,8 @@ details below so the problem can be understood without guessing your setup.
 
 The form stays open while sending. If it says **Delivery wasn't confirmed**,
 retry or use **Open Discord**. Do not treat a failed send as a received report.
-A successful submission is not a promise that the problem has been resolved.
+After a successful send, the form closes. This confirms submission, not that
+the problem has been resolved. There is no in-app ticket-status or reply view.
 
 ## Review a diagnostic report
 
@@ -50,9 +54,21 @@ optional telemetry.
 
 Open a post in **Help** with the game or affected setup step in the title.
 Describe the problem and include the versions and conditions listed below.
-Keep follow-up details in the same post. If a reply asks for a check, report
-what you tried and what changed. Follow any link to an existing discussion
-so related results stay together.
+Keep follow-up details in the same post. A reply may ask for missing details
+or a specific check, acknowledge a new or existing ticket, or link you to the
+original Discord discussion. If asked for a check, reply with what you tried
+and what changed. A ticket acknowledgement does not mean a fix is ready.
+
+If your post is a duplicate, it may be locked after a reply links the original
+discussion. Continue there so related results stay together. You do not need
+GitHub or staff-dashboard access to ask for help or provide follow-up details;
+ticket acknowledgements do not include a GitHub link. If you cannot open the
+linked discussion or find **Help**, ask a server moderator for access guidance.
+
+If a Help thread is deleted, a pending reply cannot be delivered there, and
+you should not expect it to be automatically reposted elsewhere. Ask a
+moderator where to continue. Delivery checks and recovery history are visible
+to staff only. Keep your own copy of the problem details and any checks you tried.
 
 ## What to include when asking for help
 

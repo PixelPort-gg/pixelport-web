@@ -48,12 +48,41 @@ still fails, report the error and whether it occurred during downloading,
 verification, or game preparation. Installing through another route is not
 a guaranteed fix.
 
+## Installation stops with a recipe message
+
+A recipe tells Pixel Port how to prepare a game. Follow the specific message:
+
+- **"This game's recipe isn't available yet. Try again later."** The recipe
+  has not been published. Try later; reconnecting or reinstalling Pixel Port
+  does not make it available.
+- **"This game's recipe couldn't be found. Try again later."** The recipe
+  service could not find it. Try later and report the game and exact message
+  if it persists.
+- **"The recipe service couldn't complete the request. Try again later."**
+  The service returned an error. Try later; this message does not mean your
+  Mac is offline.
+- **"Couldn't read the recipe service's response. Try again later."** Try
+  later and include this message in a support report if it persists.
+- **"Sign in to Pixel Port to download this game's recipe, then try again."**
+  Sign in to Pixel Port and retry. Pixel Port sign-in is separate from Steam sign-in.
+
+If the message specifically says the recipe is unavailable offline, check
+your internet connection and retry when connected. If it asks you to update
+Pixel Port, update the app before retrying. Do not remove games, saves, or
+runtime files to resolve a recipe-service message.
+
 ## Runtime setup or repair says a game is running
 
-Close the games using that runtime and let them finish before retrying.
-Pixel Port protects runtime files while they are in use. If the warning
-persists with your games closed, report the operation and exact
-message. Do not delete runtime files or terminate unfamiliar processes to bypass it.
+Pixel Port 0.5.1 protects the runtime files being changed. For Prism install,
+update, or repair, a game running in a separate Wine product such as CrossOver
+does not by itself block the operation. Close games using the Prism runtime
+being changed and let them finish before retrying.
+
+An inspection failure means Pixel Port could not check safely; it does not
+confirm that a game is running. If the warning persists with your Prism games
+closed, report the operation and exact message, plus any other Wine product
+and version in use. Do not delete runtime files or terminate unfamiliar
+processes to bypass it.
 
 ## D3DMetal setup does not reach Ready
 
@@ -92,10 +121,13 @@ Update Pixel Port, record the selected runtime and graphics backend, and
 report where the failure occurs. Updating does not guarantee a fix for every
 cutscene or audio problem.
 
+<!-- App #323 owns this deferred investigation; the public help needs no private issue access. -->
 **South Park: The Stick of Truth** has an unresolved report of a black screen
-with audio followed by a crash. Windowed mode is not a confirmed remedy. If
-you encounter it, include Steam App ID **213670** and your launch conditions
-in the [report](/docs/support/).
+with audio followed by a crash. Its investigation is deferred to **0.5.2**;
+no remedy has been qualified for 0.5.1. Windowed mode is not a
+confirmed remedy, and the deferral does not promise a fix in 0.5.2. If you
+encounter it, include Steam App ID **213670** and your launch conditions in
+the [report](/docs/support/).
 
 ## My controller is not detected
 
