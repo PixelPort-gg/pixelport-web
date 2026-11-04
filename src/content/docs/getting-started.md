@@ -32,8 +32,9 @@ whether the runtime files it needs to change are in use. A game running in a
 separate Wine product, such as CrossOver, does not by itself require you to
 stop it before installing, updating, or repairing Prism.
 
-Close games using the Prism runtime being changed, then retry. If Pixel Port
-cannot check which processes are using it, keep the exact message and follow
+If Pixel Port says a game is running, close games using the Prism runtime
+being changed, then retry. If Pixel Port cannot check which processes are
+using it, keep the exact message and follow
 the [runtime recovery guidance](/docs/known-issues/#runtime-setup-or-repair-says-a-game-is-running).
 Successful runtime setup does not establish that a particular game or controller works.
 

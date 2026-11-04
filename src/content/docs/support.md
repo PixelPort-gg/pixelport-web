@@ -2,10 +2,9 @@
 title: "Reporting and support"
 description: "Choose Discord Help, Game reports, or Game requests, or send an in-app support report."
 order: 5
+# Release gate: Game reports guidance remains pending app #330.
+# Reconcile it with the accepted question rewrite before publication.
 ---
-
-<!-- Release gate: Game reports routing and template guidance below remain pending
-app #330. Reconcile them with its accepted question rewrite before publication. -->
 
 Use a game's **Report a problem** action to send evidence about a problem in
 Pixel Port 0.5.1. **In-app reports do not receive replies.** For answers, ask

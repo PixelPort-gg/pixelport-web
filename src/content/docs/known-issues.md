@@ -61,6 +61,8 @@ A recipe tells Pixel Port how to prepare a game. Follow the specific message:
 - **"The recipe service couldn't complete the request. Try again later."**
   The service returned an error. Try later; this message does not mean your
   Mac is offline.
+- **"Couldn't download this game's recipe. Try again later."** The recipe
+  request failed. Try later and report the game and exact message if it persists.
 - **"Couldn't read the recipe service's response. Try again later."** Try
   later and include this message in a support report if it persists.
 - **"Sign in to Pixel Port to download this game's recipe, then try again."**
@@ -78,11 +80,12 @@ update, or repair, a game running in a separate Wine product such as CrossOver
 does not by itself block the operation. Close games using the Prism runtime
 being changed and let them finish before retrying.
 
-An inspection failure means Pixel Port could not check safely; it does not
-confirm that a game is running. If the warning persists with your Prism games
-closed, report the operation and exact message, plus any other Wine product
-and version in use. Do not delete runtime files or terminate unfamiliar
-processes to bypass it.
+If the message begins **"Pixel Port could not check runtime use safely"**,
+the app could not check which processes are using the runtime. Follow its
+retry or restart advice; this message does not confirm that a game is running.
+If the warning persists with your Prism games closed, report the operation
+and exact message, plus any other Wine product and version in use. Do not
+delete runtime files or terminate unfamiliar processes to bypass it.
 
 ## D3DMetal setup does not reach Ready
 
@@ -121,7 +124,6 @@ Update Pixel Port, record the selected runtime and graphics backend, and
 report where the failure occurs. Updating does not guarantee a fix for every
 cutscene or audio problem.
 
-<!-- App #323 owns this deferred investigation; the public help needs no private issue access. -->
 **South Park: The Stick of Truth** has an unresolved report of a black screen
 with audio followed by a crash. Its investigation is deferred to **0.5.2**;
 no remedy has been qualified for 0.5.1. Windowed mode is not a

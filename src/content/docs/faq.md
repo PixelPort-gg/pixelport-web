@@ -2,6 +2,8 @@
 title: "Frequently asked questions"
 description: "Requirements, Steam, saves, compatibility, controllers, and where to get help."
 order: 4
+# Release gate: Game reports guidance remains pending app #330.
+# Reconcile it with the accepted question rewrite before publication.
 ---
 
 ## Which Macs does Pixel Port support?
