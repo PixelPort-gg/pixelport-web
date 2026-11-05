@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-04",
+ "fetched_at": "2026-11-05",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -462,7 +462,7 @@
    "appid": 648800,
    "slug": "raft",
    "name": "Raft",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15323198
   },
@@ -1934,7 +1934,7 @@
    "appid": 323190,
    "slug": "frostpunk",
    "name": "Frostpunk",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3614315
   },
@@ -2950,7 +2950,7 @@
    "appid": 113200,
    "slug": "the-binding-of-isaac",
    "name": "The Binding of Isaac",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1557299
   },
@@ -3222,7 +3222,7 @@
    "appid": 2321470,
    "slug": "deep-rock-galactic-survivor",
    "name": "Deep Rock Galactic: Survivor",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1531693
   },
@@ -4462,7 +4462,7 @@
    "appid": 1147690,
    "slug": "ngu-idle",
    "name": "NGU IDLE",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 761564
   },
@@ -7358,7 +7358,7 @@
    "appid": 2753900,
    "slug": "the-king-is-watching",
    "name": "The King is Watching",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
