@@ -2,8 +2,6 @@
 title: "Reporting and support"
 description: "Choose Discord Help, Game reports, or Game requests, or send an in-app support report."
 order: 5
-# Release gate: Game reports guidance remains pending app #330.
-# Reconcile it with the accepted question rewrite before publication.
 ---
 
 Use a game's **Report a problem** action to send evidence about a problem in
@@ -86,18 +84,25 @@ screenshots or logs, remove personal details, account information, and credentia
 ## Share a gameplay report
 
 In **Game reports**, use the forum's report template to describe what you
-personally tested. Include:
+personally tested in Pixel Port. Include:
 
 - The game and Steam store link or App ID.
 - Pixel Port version, runtime and graphics settings, Mac chip and memory,
   and macOS version.
+- How you installed the game, and whether installation, launch, rendering,
+  and gameplay worked.
 - The test date, how long you played, and the gameplay or mode you tested.
 - Any required tweaks, broken features, crashes, or other limits.
 
 If you only reached a menu, say so. Do not describe untested modes as working
-or copy another player's result as your own. A report can help inform
-compatibility information, but posting one does not guarantee a label change
-or qualify the game for every Mac.
+or copy another player's result as your own. Keep results from different Macs
+or setups separate, and describe any failures even if you could keep playing.
+
+Reports are reviewed as compatibility evidence. Accepted results can change a
+game's compatibility label; unclear or conflicting results need further review.
+Correcting or withdrawing a report can change the label again, including
+removing a previous compatibility claim. Posting a report does not guarantee
+a label change or qualify the game for every Mac.
 
 ## Request a game
 

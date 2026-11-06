@@ -2,8 +2,6 @@
 title: "Frequently asked questions"
 description: "Requirements, Steam, saves, compatibility, controllers, and where to get help."
 order: 4
-# Release gate: Game reports guidance remains pending app #330.
-# Reconcile it with the accepted question rewrite before publication.
 ---
 
 ## Which Macs does Pixel Port support?
@@ -77,8 +75,11 @@ in-app send succeeded.
 
 No. A game's **Request** action records interest without promising support,
 a date, or a personal notification. Unlocking lets you try a game; it does
-not prove gameplay compatibility. A gameplay report describes the conditions
-you tested and does not guarantee a compatibility-label change.
+not prove gameplay compatibility. Gameplay reports are reviewed as evidence
+for the conditions you tested in Pixel Port. Accepted results can change a
+game's compatibility label, and corrections or withdrawn reports can change
+it again. Posting one does not guarantee a label change. See
+[what to include in a gameplay report](/docs/support/#share-a-gameplay-report).
 
 A diagnostic preview, when offered, is a separate choice to send technical
 information. Diagnostic uploads also do not receive replies.

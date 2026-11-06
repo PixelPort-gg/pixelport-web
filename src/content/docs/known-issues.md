@@ -67,11 +67,11 @@ A recipe tells Pixel Port how to prepare a game. Follow the specific message:
   later and include this message in a support report if it persists.
 - **"Sign in to Pixel Port to download this game's recipe, then try again."**
   Sign in to Pixel Port and retry. Pixel Port sign-in is separate from Steam sign-in.
+- **"This game's recipe isn't available offline yet. Reconnect and try again."**
+  Check your internet connection and retry when connected.
 
-If the message specifically says the recipe is unavailable offline, check
-your internet connection and retry when connected. If it asks you to update
-Pixel Port, update the app before retrying. Do not remove games, saves, or
-runtime files to resolve a recipe-service message.
+If the message asks you to update Pixel Port, update the app before retrying.
+Do not remove games, saves, or runtime files to resolve a recipe-service message.
 
 ## Runtime setup or repair says a game is running
 
