@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-05",
+ "fetched_at": "2026-11-06",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -462,7 +462,7 @@
    "appid": 648800,
    "slug": "raft",
    "name": "Raft",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15323198
   },
@@ -5958,7 +5958,7 @@
    "appid": 1694600,
    "slug": "the-house-of-the-dead-remake",
    "name": "The House of the Dead: Remake",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 151603
   },
@@ -6462,7 +6462,7 @@
    "appid": 1700270,
    "slug": "lucky-tower-ultimate",
    "name": "Lucky Tower Ultimate",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 36198
   },
@@ -6582,7 +6582,7 @@
    "appid": 1641700,
    "slug": "moving-out-2",
    "name": "Moving Out 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 35308
   },
