@@ -4,7 +4,7 @@ description: "Install the app, prepare Prism, choose a game, and set up optional
 order: 1
 ---
 
-These instructions cover Pixel Port **0.5.0**, the public app release.
+These instructions cover Pixel Port **0.5.1**, the public app release.
 Pixel Port requires an **Apple Silicon Mac (M1 or newer)** with **macOS 14.0
 or later**. Individual games can require a newer macOS version. The optional
 Apple D3DMetal route requires **macOS 15 or later and Rosetta 2**.
@@ -23,6 +23,20 @@ If Pixel Port is already installed, choose **Pixel Port → Check for Updates**.
 Update it in place to keep existing games, libraries, and saves. The public
 app and disk image are signed and notarized. If macOS refuses to open a fresh
 download, record the exact warning and [ask for help](/docs/support/).
+
+## Install, update, or repair Prism
+
+Open your account menu → **Settings → Prism Runtime** and follow the install,
+update, or **Repair Runtime** action shown for Prism. Pixel Port 0.5.1 checks
+whether the runtime files it needs to change are in use. A game running in a
+separate Wine product, such as CrossOver, does not by itself require you to
+stop it before installing, updating, or repairing Prism.
+
+If Pixel Port says a game is running, close games using the Prism runtime
+being changed, then retry. If Pixel Port cannot check which processes are
+using it, keep the exact message and follow
+the [runtime recovery guidance](/docs/known-issues/#runtime-setup-or-repair-says-a-game-is-running).
+Successful runtime setup does not establish that a particular game or controller works.
 
 ## Install and play a game
 
