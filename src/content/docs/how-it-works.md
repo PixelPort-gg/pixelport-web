@@ -1,44 +1,73 @@
 ---
 title: "How Pixel Port works"
-description: "The infrastructure that turns a Windows game into one click on your Mac."
-order: 1
+description: "Game copies, runtime choices, graphics, and the limits of compatibility evidence."
+order: 2
 ---
 
-## The problem
+Pixel Port prepares supported Windows Steam games for Apple Silicon Macs.
+Start with [installation and setup](/docs/getting-started/), then check your
+[game's catalogue page](/games/) for its current availability and caveats.
 
-Apple Silicon Macs are fast, but games are built for Windows and DirectX, not macOS
-and Metal. Bridging that gap has always meant manual, fragile setup: compatibility
-layers, hand-built Wine bottles, virtual machines, partitions. It
-works sometimes, if you are willing to spend an evening on it.
+## Prism and game preparation
 
-Pixel Port does that work for you, automatically, and proves the result.
+Prism supplies the components that run Windows games on macOS. Pixel Port's
+Synthesis Engine uses a game's recipe to prepare dependencies, graphics, and
+launch settings. Preparation can fail, and a completed installation does not
+prove that a game reaches playable gameplay.
 
-## Prism, the runtime
+App updates, runtime updates, and game preparation are separate. Updating the
+app does not mean every runtime or game configuration has changed.
 
-Prism is our runtime. It pairs a modern Wine build with DXMT, which translates
-a game's DirectX calls straight to Metal on Apple Silicon. Most games never notice
-they left Windows. There is no bottle to maintain.
+## Runtime, graphics, and installed copy
 
-## The Synthesis Engine
+These choices describe different parts of a launch:
 
-Every game is different. The Synthesis Engine inspects a game and works out how it
-should run on your Mac: which graphics path to take, which dependencies it needs,
-and how to launch it. It produces a launch plan automatically, so installing a game
-is a single click rather than an afternoon of configuration.
+- **Runtime:** **Legacy Prism (Recommended)** is the normal starting point.
+  **Apple D3DMetal (Experimental)** is an optional route for compatible games.
+  **Prism Next (Upcoming)** cannot be selected or downloaded.
+- **Graphics backend:** controls graphics translation. DXMT and D3DMetal are
+  different choices; selecting a runtime does not make every graphics backend
+  available for every game.
+- **Installed copy:** identifies which installation Pixel Port starts. A Steam,
+  Depot, or native Mac copy can have different files, saves, and launch requirements.
 
-## The Distributed Validation Network
+Use a game's **Launch settings** for the choices it offers. Follow the app's
+readiness messages rather than copying another game's settings. Optional
+[D3DMetal setup](/docs/getting-started/#optional-apple-d3dmetal-setup) checks the
+runtime; **Ready** does not guarantee that a particular game works.
 
-Pixel Port gets more reliable the more people use it. Every install and launch
-produces a signal about what worked and what did not. The Distributed Validation
-Network aggregates those signals across the whole community, so when one Mac proves
-a game runs, that knowledge benefits everyone. A game's status is earned from real
-launches on real hardware, not a guess.
+## Steam and optional routes
 
-## Honest tiers
+The normal Windows Steam route uses Pixel Port's Windows Steam client. Start
+the game from Pixel Port so its preparation and launch settings are applied.
+If Pixel Port asks you to close your Mac Steam app, finish any running game
+and follow that prompt.
 
-We grade every game honestly:
+Native Mac Steam games and the experimental D3DMetal hosting route use your
+own Mac Steam app instead. Leave it available for those routes. D3DMetal
+hosting still has game-specific limits: for Grim Dawn, use **Legacy Prism
+with DXMT**, as described in the [0.5.0 release notes](https://github.com/PixelPort-gg/pixelport-dist/releases/tag/v0.5.0).
 
-- **Verified**: a human confirmed it end to end on a real Mac.
-- **Playable**: auto-tested or community-confirmed, not yet human-verified.
-- **Needs attention**: runs with caveats or a known workaround.
-- **Unsupported**: a hard blocker, such as kernel-level anti-cheat.
+Under **Settings → Prism Runtime → Labs**, you can opt in to launching
+installed native Mac Steam games and discovering supported Mac games already
+installed by Epic, Battle.net, GOG, or the Mac App Store. This does not import
+every uninstalled purchase or provide general Windows-game installation from
+those stores. A listed native Mac build can still have limits on your macOS version.
+
+Depot is another Windows-game installation route. It downloads game files
+without starting Windows Steam, but Steam credentials and download rights can
+still be required. Depot copies are not automatically synchronized with Steam Cloud.
+
+## Reading compatibility information
+
+The website currently displays **Verified**, **Playable**, **Needs attention**,
+and **Unsupported**. Read the game's caveats alongside its label. A catalogue
+label is not a guarantee for every Mac, game update, runtime, or mode.
+
+Availability, ownership, installation, runtime readiness, and gameplay results
+are separate. Unlocking a game lets you try it; it does not establish that it
+works. A successful launch or a visible menu also does not prove playable gameplay.
+
+If your result differs, [report the conditions and what happened](/docs/support/).
+Optional diagnostics and telemetry can help investigate a failure; they do not
+replace a gameplay report.
