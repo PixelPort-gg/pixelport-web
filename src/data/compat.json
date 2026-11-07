@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-06",
+ "fetched_at": "2026-11-07",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -414,7 +414,7 @@
    "appid": 239140,
    "slug": "dying-light",
    "name": "Dying Light",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 15435687
   },
@@ -998,7 +998,7 @@
    "appid": 698780,
    "slug": "doki-doki-literature-club",
    "name": "Doki Doki Literature Club!",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7703247
   },
@@ -1070,7 +1070,7 @@
    "appid": 2050650,
    "slug": "resident-evil-4",
    "name": "Resident Evil 4",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7677539
   },
@@ -1190,7 +1190,7 @@
    "appid": 2881650,
    "slug": "content-warning",
    "name": "Content Warning",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7637483
   },
@@ -1462,7 +1462,7 @@
    "appid": 223710,
    "slug": "cry-of-fear",
    "name": "Cry of Fear",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7565852
   },
@@ -2070,7 +2070,7 @@
    "appid": 976310,
    "slug": "mortal-kombat-11",
    "name": "Mortal Kombat 11",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3593635
   },
@@ -3494,7 +3494,7 @@
    "appid": 729040,
    "slug": "borderlands-game-of-the-year-enhanced",
    "name": "Borderlands: Game of the Year Enhanced",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1520262
   },
@@ -3678,7 +3678,7 @@
    "appid": 38410,
    "slug": "fallout-2",
    "name": "Fallout 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1514550
   },
@@ -4566,7 +4566,7 @@
    "appid": 242550,
    "slug": "rayman-legends",
    "name": "Rayman Legends",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 758994
   },
@@ -6462,7 +6462,7 @@
    "appid": 1700270,
    "slug": "lucky-tower-ultimate",
    "name": "Lucky Tower Ultimate",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 36198
   },
