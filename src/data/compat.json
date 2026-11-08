@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-07",
+ "fetched_at": "2026-11-08",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1798,7 +1798,7 @@
    "appid": 3590,
    "slug": "plants-vs-zombies-goty-edition",
    "name": "Plants vs. Zombies GOTY Edition",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3636574
   },
@@ -1878,7 +1878,7 @@
    "appid": 524220,
    "slug": "nier-automata",
    "name": "NieR: Automata",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3622027
   },
@@ -3270,7 +3270,7 @@
    "appid": 12110,
    "slug": "grand-theft-auto-vice-city",
    "name": "Grand Theft Auto: Vice City",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1527142
   },
@@ -5038,7 +5038,7 @@
    "appid": 1846170,
    "slug": "iron-lung",
    "name": "Iron Lung",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 357529
   },
@@ -6462,7 +6462,7 @@
    "appid": 1700270,
    "slug": "lucky-tower-ultimate",
    "name": "Lucky Tower Ultimate",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 36198
   },
@@ -6950,7 +6950,7 @@
    "appid": 3398870,
    "slug": "dooms-hair-salon",
    "name": "Dooms Hair Salon",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 10054
   },
