@@ -26,7 +26,7 @@ const faq = [
   },
   {
     q: 'What about Intel Macs?',
-    a: 'This guide is for Apple Silicon (M1–M4). Intel Macs are a different story: no Game Porting Toolkit lineage, aging GPU drivers, and fading tool support. On Intel, older Wine wrappers or cloud gaming are the realistic options.',
+    a: 'Pixel Port supports Apple Silicon Macs (M1 or newer) on macOS 14.0 or later. Intel Macs are not supported. Individual games can require a newer macOS version; optional Apple D3DMetal requires macOS 15 or later and Rosetta 2.',
   },
   {
     q: 'Why do some games refuse to run no matter what?',
@@ -55,25 +55,24 @@ const jsonLd = {
     {
       '@type': 'HowTo',
       name: 'Play a Windows Steam game on an Apple Silicon Mac',
-      description: 'The one-click path from a Windows Steam game to a repeatable Mac launch.',
-      totalTime: 'PT10M',
+      description: 'Guided setup, installation, and launch for a Windows Steam game on Mac.',
       step: [
         {
           '@type': 'HowToStep',
           name: 'Check your game',
-          text: 'Look your game up in the Pixel Port compatibility catalogue. Every game carries an honest grade: verified, playable, needs attention, or unsupported with the blocker named.',
+          text: 'Look up your game in the Pixel Port catalogue and read its compatibility notes, availability, and requirements. A label is not a guarantee for every Mac or mode.',
           url: new URL('/games', Astro.site).toString(),
         },
         {
           '@type': 'HowToStep',
           name: 'Install Pixel Port',
-          text: 'Download the free Pixel Port app for macOS 14+ on Apple Silicon. First launch sets up the Prism runtime automatically.',
+          text: 'Download Pixel Port for Apple Silicon (M1 or newer) on macOS 14.0 or later, move it to Applications, and follow the app sign-in and runtime setup prompts.',
           url: new URL('/download', Astro.site).toString(),
         },
         {
           '@type': 'HowToStep',
-          name: 'Install & Play',
-          text: 'Find your game in the catalogue, click Install & Play, and Pixel Port downloads and configures it for your Mac. Launch it from your Library from then on — no bottles, no winetricks, no terminal.',
+          name: 'Install, then play',
+          text: 'Sign in to the Steam account that owns the game, choose Install, and let downloading and preparation finish. For the normal Steam route, start it with Play via Steam in Pixel Port so the per-game setup is applied. Follow any warning for your Mac or selected runtime.',
         },
       ],
     },
@@ -89,7 +88,7 @@ const jsonLd = {
 };
 
 const methods = [
-  { name: 'Pixel Port', best: 'Steam games, zero setup', cost: 'Free', effort: 'One click', catch: 'Apple Silicon + macOS 14 only', cls: 'text-fg font-semibold' },
+  { name: 'Pixel Port', best: 'Supported Steam games', cost: 'Free', effort: 'Guided setup, then Play', catch: 'Apple Silicon (M1+), macOS 14.0+', cls: 'text-fg font-semibold' },
   { name: 'CrossOver', best: 'Non-Steam launchers, tinkerers', cost: '$74/yr', effort: 'Manual per game', catch: 'You do the configuring', cls: 'text-muted' },
   { name: 'Whisky', best: 'Nothing anymore', cost: 'Free', effort: 'Manual bottles', catch: 'Discontinued in 2025', cls: 'text-muted' },
   { name: 'Game Porting Toolkit', best: 'Developers evaluating ports', cost: 'Free', effort: 'Terminal + Homebrew', catch: 'Built for devs, not players', cls: 'text-muted' },
@@ -120,21 +119,22 @@ const methods = [
       <p>
         Windows games don't run on macOS natively because they speak DirectX, and Macs speak
         Metal. Every method below is some way of bridging that gap. For most people with a Steam
-        library, the answer in 2026 is a translation layer that does the setup automatically:
-        install <a href="/download">Pixel Port</a>, pick a game, click. For everyone else —
+        library, the answer in 2026 is a translation layer with guided setup:
+        install <a href="/download">Pixel Port</a>, follow its setup prompts, then install and
+        play a game. For everyone else —
         tinkerers, VM users, people chasing an anti-cheat-blocked game — the full comparison
         is below, including the options we lose to.
       </p>
 
       <h2>First, check your game</h2>
       <p>
-        Before choosing a tool, find out whether your game runs at all. The
-        <a href="/games">compatibility catalogue</a> grades 11,000+ Windows games for Apple
-        Silicon: <a href="/games/verified">verified</a> means a human ran it end to end on a real
-        Mac; playable means strong evidence it works; unsupported means a hard blocker —
-        <a href="/games/anti-cheat">almost always kernel anti-cheat</a> — and no tool, ours
-        included, can fix that. Checking first turns an evening of trial and error into a
-        ten-second lookup.
+        Before choosing a tool, find out whether your game runs at all.
+        The <a href="/games">compatibility catalogue</a> lists Windows games for Apple Silicon
+        with Verified, Playable, Needs attention, and Unsupported labels. Read the game's
+        notes and requirements alongside its label: results can vary by Mac, runtime,
+        game version, and mode. Some games have an established blocker,
+        including <a href="/games/anti-cheat">kernel-level anti-cheat</a>. An unlocked game is available
+        to try; that alone does not prove it works.
       </p>
     </div>
 
@@ -167,28 +167,31 @@ const methods = [
     </div>
 
     <div class="prose prose-invert mt-14 max-w-2xl prose-headings:tracking-tight prose-a:text-accent-2">
-      <h2>The one-click path, step by step</h2>
+      <h2>The guided path, step by step</h2>
       <ol>
         <li>
           <strong>Check your game</strong> in the <a href="/games">catalogue</a> and read its
-          grade. If it's blocked, the page tells you exactly why and what runs instead.
+          compatibility notes, requirements, and any recorded blocker before installing.
         </li>
         <li>
-          <strong>Install Pixel Port</strong> — <a href="/download">free download</a>, Apple
-          Silicon (M1–M4), macOS 14 or later. First launch sets up Prism, our runtime, on its
-          own.
+          <strong>Install Pixel Port</strong> from the <a href="/download">free download</a> on
+          Apple Silicon (M1 or newer), macOS 14.0 or later. Move it to Applications and follow
+          the sign-in and runtime setup prompts. The <a href="/docs/getting-started/">setup
+          guide</a> also covers optional D3DMetal and its separate requirements.
         </li>
         <li>
-          <strong>Click Install &amp; Play.</strong> Steam downloads the Windows build of the game
-          you already own, to your own Steam account, and Pixel Port configures it for your
-          specific Mac and launches it. From then on it's one click from your Library — a
-          repeatable launch, not a science project.
+          <strong>Install, then play.</strong> Sign in to the Steam account that owns the game,
+          choose Install, and let downloading and preparation finish. For the normal Steam
+          route, start it with Play via Steam in Pixel Port so the per-game setup is applied. Follow any warning for your
+          Mac or selected runtime. If it fails, use the <a href="/docs/known-issues/">recovery
+          guide</a> or <a href="/docs/support/">report the problem</a>.
         </li>
       </ol>
       <p>
-        Under the hood: Prism pairs a modern Wine build with DXMT, which translates the game's
-        DirectX calls straight to Metal. The game never notices it left Windows, and there is no
-        bottle for you to maintain. <a href="/docs">The docs</a> explain the whole pipeline.
+        Prism supplies Windows compatibility components, including graphics translation.
+        Runtime, graphics backend, and installed copy are separate choices with different
+        requirements. <a href="/docs/how-it-works/">The runtime guide</a> explains those routes
+        and their limits, and the <a href="/docs/faq/">FAQ</a> covers Steam, saves, and controllers.
       </p>
 
       <h2>The other methods, and when they make sense</h2>
@@ -212,8 +215,8 @@ const methods = [
         Games with kernel-level anti-cheat — think Riot Vanguard and certain Easy Anti-Cheat and
         BattlEye configurations — cannot run on macOS through any compatibility layer. This is a
         publisher decision, not a performance limit, and we'd rather tell you now than after
-        you've spent an evening on it. The full list of
-        <a href="/games/anti-cheat">blocked games and their exact blockers</a> is public.
+        you've spent an evening on it.
+        The full list of <a href="/games/anti-cheat">blocked games and their exact blockers</a> is public.
       </p>
     </div>
 

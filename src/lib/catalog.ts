@@ -41,7 +41,7 @@ export function generate(e: any) {
     // Ownership leads the list on purpose. Pixel Port distributes nothing — Steam
     // delivers the build to the player's own account — and every game page has to
     // say so, not just the hand-written ones.
-    requirements: [`${e.title}, owned on your own Steam account`, 'Apple Silicon (M1 or newer)', 'macOS 14+'],
+    requirements: [`${e.title}, owned on your own Steam account`, 'Apple Silicon (M1 or newer)', 'macOS 14.0+'],
     engine: e.engine, d3d: e.d3d, antiCheat: e.antiCheat, graphics: e.graphics,
     nativeMac: !!e.nativeMac, _cat: true,
   };
@@ -92,12 +92,12 @@ export function generate(e: any) {
     ...base,
     summary,
     steps: [
-      { title: 'Install Pixel Port', body: 'Download Pixel Port and let it set up the runtime on first launch.' },
+      { title: 'Install Pixel Port', body: 'Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts.' },
       // "Pixel Port fetches it" used to live here, and it read as though we shipped
       // the game. Steam downloads the build, to the player's own account; we
       // configure and launch what Steam delivered.
-      { title: `Add ${e.title}`, body: `Sign in to your Steam account and click Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically.` },
-      { title: 'Play', body: 'Launch it from your Library. No bottles, no winetricks, no terminal.' },
+      { title: `Install ${e.title}`, body: `Sign in to the Steam account that owns ${e.title}. For the normal Steam route, choose Install and let downloading and preparation finish. Follow any warning for your Mac or selected runtime.` },
+      { title: 'Play', body: 'Start the game from your Library in Pixel Port using the launch action for the selected copy, such as Play via Steam or Launch Game. This applies its per-game launch settings.' },
     ],
   };
 }
