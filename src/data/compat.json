@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-10",
+ "fetched_at": "2026-11-11",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -198,7 +198,7 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 35630223
   },
@@ -422,7 +422,7 @@
    "appid": 582010,
    "slug": "monster-hunter-world",
    "name": "Monster Hunter: World",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 15434239
   },
@@ -1062,7 +1062,7 @@
    "appid": 646570,
    "slug": "slay-the-spire",
    "name": "Slay the Spire",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7678250
   },
@@ -1158,7 +1158,7 @@
    "appid": 1593500,
    "slug": "god-of-war",
    "name": "God of War",
-   "tier": "verified",
+   "tier": "playable",
    "reason": null,
    "popularity": 7651706
   },
@@ -1366,7 +1366,7 @@
    "appid": 268500,
    "slug": "xcom-2",
    "name": "XCOM 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7586187
   },
@@ -1878,7 +1878,7 @@
    "appid": 524220,
    "slug": "nier-automata",
    "name": "NieR: Automata",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3622027
   },
@@ -2822,7 +2822,7 @@
    "appid": 6860,
    "slug": "hitman-blood-money",
    "name": "Hitman: Blood Money",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3513213
   },
@@ -2854,7 +2854,7 @@
    "appid": 4560,
    "slug": "company-of-heroes",
    "name": "Company of Heroes",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3506540
   },
@@ -2886,7 +2886,7 @@
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 1580833
   },
