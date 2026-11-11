@@ -2,9 +2,10 @@
 // The body of this page is a VERBATIM rendering of the approved Pixel Port privacy
 // notice. Do not paraphrase, summarise, or add marketing copy to it.
 //
-// Source of truth : MacGamePort repo, docs/privacy/PRIVACY-NOTICE.md (main)
-// Notice version  : privacy-2026-08-26 (policy privacy-policy-3.0), effective 2026-08-26
-// SHA-256 digest  : 8f95319a3468cf53a150397edf923ede486ba2ed694ad2d3d0a203a587ab3275
+// Source of truth : PixelPort-gg/pixelport-app, docs/privacy/PRIVACY-NOTICE.md
+// Source revision : 0854913aef4a4be59abe8f2e5e3a1dcf33418a6f
+// Notice version  : privacy-2026-10-21 (policy privacy-policy-3.0), effective 2026-10-21
+// SHA-256 digest  : 024f3e08faffc713a7c222480bfefcb5f4826a356e5abc5411da067a6663c766
 //
 // Any change to the wording below must first be approved in the app repo and pass
 // its digest check (ci/notice-digest.sh); then re-render this page from the updated
@@ -12,15 +13,15 @@
 import Base from '../layouts/Base.astro';
 
 const description =
-  'The approved Pixel Port privacy notice, version privacy-2026-08-26, effective 2026-08-26.';
+  'The approved Pixel Port privacy notice, version privacy-2026-10-21, effective 2026-10-21.';
 ---
 
 <Base title="Privacy Notice" description={description}>
   <article class="wrap max-w-3xl py-16 sm:py-20">
     <!--
       VERBATIM COPY OF AN APPROVED DOCUMENT — DO NOT EDIT IN THIS REPO.
-      Source: MacGamePort docs/privacy/PRIVACY-NOTICE.md (notice version privacy-2026-08-26)
-      SHA-256: 8f95319a3468cf53a150397edf923ede486ba2ed694ad2d3d0a203a587ab3275
+      Source: PixelPort-gg/pixelport-app docs/privacy/PRIVACY-NOTICE.md at 0854913a (notice version privacy-2026-10-21)
+      SHA-256: 024f3e08faffc713a7c222480bfefcb5f4826a356e5abc5411da067a6663c766
       Content changes must go through the app repo's approval flow (ci/notice-digest.sh)
       before they are rendered here.
     -->
@@ -36,13 +37,13 @@ const description =
       class="mt-6 grid gap-x-6 gap-y-2 border-t border-white/10 pt-6 text-sm sm:grid-cols-[max-content_1fr]"
     >
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Notice version</dt>
-      <dd><code>privacy-2026-08-26</code></dd>
+      <dd><code>privacy-2026-10-21</code></dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Policy version</dt>
       <dd><code>privacy-policy-3.0</code></dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Revised</dt>
-      <dd>2026-08-26</dd>
+      <dd>2026-10-21</dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Effective date</dt>
-      <dd>2026-08-26</dd>
+      <dd>2026-10-21</dd>
       <dt class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Contact</dt>
       <dd><a href="mailto:privacy@pixelport.gg" class="text-accent-2">privacy@pixelport.gg</a></dd>
     </dl>
@@ -107,14 +108,15 @@ const description =
         </table>
       </div>
       <p>
-        Every first-time user, and every existing user who reviewed an earlier revision, sees this
-        review once. The switches are a draft until you press Continue. For an existing user, an
-        earlier stored choice remains stored and is the authoritative saved choice while the review
-        is open; the draft does not silently rewrite it. Pixel Port pauses optional network
-        transport and signed-in account restoration until the review is completed. A first-time user
-        likewise sends no optional telemetry before continuing. After Continue, optional transport
-        starts only after the server acknowledges the exact choices, policy version, notice version,
-        and notice digest.
+        Every first-time user, and every existing user who has not completed the review introduced
+        by <code>privacy-2026-08-26</code>, sees this review once. This notice revision does not
+        repeat that review. The switches are a draft until you press Continue. For an existing
+        user, an earlier stored choice remains stored and is the authoritative saved choice while
+        the review is open; the draft does not silently rewrite it. Pixel Port pauses optional
+        network transport and signed-in account restoration until the review is completed. A
+        first-time user likewise sends no optional telemetry before continuing. After Continue,
+        optional transport starts only after the server acknowledges the exact choices, policy
+        version, notice version, and notice digest.
       </p>
       <p>
         If you continue without changing a new starting position, Pixel Port records that value as a
@@ -175,8 +177,41 @@ const description =
         analytics identifiers.
       </p>
 
+      <h2 id="support-and-community-posts">
+        <a href="#support-and-community-posts" class="text-inherit no-underline hover:underline"
+          >Support and community posts</a
+        >
+      </h2>
+      <p>
+        Support tickets are service data. A ticket has no link to an installation, account,
+        device, or Discord identity. You may type an optional contact for staff to reply. The
+        ticket and its contact expire 365 days after creation. Privacy export, telemetry deletion,
+        and account-closure jobs do not cover these tickets because they have no link to your
+        installation or account. If you email a request to <a
+        href="mailto:privacy@pixelport.gg">privacy@pixelport.gg</a>, staff can handle it through
+        the support inbox.
+      </p>
+      <p>
+        Pixel Port copies posts from registered Discord Help, game-report, and game-request forums
+        to handle support, assess game compatibility, and process game requests. Copies contain
+        post text without Discord author identity. References distinguish participants within one
+        thread and let us synchronize edits and deletions. Copies keep earlier versions of an
+        edited post until the post is deleted or the copy expires, so editing personal details out
+        of a post does not remove the earlier text. Removing author identity does not remove
+        personal information you write in the post itself. At activation, collection looks back 30
+        days, then collects new posts and updates. Staff may re-import a recent period after an
+        outage; we do not import a forum's complete history.
+      </p>
+      <p>
+        For Support triage, Pixel Port also copies app ticket descriptions and the last 8 KiB of
+        their logs, excluding the typed contact and removing it where it appears in copied text.
+        Consented crash reports already received by Pixel Port may contribute diagnostic facts and
+        the last 8 KiB of their logs. This processing does not authorize an additional upload from
+        your Mac or change your optional purpose choices.
+      </p>
+
       <h2 id="recipients-and-processing">
-        <a href="#recipients-and-processing" class="text-inherit no-underline hover:underline"
+        <a id="processors" href="#recipients-and-processing" class="scroll-mt-24 text-inherit no-underline hover:underline"
           >Recipients and processing</a
         >
       </h2>
@@ -186,6 +221,62 @@ const description =
         distribution, or game services. GitHub distributes releases. Other processors are not
         enabled unless the processor inventory, contract, deletion path, retention, manifest, and
         notice impact are approved first.
+      </p>
+      <p>
+        OpenRouter is the processor for model evaluation through TypeSafe's Jev model
+        (<code>typesafe/jev-1.13</code>). When evaluation is enabled after approval, its inputs
+        cover:
+      </p>
+      <ul>
+        <li>
+          Discord Help, game-report, and game-request post copies without author identity;
+        </li>
+        <li>
+          app ticket descriptions and the last 8 KiB of their logs, never the typed contact; and
+        </li>
+        <li>
+          diagnostic facts and the last 8 KiB of logs from consented crash reports.
+        </li>
+      </ul>
+      <p>
+        Evaluation supports triage, issue matching, compatibility assessment, and game-request
+        handling. The model request adds no user, session, or trace identifiers and requests that
+        providers deny data collection. Free text and logs may still contain personal information.
+        Intake and model evaluation remain disabled in the processor inventory until separately
+        activated; this notice does not switch them on. Provider retention and deletion terms must
+        be reviewed and recorded before activation.
+      </p>
+      <p>
+        GitHub also acts as a processor for Support evidence in issues and comments in the
+        private <code>PixelPort-gg/pixelport-app</code> and <code>PixelPort-gg/prism-next</code> repositories.
+        When the GitHub writers are enabled after approval, they may copy:
+      </p>
+      <ul>
+        <li>
+          Discord Help starters and follow-ups without author identity;
+        </li>
+        <li>
+          app ticket descriptions and the last 8 KiB of their logs, never the typed contact; and
+        </li>
+        <li>
+          diagnostic facts and the last 8 KiB of logs from consented crash reports.
+        </li>
+      </ul>
+      <p>
+        Before sending, Pixel Port replaces mentions, email addresses, personal paths, network
+        addresses, and long numeric IDs with placeholders. Attachments, embeds, stickers, and
+        polls are represented by placeholders rather than copied. Scrubbing does not guarantee
+        that free text or logs are anonymous. These copies support investigation and follow-up on
+        issues. GitHub issue writers remain disabled in the processor inventory until separately
+        activated; this notice does not enable them.
+      </p>
+      <p>
+        Anthropic (Claude Code) and OpenAI (Codex) also act as processors when development agents
+        read these private issues and comments to investigate and fix problems. Those reads can
+        send the same scrubbed Support evidence, including the log tails listed above, to the
+        agents' model providers. Their processor entries for this evidence remain disabled until
+        the GitHub writers are activated. Provider retention and deletion terms must be reviewed
+        and recorded before activation.
       </p>
       <p>
         Operational logs contain route templates, status/reason codes, latency buckets,
@@ -209,6 +300,29 @@ const description =
         consent evidence expires 730 days after withdrawal or account closure by default. The
         complete engineering schedule is in <code>RETENTION.md</code>. Retention can be shortened by
         an approved change. A legal hold must be named, time-limited, scoped, owned, and reviewed.
+      </p>
+      <p>
+        Support tickets and their optional contacts expire 365 days after creation, regardless of
+        whether staff have replied. Discord content copies expire 180 days after the thread's last
+        activity at the source, or earlier on source deletion or a verified purge. App ticket and
+        diagnostic copies expire no later than their source and at most 180 days after creation.
+        Intake removes a copy at its next check after the source is deleted or, for diagnostic
+        copies, the rich-diagnostics purpose is withdrawn. Removing an intake copy also removes
+        its model inputs, results, staff reasons, and queued action content from intake. Keyed
+        tombstones prevent replay from restoring removed content. Non-content Discord routing rows
+        may remain for 30 days after removal.
+      </p>
+      <p>
+        GitHub issue copies are retained with the issue, separately from intake's expiry schedule.
+        Editing or deleting a source post does not change or withdraw a copy already sent to
+        GitHub. Removing an intake copy, including after source expiry or diagnostic consent
+        withdrawal, does not remove the GitHub copy. Privacy export and deletion jobs do not cover
+        these issue copies. Staff remove an issue copy on request to <a
+        href="mailto:privacy@pixelport.gg">privacy@pixelport.gg</a> by deleting the comment or
+        issue. Editing a comment or issue body leaves earlier text in GitHub's edit history, so
+        editing alone does not erase a copy. Retention and deletion of evidence read by
+        development agents follow the approved terms of Anthropic or OpenAI, which must be
+        recorded before activation.
       </p>
       <p>
         Eligible raw rows may be rolled into privacy-reviewed daily aggregates before deletion.
@@ -237,19 +351,29 @@ const description =
         affirmatively changed yourself.
       </p>
       <p>
-        The one-time review marker is stored separately from the purpose choices. Until that marker
-        records that you continued through this notice, prior saved choices remain intact but
-        optional transport and signed-in account restoration stay paused. Completing the review
-        records the displayed choices under this notice. An untouched starting position has default
-        provenance; a changed position has user provenance.
+        The one-time review marker is stored separately from the purpose choices. Until that
+        marker records that you completed the review introduced by <code>privacy-2026-08-26</code>,
+        prior saved choices remain intact but optional transport
+        and signed-in account restoration stay paused. Completing the review records the displayed
+        choices under the notice used by that app version. An untouched starting position has
+        default provenance; a changed position has user provenance. This revision preserves the
+        marker and does not ask you to review again.
       </p>
       <p>
         The Privacy Center provides local inspection, export, telemetry deletion, account closure,
         link status, and privacy-job status. Server exports and deletions are authenticated,
         idempotent jobs that cover current and historical subjects, requests/notices, diagnostics,
-        support, account devices, provider identities, links, object storage, and affected
-        unreleased aggregates. A deletion tombstone is installed before the job is acknowledged so
-        retries cannot resurrect deleted data.
+        account devices, provider identities, links, object storage, and affected unreleased
+        aggregates. A deletion tombstone is installed before the job is acknowledged so retries
+        cannot resurrect deleted data.
+      </p>
+      <p>
+        These jobs do not cover unlinked support tickets or Discord post copies. Discord copies
+        have no installation or account link; deleting a post on Discord withdraws its intake copy
+        when collection observes the deletion. While collection is off, expiry continues but
+        source deletions cannot be observed. Diagnostic intake copies follow the diagnostic
+        source's deletion, expiry, and consent-withdrawal rules. These source-removal rules do not
+        withdraw copies already sent to GitHub issues.
       </p>
       <p>
         Unlinking and deletion are different. Unlink removes the active account bridge and
@@ -321,14 +445,46 @@ const description =
       </p>
       <ul>
         <li>
+          <code>privacy-2026-10-21</code>: adds GitHub as a processor for scrubbed Support
+          evidence in private pixelport-app and prism-next issues, and Anthropic and OpenAI as
+          processors when development agents read that evidence. The inputs are Help starters and
+          follow-ups, app ticket descriptions and 8 KiB log tails without the contact, and
+          consented diagnostic facts with 8 KiB log tails. It describes scrubbing and attachment
+          placeholders, explains that editing or deleting the source does not change or withdraw
+          an issue copy, and provides a staff deletion path. Under the same service-data and
+          processor treatment as <code>privacy-2026-10-20</code>, diagnostic copies from reports
+          already received with rich-diagnostics consent are used for Support investigation and
+          development, including agent reads. Those issue copies outlive the report's 30-day
+          rich-diagnostics retention, purpose withdrawal, and privacy deletion jobs. This revision
+          treats those diagnostic copies as retained Support evidence, not a new optional
+          telemetry purpose. On that basis, the Changes clause leaves <code>privacy-policy-3.0</code> and
+          the existing one-time review marker unchanged. No repeat review is required, existing
+          choices remain saved, and the August 26 and October
+          20 notice tuples remain accepted for older clients. GitHub writer and agent-processor
+          activation is separate from this revision.
+        </li>
+        <li>
+          <code>privacy-2026-10-20</code>: describes unlinked support tickets and their
+          contacts, their 365-day expiry and exclusion from privacy jobs; registered Discord forum
+          copies, the 30-day activation window, and 180-day content retention; and
+          OpenRouter/TypeSafe Jev evaluation of Help, game-report and game-request copies, app
+          ticket descriptions and 8 KiB log tails without the contact, and consented diagnostic
+          facts with 8 KiB log tails. These are service-data and processor changes, not changes to
+          the optional purposes users chose. On that basis, the Changes clause leaves <code>privacy-policy-3.0</code> and
+          the existing one-time review marker unchanged. No repeat review is required, existing
+          choices remain saved, and the earlier notice tuple
+          remains accepted for older clients. Processor activation is separate from this
+          revision.
+        </li>
+        <li>
           <code>privacy-2026-08-26</code>: presents compatibility telemetry, structured rich
           diagnostics, experience analytics, account personalization, and commercial research on;
           keeps server-side commercial processing/output disabled pending separate review; requires
           every first-time and existing user to complete the review once; pauses optional transport
           and signed-in account restoration until Continue; explains choice provenance and the
           compatibility support tradeoff; confirms that excerpts, logs, filenames, and attachments
-          are never automatic; and introduces a separate, account-scoped
-          <code>email_marketing</code> preference that starts unselected and requires an affirmative
+          are never automatic; and introduces a separate,
+          account-scoped <code>email_marketing</code> preference that starts unselected and requires an affirmative
           choice. Marketing delivery remains disabled pending its own review.
         </li>
         <li>
