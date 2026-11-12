@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-11",
+ "fetched_at": "2026-11-12",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -198,7 +198,7 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 35630223
   },
@@ -422,7 +422,7 @@
    "appid": 582010,
    "slug": "monster-hunter-world",
    "name": "Monster Hunter: World",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 15434239
   },
@@ -1878,7 +1878,7 @@
    "appid": 524220,
    "slug": "nier-automata",
    "name": "NieR: Automata",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 3622027
   },
@@ -2886,7 +2886,7 @@
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 1580833
   },
@@ -3574,7 +3574,7 @@
    "appid": 1476970,
    "slug": "idleon",
    "name": "IdleOn",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1517310
   },
@@ -4390,7 +4390,7 @@
    "appid": 2114740,
    "slug": "blasphemous-2",
    "name": "Blasphemous 2",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 763000
   },
@@ -4966,7 +4966,7 @@
    "appid": 2132850,
    "slug": "rabbit-and-steel",
    "name": "Rabbit and Steel",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 358474
   },
@@ -8022,7 +8022,7 @@
    "appid": 4025700,
    "slug": "heartopia",
    "name": "Heartopia",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -8142,7 +8142,7 @@
    "appid": 4108000,
    "slug": "machine-party",
    "name": "Machine Party",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
