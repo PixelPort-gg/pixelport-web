@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-12",
+ "fetched_at": "2026-11-14",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -198,7 +198,7 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 35630223
   },
@@ -1878,7 +1878,7 @@
    "appid": 524220,
    "slug": "nier-automata",
    "name": "NieR: Automata",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3622027
   },
@@ -2334,7 +2334,7 @@
    "appid": 387290,
    "slug": "ori-and-the-blind-forest-definitive-edition",
    "name": "Ori and the Blind Forest: Definitive Edition",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3563788
   },
@@ -2422,7 +2422,7 @@
    "appid": 403640,
    "slug": "dishonored-2",
    "name": "Dishonored 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3556155
   },
@@ -2838,7 +2838,7 @@
    "appid": 13520,
    "slug": "far-cry",
    "name": "Far Cry",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3508406
   },
@@ -2886,7 +2886,7 @@
    "appid": 753640,
    "slug": "outer-wilds",
    "name": "Outer Wilds",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 1580833
   },
@@ -4038,7 +4038,7 @@
    "appid": 824270,
    "slug": "kovaaks-fps-aim-trainer",
    "name": "KovaaK's FPS Aim Trainer",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 782776
   },
@@ -4054,7 +4054,7 @@
    "appid": 1449690,
    "slug": "the-walking-dead-the-telltale-definitive-series",
    "name": "The Walking Dead: The Telltale Definitive Series",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 779969
   },
@@ -5790,7 +5790,7 @@
    "appid": 2254890,
    "slug": "the-killing-antidote",
    "name": "The Killing Antidote",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 154214
   },
@@ -7222,7 +7222,7 @@
    "appid": 417360,
    "slug": "onlycans-thirst-date",
    "name": "OnlyCans: Thirst Date",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
