@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-14",
+ "fetched_at": "2026-11-15",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -198,7 +198,7 @@
    "appid": 381210,
    "slug": "dead-by-daylight",
    "name": "Dead by Daylight",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 35630223
   },
@@ -750,7 +750,7 @@
    "appid": 100,
    "slug": "counter-strike-condition-zero",
    "name": "Counter-Strike: Condition Zero",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 15013442
   },
@@ -822,7 +822,7 @@
    "appid": 548430,
    "slug": "deep-rock-galactic",
    "name": "Deep Rock Galactic",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7833587
   },
@@ -1974,7 +1974,7 @@
    "appid": 1903340,
    "slug": "clair-obscur-expedition-33",
    "name": "Clair Obscur: Expedition 33",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3606216
   },
@@ -3414,7 +3414,7 @@
    "appid": 32440,
    "slug": "lego-star-wars-the-complete-saga",
    "name": "Lego Star Wars: The Complete Saga",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1523000
   },
@@ -4430,7 +4430,7 @@
    "appid": 2103140,
    "slug": "magicraft",
    "name": "Magicraft",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 762485
   },
@@ -5262,7 +5262,7 @@
    "appid": 490110,
    "slug": "the-precinct",
    "name": "The Precinct",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 354444
   },
@@ -5558,7 +5558,7 @@
    "appid": 33320,
    "slug": "prince-of-persia-the-forgotten-sands",
    "name": "Prince of Persia: The Forgotten Sands",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 351767
   },
