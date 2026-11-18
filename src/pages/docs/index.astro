@@ -6,19 +6,19 @@ import { getCollection } from 'astro:content';
 const docs = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
 ---
 
-<Base title="Docs" description="How Pixel Port works: Prism, the Synthesis Engine, the Distributed Validation Network, and our honest compatibility tiers.">
+<Base title="Docs" description="Install Pixel Port, understand game and runtime routes, recover from problems, and find support and FAQ answers.">
   <PageIntro
     title="Docs"
-    description="How the runtime, the Synthesis Engine, and our honest compatibility tiers work."
+    description="Set up Pixel Port, understand your game's route, and find help when something goes wrong."
   />
 
   <section class="docs-index" aria-labelledby="docs-title">
     <div class="docs-layout">
       <aside class="system-map" aria-label="Pixel Port system overview">
-        <h2 id="docs-title">One launch.<br />A connected system.</h2>
+        <h2 id="docs-title">From setup<br />to your next game.</h2>
         <p class="map-copy">
-          Follow a game from configuration through translation and validation, with the limits
-          explained as clearly as the wins.
+          Start with installation, check runtime choices and known limits, or find the
+          details to include when asking for help.
         </p>
         <div class="route-map" aria-hidden="true">
           <span>Game</span>

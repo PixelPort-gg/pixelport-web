@@ -9,16 +9,16 @@
   "requirements": [
    "Among Us, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Among Us",
-    "body": "Find Among Us in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically."
+    "body": "Find Among Us in the catalogue and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port."
    },
    {
     "title": "Play online",
@@ -37,16 +37,16 @@
   "requirements": [
    "Pool Blitz, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Grab Pixel Port; the runtime installs itself on first run."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Pool Blitz in the catalogue and click Install & Play. Pixel Port handles the setup automatically."
+    "title": "Install the game",
+    "body": "Find Pool Blitz in the catalogue and choose Install for the normal Steam route. Let downloading and preparation finish before starting the game from Pixel Port."
    }
   ],
   "lastTested": "2026-06-23"
@@ -61,17 +61,17 @@
   "requirements": [
    "Noita, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~1.5 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Noita",
-    "body": "Search the catalogue for Noita and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically."
+    "body": "Search the catalogue for Noita and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port."
    },
    {
     "title": "Play",
@@ -90,16 +90,16 @@
   "requirements": [
    "Manor Lords, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~15 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Install Pixel Port and let the runtime set up."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
+    "title": "Install the game",
     "body": "Search for Manor Lords, install, and launch. FSR is recommended at 1080p on M1 and M2."
    }
   ],
@@ -115,16 +115,16 @@
   "requirements": [
    "Meccha Chameleon, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 15.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Grab Pixel Port; the runtime installs itself on first run."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Meccha Chameleon in the catalogue and click Install & Play. Pixel Port handles the setup automatically."
+    "title": "Install the game",
+    "body": "Find Meccha Chameleon in the catalogue and choose Install for the normal Steam route. Let downloading and preparation finish before starting the game from Pixel Port."
    }
   ]
  },
@@ -138,16 +138,16 @@
   "requirements": [
    "Magic Archery, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Magic Archery in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Magic Archery in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -161,16 +161,16 @@
   "requirements": [
    "Dwarf Fortress, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Dwarf Fortress in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Dwarf Fortress in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -184,17 +184,17 @@
   "requirements": [
    "The Lord of the Rings Online, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~30 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find The Lord of the Rings Online in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find The Lord of the Rings Online in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -208,16 +208,16 @@
   "requirements": [
    "Kenshi, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Kenshi in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Kenshi in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -231,17 +231,17 @@
   "requirements": [
    "Palworld, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~40 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Palworld in the catalogue and click Install & Play. It downloads your Steam copy and configures the graphics path automatically."
+    "title": "Install the game",
+    "body": "Find Palworld in the catalogue and choose Install for the normal Steam route. Let downloading and preparation finish before starting your Steam copy from Pixel Port."
    },
    {
     "title": "First launch",
@@ -260,16 +260,16 @@
   "requirements": [
    "Elin, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Elin in the catalogue and click Install & Play. The base game runs; heavy mod setups may need a hand for now."
+    "title": "Install the game",
+    "body": "Find Elin in the catalogue and choose Install for the normal Steam route. The base game runs; heavy mod setups may need a hand for now."
    }
   ]
  },
@@ -283,16 +283,16 @@
   "requirements": [
    "Chained Together, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Chained Together in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Chained Together in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -306,17 +306,17 @@
   "requirements": [
    "Age of Empires II: Definitive Edition, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~30 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let the runtime set up on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Age of Empires II: Definitive Edition in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Age of Empires II: Definitive Edition in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -403,17 +403,17 @@
   "requirements": [
    "Portal 2, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~12 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Portal 2",
-    "body": "Find Portal 2 in the catalogue and hit Install & Play. The license you bought years ago still counts."
+    "body": "Find Portal 2 in the catalogue and choose Install for the normal Steam route. The license you bought years ago still counts."
    },
    {
     "title": "Play",
@@ -432,17 +432,17 @@
   "requirements": [
    "Megabonk, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~1 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Megabonk",
-    "body": "Search the catalogue for Megabonk and hit Install & Play. The download is small."
+    "body": "Search the catalogue for Megabonk and choose Install for the normal Steam route. The download is small."
    },
    {
     "title": "Play",
@@ -461,16 +461,16 @@
   "requirements": [
    "Halls of Torment, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Halls of Torment in the catalogue and click Install & Play — Pixel Port picks the Vulkan path for you."
+    "title": "Install the game",
+    "body": "Find Halls of Torment in the catalogue and choose Install for the normal Steam route — Pixel Port picks the Vulkan path for you."
    }
   ],
   "lastTested": "2026-06-20"
@@ -485,17 +485,17 @@
   "requirements": [
    "Tell Me Why, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~30 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Tell Me Why",
-    "body": "Find it in the catalogue and hit Install & Play. It is a large download, so let it finish."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. It is a large download, so let it finish."
    },
    {
     "title": "Play",
@@ -514,16 +514,16 @@
   "requirements": [
    "A Fistful of Gun, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find A Fistful of Gun in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find A Fistful of Gun in the catalogue and choose Install for the normal Steam route."
    }
   ],
   "lastTested": "2026-06-20"
@@ -538,16 +538,16 @@
   "requirements": [
    "The Elder Scrolls: Arena, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find The Elder Scrolls: Arena in the catalogue and click Install & Play — the DOS-era launch path is handled for you."
+    "title": "Install the game",
+    "body": "Find The Elder Scrolls: Arena in the catalogue and choose Install for the normal Steam route — the DOS-era launch path is handled for you."
    }
   ],
   "lastTested": "2026-06-20"
@@ -562,16 +562,16 @@
   "requirements": [
    "Lethal Company, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Lethal Company",
-    "body": "Find it in the catalogue and hit Install & Play. The download is small."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. The download is small."
    },
    {
     "title": "Join your crew",
@@ -589,17 +589,17 @@
   "requirements": [
    "Sekiro: Shadows Die Twice, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~25 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Sekiro",
-    "body": "Find it in the catalogue and hit Install & Play, then let the large download finish."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route, then let the large download finish."
    },
    {
     "title": "Play",
@@ -617,17 +617,17 @@
   "requirements": [
    "Sons of the Forest, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~20 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Sons of the Forest",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -647,17 +647,17 @@
   "requirements": [
    "Subnautica, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~15 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Subnautica",
-    "body": "Find it in the catalogue and hit Install & Play. Pixel Port runs the Windows build, not the abandoned Intel port."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. Pixel Port runs the Windows build, not the abandoned Intel port."
    },
    {
     "title": "Dive",
@@ -675,16 +675,16 @@
   "requirements": [
    "Risk of Rain 2, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Risk of Rain 2 in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Risk of Rain 2 in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -698,17 +698,17 @@
   "requirements": [
    "Devil May Cry 5, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~35 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Devil May Cry 5",
-    "body": "Find it in the catalogue and hit Install & Play, then let the large download finish."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route, then let the large download finish."
    },
    {
     "title": "Play",
@@ -726,17 +726,17 @@
   "requirements": [
    "NieR: Automata, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~50 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add NieR: Automata",
-    "body": "Find it in the catalogue and hit Install & Play. It is a big download, so start it before dinner."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. It is a big download, so start it before dinner."
    },
    {
     "title": "Play",
@@ -754,17 +754,17 @@
   "requirements": [
    "Dark Souls: Remastered, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~8 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Dark Souls: Remastered",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -782,17 +782,17 @@
   "requirements": [
    "Ori and the Will of the Wisps, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~10 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Ori and the Will of the Wisps in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Ori and the Will of the Wisps in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -806,17 +806,17 @@
   "requirements": [
    "Ori and the Blind Forest: Definitive Edition, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~10 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
-    "title": "Install & Play",
-    "body": "Find Ori and the Blind Forest in the catalogue and click Install & Play."
+    "title": "Install the game",
+    "body": "Find Ori and the Blind Forest in the catalogue and choose Install for the normal Steam route."
    }
   ]
  },
@@ -830,16 +830,16 @@
   "requirements": [
    "Dyson Sphere Program, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Dyson Sphere Program",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Build",
@@ -857,17 +857,17 @@
   "requirements": [
    "Outer Wilds, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~8 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Outer Wilds",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -885,17 +885,17 @@
   "requirements": [
    "Sifu, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~25 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Sifu",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -913,17 +913,17 @@
   "requirements": [
    "Half-Life 2, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~7 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Half-Life 2",
-    "body": "Find it in the catalogue and hit Install & Play. The license you bought years ago counts."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route. The license you bought years ago counts."
    },
    {
     "title": "Play",
@@ -943,17 +943,17 @@
   "requirements": [
    "Borderlands 2, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+",
+   "macOS 14.0+",
    "~20 GB free"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Borderlands 2",
-    "body": "Find it in the catalogue and hit Install & Play."
+    "body": "Find it in the catalogue and choose Install for the normal Steam route."
    },
    {
     "title": "Play",
@@ -971,16 +971,16 @@
   "requirements": [
    "Flow Of War, owned on your own Steam account",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Flow Of War",
-    "body": "Find Flow Of War in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically."
+    "body": "Find Flow Of War in the catalogue and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port."
    },
    {
     "title": "Play",
@@ -1003,16 +1003,16 @@
   "requirements": [
    "DSS 2: War Industry, owned on your own Steam account (there is also a free demo)",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add DSS 2: War Industry",
-    "body": "Find DSS 2: War Industry in the catalogue and hit Install & Play. Steam downloads the Windows build you already own, and Pixel Port configures it for your Mac automatically. Not sure yet? There is also a free demo."
+    "body": "Find DSS 2: War Industry in the catalogue and choose Install for the normal Steam route. Steam downloads the Windows build you already own. Let downloading and preparation finish before starting the game from Pixel Port. Not sure yet? There is also a free demo."
    },
    {
     "title": "Play",
@@ -1031,16 +1031,16 @@
   "requirements": [
    "A Steam account (Party Jousting is free)",
    "Apple Silicon (M1 or newer)",
-   "macOS 14+"
+   "macOS 14.0+"
   ],
   "steps": [
    {
     "title": "Install Pixel Port",
-    "body": "Download Pixel Port and let it set up the runtime on first launch."
+    "body": "Download Pixel Port, move it to Applications, and follow its sign-in and runtime setup prompts."
    },
    {
     "title": "Add Party Jousting",
-    "body": "Find Party Jousting in the catalogue and hit Install & Play. It is free on Steam, so there is nothing to buy first."
+    "body": "Find Party Jousting in the catalogue and choose Install for the normal Steam route. It is free on Steam, so there is nothing to buy first."
    },
    {
     "title": "Grab some friends",
