@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-17",
+ "fetched_at": "2026-11-19",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -9,6 +9,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 157642084
+  },
+  {
+   "appid": 578080,
+   "slug": "pubg-battlegrounds",
+   "name": "PUBG: BATTLEGROUNDS",
+   "tier": "unsupported",
+   "reason": "BattlEye kernel stack, no Proton opt-in.",
+   "popularity": 151520457
   },
   {
    "appid": 1172470,
@@ -147,6 +155,14 @@
    "popularity": 35872384
   },
   {
+   "appid": 292030,
+   "slug": "the-witcher-3-wild-hunt",
+   "name": "The Witcher 3: Wild Hunt",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 35802993
+  },
+  {
    "appid": 553850,
    "slug": "helldivers-2",
    "name": "HELLDIVERS 2",
@@ -246,7 +262,7 @@
    "appid": 291550,
    "slug": "brawlhalla",
    "name": "Brawlhalla",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 35314809
   },
@@ -371,6 +387,14 @@
    "popularity": 15509445
   },
   {
+   "appid": 322330,
+   "slug": "dont-starve-together",
+   "name": "Don't Starve Together",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 15475393
+  },
+  {
    "appid": 1966720,
    "slug": "lethal-company",
    "name": "Lethal Company",
@@ -451,6 +475,14 @@
    "popularity": 15307041
   },
   {
+   "appid": 289070,
+   "slug": "sid-meiers-civilization-vi",
+   "name": "Sid Meier's Civilization VI",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 15304053
+  },
+  {
    "appid": 444090,
    "slug": "paladins",
    "name": "Paladins",
@@ -465,6 +497,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 15272900
+  },
+  {
+   "appid": 255710,
+   "slug": "cities-skylines",
+   "name": "Cities: Skylines",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 15256362
   },
   {
    "appid": 107410,
@@ -489,6 +529,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 15239721
+  },
+  {
+   "appid": 261550,
+   "slug": "mount-blade-ii-bannerlord",
+   "name": "Mount & Blade II: Bannerlord",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 15232360
   },
   {
    "appid": 1203220,
@@ -641,6 +689,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 15094368
+  },
+  {
+   "appid": 219990,
+   "slug": "grim-dawn",
+   "name": "Grim Dawn",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 15093489
   },
   {
    "appid": 755790,
@@ -803,12 +859,28 @@
    "popularity": 7805168
   },
   {
+   "appid": 264710,
+   "slug": "subnautica",
+   "name": "Subnautica",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7804449
+  },
+  {
    "appid": 72850,
    "slug": "the-elder-scrolls-v-skyrim",
    "name": "The Elder Scrolls V: Skyrim",
    "tier": "playable",
    "reason": null,
    "popularity": 7800915
+  },
+  {
+   "appid": 275850,
+   "slug": "no-mans-sky",
+   "name": "No Man's Sky",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 7793332
   },
   {
    "appid": 632360,
@@ -865,6 +937,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 7744524
+  },
+  {
+   "appid": 203160,
+   "slug": "tomb-raider-2013",
+   "name": "Tomb Raider (2013)",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7738239
   },
   {
    "appid": 976730,
@@ -942,7 +1022,7 @@
    "appid": 700330,
    "slug": "scp-secret-laboratory",
    "name": "SCP: Secret Laboratory",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 7695923
   },
@@ -1155,6 +1235,14 @@
    "popularity": 7620458
   },
   {
+   "appid": 236850,
+   "slug": "europa-universalis-iv",
+   "name": "Europa Universalis IV",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7616432
+  },
+  {
    "appid": 594570,
    "slug": "total-war-warhammer-ii",
    "name": "Total War: WARHAMMER II",
@@ -1171,12 +1259,28 @@
    "popularity": 7612414
   },
   {
+   "appid": 1677740,
+   "slug": "stumble-guys",
+   "name": "Stumble Guys",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7608841
+  },
+  {
    "appid": 1604030,
    "slug": "v-rising",
    "name": "V Rising",
    "tier": "verified",
    "reason": null,
    "popularity": 7606197
+  },
+  {
+   "appid": 424840,
+   "slug": "little-nightmares",
+   "name": "Little Nightmares",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7604472
   },
   {
    "appid": 304390,
@@ -1201,6 +1305,22 @@
    "tier": "playable",
    "reason": null,
    "popularity": 7602336
+  },
+  {
+   "appid": 286690,
+   "slug": "metro-2033-redux",
+   "name": "Metro 2033 Redux",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7601543
+  },
+  {
+   "appid": 221380,
+   "slug": "age-of-empires-ii-hd-edition",
+   "name": "Age of Empires II: HD Edition",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 7597083
   },
   {
    "appid": 1446780,
@@ -1507,6 +1627,14 @@
    "popularity": 7539598
   },
   {
+   "appid": 3240220,
+   "slug": "grand-theft-auto-v-enhanced",
+   "name": "Grand Theft Auto V Enhanced",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 7538595
+  },
+  {
    "appid": 2669320,
    "slug": "ea-sports-fc-25",
    "name": "EA SPORTS FC 25",
@@ -1625,6 +1753,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3662047
+  },
+  {
+   "appid": 281990,
+   "slug": "stellaris",
+   "name": "Stellaris",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 3659527
   },
   {
    "appid": 813780,
@@ -1755,6 +1891,14 @@
    "popularity": 3621562
   },
   {
+   "appid": 220200,
+   "slug": "kerbal-space-program",
+   "name": "Kerbal Space Program",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3621084
+  },
+  {
    "appid": 570940,
    "slug": "dark-souls-remastered",
    "name": "Dark Souls: Remastered",
@@ -1785,6 +1929,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3614570
+  },
+  {
+   "appid": 323190,
+   "slug": "frostpunk",
+   "name": "Frostpunk",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3614315
   },
   {
    "appid": 1158310,
@@ -1854,7 +2006,7 @@
    "appid": 219150,
    "slug": "hotline-miami",
    "name": "Hotline Miami",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 3603599
   },
@@ -1905,6 +2057,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3595053
+  },
+  {
+   "appid": 233860,
+   "slug": "kenshi",
+   "name": "Kenshi",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 3593712
   },
   {
    "appid": 976310,
@@ -2099,6 +2259,14 @@
    "popularity": 3570940
   },
   {
+   "appid": 1466860,
+   "slug": "age-of-empires-iv-anniversary-edition",
+   "name": "Age of Empires IV: Anniversary Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3569559
+  },
+  {
    "appid": 815370,
    "slug": "green-hell",
    "name": "Green Hell",
@@ -2171,6 +2339,14 @@
    "popularity": 3563788
   },
   {
+   "appid": 287390,
+   "slug": "metro-last-light-redux",
+   "name": "Metro: Last Light Redux",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 3563534
+  },
+  {
    "appid": 1304930,
    "slug": "the-outlast-trials",
    "name": "The Outlast Trials",
@@ -2238,7 +2414,7 @@
    "appid": 289650,
    "slug": "assassins-creed-unity",
    "name": "Assassin's Creed Unity",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3558065
   },
@@ -2291,6 +2467,14 @@
    "popularity": 3548901
   },
   {
+   "appid": 319510,
+   "slug": "five-nights-at-freddys",
+   "name": "Five Nights at Freddy's",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3548831
+  },
+  {
    "appid": 33230,
    "slug": "assassins-creed-ii",
    "name": "Assassin's Creed II",
@@ -2321,6 +2505,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3548180
+  },
+  {
+   "appid": 307780,
+   "slug": "mortal-kombat-x",
+   "name": "Mortal Kombat X",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3548077
   },
   {
    "appid": 648350,
@@ -2451,6 +2643,14 @@
    "popularity": 3538173
   },
   {
+   "appid": 312530,
+   "slug": "duck-game",
+   "name": "Duck Game",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3537172
+  },
+  {
    "appid": 42700,
    "slug": "call-of-duty-black-ops",
    "name": "Call of Duty: Black Ops",
@@ -2489,6 +2689,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 3533577
+  },
+  {
+   "appid": 266840,
+   "slug": "age-of-mythology-extended-edition",
+   "name": "Age of Mythology: Extended Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3532895
   },
   {
    "appid": 475150,
@@ -2587,20 +2795,20 @@
    "popularity": 3520179
   },
   {
-   "appid": 1284210,
-   "slug": "guild-wars-2",
-   "name": "Guild Wars 2®",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 3519151
-  },
-  {
    "appid": 211500,
    "slug": "raceroom-racing-experience",
    "name": "RaceRoom Racing Experience",
    "tier": "verified",
    "reason": null,
    "popularity": 3517812
+  },
+  {
+   "appid": 212500,
+   "slug": "the-lord-of-the-rings-online",
+   "name": "The Lord of the Rings Online™",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 3517099
   },
   {
    "appid": 6860,
@@ -2710,7 +2918,7 @@
    "appid": 2231450,
    "slug": "pizza-tower",
    "name": "Pizza Tower",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 1565599
   },
@@ -2867,6 +3075,14 @@
    "popularity": 1540182
   },
   {
+   "appid": 312520,
+   "slug": "rain-world",
+   "name": "Rain World",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 1539787
+  },
+  {
    "appid": 1419170,
    "slug": "my-singing-monsters",
    "name": "My Singing Monsters",
@@ -3019,14 +3235,6 @@
    "popularity": 1531223
   },
   {
-   "appid": 668580,
-   "slug": "atomic-heart",
-   "name": "Atomic Heart",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 1531167
-  },
-  {
    "appid": 2212330,
    "slug": "your-only-move-is-hustle",
    "name": "Your Only Move Is HUSTLE",
@@ -3115,14 +3323,6 @@
    "popularity": 1525879
   },
   {
-   "appid": 460920,
-   "slug": "steep",
-   "name": "Steep",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 1525437
-  },
-  {
    "appid": 1066780,
    "slug": "transport-fever-2",
    "name": "Transport Fever 2",
@@ -3193,6 +3393,14 @@
    "tier": "verified",
    "reason": null,
    "popularity": 1523000
+  },
+  {
+   "appid": 213610,
+   "slug": "sonic-adventure-2",
+   "name": "Sonic Adventure 2",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 1522711
   },
   {
    "appid": 2051620,
@@ -3427,6 +3635,14 @@
    "popularity": 1515282
   },
   {
+   "appid": 239350,
+   "slug": "spelunky",
+   "name": "Spelunky",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 1515005
+  },
+  {
    "appid": 1222690,
    "slug": "dragon-age-inquisition",
    "name": "Dragon Age: Inquisition",
@@ -3462,7 +3678,7 @@
    "appid": 6910,
    "slug": "deus-ex-game-of-the-year-edition",
    "name": "Deus Ex: Game of the Year Edition",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1513801
   },
@@ -3646,7 +3862,7 @@
    "appid": 31280,
    "slug": "poker-night-at-the-inventory",
    "name": "Poker Night at the Inventory",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1508477
   },
@@ -3681,14 +3897,6 @@
    "tier": "untested",
    "reason": null,
    "popularity": 1506527
-  },
-  {
-   "appid": 2552430,
-   "slug": "kingdom-hearts-hd-1-5-2-5-remix",
-   "name": "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 1506361
   },
   {
    "appid": 41500,
@@ -3883,6 +4091,14 @@
    "popularity": 772421
   },
   {
+   "appid": 1040200,
+   "slug": "crime-scene-cleaner",
+   "name": "Crime Scene Cleaner",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 771567
+  },
+  {
    "appid": 2208920,
    "slug": "assassins-creed-valhalla",
    "name": "Assassin's Creed Valhalla",
@@ -3969,14 +4185,6 @@
    "tier": "playable",
    "reason": null,
    "popularity": 767905
-  },
-  {
-   "appid": 2707900,
-   "slug": "night-runners-prologue",
-   "name": "NIGHT-RUNNERS PROLOGUE",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 767531
   },
   {
    "appid": 894020,
@@ -4267,6 +4475,14 @@
    "popularity": 760303
   },
   {
+   "appid": 320240,
+   "slug": "we-happy-few",
+   "name": "We Happy Few",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 760225
+  },
+  {
    "appid": 505230,
    "slug": "pathologic-2",
    "name": "Pathologic 2",
@@ -4465,6 +4681,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 756163
+  },
+  {
+   "appid": 1110910,
+   "slug": "mortal-shell",
+   "name": "Mortal Shell",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 755956
   },
   {
    "appid": 1009560,
@@ -5371,6 +5595,14 @@
    "popularity": 351454
   },
   {
+   "appid": 282560,
+   "slug": "rollercoaster-tycoon-world",
+   "name": "RollerCoaster Tycoon World",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 351451
+  },
+  {
    "appid": 444930,
    "slug": "zaccaria-pinball",
    "name": "Zaccaria Pinball",
@@ -5401,6 +5633,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 351014
+  },
+  {
+   "appid": 225020,
+   "slug": "tomb-raider-the-angel-of-darkness",
+   "name": "Tomb Raider: The Angel of Darkness",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 350978
   },
   {
    "appid": 1722620,
@@ -5763,6 +6003,14 @@
    "popularity": 151136
   },
   {
+   "appid": 303800,
+   "slug": "the-witcher-adventure-game",
+   "name": "The Witcher Adventure Game",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 151029
+  },
+  {
    "appid": 2248430,
    "slug": "touhou-artificial-dream-in-arcadia",
    "name": "Touhou Artificial Dream in Arcadia",
@@ -5819,6 +6067,14 @@
    "popularity": 150395
   },
   {
+   "appid": 229810,
+   "slug": "a-fistful-of-gun",
+   "name": "A Fistful of Gun",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 150303
+  },
+  {
    "appid": 35010,
    "slug": "batman-arkham-asylum-game-of-the-year-edition",
    "name": "Batman: Arkham Asylum Game of the Year Edition",
@@ -5859,14 +6115,6 @@
    "popularity": 77075
   },
   {
-   "appid": 2427410,
-   "slug": "s-t-a-l-k-e-r-shadow-of-chornobyl-enhanced-edition",
-   "name": "S.T.A.L.K.E.R.: Shadow of Chornobyl - Enhanced Edition",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 77068
-  },
-  {
    "appid": 3314070,
    "slug": "the-sims-2-legacy-collection",
    "name": "The Sims 2 Legacy Collection",
@@ -5897,14 +6145,6 @@
    "tier": "playable",
    "reason": null,
    "popularity": 76374
-  },
-  {
-   "appid": 2674590,
-   "slug": "beltmatic",
-   "name": "Beltmatic",
-   "tier": "untested",
-   "reason": null,
-   "popularity": 76354
   },
   {
    "appid": 3463050,
@@ -6747,14 +6987,6 @@
    "popularity": 10031
   },
   {
-   "appid": 1698690,
-   "slug": "automation",
-   "name": "Automation",
-   "tier": "untested",
-   "reason": null,
-   "popularity": 10029
-  },
-  {
    "appid": 1611960,
    "slug": "doomed-lands",
    "name": "Doomed Lands",
@@ -6881,6 +7113,22 @@
    "tier": "unsupported",
    "reason": "Not a game - Steam software (tool/application).",
    "popularity": 10003
+  },
+  {
+   "appid": 1594560,
+   "slug": "chrome-switcher",
+   "name": "Chrome Switcher",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10002
+  },
+  {
+   "appid": 896940,
+   "slug": "switcher",
+   "name": "Switcher",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10001
   },
   {
    "appid": 499450,
@@ -7454,7 +7702,7 @@
    "appid": 2413950,
    "slug": "final-sentence",
    "name": "Final Sentence",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 0
   },
@@ -7579,26 +7827,10 @@
    "popularity": 0
   },
   {
-   "appid": 4197610,
-   "slug": "librarian-tidy-up-the-arcane-library",
-   "name": "Librarian: Tidy Up the Arcane Library!",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 0
-  },
-  {
-   "appid": 2444750,
-   "slug": "shape-of-dreams",
-   "name": "Shape of Dreams",
-   "tier": "playable",
-   "reason": null,
-   "popularity": 0
-  },
-  {
-   "appid": 2592160,
-   "slug": "dispatch-2025",
-   "name": "Dispatch (2025)",
-   "tier": "playable",
+   "appid": 3513350,
+   "slug": "wuthering-waves",
+   "name": "Wuthering Waves",
+   "tier": "untested",
    "reason": null,
    "popularity": 0
   },
