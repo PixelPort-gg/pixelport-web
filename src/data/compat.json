@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-19",
+ "fetched_at": "2026-11-20",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -118,7 +118,7 @@
    "appid": 4000,
    "slug": "garrys-mod",
    "name": "Garry's Mod",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 36122546
   },
@@ -878,7 +878,7 @@
    "appid": 275850,
    "slug": "no-mans-sky",
    "name": "No Man's Sky",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7793332
   },
@@ -966,7 +966,7 @@
    "appid": 1144200,
    "slug": "ready-or-not",
    "name": "Ready or Not",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 7710654
   },
@@ -1022,7 +1022,7 @@
    "appid": 700330,
    "slug": "scp-secret-laboratory",
    "name": "SCP: Secret Laboratory",
-   "tier": "untested",
+   "tier": "verified",
    "reason": null,
    "popularity": 7695923
   },
@@ -1190,7 +1190,7 @@
    "appid": 2881650,
    "slug": "content-warning",
    "name": "Content Warning",
-   "tier": "verified",
+   "tier": "untested",
    "reason": null,
    "popularity": 7637483
   },
@@ -2246,7 +2246,7 @@
    "appid": 207610,
    "slug": "the-walking-dead-season-one",
    "name": "The Walking Dead: Season One",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 3571633
   },
@@ -2718,7 +2718,7 @@
    "appid": 8980,
    "slug": "borderlands-game-of-the-year",
    "name": "Borderlands Game of the Year",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3528944
   },
@@ -2793,6 +2793,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 3520179
+  },
+  {
+   "appid": 1284210,
+   "slug": "guild-wars-2",
+   "name": "Guild Wars 2®",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 3519151
   },
   {
    "appid": 211500,
@@ -3235,6 +3243,14 @@
    "popularity": 1531223
   },
   {
+   "appid": 668580,
+   "slug": "atomic-heart",
+   "name": "Atomic Heart",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1531167
+  },
+  {
    "appid": 2212330,
    "slug": "your-only-move-is-hustle",
    "name": "Your Only Move Is HUSTLE",
@@ -3321,6 +3337,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 1525879
+  },
+  {
+   "appid": 460920,
+   "slug": "steep",
+   "name": "Steep",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1525437
   },
   {
    "appid": 1066780,
@@ -3606,7 +3630,7 @@
    "appid": 228200,
    "slug": "company-of-heroes",
    "name": "Company of Heroes",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1516025
   },
@@ -3899,6 +3923,14 @@
    "popularity": 1506527
   },
   {
+   "appid": 2552430,
+   "slug": "kingdom-hearts-hd-1-5-2-5-remix",
+   "name": "KINGDOM HEARTS -HD 1.5+2.5 ReMIX-",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 1506361
+  },
+  {
    "appid": 41500,
    "slug": "torchlight",
    "name": "Torchlight",
@@ -4185,6 +4217,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 767905
+  },
+  {
+   "appid": 2707900,
+   "slug": "night-runners-prologue",
+   "name": "NIGHT-RUNNERS PROLOGUE",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 767531
   },
   {
    "appid": 894020,
@@ -4782,7 +4822,7 @@
    "appid": 1096710,
    "slug": "hello-neighbor-alpha-4",
    "name": "Hello Neighbor Alpha 4",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 754237
   },
@@ -6115,6 +6155,14 @@
    "popularity": 77075
   },
   {
+   "appid": 2427410,
+   "slug": "s-t-a-l-k-e-r-shadow-of-chornobyl-enhanced-edition",
+   "name": "S.T.A.L.K.E.R.: Shadow of Chornobyl - Enhanced Edition",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 77068
+  },
+  {
    "appid": 3314070,
    "slug": "the-sims-2-legacy-collection",
    "name": "The Sims 2 Legacy Collection",
@@ -6145,6 +6193,14 @@
    "tier": "playable",
    "reason": null,
    "popularity": 76374
+  },
+  {
+   "appid": 2674590,
+   "slug": "beltmatic",
+   "name": "Beltmatic",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 76354
   },
   {
    "appid": 3463050,
@@ -6985,6 +7041,14 @@
    "tier": "untested",
    "reason": null,
    "popularity": 10031
+  },
+  {
+   "appid": 1698690,
+   "slug": "automation",
+   "name": "Automation",
+   "tier": "untested",
+   "reason": null,
+   "popularity": 10029
   },
   {
    "appid": 1611960,
@@ -7831,6 +7895,30 @@
    "slug": "wuthering-waves",
    "name": "Wuthering Waves",
    "tier": "untested",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 4197610,
+   "slug": "librarian-tidy-up-the-arcane-library",
+   "name": "Librarian: Tidy Up the Arcane Library!",
+   "tier": "playable",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2444750,
+   "slug": "shape-of-dreams",
+   "name": "Shape of Dreams",
+   "tier": "verified",
+   "reason": null,
+   "popularity": 0
+  },
+  {
+   "appid": 2592160,
+   "slug": "dispatch-2025",
+   "name": "Dispatch (2025)",
+   "tier": "playable",
    "reason": null,
    "popularity": 0
   },
