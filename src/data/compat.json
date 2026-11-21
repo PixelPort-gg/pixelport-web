@@ -1,5 +1,5 @@
 {
- "fetched_at": "2026-11-20",
+ "fetched_at": "2026-11-21",
  "source": "https://mgp-api.macgameport.workers.dev (public catalogue API)",
  "games": [
   {
@@ -1438,7 +1438,7 @@
    "appid": 863550,
    "slug": "hitman-2",
    "name": "HITMAN 2",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7568165
   },
@@ -1446,7 +1446,7 @@
    "appid": 206420,
    "slug": "saints-row-iv-re-elected",
    "name": "Saints Row IV: Re-Elected",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 7567768
   },
@@ -2310,7 +2310,7 @@
    "appid": 200260,
    "slug": "batman-arkham-city",
    "name": "Batman: Arkham City",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3565947
   },
@@ -2758,7 +2758,7 @@
    "appid": 17470,
    "slug": "dead-space",
    "name": "Dead Space",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 3525388
   },
@@ -3022,7 +3022,7 @@
    "appid": 1017180,
    "slug": "the-long-drive",
    "name": "The Long Drive",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1542761
   },
@@ -3326,7 +3326,7 @@
    "appid": 585420,
    "slug": "trailmakers",
    "name": "Trailmakers",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 1525941
   },
@@ -3918,7 +3918,7 @@
    "appid": 202750,
    "slug": "alan-wakes-american-nightmare",
    "name": "Alan Wake's American Nightmare",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 1506527
   },
@@ -4062,7 +4062,7 @@
    "appid": 1336490,
    "slug": "against-the-storm",
    "name": "Against the Storm",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 779837
   },
@@ -5342,7 +5342,7 @@
    "appid": 115100,
    "slug": "costume-quest",
    "name": "Costume Quest",
-   "tier": "untested",
+   "tier": "playable",
    "reason": null,
    "popularity": 353654
   },
@@ -5742,7 +5742,7 @@
    "appid": 1574820,
    "slug": "until-then",
    "name": "Until Then",
-   "tier": "playable",
+   "tier": "verified",
    "reason": null,
    "popularity": 159622
   },
